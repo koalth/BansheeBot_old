@@ -5,9 +5,10 @@ import asyncio
 from typing import List, Optional
 from ratelimit import limits, sleep_and_retry
 import httpx
+from marshmallow import ValidationError
 
 from bot.raiderIO.models.character import Character
-
+from bot.raiderIO.schemas.schema import CharacterSchema
 
 API_URL = "https://raider.io/api/v1/"
 CALLS = 200
@@ -28,32 +29,17 @@ async def get_character(name: str, realm="Dalaran", region="us") -> Optional[Cha
                     + f"characters/profile?region={region}&realm={realm}&name={name}&fields=guild,gear",
                     timeout=TIMEOUT,
                 )
-
                 if response.status_code == 200:
-                    if response.json()["guild"] is None:
-                        guild_name = None
-                    else:
-                        guild_name = response.json()["guild"]["name"]
-                    faction = response.json()["faction"]
-                    role = response.json()["active_spec_role"]
-                    spec_name = response.json()["active_spec_name"]
-                    player_class = response.json()["class"]
-                    achievement_points = response.json()["achievement_points"]
-                    item_level = response.json()["gear"]["item_level_equipped"]
 
-                    character = Character(
-                        name=name,
-                        realm=realm,
-                        guild_name=guild_name,
-                        faction=faction,
-                        role=role,
-                        spec_name=spec_name,
-                        class_name=player_class,
-                        achievement_points=achievement_points,
-                        item_level=item_level,
-                        score=0,
-                    )
-                    return character
+                    character_schema = CharacterSchema()
+
+                    try:
+                        character_io = character_schema.load(response.json())
+                    except ValidationError as err:
+                        print("Validation Error: ", err)
+                        raise err
+
+                    return character_io
                 else:
                     print(response.status_code)
                     print(f"Error: API Error. {response.status_code}")

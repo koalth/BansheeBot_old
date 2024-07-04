@@ -1,25 +1,98 @@
+import datetime
+from typing import List, Optional, Dict
+
+
+class Guild:
+    name: str
+    realm: str
+
+    def __init__(self, name: str, realm: str):
+        self.name = name
+        self.realm = realm
+
+
+class Item:
+    item_id: int
+    item_level: int
+    icon: str
+    name: str
+    item_quality: int
+    is_legendary: bool
+    gems: List[int]
+    enchant: Optional[int]
+    tier: Optional[str]
+
+    def __init__(
+        self,
+        item_id: int,
+        item_level: int,
+        icon: str,
+        name: str,
+        item_quality: int,
+        is_legendary: bool,
+        gems: List[int],
+        enchant: Optional[int] = [],
+        tier: Optional[str] = [],
+    ):
+        self.item_id = item_id
+        self.item_level = item_level
+        self.icon = icon
+        self.name = name
+        self.item_quality = item_quality
+        self.is_legendary = is_legendary
+        self.gems = gems
+        self.enchant = enchant
+        self.tier = tier
+
+
+class Gear:
+    updated_at: datetime
+    item_level_equipped: int
+    item_level_total: int
+    items: Dict[str, Item]
+
+    def __init__(
+        self,
+        updated_at: datetime,
+        item_level_equipped: int,
+        item_level_total: int,
+        items: Dict[str, Item],
+    ):
+        self.updated_at = updated_at
+        self.item_level_equipped = item_level_equipped
+        self.item_level_total = item_level_total
+        self.items = items
+
+
 class Character:
+    name: str
+    race: str
+    c_class: str
+    faction: str
+    region: str
+    realm: str
+    gear: Gear
+    guild: Guild
 
     def __init__(
         self,
         name: str,
-        realm: str,
-        guild_name: str,
+        race: str,
+        c_class: str,
         faction: str,
-        role: str,
-        spec_name: str,
-        class_name: str,
-        achievement_points: int,
-        item_level: int,
-        score: int,
+        region: str,
+        realm: str,
+        gear: Gear,
+        guild: Guild,
     ):
         self.name = name
-        self.realm = realm
-        self.guild_name = guild_name
+        self.race = race
+        self.c_class = c_class
         self.faction = faction
-        self.role = role
-        self.spec_name = spec_name
-        self.class_name = class_name
-        self.achievement_points = achievement_points
-        self.item_level = item_level
-        self.score = score
+        self.region = region
+        self.realm = realm
+        self.gear = gear
+        self.guild = guild
+
+    def __repr__(self) -> str:
+        return f"<Character(name={self.name}, realm={self.realm})>"

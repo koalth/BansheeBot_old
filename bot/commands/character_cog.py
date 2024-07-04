@@ -26,7 +26,9 @@ class Character(commands.Cog):
                 return
 
             else:
-                await ctx.respond(f"Item level: {character_io.item_level}")
+                await ctx.respond(
+                    f"Item level: {character_io.gear.item_level_equipped}"
+                )
 
         except Exception as exception:
             print(exception)
