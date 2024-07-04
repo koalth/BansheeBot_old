@@ -23,7 +23,7 @@ Clone the git repo or download files manually.
 
 Open the project in your favorite code editor
 
-Create a [new virtual environment and activate it](!https://docs.python.org/3/library/venv.html)
+Create a [new virtual environment and activate it](https://docs.python.org/3/library/venv.html)
 
 
 Install all the project's dependencies, use this command:
