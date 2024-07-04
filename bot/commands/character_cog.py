@@ -5,7 +5,7 @@ from discord.commands import SlashCommandGroup
 from discord.ext import commands
 
 from bot.raiderIO import get_character
-from bot.views.character_views import display_character_summary
+from bot.views.character_views import CharacterViews
 
 
 class Character(commands.Cog):
@@ -46,7 +46,7 @@ class Character(commands.Cog):
                 await ctx.respond(f"Character {name}-{realm} does not exist")
                 return
             else:
-                embed = display_character_summary(character_io)
+                embed = CharacterViews.getCharacterSummary(character_io)
                 await ctx.respond(embed=embed)
 
         except Exception as exception:

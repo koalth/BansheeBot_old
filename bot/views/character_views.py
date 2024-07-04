@@ -1,23 +1,30 @@
 import discord
 
+from discord.embeds import Embed
 
 from bot.raiderIO.models.character import Character
 
 footer = "Data from Raider.IO"
 
 
-def display_character_summary(character: Character, bot_user: discord.User = None):
-    title = character.name.capitalize() + "'s Summary"
-    embed = discord.Embed(
-        title=title,
-        description="",
-    )
+class CharacterViews:
 
-    embed.set_author(name="BansheeBot")
+    def getCharacterSummary(
+        character: Character, bot_user: discord.User = None
+    ) -> Embed:
+        title = character.name.capitalize() + "'s Summary"
+        embed = discord.Embed(title=title, description="", url=character.profile_url)
 
-    embed.add_field(name="Class", value=character.c_class, inline=True)
-    # embed.add_field(name="Last Spec", value=charac)
-    # embed.set_thumbnail(ch)
+        embed.set_author(name="BansheeBot")
 
-    embed.set_footer(text=footer)
-    return embed
+        embed.add_field(name="Class", value=character.class_name, inline=True)
+        embed.add_field(name="Specialization", value=character.spec_name, inline=True)
+        embed.add_field(name="Role", value=character.role, inline=True)
+        embed.add_field(
+            name="Item Level", value=character.gear.item_level_equipped, inline=True
+        )
+
+        embed.set_thumbnail(url=character.thumbnail_url)
+
+        embed.set_footer(text=footer)
+        return embed

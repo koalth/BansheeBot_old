@@ -1,10 +1,6 @@
-import asyncio
 import os
 import discord
-from discord.ext import commands
 from dotenv import load_dotenv
-
-from importlib.util import resolve_name
 
 load_dotenv()
 TOKEN = os.getenv("DISCORD_TOKEN")

@@ -50,12 +50,17 @@ class GearSchema(Schema):
 class CharacterSchema(Schema):
     name = fields.Str()
     race = fields.Str()
-    c_class = fields.Str(data_key="class")
+    class_name = fields.Str(data_key="class")
+    spec_name = fields.Str(data_key="active_spec_name")
+    role = fields.Str(data_key="active_spec_role")
     faction = fields.Str()
     region = fields.Str()
     realm = fields.Str()
     gear = fields.Nested(GearSchema)
     guild = fields.Nested(GuildSchema)
+
+    profile_url = fields.Url()
+    thumbnail_url = fields.Url()
 
     class Meta:
         unknown = EXCLUDE

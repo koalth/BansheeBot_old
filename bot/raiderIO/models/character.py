@@ -67,32 +67,45 @@ class Gear:
 class Character:
     name: str
     race: str
-    c_class: str
+    class_name: str
+    spec_name: str
+    role: str
     faction: str
     region: str
     realm: str
     gear: Gear
     guild: Guild
 
+    profile_url: str
+    thumbnail_url: str
+
     def __init__(
         self,
         name: str,
         race: str,
-        c_class: str,
+        class_name: str,
+        spec_name: str,
+        role: str,
         faction: str,
         region: str,
         realm: str,
         gear: Gear,
         guild: Guild,
+        profile_url: str,
+        thumbnail_url: str,
     ):
         self.name = name
         self.race = race
-        self.c_class = c_class
+        self.class_name = class_name
+        self.spec_name = spec_name
+        self.role = role
         self.faction = faction
         self.region = region
         self.realm = realm
         self.gear = gear
         self.guild = guild
+        self.profile_url = profile_url
+        self.thumbnail_url = thumbnail_url
 
     def __repr__(self) -> str:
         return f"<Character(name={self.name}, realm={self.realm})>"
