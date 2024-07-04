@@ -1,3 +1,3 @@
 # Banshee Bot
 
-A discord bot for my WoW guild
+A discord bot for **The Revenants** World of Warcraft guild
