@@ -15,7 +15,7 @@ bot = discord.Bot(
     ),
 )
 
-cogs_list = ["bot.commands.character_cog"]
+cogs_list = ["src.commands.character_cog"]
 
 
 def load_extensions():

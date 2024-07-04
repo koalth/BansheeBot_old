@@ -2,7 +2,7 @@ import discord
 
 from discord.embeds import Embed
 
-from bot.raiderIO.models.character import Character
+from src.raiderIO.models.character import Character
 
 footer = "Data from Raider.IO"
 

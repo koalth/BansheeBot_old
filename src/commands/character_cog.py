@@ -4,8 +4,8 @@ import discord
 from discord.commands import SlashCommandGroup
 from discord.ext import commands
 
-from bot.raiderIO import get_character
-from bot.views.character_views import CharacterViews
+from src.raiderIO import get_character
+from src.views.character_views import CharacterViews
 
 
 class Character(commands.Cog):

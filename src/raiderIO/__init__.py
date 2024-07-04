@@ -7,8 +7,8 @@ from ratelimit import limits, sleep_and_retry
 import httpx
 from marshmallow import ValidationError
 
-from bot.raiderIO.models.character import Character
-from bot.raiderIO.schemas.schema import CharacterSchema
+from src.raiderIO.models.character import Character
+from src.raiderIO.schemas.schema import CharacterSchema
 
 API_URL = "https://raider.io/api/v1/"
 CALLS = 200
