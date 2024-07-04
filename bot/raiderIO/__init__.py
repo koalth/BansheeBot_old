@@ -25,7 +25,7 @@ async def get_character(name: str, realm="Dalaran", region="us") -> Optional[Cha
             async with httpx.AsyncClient() as client:
                 response = await client.get(
                     API_URL
-                    + f"character/profile?region={region}&realm={realm}&name={name}&fields=guild,gear",
+                    + f"characters/profile?region={region}&realm={realm}&name={name}&fields=guild,gear",
                     timeout=TIMEOUT,
                 )
 
@@ -51,6 +51,7 @@ async def get_character(name: str, realm="Dalaran", region="us") -> Optional[Cha
                         class_name=player_class,
                         achievement_points=achievement_points,
                         item_level=item_level,
+                        score=0,
                     )
                     return character
                 else:
