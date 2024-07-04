@@ -4,7 +4,7 @@ import discord
 from discord.commands import SlashCommandGroup
 from discord.ext import commands
 
-from src.raiderIO import get_character
+from src.raiderIO.client import RaiderIOClient
 from src.views.character_views import CharacterViews
 
 
@@ -19,8 +19,7 @@ class Character(commands.Cog):
     @character.command(name="get_char")
     async def get_char(self, ctx, name: str, realm: Optional[str] = "Dalaran"):
         try:
-            discord_user_id = ctx.author.id
-            character_io = await get_character(name, realm)
+            character_io = await RaiderIOClient.getCharacterProfile(name, realm)
 
             if character_io is None:
                 await ctx.respond(f"Character {name}-{realm} does not exist")
@@ -40,7 +39,7 @@ class Character(commands.Cog):
         self, ctx, name: str, realm: Optional[str] = "Dalaran"
     ):
         try:
-            character_io = await get_character(name, realm)
+            character_io = await RaiderIOClient.getCharacterProfile(name, realm)
 
             if character_io is None:
                 await ctx.respond(f"Character {name}-{realm} does not exist")
