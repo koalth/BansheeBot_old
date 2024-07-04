@@ -13,7 +13,7 @@ Banshee Bot allows Discord server owners to define their own roster of players a
 - Weekly, monthly and season summary reports for individual characters and the guild
 
 
-## Intalling
+## Installing
 
 **Python 3.8 or higher is required**
 
