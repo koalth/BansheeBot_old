@@ -19,8 +19,6 @@ Banshee Bot allows Discord server owners to define their own roster of players a
 
 Clone the git repo or download files manually. 
 
-.. code:: sh
-
     git clone git@github.com:koalth/BansheeBot.git
 
 Open the project in your favorite code editor
@@ -29,8 +27,6 @@ Create a [new virtual environment and activate it](!https://docs.python.org/3/li
 
 
 Install all the project's dependencies, use this command:
-
-.. code:: sh
 
     # Linux/macOS
 
@@ -41,13 +37,9 @@ Install all the project's dependencies, use this command:
 
 Create a new ``.env`` file in the project directory. Add your discord bot's token as so:
 
-.. code:: sh
-
     DISCORD_TOKEN=###
 
 Start the bot up using this command:
-
-.. code:: sh
 
     # Linux/macOS
 
