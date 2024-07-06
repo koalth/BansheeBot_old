@@ -1,6 +1,9 @@
 import os
 import discord
+import asyncio
 from dotenv import load_dotenv
+
+from src.db import db
 
 load_dotenv()
 TOKEN = os.getenv("DISCORD_TOKEN")
@@ -24,6 +27,7 @@ def load_extensions():
 
 
 def main():
+    asyncio.run(db.init())
     load_extensions()
     bot.run(TOKEN)
 
