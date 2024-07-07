@@ -12,6 +12,10 @@ from src.db.models import DiscordGuild, DiscordGuildMember, DiscordGuildMemberLi
 load_dotenv()
 SQLALCHEMY_DATABASE_URI = os.getenv("SQLALCHEMY_DATABASE_URI")
 
+import logging
+
+logger = logging.getLogger(__name__)
+
 
 class BansheeBotDB:
     def __init__(self):
@@ -22,11 +26,11 @@ class BansheeBotDB:
     async def start_engine(self):
         async with self.engine.begin() as session:
             await session.run_sync(SQLModel.metadata.create_all)
-            print("Database created")
+            logger.debug("DB engine started...")
 
     async def stop_engine(self):
         await self.engine.dispose()
-        print("Database disposed")
+        logger.debug("...DB engine disposed")
 
     async def addDiscordGuild(self, discord_guild_id: int, discord_guild_name: str):
         async with AsyncSession(self.engine) as session:

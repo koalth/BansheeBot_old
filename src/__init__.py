@@ -1,7 +1,15 @@
 import discord
 from discord.ext import commands
-
 from src.db import BansheeBotDB
+import logging
+
+logger = logging.getLogger(__name__)
+logger.setLevel(logging.DEBUG)
+ch = logging.StreamHandler()
+ch.setLevel(logging.DEBUG)
+formatter = logging.Formatter("%(asctime)s - %(name)s - %(levelname)s - %(message)s")
+ch.setFormatter(formatter)
+logger.addHandler(ch)
 
 
 class BansheeBot(commands.Bot):
@@ -9,6 +17,7 @@ class BansheeBot(commands.Bot):
     db: BansheeBotDB
 
     def __init__(self) -> None:
+        logger.debug("BansheeBot started initialization...")
         self.db = BansheeBotDB()
         super().__init__(
             intents=discord.Intents(guilds=True),
@@ -16,6 +25,7 @@ class BansheeBot(commands.Bot):
                 type=discord.ActivityType.watching, name="for slash commands!"
             ),
         )
+        logger.debug("...BansheeBot ended initialization")
 
     async def start(self, token: str, *, reconnect: bool = True) -> None:
         await self.db.start_engine()
