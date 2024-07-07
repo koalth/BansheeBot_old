@@ -1,8 +1,9 @@
-from typing import Optional
+from typing import Optional, List
 
 import discord
 from discord.commands import SlashCommandGroup
 from discord.ext import commands
+from discord import option
 
 from src.raiderIO.client import RaiderIOClient
 from src.views.character_views import CharacterViews
@@ -17,7 +18,12 @@ class Character(commands.Cog):
     character = SlashCommandGroup(name="character")
 
     @character.command(name="get_char")
-    async def get_char(self, ctx, name: str, realm: Optional[str] = "Dalaran"):
+    async def get_char(
+        self,
+        ctx: discord.ApplicationContext,
+        name: str,
+        realm: Optional[str] = "Dalaran",
+    ):
         try:
             character_io = await RaiderIOClient.getCharacterProfile(name, realm)
 
@@ -36,11 +42,13 @@ class Character(commands.Cog):
 
     @character.command(name="get_character_summary")
     async def get_character_summary(
-        self, ctx, name: str, realm: Optional[str] = "Dalaran"
+        self,
+        ctx: discord.ApplicationContext,
+        name: str,
+        realm: Optional[str] = "Dalaran",
     ):
         try:
             character_io = await RaiderIOClient.getCharacterProfile(name, realm)
-
             if character_io is None:
                 await ctx.respond(f"Character {name}-{realm} does not exist")
                 return
@@ -53,6 +61,6 @@ class Character(commands.Cog):
             await ctx.respond("Something went wrong")
 
 
-def setup(bot):
-    bot.add_cog(Character(bot))
+async def setup(bot: commands.Bot):
+    await bot.add_cog(Character(bot))
     print("Character cog has loaded successfully")

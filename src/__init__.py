@@ -36,7 +36,7 @@ class BansheeBot(commands.Bot):
         return await super().close()
 
     def run(self, token: str):
-        cogs_list = ["src.commands.character_cog"]
+        cogs_list = ["src.commands.character_cog", "src.commands.admin_cog"]
         for cog in cogs_list:
             self.load_extension(cog)
         super().run(token)
