@@ -7,7 +7,11 @@ from sqlalchemy.ext.asyncio import create_async_engine
 from sqlmodel import SQLModel, select
 from sqlmodel.ext.asyncio.session import AsyncSession
 
-from src.db.models import DiscordGuild, DiscordGuildMember, DiscordGuildMemberLink
+from src.db.models import (
+    DiscordGuild,
+    DiscordGuildMember,
+    DiscordGuildMemberLink,
+)
 
 load_dotenv()
 SQLALCHEMY_DATABASE_URI = os.getenv("SQLALCHEMY_DATABASE_URI")

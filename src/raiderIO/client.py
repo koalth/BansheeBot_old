@@ -11,6 +11,9 @@ from httpx import Response
 from src.raiderIO.models.character import Character
 from src.raiderIO.schemas.schema import CharacterSchema
 
+from src.raiderIO.models.guild import Guild
+from src.raiderIO.schemas.schema import GuildSchema
+
 from marshmallow import ValidationError
 
 
@@ -79,4 +82,23 @@ class RaiderIOClient:
 
         except Exception as exception:
             print(exception)
+            return None
+
+    async def getGuildProfile(
+        name: str, realm: str = "Dalaran", region: str = "us"
+    ) -> Optional[Guild]:
+        try:
+            params = {"region": region, "realm": realm, "name": name}
+            response = await get("guilds/profile", params)
+
+            guild_schema = GuildSchema()
+            try:
+                guild_io = guild_schema.load(response.json())
+            except ValidationError as err:
+                print("Validation Error: ", err)
+                raise err
+
+            return guild_io
+        except Exception as err:
+            print(err)
             return None

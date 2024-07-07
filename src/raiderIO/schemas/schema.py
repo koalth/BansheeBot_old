@@ -4,7 +4,10 @@ from ..models.character import Character, Guild, Item, Gear
 
 class GuildSchema(Schema):
     name = fields.Str()
+    faction = fields.Str()
+    region = fields.Str()
     realm = fields.Str()
+    profile_url = fields.Str()
 
     class Meta:
         unknown = EXCLUDE
