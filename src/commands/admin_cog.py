@@ -2,16 +2,7 @@ import discord
 from discord.commands import SlashCommandGroup
 from discord.ext import commands
 
-
-class DropdownView(discord.ui.View):
-    @discord.ui.role_select(placeholder="Select roles...", min_values=1, max_values=20)
-    async def role_select_dropdown(
-        self, select: discord.ui.Select, interaction: discord.Interaction
-    ) -> None:
-        await interaction.response.send_message(
-            f"You selected the following roles:"
-            + f", ".join(f"{role.mention}" for role in select.values)
-        )
+from src.views.admin_views import AdminRoleSelectView
 
 
 class Admin(commands.Cog):
@@ -22,11 +13,26 @@ class Admin(commands.Cog):
     admin = SlashCommandGroup(name="admin", description="Admin commands")
 
     @admin.command(name="set_role", description="Set the role you would like to track")
+    @discord.ext.commands.has_permissions(administrator=True)
     async def set_role(self, ctx: discord.ApplicationContext):
-        view = DropdownView()
-        await ctx.respond("Select roles: ", view=view)
+        view = AdminRoleSelectView()
+        await ctx.respond("Select roles: ", view=view, ephemeral=True)
+
+    @admin.command(
+        name="delete_last_messages",
+        description="Delete the last n messages in the current channel",
+    )
+    @discord.ext.commands.has_permissions(administrator=True)
+    async def delete_last_messages(
+        self, ctx: discord.ApplicationContext, amount: int
+    ) -> None:
+        messages = await ctx.channel.history(limit=amount).flatten()
+        for msg in messages:
+            await msg.delete()
+
+        await ctx.send("Deleted messages")
 
 
-async def setup(bot: commands.Bot) -> None:
-    await bot.add_cog(Admin(bot))
+def setup(bot: commands.Bot) -> None:
+    bot.add_cog(Admin(bot))
     print("Admin cog has loaded successfully")

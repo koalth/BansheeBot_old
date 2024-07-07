@@ -20,7 +20,9 @@ class BansheeBot(commands.Bot):
         logger.debug("BansheeBot started initialization...")
         self.db = BansheeBotDB()
         super().__init__(
-            intents=discord.Intents(guilds=True),
+            intents=discord.Intents(
+                guilds=True, messages=True, guild_messages=True, message_content=True
+            ),
             activity=discord.Activity(
                 type=discord.ActivityType.watching, name="for slash commands!"
             ),

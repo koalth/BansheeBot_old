@@ -61,6 +61,6 @@ class Character(commands.Cog):
             await ctx.respond("Something went wrong")
 
 
-async def setup(bot: commands.Bot):
-    await bot.add_cog(Character(bot))
+def setup(bot: commands.Bot):
+    bot.add_cog(Character(bot))
     print("Character cog has loaded successfully")
