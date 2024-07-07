@@ -21,7 +21,11 @@ class BansheeBot(commands.Bot):
         self.db = BansheeBotDB()
         super().__init__(
             intents=discord.Intents(
-                guilds=True, messages=True, guild_messages=True, message_content=True
+                guilds=True,
+                messages=True,
+                guild_messages=True,
+                message_content=True,
+                members=True,
             ),
             activity=discord.Activity(
                 type=discord.ActivityType.watching, name="for slash commands!"
@@ -46,5 +50,10 @@ class BansheeBot(commands.Bot):
     async def on_guild_join(self, guild: discord.Guild):
         try:
             await self.db.addDiscordGuild(guild.id, guild.name)
+            if guild.owner is None:
+                print("Guild owner was none, cannot create setup dm")
+                return
+            dm_channel = await guild.owner.create_dm()
+            await dm_channel.send(f"Hello! You've added BansheeBot to {guild.name}")
         except Exception as err:
-            print("Could not add discord guild: ", err)
+            print("There was a problem when joining guild: ", err)

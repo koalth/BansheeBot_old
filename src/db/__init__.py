@@ -42,6 +42,7 @@ class BansheeBotDB:
             try:
                 discord_guild = discord_guild.one()
                 print("Discord guild already exists.")
+                return None
             except NoResultFound:
                 discord_guild = DiscordGuild(
                     discord_guild_id=discord_guild_id,
