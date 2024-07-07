@@ -31,4 +31,8 @@ class BansheeBot(commands.Bot):
             self.load_extension(cog)
         super().run(token)
 
-    async def on_guild_join(self, guild: discord.Guild): ...
+    async def on_guild_join(self, guild: discord.Guild):
+        try:
+            await self.db.addDiscordGuild(guild.id, guild.name)
+        except Exception as err:
+            print("Could not add discord guild: ", err)

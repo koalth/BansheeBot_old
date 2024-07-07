@@ -32,6 +32,6 @@ class DiscordGuildMember(SQLModel, table=True):
     discord_user_id: int = Field(index=True)
     discord_user_name: int
 
-    disocrd_guild_links: list[DiscordGuildMemberLink] = Relationship(
+    discord_guild_links: list[DiscordGuildMemberLink] = Relationship(
         back_populates="discord_member"
     )
