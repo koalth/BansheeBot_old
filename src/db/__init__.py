@@ -9,8 +9,8 @@ from sqlmodel.ext.asyncio.session import AsyncSession
 
 from src.db.models import (
     DiscordGuild,
-    DiscordGuildMember,
-    DiscordGuildMemberLink,
+    WowGuild,
+    WowCharacter,
 )
 
 load_dotenv()
@@ -29,6 +29,7 @@ class BansheeBotDB:
 
     async def start_engine(self):
         async with self.engine.begin() as session:
+            await session.run_sync(SQLModel.metadata.drop_all)
             await session.run_sync(SQLModel.metadata.create_all)
             logger.debug("DB engine started...")
 
@@ -57,3 +58,33 @@ class BansheeBotDB:
                 await session.refresh(discord_guild)
             except Exception:
                 print("Something went wrong with addDiscordGuild")
+
+    async def addWowGuildToDiscordGuild(
+        self,
+        discord_guild_id: int,
+        wow_guild_name: str,
+        wow_guild_region: str,
+        wow_guild_realm: str,
+    ):
+        async with AsyncSession(self.engine) as session:
+            discord_guild = await session.exec(
+                select(DiscordGuild).where(
+                    DiscordGuild.discord_guild_id == discord_guild_id
+                )
+            )
+            try:
+                discord_guild = discord_guild.one()
+
+                wow_guild = WowGuild(
+                    wow_guild_name=wow_guild_name,
+                    realm=wow_guild_realm,
+                    region=wow_guild_region,
+                    discord_guild=discord_guild,
+                )
+                session.add(wow_guild)
+                await session.commit()
+            except NoResultFound:
+                print("Guild has to be added first")
+
+            except Exception as err:
+                print("Something went wrong with addWowGuildToDiscordGuild: ", err)

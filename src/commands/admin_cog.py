@@ -55,11 +55,14 @@ class Admin(commands.Cog):
             if guild_io is None:
                 await ctx.respond(f"Guild {name}-{realm} was not found.")
             else:
-                embed = GuildViews.getGuildSummary(guild_io)
-                await ctx.respond(embed=embed)
+                # embed = GuildViews.getGuildSummary(guild_io)
+                # await ctx.respond(embed=embed)
 
-            # add new guild to database and link it to current server
-            # self.bot.db.
+                # add new guild to database and link it to current server
+                await self.bot.db.addWowGuildToDiscordGuild(
+                    ctx.guild_id, guild_io.name, guild_io.region, guild_io.realm
+                )
+                await ctx.respond(f"Guild {name}-{realm} was added.")
 
         except Exception as err:
             print(err)

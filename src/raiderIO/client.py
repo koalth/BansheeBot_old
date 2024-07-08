@@ -11,8 +11,7 @@ from httpx import Response
 from src.raiderIO.models.character import Character
 from src.raiderIO.schemas.schema import CharacterSchema
 
-from src.raiderIO.models.guild import Guild
-from src.raiderIO.schemas.schema import GuildSchema
+from src.raiderIO.models.guild import Guild, GuildSchema
 
 from marshmallow import ValidationError
 
