@@ -59,13 +59,73 @@ class Admin(commands.Cog):
                 # await ctx.respond(embed=embed)
 
                 # add new guild to database and link it to current server
-                await self.bot.db.addWowGuildToDiscordGuild(
-                    ctx.guild_id, guild_io.name, guild_io.region, guild_io.realm
+                wow_guild = await self.bot.db.addWowGuildToDiscordGuild(
+                    ctx.guild.id, ctx.guild.name, guild_io
                 )
-                await ctx.respond(f"Guild {name}-{realm} was added.")
+
+                if wow_guild is None:
+                    raise Exception
+
+                await ctx.respond(f"Guild {name}-{realm} was added to {ctx.guild.name}")
 
         except Exception as err:
             print(err)
+            await ctx.respond("Something went wrong")
+
+    @admin.command(
+        name="add_character_to_guild",
+        description="Adds a WoW character to the server's WoW guild",
+    )
+    @discord.ext.commands.has_permissions(administrator=True)
+    async def add_character_to_guild(
+        self,
+        ctx: discord.ApplicationContext,
+        name: str,
+        realm: Optional[str] = "Dalaran",
+    ):
+        try:
+            character_io = await RaiderIOClient.getCharacterProfile(name, realm)
+            if character_io is None:
+                await ctx.respond(
+                    f"Character {name}-{realm} was not found or does not exist"
+                )
+                return
+            else:
+                wow_character = await self.bot.db.addWowCharacterToWowGuild(
+                    ctx.guild.id, character_io, ctx.author.id
+                )
+
+                if wow_character is None:
+                    await ctx.respond("There was a problem adding chracter")
+                    raise Exception
+                else:
+                    await ctx.respond(
+                        f"{wow_character.wow_character_name} was added to {wow_character.wow_guild.wow_guild_name}"
+                    )
+
+        except Exception as err:
+            print("There was an error adding character to guild: ", err)
+            await ctx.respond("Something went wrong")
+
+    @admin.command(
+        name="get_guild_summary",
+        description="Get a summary of the current guild",
+    )
+    @discord.ext.commands.has_permissions(administrator=True)
+    async def get_guild_summary(self, ctx: discord.ApplicationContext):
+        try:
+            wow_guild = await self.bot.db.getWowGuild(ctx.guild.id)
+
+            if wow_guild is None or len(wow_guild.wow_characters) == 0:
+                print("Wow guild was none")
+                raise Exception
+
+            embed = GuildViews.getGuildSummary(wow_guild, wow_guild.wow_characters)
+
+            await ctx.respond(embed=embed)
+
+        except Exception as err:
+            print("There was a problem getting teh guild summary: ", err)
             await ctx.respond("Something went wrong")
 
 
