@@ -5,6 +5,16 @@ from discord.commands import SlashCommandGroup
 from discord.ext import commands
 from discord import option
 
+import logging
+
+logger = logging.getLogger(__name__)
+logger.setLevel(level=logging.DEBUG)
+ch = logging.StreamHandler()
+formatter = logging.Formatter("%(asctime)s - %(name)s - %(levelname)s - %(message)s")
+ch.setFormatter(formatter)
+logger.addHandler(ch)
+
+
 from src.raiderIO.client import RaiderIOClient
 from src.views.character_views import CharacterViews
 
@@ -13,7 +23,7 @@ class Character(commands.Cog):
 
     def __init__(self, bot: commands.Bot):
         self.bot = bot
-        print("Character cog is initializing...")
+        logger.info("Character cog is initializing...")
 
     character = SlashCommandGroup(name="character")
 
@@ -36,8 +46,8 @@ class Character(commands.Cog):
                     f"Item level: {character_io.gear.item_level_equipped}"
                 )
 
-        except Exception as exception:
-            print(exception)
+        except Exception as err:
+            logger.error(f"Something went wrong with get_char: {err}")
             await ctx.respond("Something went wrong")
 
     @character.command(name="get_character_summary")
@@ -56,11 +66,11 @@ class Character(commands.Cog):
                 embed = CharacterViews.getCharacterSummary(character_io)
                 await ctx.respond(embed=embed)
 
-        except Exception as exception:
-            print(exception)
+        except Exception as err:
+            logger.error(f"Something went wrong with get_character_summary: {err}")
             await ctx.respond("Something went wrong")
 
 
 def setup(bot: commands.Bot):
     bot.add_cog(Character(bot))
-    print("Character cog has loaded successfully")
+    logger.info("Character cog has loaded successfully")

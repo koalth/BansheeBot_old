@@ -1,12 +1,12 @@
 import discord
 from discord.ext import commands
+from src.config import Config
 from src.db import BansheeBotDB
 import logging
 
-logger = logging.getLogger(__name__)
-logger.setLevel(logging.DEBUG)
+logger = logging.getLogger("BansheeBot")
+logger.setLevel(level=logging.DEBUG)
 ch = logging.StreamHandler()
-ch.setLevel(logging.DEBUG)
 formatter = logging.Formatter("%(asctime)s - %(name)s - %(levelname)s - %(message)s")
 ch.setFormatter(formatter)
 logger.addHandler(ch)
@@ -15,10 +15,12 @@ logger.addHandler(ch)
 class BansheeBot(commands.Bot):
 
     db: BansheeBotDB
+    config: Config
 
     def __init__(self) -> None:
-        logger.debug("BansheeBot started initialization...")
-        self.db = BansheeBotDB()
+        logger.info("BansheeBot started initialization...")
+        self.config = Config()
+        self.db = BansheeBotDB(self.config)
         super().__init__(
             intents=discord.Intents(
                 guilds=True,
@@ -31,7 +33,7 @@ class BansheeBot(commands.Bot):
                 type=discord.ActivityType.watching, name="for slash commands!"
             ),
         )
-        logger.debug("...BansheeBot ended initialization")
+        logger.info("...BansheeBot ended initialization")
 
     async def start(self, token: str, *, reconnect: bool = True) -> None:
         await self.db.start_engine()
@@ -41,11 +43,11 @@ class BansheeBot(commands.Bot):
         await self.db.stop_engine()
         return await super().close()
 
-    def run(self, token: str):
+    def run(self):
         cogs_list = ["src.commands.character_cog", "src.commands.admin_cog"]
         for cog in cogs_list:
             self.load_extension(cog)
-        super().run(token)
+        super().run(self.config.DISCORD_TOKEN)
 
     async def on_guild_join(self, guild: discord.Guild):
         try:

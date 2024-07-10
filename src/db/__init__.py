@@ -1,11 +1,10 @@
-import os
-from dotenv import load_dotenv
-from typing import Optional, TypeVar, Generic
+from typing import Optional, TypeVar
 from sqlalchemy.exc import NoResultFound
 from sqlalchemy.ext.asyncio import create_async_engine
 from sqlalchemy import BinaryExpression
 
-import discord
+from src.config import Config
+
 
 from sqlmodel import SQLModel, select
 from sqlmodel.ext.asyncio.session import AsyncSession
@@ -18,31 +17,29 @@ from src.db.entity import (
     WowCharacter,
 )
 
-load_dotenv()
-SQLALCHEMY_DATABASE_URI = os.getenv("SQLALCHEMY_DATABASE_URI")
-
 import logging
 
 logger = logging.getLogger("Database")
+logger.setLevel(level=logging.DEBUG)
+ch = logging.StreamHandler()
+formatter = logging.Formatter("%(asctime)s - %(name)s - %(levelname)s - %(message)s")
+ch.setFormatter(formatter)
+logger.addHandler(ch)
 
 Model = TypeVar("Model", bound=SQLModel)
 
 
 class BansheeBotDB:
-    def __init__(self):
-        self.sqlite_file_name = f"{SQLALCHEMY_DATABASE_URI}"
-        self.sqlite_url = f"sqlite+aiosqlite:///{self.sqlite_file_name}"
-        self.engine = create_async_engine(self.sqlite_url)
+    def __init__(self, config: Config):
+        self.config = config
+        self.engine = create_async_engine(self.config.SQLITE_URL)
 
     async def start_engine(self):
-        # async with self.engine.begin() as session:
-        # await session.run_sync(SQLModel.metadata.drop_all)
-        # await session.run_sync(SQLModel.metadata.create_all)
-        logger.debug("DB engine started...")
+        logger.info("DB engine started...")
 
     async def stop_engine(self):
         await self.engine.dispose()
-        logger.debug("...DB engine disposed")
+        logger.info("...DB engine disposed")
 
     async def get(self, model: type[Model], id: int) -> Optional[Model]:
         async with AsyncSession(self.engine) as session:
@@ -81,31 +78,15 @@ class BansheeBotDB:
 
             return db_wow_guild
         except Exception as err:
-            print("THere was a problem creating db_wow_guild: ", err)
+            logger.error("There was a problem creating db_wow_guild: ", err)
             return None
 
     async def getWowGuild(self, discord_guild_id: int) -> Optional[WowGuild]:
-
         db_wow_guild = await self.get_one_by_expression(
             WowGuild, WowGuild.discord_guild_id == discord_guild_id
         )
 
-        print("getWowGuild: ", db_wow_guild)
-
         return db_wow_guild
-
-        # async with AsyncSession(self.engine) as session:
-
-        #     db_wow_guild = await session.exec(
-        #         select(WowGuild).where(WowGuild.discord_guild_id == discord_guild_id)
-        #     )
-        #     try:
-        #         db_wow_guild = db_wow_guild.unique().one()
-
-        #         return db_wow_guild
-        #     except NoResultFound:
-        #         print("WowGuild not found for current discord server")
-        #         return None
 
     async def addWowCharacterToWowGuild(
         self, discord_guild_id: int, character: Character, discord_user_id: int
@@ -134,8 +115,8 @@ class BansheeBotDB:
 
                 return db_wow_character
             except NoResultFound:
-                print("WowGuild not found for current discord server")
+                logger.debug("WowGuild not found for current discord server")
                 return None
             except Exception as err:
-                print("THere was an error adding wow character", err)
+                logger.error("THere was an error adding wow character", err)
                 return None

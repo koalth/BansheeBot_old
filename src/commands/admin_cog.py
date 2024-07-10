@@ -1,7 +1,16 @@
+import logging
 from typing import Optional
 import discord
 from discord.commands import SlashCommandGroup
 from discord.ext import commands
+
+logger = logging.getLogger(__name__)
+logger.setLevel(level=logging.DEBUG)
+ch = logging.StreamHandler()
+formatter = logging.Formatter("%(asctime)s - %(name)s - %(levelname)s - %(message)s")
+ch.setFormatter(formatter)
+logger.addHandler(ch)
+
 
 from src import BansheeBot
 
@@ -65,7 +74,7 @@ class Admin(commands.Cog):
                 await ctx.respond(f"Guild {name}-{realm} was added to {ctx.guild.name}")
 
         except Exception as err:
-            print(err)
+            logger.error(f"There was a problem with set_wow_guild: {err}")
             await ctx.respond("Something went wrong")
 
     @admin.command(
@@ -100,7 +109,7 @@ class Admin(commands.Cog):
                     )
 
         except Exception as err:
-            print("There was an error adding character to guild: ", err)
+            logger.error(f"There was a problem with add_character_to_guild: {err}")
             await ctx.respond("Something went wrong")
 
     @admin.command(
@@ -121,10 +130,10 @@ class Admin(commands.Cog):
             await ctx.respond(embed=embed)
 
         except Exception as err:
-            print("There was a problem getting teh guild summary: ", err)
+            logger.error(f"There was a problem with get_guild_summary: {err}")
             await ctx.respond("Something went wrong")
 
 
 def setup(bot: commands.Bot) -> None:
     bot.add_cog(Admin(bot))
-    print("Admin cog has loaded successfully")
+    logger.info("Admin cog has loaded successfully")
