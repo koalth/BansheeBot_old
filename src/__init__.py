@@ -49,7 +49,6 @@ class BansheeBot(commands.Bot):
 
     async def on_guild_join(self, guild: discord.Guild):
         try:
-            await self.db.addDiscordGuild(guild.id, guild.name)
             if guild.owner is None:
                 print("Guild owner was none, cannot create setup dm")
                 return

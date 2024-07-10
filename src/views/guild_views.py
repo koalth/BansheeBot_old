@@ -2,7 +2,7 @@ import discord
 from discord.embeds import Embed
 from src.raiderIO.models.guild import Guild
 from src.raiderIO.models.character import Character
-from src.db.models import WowCharacter, WowGuild
+from src.db.entity import WowCharacter, WowGuild
 
 from typing import List
 

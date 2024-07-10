@@ -55,13 +55,9 @@ class Admin(commands.Cog):
             if guild_io is None:
                 await ctx.respond(f"Guild {name}-{realm} was not found.")
             else:
-                # embed = GuildViews.getGuildSummary(guild_io)
-                # await ctx.respond(embed=embed)
 
                 # add new guild to database and link it to current server
-                wow_guild = await self.bot.db.addWowGuildToDiscordGuild(
-                    ctx.guild.id, ctx.guild.name, guild_io
-                )
+                wow_guild = await self.bot.db.addWowGuild(ctx.guild.id, guild_io)
 
                 if wow_guild is None:
                     raise Exception
