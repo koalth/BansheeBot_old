@@ -31,7 +31,7 @@ class Character(commands.Cog):
         self,
         ctx: discord.ApplicationContext,
         name: str,
-        realm: Optional[str] = "Dalaran",
+        realm: str = "Dalaran",
     ):
         try:
             character_io = await RaiderIOClient.getCharacterProfile(name, realm)
@@ -54,7 +54,7 @@ class Character(commands.Cog):
         self,
         ctx: discord.ApplicationContext,
         name: str,
-        realm: Optional[str] = "Dalaran",
+        realm: str = "Dalaran",
     ):
         try:
             character_io = await RaiderIOClient.getCharacterProfile(name, realm)
