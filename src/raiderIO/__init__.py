@@ -18,7 +18,6 @@ logger.addHandler(ch)
 from httpx import Response
 
 from src.models import GuildDTO, CharacterDTO
-from .models import GuildResponse, CharacterResponse
 from pydantic import ValidationError
 
 API_URL = "https://raider.io/api/v1"
@@ -93,8 +92,6 @@ class RaiderIOClient:
                 raise Exception("Response was none")
             assert isinstance(response, Response)
 
-            logger.debug(response.json())
-
             character_io = CharacterDTO(**response.json())
 
             return character_io
@@ -107,7 +104,7 @@ class RaiderIOClient:
 
     @staticmethod
     async def getGuildProfile(
-        self, name: str, realm: str = "Dalaran", region: str = "us"
+        name: str, realm: str = "Dalaran", region: str = "us"
     ) -> Optional[GuildDTO]:
         try:
             params = {"region": region, "realm": realm, "name": name}

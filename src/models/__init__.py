@@ -2,6 +2,7 @@ from pydantic import BaseModel, Field, ConfigDict
 from typing import List, Optional, Dict
 from enum import StrEnum
 import datetime
+from typing_extensions import TypedDict
 
 
 class Faction(StrEnum):
@@ -24,16 +25,15 @@ class Region(StrEnum):
 
 
 class ItemDTO(BaseModel):
-
     item_id: int
     item_level: int
     icon: str
     name: str
     item_quality: int
     is_legendary: bool
-    gems: List[int]
-    enchant: Optional[int]
-    tier: Optional[str]
+    gems: List[int] = []
+    enchant: Optional[int] = None
+    tier: Optional[str] = None
 
     model_config = ConfigDict(extra="ignore")
 
@@ -49,11 +49,11 @@ class GearDTO(BaseModel):
 
 class GuildDTO(BaseModel):
     name: str
-    faction: Faction
-    region: Region
     realm: str
-    profile_url: str
-    last_crawled_at: datetime.datetime
+    faction: Optional[Faction] = None
+    region: Optional[Region] = None
+    profile_url: Optional[str] = None
+    last_crawled_at: Optional[datetime.datetime] = None
 
     model_config = ConfigDict(extra="ignore")
 
@@ -67,8 +67,8 @@ class CharacterDTO(BaseModel):
     faction: str
     region: str
     realm: str
-    gear: GearDTO
-    guild: GuildDTO
+    gear: Optional[GearDTO]
+    guild: Optional[GuildDTO]
 
     profile_url: str
     thumbnail_url: str
