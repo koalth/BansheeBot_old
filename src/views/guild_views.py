@@ -1,8 +1,6 @@
 import discord
 from discord.embeds import Embed
-from src.raiderIO.models.guild import Guild
-from src.raiderIO.models.character import Character
-from src.db.entity import WowCharacter, WowGuild
+from src.models import GuildDTO, CharacterDTO
 
 from typing import List
 
@@ -12,7 +10,7 @@ footer = "Data from Raider.IO"
 
 class GuildViews:
 
-    def getGuildSummary(guild: WowGuild, characters: List[WowCharacter]) -> Embed:
+    def getGuildSummary(guild: GuildDTO, characters: List[CharacterDTO]) -> Embed:
         title = f"{guild.wow_guild_name} Summary"
         embed = discord.Embed(
             title=title,

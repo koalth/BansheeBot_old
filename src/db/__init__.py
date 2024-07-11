@@ -5,14 +5,12 @@ from sqlalchemy import BinaryExpression
 
 from src.config import Config
 
-
 from sqlmodel import SQLModel, select
 from sqlmodel.ext.asyncio.session import AsyncSession
 
-from src.raiderIO.models.guild import Guild
-from src.raiderIO.models.character import Character
+from src.models import GuildDTO, CharacterDTO
 
-from src.db.entity import (
+from src.db.models import (
     WowGuild,
     WowCharacter,
 )
@@ -63,7 +61,7 @@ class BansheeBotDB:
             return instance
 
     async def addWowGuild(
-        self, discord_guild_id: int, wow_guild: Guild
+        self, discord_guild_id: int, wow_guild: GuildDTO
     ) -> Optional[WowGuild]:
 
         try:
@@ -89,7 +87,7 @@ class BansheeBotDB:
         return db_wow_guild
 
     async def addWowCharacterToWowGuild(
-        self, discord_guild_id: int, character: Character, discord_user_id: int
+        self, discord_guild_id: int, character: CharacterDTO, discord_user_id: int
     ) -> Optional[WowCharacter]:
         print("discord_guild_id: ", discord_guild_id)
         async with AsyncSession(self.engine) as session:

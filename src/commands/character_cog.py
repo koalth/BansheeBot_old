@@ -14,8 +14,7 @@ formatter = logging.Formatter("%(asctime)s - %(name)s - %(levelname)s - %(messag
 ch.setFormatter(formatter)
 logger.addHandler(ch)
 
-
-from src.raiderIO.client import RaiderIOClient
+from src.raiderIO import RaiderIOClient
 from src.views.character_views import CharacterViews
 
 

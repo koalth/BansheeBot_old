@@ -17,7 +17,7 @@ from src import BansheeBot
 from src.views.admin_views import AdminRoleSelectView
 from src.views.guild_views import GuildViews
 
-from src.raiderIO.client import RaiderIOClient
+from src.raiderIO import RaiderIOClient
 
 
 class Admin(commands.Cog):
