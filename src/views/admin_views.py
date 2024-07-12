@@ -8,5 +8,5 @@ class AdminRoleSelectView(discord.ui.View):
     ) -> None:
         await interaction.response.send_message(
             f"You selected the following roles:"
-            + f", ".join(f"{role.mention}" for role in select.values)
+            + f", ".join(f"{role}" for role in select.values)
         )

@@ -5,7 +5,7 @@ import datetime
 
 class WowGuild(SQLModel, table=True):
     id: int | None = Field(default=None, primary_key=True)
-    wow_guild_name: str = Field(index=True)
+    name: str = Field(index=True)
     region: str
     realm: str
     discord_guild_id: int
@@ -17,7 +17,7 @@ class WowGuild(SQLModel, table=True):
 
 class WowCharacter(SQLModel, table=True):
     id: int | None = Field(default=None, primary_key=True)
-    wow_character_name: str = Field(index=True)
+    name: str = Field(index=True)
     region: str
     realm: str
     discord_user_id: int

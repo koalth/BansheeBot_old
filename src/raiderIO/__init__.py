@@ -1,5 +1,3 @@
-import ssl
-from tqdm import tqdm
 from aiolimiter import AsyncLimiter
 
 from typing import Optional, Dict, TypeVar

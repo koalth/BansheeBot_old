@@ -36,11 +36,12 @@ class Character(commands.Cog):
         try:
             character_io = await RaiderIOClient.getCharacterProfile(name, realm)
 
-            if character_io is None:
+            if character_io is None or character_io.gear is None:
                 await ctx.respond(f"Character {name}-{realm} does not exist")
                 return
 
             else:
+
                 await ctx.respond(
                     f"Item level: {character_io.gear.item_level_equipped}"
                 )

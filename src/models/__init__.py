@@ -2,7 +2,8 @@ from pydantic import BaseModel, Field, ConfigDict
 from typing import List, Optional, Dict
 from enum import StrEnum
 import datetime
-from typing_extensions import TypedDict
+
+from src.db.models import WowGuild, WowCharacter
 
 
 class Faction(StrEnum):
@@ -54,6 +55,9 @@ class GuildDTO(BaseModel):
     region: Optional[Region] = None
     profile_url: Optional[str] = None
     last_crawled_at: Optional[datetime.datetime] = None
+    characters: List["CharacterDTO"] = Field(
+        default=[], serialization_alias="wow_characters"
+    )
 
     model_config = ConfigDict(extra="ignore")
 
