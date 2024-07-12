@@ -5,7 +5,12 @@ import os
 from sqlmodel import SQLModel
 from dotenv import load_dotenv
 
-logger = logging.getLogger(__name__)
+logger = logging.getLogger("Migrations")
+logger.setLevel(level=logging.DEBUG)
+ch = logging.StreamHandler()
+formatter = logging.Formatter("%(asctime)s - %(name)s - %(levelname)s - %(message)s")
+ch.setFormatter(formatter)
+logger.addHandler(ch)
 
 load_dotenv()
 SQLALCHEMY_DATABASE_URI = os.getenv("SQLALCHEMY_DATABASE_URI")
@@ -37,5 +42,9 @@ async def destroy_tables() -> None:
     logger.info("...Destruction completed")
 
 
-def main():
+def migrate():
     asyncio.run(migrate_tables())
+
+
+def destroy():
+    asyncio.run(destroy_tables())

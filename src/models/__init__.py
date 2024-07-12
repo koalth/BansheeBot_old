@@ -1,8 +1,7 @@
-from pydantic import BaseModel, Field, ConfigDict
+from pydantic import BaseModel, Field, ConfigDict, computed_field, SerializeAsAny
 from typing import List, Optional, Dict
 from enum import StrEnum
-import datetime
-
+from datetime import datetime
 from src.db.models import WowGuild, WowCharacter
 
 
@@ -40,7 +39,7 @@ class ItemDTO(BaseModel):
 
 
 class GearDTO(BaseModel):
-    updated_at: datetime.datetime
+    updated_at: datetime
     item_level_equipped: int
     item_level_total: int
     items: Dict[str, ItemDTO]
@@ -54,10 +53,8 @@ class GuildDTO(BaseModel):
     faction: Optional[Faction] = None
     region: Optional[Region] = None
     profile_url: Optional[str] = None
-    last_crawled_at: Optional[datetime.datetime] = None
-    characters: List["CharacterDTO"] = Field(
-        default=[], serialization_alias="wow_characters"
-    )
+    last_crawled_at: Optional[datetime] = None
+    characters: List["CharacterDTO"] = []
 
     model_config = ConfigDict(extra="ignore")
 
@@ -77,6 +74,14 @@ class CharacterDTO(BaseModel):
     profile_url: str
     thumbnail_url: str
 
-    last_crawled_at: datetime.datetime
+    @computed_field
+    @property
+    def item_level(self) -> Optional[int]:
+        if self.gear is None:
+            return None
+        else:
+            return self.gear.item_level_equipped
+
+    last_crawled_at: datetime
 
     model_config = ConfigDict(extra="ignore")

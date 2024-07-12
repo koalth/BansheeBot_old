@@ -52,7 +52,7 @@ class BansheeBotDB:
                 query = query.where(*expression)
             return await session.scalar(query)
 
-    async def create(self, model: type[Model]) -> Model:
+    async def create(self, model: Model) -> Model:
         async with AsyncSession(self.engine) as session:
             instance = model
             session.add(instance)
@@ -66,10 +66,7 @@ class BansheeBotDB:
 
         try:
             db_wow_guild = WowGuild(
-                wow_guild_name=wow_guild.name,
-                realm=wow_guild.realm,
-                region=wow_guild.region,
-                discord_guild_id=discord_guild_id,
+                **wow_guild.model_dump(), discord_guild_id=discord_guild_id
             )
 
             db_wow_guild = await self.create(db_wow_guild)
@@ -81,7 +78,7 @@ class BansheeBotDB:
 
     async def getWowGuild(self, discord_guild_id: int) -> Optional[WowGuild]:
         db_wow_guild = await self.get_one_by_expression(
-            WowGuild, WowGuild.discord_guild_id == discord_guild_id
+            WowGuild, WowGuild.discord_guild_id == discord_guild_id  # type: ignore
         )
 
         return db_wow_guild
@@ -98,13 +95,9 @@ class BansheeBotDB:
                 db_wow_guild = db_wow_guild.unique().one()
 
                 db_wow_character = WowCharacter(
-                    wow_character_name=character.name,
-                    region=character.region,
-                    realm=character.realm,
+                    **character.model_dump(),
                     discord_user_id=discord_user_id,
-                    thumbnail_url=character.thumbnail_url,
-                    item_level=character.gear.item_level_equipped,
-                    wow_guild=db_wow_guild,
+                    wow_guild=db_wow_guild
                 )
 
                 session.add(db_wow_character)

@@ -1,6 +1,6 @@
 from sqlmodel import Field, SQLModel, Relationship
 from typing import Optional
-import datetime
+from datetime import datetime
 
 
 class WowGuild(SQLModel, table=True):
@@ -11,7 +11,8 @@ class WowGuild(SQLModel, table=True):
     discord_guild_id: int
 
     wow_characters: list["WowCharacter"] = Relationship(
-        back_populates="wow_guild", sa_relationship_kwargs={"lazy": "joined"}
+        back_populates="wow_guild",
+        sa_relationship_kwargs={"lazy": "joined"},
     )
 
 
@@ -23,7 +24,7 @@ class WowCharacter(SQLModel, table=True):
     discord_user_id: int
     thumbnail_url: str
     item_level: int
-    last_updated_at: datetime.datetime
+    last_crawled_at: datetime
 
     wow_guild_id: int | None = Field(default=None, foreign_key="wowguild.id")
     wow_guild: WowGuild | None = Relationship(

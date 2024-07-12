@@ -21,7 +21,8 @@ aiolimiter = "^1.1.0"
 
 [tool.poetry.scripts]
 bansheebot = 'src.__main__:main'
-migrate = 'src.db.migrations:main'
+migrate = 'src.db.migrations:migrate'
+destroy = 'src.db.migrations:destroy'
 
 [build-system]
 requires = ["poetry-core"]

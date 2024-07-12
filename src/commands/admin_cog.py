@@ -4,7 +4,7 @@ import discord
 from discord.commands import SlashCommandGroup
 from discord.ext import commands
 
-from src.models import GuildDTO
+from src.models import GuildDTO, CharacterDTO
 
 logger = logging.getLogger(__name__)
 logger.setLevel(level=logging.DEBUG)
@@ -137,7 +137,20 @@ class Admin(commands.Cog):
                 print("Wow guild was none")
                 raise Exception
 
+            logger.debug(wow_guild_db)
+
             wow_guild = GuildDTO(**wow_guild_db.model_dump())
+
+            logger.debug(wow_guild)
+
+            wow_guild.characters = [
+                (
+                    CharacterDTO(**char.model_dump())
+                    for char in wow_guild_db.wow_characters
+                )
+            ]
+
+            logger.debug(wow_guild.characters)
 
             embed = GuildViews.getGuildSummary(wow_guild, wow_guild.characters)
 
