@@ -1,10 +1,11 @@
 import ssl
 from tqdm import tqdm
-import asyncio
-from ratelimit import limits, sleep_and_retry
-import httpx
-from typing import List, Optional, Dict, Awaitable
+from aiolimiter import AsyncLimiter
+
+from typing import Optional, Dict, TypeVar
 import urllib.parse
+import aiohttp
+from pydantic import BaseModel
 
 import logging
 
@@ -14,8 +15,6 @@ ch = logging.StreamHandler()
 formatter = logging.Formatter("%(asctime)s - %(name)s - %(levelname)s - %(message)s")
 ch.setFormatter(formatter)
 logger.addHandler(ch)
-
-from httpx import Response
 
 from src.models import GuildDTO, CharacterDTO
 from pydantic import ValidationError
@@ -28,48 +27,61 @@ RETRIES = 5
 BACKOFF_FACTOR = 2
 
 
-def my_sleep_and_retry(func):
-    def wrapper(*args, **kwargs):
-        return func(*args, **kwargs)
+T = TypeVar("T", bound=BaseModel)
 
-    return wrapper
+
+async def get(endpoint: str, params: Dict[str, str], content: type[T]) -> Optional[T]:
+    try:
+        async with AsyncLimiter(100):
+            async with aiohttp.ClientSession() as client:
+                if len(params) > 0:
+                    endpoint = f"{endpoint}?{urllib.parse.urlencode(params)}"
+                async with client.get(f"{API_URL}/{endpoint}") as response:
+                    response.raise_for_status()
+                    json_data = await response.json()
+                    return content(**json_data)
+
+    except Exception as err:
+        logger.error(
+            f"There was an error requesting endpoint: {endpoint} with params: {params}. Error: {err}"
+        )
+        return None
 
 
 # look up type hints for decorators
-@sleep_and_retry
-@limits(calls=CALLS, period=RATE_LIMIT)
-async def get(
-    endpoint: str,
-    params: Dict[str, str],
-) -> Optional[Response]:
-    for retry in range(RETRIES):
-        try:
-            async with httpx.AsyncClient() as client:
+# @my_sleep_and_retry
+# @limits(calls=CALLS, period=RATE_LIMIT)
+# async def get(
+#     endpoint: str,
+#     params: Dict[str, str],
+# ) -> Optional[Response]:
+#     try:
+#         for retry in range(RETRIES):
+#             async with httpx.AsyncClient() as client:
 
-                if len(params) > 0:
-                    endpoint = f"{endpoint}?{urllib.parse.urlencode(params)}"
+#                 if len(params) > 0:
+#                     endpoint = f"{endpoint}?{urllib.parse.urlencode(params)}"
 
-                logger.debug(f"{endpoint}")
+#                 logger.debug(f"{endpoint}")
 
-                response = await client.get(f"{API_URL}/{endpoint}")
+#                 response = await client.get(f"{API_URL}/{endpoint}")
 
-                if response.status_code != 200:
-                    logger.error(f"Response error: {response.status_code}")
-                    return None
+#                 if response.status_code != 200:
+#                     logger.error(f"Response error: {response.status_code}")
+#                     return None
 
-                return response
-
-        except (httpx.TimeoutException, httpx.ReadTimeout, ssl.SSLWantReadError):
-            if retry == RETRIES - 1:
-                logger.info(f"Request timeout, retrying...")
-                raise
-            else:
-                await asyncio.sleep(BACKOFF_FACTOR * (2**retry))
-        except Exception as err:
-            logger.error(
-                f"There was an error requesting endpoint: {endpoint} with params: {params}. Error: {err}"
-            )
-            return None
+#                 return response
+#     except (httpx.TimeoutException, httpx.ReadTimeout, ssl.SSLWantReadError):
+#         if retry == RETRIES - 1:
+#             logger.info(f"Request timeout, retrying...")
+#             raise
+#         else:
+#             await asyncio.sleep(BACKOFF_FACTOR * (2**retry))
+#     except Exception as err:
+#         logger.error(
+#             f"There was an error requesting endpoint: {endpoint} with params: {params}. Error: {err}"
+#         )
+#         return None
 
 
 class RaiderIOClient:
@@ -86,15 +98,7 @@ class RaiderIOClient:
                 "fields": "guild,gear",
             }
 
-            response = await get("characters/profile", params)  # type: ignore
-
-            if response is None:
-                raise Exception("Response was none")
-            assert isinstance(response, Response)
-
-            character_io = CharacterDTO(**response.json())
-
-            return character_io
+            return await get("characters/profile", params, CharacterDTO)
         except ValidationError as err:
             logger.error(f"Validation error in getCharacterProfile: {err}")
             return None
@@ -108,13 +112,7 @@ class RaiderIOClient:
     ) -> Optional[GuildDTO]:
         try:
             params = {"region": region, "realm": realm, "name": name}
-            response = await get("guilds/profile", params)  # type: ignore
-
-            if response is None:
-                raise Exception("Response was none")
-            assert isinstance(response, Response)
-            guild_io = GuildDTO(**response.json())
-            return guild_io
+            return await get("guilds/profile", params, GuildDTO)
         except ValidationError as err:
             logger.error(f"Validation error in getGuildProfile: {err}")
             return None
