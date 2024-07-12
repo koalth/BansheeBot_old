@@ -48,42 +48,6 @@ async def get(endpoint: str, params: Dict[str, str], content: type[T]) -> Option
         return None
 
 
-# look up type hints for decorators
-# @my_sleep_and_retry
-# @limits(calls=CALLS, period=RATE_LIMIT)
-# async def get(
-#     endpoint: str,
-#     params: Dict[str, str],
-# ) -> Optional[Response]:
-#     try:
-#         for retry in range(RETRIES):
-#             async with httpx.AsyncClient() as client:
-
-#                 if len(params) > 0:
-#                     endpoint = f"{endpoint}?{urllib.parse.urlencode(params)}"
-
-#                 logger.debug(f"{endpoint}")
-
-#                 response = await client.get(f"{API_URL}/{endpoint}")
-
-#                 if response.status_code != 200:
-#                     logger.error(f"Response error: {response.status_code}")
-#                     return None
-
-#                 return response
-#     except (httpx.TimeoutException, httpx.ReadTimeout, ssl.SSLWantReadError):
-#         if retry == RETRIES - 1:
-#             logger.info(f"Request timeout, retrying...")
-#             raise
-#         else:
-#             await asyncio.sleep(BACKOFF_FACTOR * (2**retry))
-#     except Exception as err:
-#         logger.error(
-#             f"There was an error requesting endpoint: {endpoint} with params: {params}. Error: {err}"
-#         )
-#         return None
-
-
 class RaiderIOClient:
 
     @staticmethod
