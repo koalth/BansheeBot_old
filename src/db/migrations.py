@@ -2,8 +2,8 @@ import asyncio
 import logging
 from sqlalchemy.ext.asyncio import create_async_engine
 import os
-from sqlmodel import SQLModel
 from dotenv import load_dotenv
+from src.db.models import Base
 
 logger = logging.getLogger("Migrations")
 logger.setLevel(level=logging.DEBUG)
@@ -24,8 +24,9 @@ async def migrate_tables() -> None:
 
     engine = create_async_engine(sqlite_url)
     async with engine.begin() as connection:
-        await connection.run_sync(SQLModel.metadata.create_all)
+        await connection.run_sync(Base.metadata.create_all)
 
+    await engine.dispose()
     logger.info("...Migration completed")
 
 
@@ -37,9 +38,17 @@ async def destroy_tables() -> None:
 
     engine = create_async_engine(sqlite_url)
     async with engine.begin() as connection:
-        await connection.run_sync(SQLModel.metadata.drop_all)
+        await connection.run_sync(Base.metadata.drop_all)
 
+    await engine.dispose()
     logger.info("...Destruction completed")
+
+
+async def reset_tables() -> None:
+    logger.info("Starting to reset tables...")
+    await destroy_tables()
+    await migrate_tables()
+    logger.info("...Resetting completed")
 
 
 def migrate():
@@ -48,3 +57,7 @@ def migrate():
 
 def destroy():
     asyncio.run(destroy_tables())
+
+
+def reset():
+    asyncio.run(reset_tables())

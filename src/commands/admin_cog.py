@@ -4,7 +4,7 @@ import discord
 from discord.commands import SlashCommandGroup
 from discord.ext import commands
 
-from src.models import GuildDTO, CharacterDTO
+from src.models import GuildDTO, CharacterDTO, Region
 
 logger = logging.getLogger(__name__)
 logger.setLevel(level=logging.DEBUG)
@@ -109,6 +109,8 @@ class Admin(commands.Cog):
                     ctx.guild.id, character_io, ctx.author.id
                 )
 
+                logger.debug(wow_character)
+
                 if wow_character is None or wow_character.wow_guild is None:
                     await ctx.respond("There was a problem adding chracter")
                     raise Exception
@@ -139,17 +141,9 @@ class Admin(commands.Cog):
 
             logger.debug(wow_guild_db)
 
-            wow_guild = GuildDTO(**wow_guild_db.model_dump())
+            wow_guild = GuildDTO.model_validate(wow_guild_db)
 
             logger.debug(wow_guild)
-
-            wow_guild.characters = [
-                (
-                    CharacterDTO(**char.model_dump())
-                    for char in wow_guild_db.wow_characters
-                )
-            ]
-
             logger.debug(wow_guild.characters)
 
             embed = GuildViews.getGuildSummary(wow_guild, wow_guild.characters)

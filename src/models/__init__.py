@@ -1,8 +1,7 @@
-from pydantic import BaseModel, Field, ConfigDict, computed_field, SerializeAsAny
+from pydantic import BaseModel, Field, ConfigDict, computed_field, field_validator
 from typing import List, Optional, Dict
 from enum import StrEnum
 from datetime import datetime
-from src.db.models import WowGuild, WowCharacter
 
 
 class Faction(StrEnum):
@@ -44,7 +43,7 @@ class GearDTO(BaseModel):
     item_level_total: int
     items: Dict[str, ItemDTO]
 
-    model_config = ConfigDict(extra="ignore")
+    model_config = ConfigDict(from_attributes=True, extra="ignore")
 
 
 class GuildDTO(BaseModel):
@@ -54,9 +53,15 @@ class GuildDTO(BaseModel):
     region: Optional[Region] = None
     profile_url: Optional[str] = None
     last_crawled_at: Optional[datetime] = None
+
     characters: List["CharacterDTO"] = []
 
-    model_config = ConfigDict(extra="ignore")
+    @field_validator("characters", mode="before")
+    @classmethod
+    def map_characters(cls, characters: list) -> list["CharacterDTO"]:
+        return [CharacterDTO.model_validate(char) for char in characters]
+
+    model_config = ConfigDict(from_attributes=True, extra="ignore")
 
 
 class CharacterDTO(BaseModel):
@@ -84,4 +89,4 @@ class CharacterDTO(BaseModel):
 
     last_crawled_at: datetime
 
-    model_config = ConfigDict(extra="ignore")
+    model_config = ConfigDict(from_attributes=True, extra="ignore")

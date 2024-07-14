@@ -1,12 +1,10 @@
 from typing import Optional, TypeVar
 from sqlalchemy.exc import NoResultFound
-from sqlalchemy.ext.asyncio import create_async_engine
-from sqlalchemy import BinaryExpression
+from sqlalchemy.orm import selectinload
+from sqlalchemy import select, inspect
+from sqlalchemy.ext.asyncio import create_async_engine, AsyncSession
 
 from src.config import Config
-
-from sqlmodel import SQLModel, select
-from sqlmodel.ext.asyncio.session import AsyncSession
 
 from src.models import GuildDTO, CharacterDTO
 
@@ -24,8 +22,6 @@ formatter = logging.Formatter("%(asctime)s - %(name)s - %(levelname)s - %(messag
 ch.setFormatter(formatter)
 logger.addHandler(ch)
 
-Model = TypeVar("Model", bound=SQLModel)
-
 
 class BansheeBotDB:
     def __init__(self, config: Config):
@@ -39,70 +35,102 @@ class BansheeBotDB:
         await self.engine.dispose()
         logger.info("...DB engine disposed")
 
-    async def get(self, model: type[Model], id: int) -> Optional[Model]:
-        async with AsyncSession(self.engine) as session:
-            return await session.get(model, id)
-
-    async def get_one_by_expression(
-        self, model: type[Model], *expression: BinaryExpression
-    ) -> Optional[Model]:
-        async with AsyncSession(self.engine) as session:
-            query = select(model)
-            if expression:
-                query = query.where(*expression)
-            return await session.scalar(query)
-
-    async def create(self, model: Model) -> Model:
-        async with AsyncSession(self.engine) as session:
-            instance = model
-            session.add(instance)
-            await session.commit()
-            await session.refresh(instance)
-            return instance
-
     async def addWowGuild(
         self, discord_guild_id: int, wow_guild: GuildDTO
     ) -> Optional[WowGuild]:
+        async with AsyncSession(self.engine) as session:
+            try:
 
-        try:
-            db_wow_guild = WowGuild(
-                **wow_guild.model_dump(), discord_guild_id=discord_guild_id
-            )
+                result = (
+                    await session.execute(
+                        select(WowGuild).where(
+                            WowGuild.discord_guild_id == discord_guild_id
+                        )
+                    )
+                ).scalar_one_or_none()
 
-            db_wow_guild = await self.create(db_wow_guild)
+                if result is not None:
+                    return result
 
-            return db_wow_guild
-        except Exception as err:
-            logger.error("There was a problem creating db_wow_guild: ", err)
-            return None
+                db_wow_guild = WowGuild(
+                    name=wow_guild.name,
+                    region=wow_guild.region,
+                    realm=wow_guild.realm,
+                    discord_guild_id=discord_guild_id,
+                )
+
+                session.add(db_wow_guild)
+                await session.commit()
+                await session.refresh(db_wow_guild)
+                return db_wow_guild
+            except Exception as err:
+                logger.error("There was a problem creating db_wow_guild: ", err)
+                return None
 
     async def getWowGuild(self, discord_guild_id: int) -> Optional[WowGuild]:
-        db_wow_guild = await self.get_one_by_expression(
-            WowGuild, WowGuild.discord_guild_id == discord_guild_id  # type: ignore
-        )
+        async with AsyncSession(self.engine) as session:
+            try:
+                db_wow_guild = (
+                    await session.execute(
+                        select(WowGuild).where(
+                            WowGuild.discord_guild_id == discord_guild_id
+                        )
+                    )
+                ).scalar_one()
 
-        return db_wow_guild
+                return db_wow_guild
+            except NoResultFound:
+                logger.debug("WowGuild not found for current discord server")
+                return None
+            except Exception as err:
+                logger.error("THere was an error adding wow character", err)
+                return None
 
     async def addWowCharacterToWowGuild(
         self, discord_guild_id: int, character: CharacterDTO, discord_user_id: int
     ) -> Optional[WowCharacter]:
-        print("discord_guild_id: ", discord_guild_id)
         async with AsyncSession(self.engine) as session:
-            db_wow_guild = await session.exec(
-                select(WowGuild).where(WowGuild.discord_guild_id == discord_guild_id)
-            )
             try:
-                db_wow_guild = db_wow_guild.unique().one()
+
+                # check if char is already in the guild
+                wow_character_result = (
+                    await session.execute(
+                        select(WowCharacter).where(WowCharacter.name == character.name)
+                    )
+                ).scalar_one_or_none()
+
+                if wow_character_result is not None:
+                    raise Exception("Character already exists in Guild")
+
+                db_wow_guild = (
+                    await session.execute(
+                        select(WowGuild).where(
+                            WowGuild.discord_guild_id == discord_guild_id
+                        )
+                    )
+                ).scalar_one()
+
+                session.add(db_wow_guild)
+                logger.debug(db_wow_guild)
 
                 db_wow_character = WowCharacter(
-                    **character.model_dump(),
+                    **character.model_dump(
+                        include={
+                            "name",
+                            "region",
+                            "realm",
+                            "thumbnail_url",
+                            "item_level",
+                            "last_crawled_at",
+                        }
+                    ),
                     discord_user_id=discord_user_id,
-                    wow_guild=db_wow_guild
+                    wow_guild_id=db_wow_guild.id
                 )
 
                 session.add(db_wow_character)
                 await session.commit()
-                await session.refresh(db_wow_character)
+                await session.refresh(db_wow_character, ["wow_guild"])
 
                 return db_wow_character
             except NoResultFound:
