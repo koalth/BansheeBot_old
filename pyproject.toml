@@ -20,7 +20,7 @@ aiohttp = "^3.9.5"
 aiolimiter = "^1.1.0"
 
 [tool.poetry.scripts]
-bansheebot = 'src.__main__:main'
+bot = 'src.__main__:main'
 migrate = 'src.db.migrations:migrate'
 destroy = 'src.db.migrations:destroy'
 reset = 'src.db.migrations:reset'

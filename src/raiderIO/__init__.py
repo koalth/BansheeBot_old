@@ -14,7 +14,14 @@ formatter = logging.Formatter("%(asctime)s - %(name)s - %(levelname)s - %(messag
 ch.setFormatter(formatter)
 logger.addHandler(ch)
 
-from src.models import GuildDTO, CharacterDTO
+from src.models import (
+    GuildDTO,
+    CharacterDTO,
+    Region,
+    createCharacterDTOFromResponse,
+    createGuildDTOFromResponse,
+)
+from src.raiderIO.models import CharacterResponse, GuildResponse
 from pydantic import ValidationError
 
 API_URL = "https://raider.io/api/v1"
@@ -60,7 +67,13 @@ class RaiderIOClient:
                 "fields": "guild,gear",
             }
 
-            return await get("characters/profile", params, CharacterDTO)
+            response = await get("characters/profile", params, CharacterResponse)
+
+            if response is None:
+                logger.debug("Response was none")
+                return None
+
+            return createCharacterDTOFromResponse(response)
         except ValidationError as err:
             logger.error(f"Validation error in getCharacterProfile: {err}")
             return None
@@ -74,7 +87,12 @@ class RaiderIOClient:
     ) -> Optional[GuildDTO]:
         try:
             params = {"region": region, "realm": realm, "name": name}
-            return await get("guilds/profile", params, GuildDTO)
+            response = await get("guilds/profile", params, GuildResponse)
+
+            if response is None:
+                logger.debug("Response was none")
+                return None
+            return createGuildDTOFromResponse(response)
         except ValidationError as err:
             logger.error(f"Validation error in getGuildProfile: {err}")
             return None

@@ -3,7 +3,6 @@ from typing import Optional, List
 import discord
 from discord.commands import SlashCommandGroup
 from discord.ext import commands
-from discord import option
 
 import logging
 
@@ -16,6 +15,7 @@ logger.addHandler(ch)
 
 from src.raiderIO import RaiderIOClient
 from src.views.character_views import CharacterViews
+from src.views.viewmodels import CharacterViewModel
 
 
 class Character(commands.Cog):
@@ -32,23 +32,17 @@ class Character(commands.Cog):
         ctx: discord.ApplicationContext,
         name: str,
         realm: str = "Dalaran",
+        region: str = "us",
     ):
-        try:
-            character_io = await RaiderIOClient.getCharacterProfile(name, realm)
+        character_io = await RaiderIOClient.getCharacterProfile(name, realm, region)
 
-            if character_io is None or character_io.gear is None:
-                await ctx.respond(f"Character {name}-{realm} does not exist")
-                return
+        if character_io is None or character_io.raiderIO is None:
+            await ctx.respond(f"Character {name}-{realm} does not exist")
+            return
 
-            else:
+        else:
 
-                await ctx.respond(
-                    f"Item level: {character_io.gear.item_level_equipped}"
-                )
-
-        except Exception as err:
-            logger.error(f"Something went wrong with get_char: {err}")
-            await ctx.respond("Something went wrong")
+            await ctx.respond(f"Item level: {character_io.raiderIO.item_level}")
 
     @character.command(name="get_character_summary")
     async def get_character_summary(
@@ -56,19 +50,23 @@ class Character(commands.Cog):
         ctx: discord.ApplicationContext,
         name: str,
         realm: str = "Dalaran",
+        region: str = "us",
     ):
-        try:
-            character_io = await RaiderIOClient.getCharacterProfile(name, realm)
-            if character_io is None:
-                await ctx.respond(f"Character {name}-{realm} does not exist")
-                return
-            else:
-                embed = CharacterViews.getCharacterSummary(character_io)
-                await ctx.respond(embed=embed)
+        character_io = await RaiderIOClient.getCharacterProfile(name, realm, region)
+        if character_io is None:
+            await ctx.respond(f"Character {name}-{realm} does not exist")
+            return
+        else:
 
-        except Exception as err:
-            logger.error(f"Something went wrong with get_character_summary: {err}")
-            await ctx.respond("Something went wrong")
+            embed = CharacterViews.getCharacterSummary(character_vm)
+            await ctx.respond(embed=embed)
+
+    async def cog_command_error(
+        self, ctx: discord.ApplicationContext, error: Exception
+    ) -> None:
+        logger.error(f"There was a problem: {error}")
+        await ctx.respond("Something weng wrong :(")
+        return await super().cog_command_error(ctx, error)
 
 
 def setup(bot: commands.Bot):
