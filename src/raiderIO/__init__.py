@@ -18,11 +18,43 @@ from src.models import (
     GuildDTO,
     CharacterDTO,
     Region,
-    createCharacterDTOFromResponse,
-    createGuildDTOFromResponse,
 )
 from src.raiderIO.models import CharacterResponse, GuildResponse
 from pydantic import ValidationError
+
+
+def createCharacterDTOFromResponse(
+    character_response: CharacterResponse,
+) -> CharacterDTO:
+
+    dto = CharacterDTO(
+        name=character_response.name,
+        realm=character_response.realm,
+        region=Region(character_response.region),
+        item_level=(
+            character_response.gear.item_level_equipped
+            if character_response.gear is not None
+            else 0
+        ),
+        class_name=character_response.active_spec_name,
+        profile_url=character_response.profile_url,
+        thumbnail_url=character_response.thumbnail_url,
+        last_crawled_at=character_response.last_crawled_at,
+    )
+
+    return dto
+
+
+def createGuildDTOFromResponse(guild_response: GuildResponse) -> GuildDTO:
+
+    dto = GuildDTO(
+        name=guild_response.name,
+        realm=guild_response.realm,
+        region=Region(guild_response.region),
+    )
+
+    return dto
+
 
 API_URL = "https://raider.io/api/v1"
 CALLS = 200

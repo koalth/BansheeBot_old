@@ -4,13 +4,8 @@ from sqlalchemy import select
 from sqlalchemy.ext.asyncio import create_async_engine, AsyncSession
 
 from src.db.models import GuildOrm, CharacterOrm
-from src.models import (
-    GuildDTO,
-    CharacterDTO,
-    Region,
-    createCharacterDTOFromOrm,
-    createGuildDTOFromOrm,
-)
+from src.models import GuildDTO, CharacterDTO, Region
+
 
 import logging
 
@@ -20,6 +15,33 @@ ch = logging.StreamHandler()
 formatter = logging.Formatter("%(asctime)s - %(name)s - %(levelname)s - %(message)s")
 ch.setFormatter(formatter)
 logger.addHandler(ch)
+
+
+def createCharacterDTOFromOrm(character_orm: CharacterOrm) -> CharacterDTO:
+    return CharacterDTO(
+        name=character_orm.name,
+        realm=character_orm.realm,
+        region=Region(character_orm.region),
+        discord_user_id=character_orm.discord_user_id,
+        item_level=character_orm.item_level,
+        class_name=character_orm.class_name,
+        profile_url=character_orm.profile_url,
+        thumbnail_url=character_orm.thumbnail_url,
+        last_crawled_at=character_orm.last_crawled_at,
+        guild_id=character_orm.guild_id,
+    )
+
+
+def createGuildDTOFromOrm(guild_orm: GuildOrm) -> GuildDTO:
+    return GuildDTO(
+        name=guild_orm.name,
+        realm=guild_orm.realm,
+        region=Region(guild_orm.region),
+        discord_guild_id=guild_orm.discord_guild_id,
+        characters=[
+            createCharacterDTOFromOrm(character) for character in guild_orm.characters
+        ],
+    )
 
 
 class GuildRepository:
