@@ -1,7 +1,8 @@
 from typing import Optional
 from sqlalchemy.exc import NoResultFound
 from sqlalchemy import select
-from sqlalchemy.ext.asyncio import create_async_engine, AsyncSession
+from sqlalchemy.orm import selectinload
+from sqlalchemy.ext.asyncio import create_async_engine, AsyncSession, async_sessionmaker
 
 from src.db.models import GuildOrm, CharacterOrm
 from src.models import GuildDTO, CharacterDTO, Region
@@ -47,13 +48,16 @@ def createGuildDTOFromOrm(guild_orm: GuildOrm) -> GuildDTO:
 class GuildRepository:
 
     @staticmethod
-    async def get_by_id(session: AsyncSession, id: int) -> Optional[GuildDTO]:
+    async def get_by_id(
+        async_session: async_sessionmaker[AsyncSession], id: int
+    ) -> Optional[GuildDTO]:
         try:
-            result = (
-                await session.execute(select(GuildOrm).where(GuildOrm.id == id))
-            ).scalar_one()
+            async with async_session() as session:
+                result = (
+                    await session.execute(select(GuildOrm).where(GuildOrm.id == id))
+                ).scalar_one()
 
-            return createGuildDTOFromOrm(result)
+                return createGuildDTOFromOrm(result)
         except NoResultFound:
             logger.error(f"get_by_id Error: No guild with id {id}")
         except Exception as err:
@@ -61,18 +65,19 @@ class GuildRepository:
 
     @staticmethod
     async def get_by_discord_guild_id(
-        session: AsyncSession, discord_guild_id: int
+        async_session: async_sessionmaker[AsyncSession], discord_guild_id: int
     ) -> Optional[GuildDTO]:
         try:
-            result = (
-                await session.execute(
-                    select(GuildOrm).where(
-                        GuildOrm.discord_guild_id == discord_guild_id
+            async with async_session() as session:
+                result = (
+                    await session.execute(
+                        select(GuildOrm).where(
+                            GuildOrm.discord_guild_id == discord_guild_id
+                        )
                     )
-                )
-            ).scalar_one()
+                ).scalar_one()
 
-            return createGuildDTOFromOrm(result)
+                return createGuildDTOFromOrm(result)
 
         except NoResultFound:
             logger.error(
@@ -83,25 +88,40 @@ class GuildRepository:
 
     @staticmethod
     async def add(
-        session: AsyncSession, name: str, realm: str, region: Region
+        async_session: async_sessionmaker[AsyncSession],
+        name: str,
+        realm: str,
+        region: Region,
+        discord_guild_id: int,
     ) -> Optional[GuildDTO]:
         try:
-            # check if guild already exists.
-            wow_guild_result = (
-                await session.execute(select(GuildOrm).where(GuildOrm.name == name))
-            ).scalar_one_or_none()
+            async with async_session() as session:
+                # check if guild already exists.
+                wow_guild_result = (
+                    await session.execute(
+                        select(GuildOrm)
+                        .where(GuildOrm.name == name)
+                        .options(selectinload(GuildOrm.characters))
+                    )
+                ).scalar_one_or_none()
 
-            if wow_guild_result is not None:
-                logger.debug("Guild already exists")
-                return createGuildDTOFromOrm(wow_guild_result)
+                if wow_guild_result is not None:
+                    logger.debug("Guild already exists")
+                    return createGuildDTOFromOrm(wow_guild_result)
 
-            db_wow_guild = GuildOrm(name=name, realm=realm, region=region)
+                db_wow_guild = GuildOrm(
+                    name=name,
+                    realm=realm,
+                    region=region,
+                    discord_guild_id=discord_guild_id,
+                    characters=[],
+                )
 
-            session.add(db_wow_guild)
-            await session.commit()
-            await session.refresh(db_wow_guild)
+                session.add(db_wow_guild)
+                await session.commit()
+                await session.refresh(db_wow_guild, ["characters"])
 
-            return createGuildDTOFromOrm(db_wow_guild)
+                return createGuildDTOFromOrm(db_wow_guild)
 
         except Exception as err:
             logger.error(f"add Error: {err}")
@@ -110,14 +130,18 @@ class GuildRepository:
 class CharacterRepository:
 
     @staticmethod
-    async def get_by_id(session: AsyncSession, id: int) -> Optional[CharacterDTO]:
+    async def get_by_id(
+        async_session: async_sessionmaker[AsyncSession], id: int
+    ) -> Optional[CharacterDTO]:
         try:
-            db_character = (
-                await session.execute(select(CharacterOrm).where(CharacterOrm.id == id))
-            ).scalar_one()
+            async with async_session() as session:
+                db_character = (
+                    await session.execute(
+                        select(CharacterOrm).where(CharacterOrm.id == id)
+                    )
+                ).scalar_one()
 
-            return createCharacterDTOFromOrm(db_character)
-
+                return createCharacterDTOFromOrm(db_character)
         except NoResultFound:
             logger.error(f"get_by_id Error: No character with id {id}")
         except Exception as err:
@@ -125,18 +149,19 @@ class CharacterRepository:
 
     @staticmethod
     async def get_by_discord_user_id(
-        session: AsyncSession, discord_user_id: int
+        async_session: async_sessionmaker[AsyncSession], discord_user_id: int
     ) -> Optional[CharacterDTO]:
         try:
-            db_character = (
-                await session.execute(
-                    select(CharacterOrm).where(
-                        CharacterOrm.discord_user_id == discord_user_id
+            async with async_session() as session:
+                db_character = (
+                    await session.execute(
+                        select(CharacterOrm).where(
+                            CharacterOrm.discord_user_id == discord_user_id
+                        )
                     )
-                )
-            ).scalar_one()
+                ).scalar_one()
 
-            return createCharacterDTOFromOrm(db_character)
+                return createCharacterDTOFromOrm(db_character)
 
         except NoResultFound:
             logger.error(
@@ -147,32 +172,32 @@ class CharacterRepository:
 
     @staticmethod
     async def add(
-        session: AsyncSession, character: CharacterDTO
+        async_session: async_sessionmaker[AsyncSession], character: CharacterDTO
     ) -> Optional[CharacterDTO]:
         try:
+            async with async_session() as session:
+                # check if guild already exists.
+                db_character = (
+                    await session.execute(
+                        select(CharacterOrm).where(CharacterOrm.name == character.name)
+                    )
+                ).scalar_one_or_none()
 
-            # check if guild already exists.
-            db_character = (
-                await session.execute(
-                    select(CharacterOrm).where(CharacterOrm.name == character.name)
+                if db_character is not None:
+                    logger.debug("Guild already exists")
+                    return createCharacterDTOFromOrm(db_character)
+
+                db_wow_character = CharacterOrm(
+                    name=character.name,
+                    region=character.region,
+                    realm=character.realm,
+                    discord_user_id=character.discord_user_id,
                 )
-            ).scalar_one_or_none()
 
-            if db_character is not None:
-                logger.debug("Guild already exists")
-                return createCharacterDTOFromOrm(db_character)
+                session.add(db_wow_character)
+                await session.commit()
+                await session.refresh(db_wow_character)
 
-            db_wow_character = CharacterOrm(
-                name=character.name,
-                region=character.region,
-                realm=character.realm,
-                discord_user_id=character.discord_user_id,
-            )
-
-            session.add(db_wow_character)
-            await session.commit()
-            await session.refresh(db_wow_character)
-
-            return createCharacterDTOFromOrm(db_wow_character)
+                return createCharacterDTOFromOrm(db_wow_character)
         except Exception as err:
             logger.error(f"add Error: {err}")

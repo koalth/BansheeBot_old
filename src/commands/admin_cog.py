@@ -76,7 +76,7 @@ class Admin(commands.Cog):
         # add new guild to database and link it to current server
         guild_io.discord_guild_id = ctx.guild.id
         wow_guild = await self.bot.db.createWowGuild(
-            guild_io.name, guild_io.realm, guild_io.region
+            guild_io.name, ctx.guild.id, guild_io.realm, guild_io.region
         )
 
         if wow_guild is None:
@@ -144,12 +144,12 @@ class Admin(commands.Cog):
 
     #     await ctx.respond(embed=embed)
 
-    # async def cog_command_error(
-    #     self, ctx: discord.ApplicationContext, error: Exception
-    # ) -> None:
-    #     logger.error(f"There was a problem: {error}")
-    #     await ctx.respond("Something weng wrong :(")
-    #     return await super().cog_command_error(ctx, error)
+    async def cog_command_error(
+        self, ctx: discord.ApplicationContext, error: Exception
+    ) -> None:
+        logger.error(f"There was a problem: {error}")
+        await ctx.respond("Something weng wrong :(")
+        return await super().cog_command_error(ctx, error)
 
 
 def setup(bot: BansheeBot) -> None:

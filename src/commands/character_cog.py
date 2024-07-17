@@ -36,13 +36,13 @@ class Character(commands.Cog):
     ):
         character_io = await RaiderIOClient.getCharacterProfile(name, realm, region)
 
-        if character_io is None or character_io.raiderIO is None:
+        if character_io is None or character_io.item_level is None:
             await ctx.respond(f"Character {name}-{realm} does not exist")
             return
 
         else:
 
-            await ctx.respond(f"Item level: {character_io.raiderIO.item_level}")
+            await ctx.respond(f"Item level: {character_io.item_level}")
 
     @character.command(name="get_character_summary")
     async def get_character_summary(
@@ -58,7 +58,7 @@ class Character(commands.Cog):
             return
         else:
 
-            embed = CharacterViews.getCharacterSummary(character_vm)
+            embed = CharacterViews.getCharacterSummary(character_io)
             await ctx.respond(embed=embed)
 
     async def cog_command_error(

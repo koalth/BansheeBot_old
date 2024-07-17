@@ -11,15 +11,15 @@ footer = "Data from Raider.IO"
 class CharacterViews:
 
     @staticmethod
-    def getCharacterSummary(character: Cha) -> Embed:
+    def getCharacterSummary(character: CharacterDTO) -> Embed:
         title = character.name.capitalize() + "'s Summary"
         embed = discord.Embed(title=title, description="", url=character.profile_url)
 
         embed.set_author(name="BansheeBot")
 
-        embed.add_field(name="Class", value=character.char_class, inline=True)
-        embed.add_field(name="Specialization", value=character.spec_name, inline=True)
-        embed.add_field(name="Role", value=character.role, inline=True)
+        embed.add_field(name="Class", value=character.class_name, inline=True)
+        # embed.add_field(name="Specialization", value=character., inline=True)
+        # embed.add_field(name="Role", value=character., inline=True)
 
         embed.add_field(
             name="Item Level",

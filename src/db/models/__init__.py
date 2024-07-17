@@ -5,12 +5,13 @@ from sqlalchemy.orm import (
     Mapped,
     mapped_column,
 )
+from sqlalchemy.ext.asyncio import AsyncAttrs
 from datetime import datetime
 
 from typing import List
 
 
-class Base(DeclarativeBase):
+class Base(AsyncAttrs, DeclarativeBase):
     pass
 
 

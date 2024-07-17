@@ -1,5 +1,5 @@
 from typing import Optional
-from sqlalchemy.ext.asyncio import create_async_engine, AsyncSession
+from sqlalchemy.ext.asyncio import create_async_engine, AsyncSession, async_sessionmaker
 
 from src.config import Config
 
@@ -35,25 +35,31 @@ class BansheeBotDB:
         logger.info("...DB engine disposed")
 
     async def createWowGuild(
-        self, name: str, realm: str = "Dalaran", region: Region = Region.US
+        self,
+        name: str,
+        discord_guild_id: int,
+        realm: str = "Dalaran",
+        region: Region = Region.US,
     ) -> Optional[GuildDTO]:
-        async with AsyncSession(self.engine) as session:
-            return await self.guildRepository.add(session, name, realm, region)
+        async_session = async_sessionmaker(self.engine, expire_on_commit=False)
+        return await self.guildRepository.add(
+            async_session, name, realm, region, discord_guild_id
+        )
 
     async def getWowGuildByDiscordGuildId(
         self, discord_guild_id: int
     ) -> Optional[GuildDTO]:
-        async with AsyncSession(self.engine) as session:
-            return await self.guildRepository.get_by_discord_guild_id(
-                session, discord_guild_id
-            )
+        async_session = async_sessionmaker(self.engine, expire_on_commit=False)
+        return await self.guildRepository.get_by_discord_guild_id(
+            async_session, discord_guild_id
+        )
 
     async def getWowGuildById(self, id: int) -> Optional[GuildDTO]:
-        async with AsyncSession(self.engine) as session:
-            return await self.guildRepository.get_by_id(session, id)
+        async_session = async_sessionmaker(self.engine, expire_on_commit=False)
+        return await self.guildRepository.get_by_id(async_session, id)
 
     async def createWowCharacter(
         self, wow_character: CharacterDTO
     ) -> Optional[CharacterDTO]:
-        async with AsyncSession(self.engine) as session:
-            return await self.characterRepository.add(session, wow_character)
+        async_session = async_sessionmaker(self.engine, expire_on_commit=False)
+        return await self.characterRepository.add(async_session, wow_character)
