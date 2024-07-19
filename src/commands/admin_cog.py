@@ -108,19 +108,20 @@ class Admin(commands.Cog):
             await ctx.respond(f"No valid guild in discord")
             return
 
+        wow_guild = await self.bot.db.getWowGuildByDiscordGuildId(ctx.guild.id)
+
+        if wow_guild is None:
+            await ctx.respond(f"Guild {name}-{realm} was not found or does not exist")
+            return
+
+        character_io.discord_user_id = ctx.author.id
+        character_io.guild_id = wow_guild.id
         wow_character = await self.bot.db.createWowCharacter(character_io)
 
         if wow_character is None or wow_character.guild_id is None:
             raise Exception("add_character_to_guild wasn't working")
 
-        wow_guild = await self.bot.db.getWowGuildById(wow_character.guild_id)
-
-        if wow_guild is None:
-            raise Exception("add_character_to_guild wasn't working")
-
-        logger.debug(wow_character)
-
-        await ctx.respond(f"{wow_character.name} was added to {wow_guild.name}")
+        await ctx.respond(f"`{wow_character.name}` was added to `{wow_guild.name}`")
 
     # @admin.command(
     #     name="get_guild_summary",

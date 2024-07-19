@@ -4,336 +4,333 @@
 
 from __future__ import annotations
 
-from typing import List, Optional
+from typing import List, Optional, Dict
+from typing_extensions import TypedDict
 from datetime import datetime
 
-from pydantic import BaseModel, Field
+from pydantic import BaseModel, Field, ConfigDict
 
 
-class CorruptionResponse(BaseModel):
-    added: int
-    resisted: int
-    total: int
-    cloakRank: int
-    spells: List
+class MyBaseModel(BaseModel):
+    model_config = ConfigDict(extra="ignore")
 
 
-class SpellResponse(BaseModel):
-    id: int
-    school: int
-    icon: str
-    name: str
-    rank: None
+# class CorruptionResponse(BaseModel):
+#     added: int
+#     resisted: int
+#     total: int
 
 
-class AzeritePowersResponse(BaseModel):
-    id: int
-    spell: SpellResponse
-    tier: int
+# class HeadResponse(BaseModel):
+#     item_id: int
+#     item_level: int
+#     enchant: int
+#     icon: str
+#     name: str
+#     item_quality: int
+#     is_legendary: bool
+#     is_azerite_armor: bool
+#     azerite_powers: List[Optional[AzeritePowersResponse]]
+#     corruption: Corruption1Response
+#     domination_shards: List
+#     tier: str
+#     gems: List[int]
+#     bonuses: List[int]
 
 
-class Corruption1Response(BaseModel):
-    added: int
-    resisted: int
-    total: int
+# class NeckResponse(BaseModel):
+#     item_id: int
+#     item_level: int
+#     icon: str
+#     name: str
+#     item_quality: int
+#     is_legendary: bool
+#     is_azerite_armor: bool
+#     azerite_powers: List
+#     corruption: Corruption1Response
+#     domination_shards: List
+#     gems: List[int]
+#     bonuses: List[int]
 
 
-class HeadResponse(BaseModel):
+# class AzeritePowers1Response(BaseModel):
+#     id: int
+#     spell: SpellResponse
+#     tier: int
+
+
+# class ShoulderResponse(BaseModel):
+#     item_id: int
+#     item_level: int
+#     icon: str
+#     name: str
+#     item_quality: int
+#     is_legendary: bool
+#     is_azerite_armor: bool
+#     azerite_powers: List[Optional[AzeritePowers1Response]]
+#     corruption: Corruption1Response
+#     domination_shards: List
+#     tier: str
+#     gems: List
+#     bonuses: List[int]
+
+
+# class BackResponse(BaseModel):
+#     item_id: int
+#     item_level: int
+#     icon: str
+#     name: str
+#     item_quality: int
+#     is_legendary: bool
+#     is_azerite_armor: bool
+#     azerite_powers: List
+#     corruption: Corruption1Response
+#     domination_shards: List
+#     gems: List
+#     bonuses: List[int]
+
+
+# class AzeritePowers2Response(BaseModel):
+#     id: int
+#     spell: SpellResponse
+#     tier: int
+
+
+# class ChestResponse(BaseModel):
+#     item_id: int
+#     item_level: int
+#     enchant: int
+#     icon: str
+#     name: str
+#     item_quality: int
+#     is_legendary: bool
+#     is_azerite_armor: bool
+#     azerite_powers: List[Optional[AzeritePowers2Response]]
+#     corruption: Corruption1Response
+#     domination_shards: List
+#     tier: str
+#     gems: List
+#     bonuses: List[int]
+
+
+# class WaistResponse(BaseModel):
+#     item_id: int
+#     item_level: int
+#     enchant: int
+#     icon: str
+#     name: str
+#     item_quality: int
+#     is_legendary: bool
+#     is_azerite_armor: bool
+#     azerite_powers: List
+#     corruption: Corruption1Response
+#     domination_shards: List
+#     gems: List[int]
+#     bonuses: List[int]
+
+
+# class WristResponse(BaseModel):
+#     item_id: int
+#     item_level: int
+#     enchant: int
+#     icon: str
+#     name: str
+#     item_quality: int
+#     is_legendary: bool
+#     is_azerite_armor: bool
+#     azerite_powers: List
+#     corruption: Corruption1Response
+#     domination_shards: List
+#     gems: List[int]
+#     bonuses: List[int]
+
+
+# class HandsResponse(BaseModel):
+#     item_id: int
+#     item_level: int
+#     icon: str
+#     name: str
+#     item_quality: int
+#     is_legendary: bool
+#     is_azerite_armor: bool
+#     azerite_powers: List
+#     corruption: Corruption1Response
+#     domination_shards: List
+#     tier: str
+#     gems: List
+#     bonuses: List[int]
+
+
+# class LegsResponse(BaseModel):
+#     item_id: int
+#     item_level: int
+#     enchant: int
+#     icon: str
+#     name: str
+#     item_quality: int
+#     is_legendary: bool
+#     is_azerite_armor: bool
+#     azerite_powers: List
+#     corruption: Corruption1Response
+#     domination_shards: List
+#     tier: str
+#     gems: List
+#     bonuses: List[int]
+
+
+# class FeetResponse(BaseModel):
+#     item_id: int
+#     item_level: int
+#     enchant: int
+#     icon: str
+#     name: str
+#     item_quality: int
+#     is_legendary: bool
+#     is_azerite_armor: bool
+#     azerite_powers: List
+#     corruption: Corruption1Response
+#     domination_shards: List
+#     gems: List
+#     bonuses: List[int]
+
+
+# class Finger1Response(BaseModel):
+#     item_id: int
+#     item_level: int
+#     enchant: int
+#     icon: str
+#     name: str
+#     item_quality: int
+#     is_legendary: bool
+#     is_azerite_armor: bool
+#     azerite_powers: List
+#     corruption: Corruption1Response
+#     domination_shards: List
+#     gems: List
+#     bonuses: List[int]
+
+
+# class Finger2Response(BaseModel):
+#     item_id: int
+#     item_level: int
+#     enchant: int
+#     icon: str
+#     name: str
+#     item_quality: int
+#     is_legendary: bool
+#     is_azerite_armor: bool
+#     azerite_powers: List
+#     corruption: Corruption1Response
+#     domination_shards: List
+#     gems: List[int]
+#     bonuses: List[int]
+
+
+# class Trinket1Response(BaseModel):
+#     item_id: int
+#     item_level: int
+#     icon: str
+#     name: str
+#     item_quality: int
+#     is_legendary: bool
+#     is_azerite_armor: bool
+#     azerite_powers: List
+#     corruption: Corruption1Response
+#     domination_shards: List
+#     gems: List
+#     bonuses: List[int]
+
+
+# class Trinket2Response(BaseModel):
+#     item_id: int
+#     item_level: int
+#     icon: str
+#     name: str
+#     item_quality: int
+#     is_legendary: bool
+#     is_azerite_armor: bool
+#     azerite_powers: List
+#     corruption: Corruption1Response
+#     domination_shards: List
+#     gems: List
+#     bonuses: List[int]
+
+
+# class MainhandResponse(BaseModel):
+#     item_id: int
+#     item_level: int
+#     enchant: int
+#     icon: str
+#     name: str
+#     item_quality: int
+#     is_legendary: bool
+#     is_azerite_armor: bool
+#     azerite_powers: List
+#     corruption: Corruption1Response
+#     domination_shards: List
+#     gems: List
+#     bonuses: List[int]
+
+
+# class OffhandResponse(BaseModel):
+#     item_id: int
+#     item_level: int
+#     enchant: int
+#     icon: str
+#     name: str
+#     item_quality: int
+#     is_legendary: bool
+#     is_azerite_armor: bool
+#     azerite_powers: List
+#     corruption: Corruption1Response
+#     domination_shards: List
+#     gems: List
+#     bonuses: List[int]
+
+# class ItemIdentity(TypedDict):
+
+
+class ItemResponse(MyBaseModel):
     item_id: int
     item_level: int
-    enchant: int
+    enchant: Optional[int] = None
     icon: str
     name: str
     item_quality: int
     is_legendary: bool
     is_azerite_armor: bool
-    azerite_powers: List[Optional[AzeritePowersResponse]]
-    corruption: Corruption1Response
-    domination_shards: List
-    tier: str
     gems: List[int]
+    tier: Optional[str] = None
     bonuses: List[int]
 
 
-class NeckResponse(BaseModel):
-    item_id: int
-    item_level: int
-    icon: str
-    name: str
-    item_quality: int
-    is_legendary: bool
-    is_azerite_armor: bool
-    azerite_powers: List
-    corruption: Corruption1Response
-    domination_shards: List
-    gems: List[int]
-    bonuses: List[int]
+class ItemsResponse(TypedDict):
+    head: Optional[ItemResponse]
+    neck: Optional[ItemResponse]
+    shoulder: Optional[ItemResponse]
+    back: Optional[ItemResponse]
+    chest: Optional[ItemResponse]
+    waist: Optional[ItemResponse]
+    wrist: Optional[ItemResponse]
+    hands: Optional[ItemResponse]
+    legs: Optional[ItemResponse]
+    feet: Optional[ItemResponse]
+    finger1: Optional[ItemResponse]
+    finger2: Optional[ItemResponse]
+    trinket1: Optional[ItemResponse]
+    trinket2: Optional[ItemResponse]
+    mainhand: Optional[ItemResponse]
+    # offhand: Optional[ItemResponse]
 
 
-class AzeritePowers1Response(BaseModel):
-    id: int
-    spell: SpellResponse
-    tier: int
-
-
-class ShoulderResponse(BaseModel):
-    item_id: int
-    item_level: int
-    icon: str
-    name: str
-    item_quality: int
-    is_legendary: bool
-    is_azerite_armor: bool
-    azerite_powers: List[Optional[AzeritePowers1Response]]
-    corruption: Corruption1Response
-    domination_shards: List
-    tier: str
-    gems: List
-    bonuses: List[int]
-
-
-class BackResponse(BaseModel):
-    item_id: int
-    item_level: int
-    icon: str
-    name: str
-    item_quality: int
-    is_legendary: bool
-    is_azerite_armor: bool
-    azerite_powers: List
-    corruption: Corruption1Response
-    domination_shards: List
-    gems: List
-    bonuses: List[int]
-
-
-class AzeritePowers2Response(BaseModel):
-    id: int
-    spell: SpellResponse
-    tier: int
-
-
-class ChestResponse(BaseModel):
-    item_id: int
-    item_level: int
-    enchant: int
-    icon: str
-    name: str
-    item_quality: int
-    is_legendary: bool
-    is_azerite_armor: bool
-    azerite_powers: List[Optional[AzeritePowers2Response]]
-    corruption: Corruption1Response
-    domination_shards: List
-    tier: str
-    gems: List
-    bonuses: List[int]
-
-
-class WaistResponse(BaseModel):
-    item_id: int
-    item_level: int
-    enchant: int
-    icon: str
-    name: str
-    item_quality: int
-    is_legendary: bool
-    is_azerite_armor: bool
-    azerite_powers: List
-    corruption: Corruption1Response
-    domination_shards: List
-    gems: List[int]
-    bonuses: List[int]
-
-
-class WristResponse(BaseModel):
-    item_id: int
-    item_level: int
-    enchant: int
-    icon: str
-    name: str
-    item_quality: int
-    is_legendary: bool
-    is_azerite_armor: bool
-    azerite_powers: List
-    corruption: Corruption1Response
-    domination_shards: List
-    gems: List[int]
-    bonuses: List[int]
-
-
-class HandsResponse(BaseModel):
-    item_id: int
-    item_level: int
-    icon: str
-    name: str
-    item_quality: int
-    is_legendary: bool
-    is_azerite_armor: bool
-    azerite_powers: List
-    corruption: Corruption1Response
-    domination_shards: List
-    tier: str
-    gems: List
-    bonuses: List[int]
-
-
-class LegsResponse(BaseModel):
-    item_id: int
-    item_level: int
-    enchant: int
-    icon: str
-    name: str
-    item_quality: int
-    is_legendary: bool
-    is_azerite_armor: bool
-    azerite_powers: List
-    corruption: Corruption1Response
-    domination_shards: List
-    tier: str
-    gems: List
-    bonuses: List[int]
-
-
-class FeetResponse(BaseModel):
-    item_id: int
-    item_level: int
-    enchant: int
-    icon: str
-    name: str
-    item_quality: int
-    is_legendary: bool
-    is_azerite_armor: bool
-    azerite_powers: List
-    corruption: Corruption1Response
-    domination_shards: List
-    gems: List
-    bonuses: List[int]
-
-
-class Finger1Response(BaseModel):
-    item_id: int
-    item_level: int
-    enchant: int
-    icon: str
-    name: str
-    item_quality: int
-    is_legendary: bool
-    is_azerite_armor: bool
-    azerite_powers: List
-    corruption: Corruption1Response
-    domination_shards: List
-    gems: List
-    bonuses: List[int]
-
-
-class Finger2Response(BaseModel):
-    item_id: int
-    item_level: int
-    enchant: int
-    icon: str
-    name: str
-    item_quality: int
-    is_legendary: bool
-    is_azerite_armor: bool
-    azerite_powers: List
-    corruption: Corruption1Response
-    domination_shards: List
-    gems: List[int]
-    bonuses: List[int]
-
-
-class Trinket1Response(BaseModel):
-    item_id: int
-    item_level: int
-    icon: str
-    name: str
-    item_quality: int
-    is_legendary: bool
-    is_azerite_armor: bool
-    azerite_powers: List
-    corruption: Corruption1Response
-    domination_shards: List
-    gems: List
-    bonuses: List[int]
-
-
-class Trinket2Response(BaseModel):
-    item_id: int
-    item_level: int
-    icon: str
-    name: str
-    item_quality: int
-    is_legendary: bool
-    is_azerite_armor: bool
-    azerite_powers: List
-    corruption: Corruption1Response
-    domination_shards: List
-    gems: List
-    bonuses: List[int]
-
-
-class MainhandResponse(BaseModel):
-    item_id: int
-    item_level: int
-    enchant: int
-    icon: str
-    name: str
-    item_quality: int
-    is_legendary: bool
-    is_azerite_armor: bool
-    azerite_powers: List
-    corruption: Corruption1Response
-    domination_shards: List
-    gems: List
-    bonuses: List[int]
-
-
-class OffhandResponse(BaseModel):
-    item_id: int
-    item_level: int
-    enchant: int
-    icon: str
-    name: str
-    item_quality: int
-    is_legendary: bool
-    is_azerite_armor: bool
-    azerite_powers: List
-    corruption: Corruption1Response
-    domination_shards: List
-    gems: List
-    bonuses: List[int]
-
-
-class ItemsResponse(BaseModel):
-    head: Optional[HeadResponse]
-    neck: Optional[NeckResponse]
-    shoulder: Optional[ShoulderResponse]
-    back: Optional[BackResponse]
-    chest: Optional[ChestResponse]
-    waist: Optional[WaistResponse]
-    wrist: Optional[WristResponse]
-    hands: Optional[HandsResponse]
-    legs: Optional[LegsResponse]
-    feet: Optional[FeetResponse]
-    finger1: Optional[Finger1Response]
-    finger2: Optional[Finger2Response]
-    trinket1: Optional[Trinket1Response]
-    trinket2: Optional[Trinket2Response]
-    mainhand: Optional[MainhandResponse]
-    offhand: Optional[OffhandResponse]
-
-
-class GearResponse(BaseModel):
+class GearResponse(MyBaseModel):
     updated_at: str
     item_level_equipped: int
     item_level_total: int
-    artifact_traits: int
-    corruption: CorruptionResponse
     items: ItemsResponse
 
 
-class GuildResponse(BaseModel):
+class GuildResponse(MyBaseModel):
     name: str
     realm: str
     region: Optional[str] = None
@@ -342,7 +339,7 @@ class GuildResponse(BaseModel):
     profile_url: Optional[str] = None
 
 
-class CharacterResponse(BaseModel):
+class CharacterResponse(MyBaseModel):
     name: str
     race: str
     character_class: str = Field(alias="class")

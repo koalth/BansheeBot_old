@@ -35,6 +35,7 @@ def createCharacterDTOFromOrm(character_orm: CharacterOrm) -> CharacterDTO:
 
 def createGuildDTOFromOrm(guild_orm: GuildOrm) -> GuildDTO:
     return GuildDTO(
+        id=guild_orm.id,
         name=guild_orm.name,
         realm=guild_orm.realm,
         region=Region(guild_orm.region),
@@ -71,9 +72,9 @@ class GuildRepository:
             async with async_session() as session:
                 result = (
                     await session.execute(
-                        select(GuildOrm).where(
-                            GuildOrm.discord_guild_id == discord_guild_id
-                        )
+                        select(GuildOrm)
+                        .where(GuildOrm.discord_guild_id == discord_guild_id)
+                        .options(selectinload(GuildOrm.characters))
                     )
                 ).scalar_one()
 
@@ -172,11 +173,12 @@ class CharacterRepository:
 
     @staticmethod
     async def add(
-        async_session: async_sessionmaker[AsyncSession], character: CharacterDTO
+        async_session: async_sessionmaker[AsyncSession],
+        character: CharacterDTO,
     ) -> Optional[CharacterDTO]:
         try:
             async with async_session() as session:
-                # check if guild already exists.
+
                 db_character = (
                     await session.execute(
                         select(CharacterOrm).where(CharacterOrm.name == character.name)
@@ -184,14 +186,20 @@ class CharacterRepository:
                 ).scalar_one_or_none()
 
                 if db_character is not None:
-                    logger.debug("Guild already exists")
+                    logger.debug("character already exists")
                     return createCharacterDTOFromOrm(db_character)
 
                 db_wow_character = CharacterOrm(
                     name=character.name,
                     region=character.region,
                     realm=character.realm,
+                    item_level=character.item_level,
+                    class_name=character.class_name,
+                    profile_url=character.profile_url,
+                    thumbnail_url=character.thumbnail_url,
+                    last_crawled_at=character.last_crawled_at,
                     discord_user_id=character.discord_user_id,
+                    guild_id=character.guild_id,
                 )
 
                 session.add(db_wow_character)

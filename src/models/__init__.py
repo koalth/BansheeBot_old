@@ -25,6 +25,7 @@ class Region(StrEnum):
 
 @dataclass
 class GuildDTO:
+    id: int
     name: str
     realm: str
     region: Region
@@ -40,12 +41,12 @@ class CharacterDTO:
     realm: str
     region: Region
 
-    item_level: int
     class_name: str
     profile_url: str
     thumbnail_url: str
 
     last_crawled_at: datetime
 
+    item_level: int = field(default=0)
     discord_user_id: Optional[int] = None
     guild_id: Optional[int] = None

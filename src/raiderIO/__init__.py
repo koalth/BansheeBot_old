@@ -31,16 +31,14 @@ def createCharacterDTOFromResponse(
         name=character_response.name,
         realm=character_response.realm,
         region=Region(character_response.region),
-        item_level=(
-            character_response.gear.item_level_equipped
-            if character_response.gear is not None
-            else 0
-        ),
-        class_name=character_response.active_spec_name,
+        class_name=character_response.character_class,
         profile_url=character_response.profile_url,
         thumbnail_url=character_response.thumbnail_url,
         last_crawled_at=character_response.last_crawled_at,
     )
+
+    if character_response.gear is not None:
+        dto.item_level = character_response.gear.item_level_equipped
 
     return dto
 
@@ -77,7 +75,10 @@ async def get(endpoint: str, params: Dict[str, str], content: type[T]) -> Option
                     response.raise_for_status()
                     json_data = await response.json()
                     return content(**json_data)
-
+    except ValidationError as err:
+        logger.debug(err.json())
+        logger.error(f"Validation error in getCharacterProfile: {err}")
+        return None
     except Exception as err:
         logger.error(
             f"There was an error requesting endpoint: {endpoint} with params: {params}. Error: {err}"
