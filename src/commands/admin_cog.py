@@ -2,6 +2,9 @@ import logging
 import discord
 from discord.commands import SlashCommandGroup
 from discord.ext import commands
+from src import BansheeBot
+from src.views import AdminRoleSelectView
+from src.services import GuildService
 
 
 logger = logging.getLogger(__name__)
@@ -10,10 +13,6 @@ ch = logging.StreamHandler()
 formatter = logging.Formatter("%(asctime)s - %(name)s - %(levelname)s - %(message)s")
 ch.setFormatter(formatter)
 logger.addHandler(ch)
-
-from src import BansheeBot
-from src.views.admin_views import AdminRoleSelectView
-from src.services.guildService import GuildService
 
 
 class Admin(commands.Cog):

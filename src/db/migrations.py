@@ -1,8 +1,7 @@
 import asyncio
 import logging
 from sqlalchemy.ext.asyncio import create_async_engine
-import os
-from dotenv import load_dotenv
+from src.config import Config
 from src.db.models import Base
 
 logger = logging.getLogger("Migrations")
@@ -12,17 +11,11 @@ formatter = logging.Formatter("%(asctime)s - %(name)s - %(levelname)s - %(messag
 ch.setFormatter(formatter)
 logger.addHandler(ch)
 
-load_dotenv()
-SQLALCHEMY_DATABASE_URI = os.getenv("SQLALCHEMY_DATABASE_URI")
-
 
 async def migrate_tables() -> None:
     logger.info("Starting to migrate...")
 
-    sqlite_file_name = f"{SQLALCHEMY_DATABASE_URI}"
-    sqlite_url = f"sqlite+aiosqlite:///{sqlite_file_name}"
-
-    engine = create_async_engine(sqlite_url)
+    engine = create_async_engine(Config.SQLITE_URL)
     async with engine.begin() as connection:
         await connection.run_sync(Base.metadata.create_all)
 
@@ -33,10 +26,7 @@ async def migrate_tables() -> None:
 async def destroy_tables() -> None:
     logger.info("Starting to destroy tables...")
 
-    sqlite_file_name = f"{SQLALCHEMY_DATABASE_URI}"
-    sqlite_url = f"sqlite+aiosqlite:///{sqlite_file_name}"
-
-    engine = create_async_engine(sqlite_url)
+    engine = create_async_engine(Config.SQLITE_URL)
     async with engine.begin() as connection:
         await connection.run_sync(Base.metadata.drop_all)
 

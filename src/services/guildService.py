@@ -1,6 +1,14 @@
 from src.views.viewmodels import GuildViewModel
 from src.db import GuildRepository
 from src.raiderIO import RaiderIOClient
+import logging
+
+logger = logging.getLogger("GuildService")
+logger.setLevel(level=logging.DEBUG)
+ch = logging.StreamHandler()
+formatter = logging.Formatter("%(asctime)s - %(name)s - %(levelname)s - %(message)s")
+ch.setFormatter(formatter)
+logger.addHandler(ch)
 
 
 class GuildService:
