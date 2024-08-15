@@ -22,38 +22,6 @@ from src.models import (
 from src.raiderIO.models import CharacterResponse, GuildResponse
 from pydantic import ValidationError
 
-
-def createCharacterDTOFromResponse(
-    character_response: CharacterResponse,
-) -> CharacterDTO:
-
-    dto = CharacterDTO(
-        name=character_response.name,
-        realm=character_response.realm,
-        region=Region(character_response.region),
-        class_name=character_response.character_class,
-        profile_url=character_response.profile_url,
-        thumbnail_url=character_response.thumbnail_url,
-        last_crawled_at=character_response.last_crawled_at,
-    )
-
-    if character_response.gear is not None:
-        dto.item_level = character_response.gear.item_level_equipped
-
-    return dto
-
-
-def createGuildDTOFromResponse(guild_response: GuildResponse) -> GuildDTO:
-
-    dto = GuildDTO(
-        name=guild_response.name,
-        realm=guild_response.realm,
-        region=Region(guild_response.region),
-    )
-
-    return dto
-
-
 API_URL = "https://raider.io/api/v1"
 CALLS = 200
 RATE_LIMIT = 60
@@ -106,7 +74,16 @@ class RaiderIOClient:
                 logger.debug("Response was none")
                 return None
 
-            return createCharacterDTOFromResponse(response)
+            return CharacterDTO(
+                name=response.name,
+                realm=response.realm,
+                region=Region(response.region),
+                class_name=response.character_class,
+                profile_url=response.profile_url,
+                last_crawled_at=response.last_crawled_at,
+                item_level=0,  # will need to be updated
+                thumbnail_url=response.thumbnail_url,
+            )
         except ValidationError as err:
             logger.error(f"Validation error in getCharacterProfile: {err}")
             return None
@@ -125,7 +102,9 @@ class RaiderIOClient:
             if response is None:
                 logger.debug("Response was none")
                 return None
-            return createGuildDTOFromResponse(response)
+            return GuildDTO(
+                name=response.name, region=Region(response.region), realm=response.realm
+            )
         except ValidationError as err:
             logger.error(f"Validation error in getGuildProfile: {err}")
             return None

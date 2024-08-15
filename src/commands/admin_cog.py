@@ -18,6 +18,7 @@ from src import BansheeBot
 from src.views.admin_views import AdminRoleSelectView
 from src.views.guild_views import GuildViews
 from src.raiderIO import RaiderIOClient
+from src.services.guildService import GuildService
 
 
 class Admin(commands.Cog):
@@ -63,26 +64,14 @@ class Admin(commands.Cog):
         realm: str = "Dalaran",
         region: str = "us",
     ):
-        if ctx.guild is None:
-            await ctx.respond(f"No valid guild")
-            return
 
-        guild_io = await RaiderIOClient.getGuildProfile(name, realm)
-
-        if guild_io is None:
-            await ctx.respond(f"Guild {name}-{realm} was not found.")
-            return
-
-        # add new guild to database and link it to current server
-        guild_io.discord_guild_id = ctx.guild.id
-        wow_guild = await self.bot.db.createWowGuild(
-            guild_io.name, ctx.guild.id, guild_io.realm, guild_io.region
+        wow_guild = await GuildService().set_wow_guild(
+            name, realm, region, ctx.guild_id
         )
 
-        if wow_guild is None:
-            raise Exception
-
-        await ctx.respond(f"Guild `{name}-{realm}` was added to `{ctx.guild.name}`")
+        await ctx.respond(
+            f"Guild `{wow_guild.name}-{wow_guild.realm}` was added to `{ctx.guild.name}`"
+        )
 
     @admin.command(
         name="add_character_to_guild",

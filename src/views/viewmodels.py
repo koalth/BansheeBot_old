@@ -8,10 +8,8 @@ class GuildViewModel:
     name: str
     region: str
     realm: str
-    faction: str
 
 
-@dataclass
 class CharacterViewModel:
     name: str
     region: str

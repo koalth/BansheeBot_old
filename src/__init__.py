@@ -1,7 +1,6 @@
 import discord
 from discord.ext import commands
 from src.config import Config
-from src.db import BansheeBotDB
 import logging
 
 logger = logging.getLogger("BansheeBot")
@@ -13,14 +12,11 @@ logger.addHandler(ch)
 
 
 class BansheeBot(commands.Bot):
-
-    db: BansheeBotDB
     config: Config
 
     def __init__(self) -> None:
         logger.info("BansheeBot started initialization...")
         self.config = Config()
-        self.db = BansheeBotDB(self.config)
         super().__init__(
             intents=discord.Intents(
                 guilds=True,
@@ -35,13 +31,13 @@ class BansheeBot(commands.Bot):
         )
         logger.info("...BansheeBot ended initialization")
 
-    async def start(self, token: str, *, reconnect: bool = True) -> None:
-        await self.db.start_engine()
-        return await super().start(token, reconnect=reconnect)
+    # async def start(self, token: str, *, reconnect: bool = True) -> None:
+    #     await self.db.start_engine()
+    #     return await super().start(token, reconnect=reconnect)
 
-    async def close(self) -> None:
-        await self.db.stop_engine()
-        return await super().close()
+    # async def close(self) -> None:
+    #     await self.db.stop_engine()
+    #     return await super().close()
 
     def run(self):
         cogs_list = ["src.commands.character_cog", "src.commands.admin_cog"]

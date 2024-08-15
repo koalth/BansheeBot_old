@@ -1,7 +1,7 @@
-from dataclasses import dataclass, field
 from typing import List, Optional, Dict
 from enum import StrEnum
 from datetime import datetime
+from dataclasses import dataclass, field
 
 
 class Faction(StrEnum):
@@ -25,7 +25,6 @@ class Region(StrEnum):
 
 @dataclass
 class GuildDTO:
-    id: int
     name: str
     realm: str
     region: Region
@@ -47,6 +46,6 @@ class CharacterDTO:
 
     last_crawled_at: datetime
 
-    item_level: int = field(default=0)
+    item_level: int
     discord_user_id: Optional[int] = None
     guild_id: Optional[int] = None
