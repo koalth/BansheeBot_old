@@ -1,2 +1,2 @@
-from .repositories import GuildRepository
-from .models import GuildOrm
+from .repositories import GuildRepository, CharacterRepository
+from .models import GuildOrm, CharacterOrm

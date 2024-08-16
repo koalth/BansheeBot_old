@@ -2,7 +2,7 @@ from typing import Optional
 from sqlalchemy.exc import NoResultFound
 from sqlalchemy import select, and_
 from sqlalchemy.orm import selectinload
-
+from datetime import datetime
 
 from src.db.database import get_session
 from src.db.models import GuildOrm, CharacterOrm
@@ -63,86 +63,51 @@ class GuildRepository:
             return db_wow_guild
 
 
-# class GuildRepository:
+class CharacterRepository:
 
-#     @staticmethod
-#     async def get_by_id(
-#         async_session: async_sessionmaker[AsyncSession], id: int
-#     ) -> Optional[GuildOrm]:
-#         try:
-#             async with async_session() as session:
-#                 result = (
-#                     await session.execute(select(GuildOrm).where(GuildOrm.id == id))
-#                 ).scalar_one()
+    def __init__(self):
+        pass
 
-#                 return result
-#         except NoResultFound:
-#             logger.error(f"get_by_id Error: No guild with id {id}")
-#         except Exception as err:
-#             logger.error(f"get_by_id Error: {err}")
+    async def get_by_discord_id(self, id: int) -> CharacterOrm:
+        async with get_session() as session:
+            result = await session.execute(
+                select(CharacterOrm).where(CharacterOrm.discord_user_id == id)
+            )
 
-#     @staticmethod
-#     async def get_by_discord_guild_id(
-#         async_session: async_sessionmaker[AsyncSession], discord_guild_id: int
-#     ) -> Optional[GuildOrm]:
-#         try:
-#             async with async_session() as session:
-#                 result = (
-#                     await session.execute(
-#                         select(GuildOrm)
-#                         .where(GuildOrm.discord_guild_id == discord_guild_id)
-#                         .options(selectinload(GuildOrm.characters))
-#                     )
-#                 ).scalar_one()
+            return result.scalar_one()
 
-#                 return result
+    async def create(
+        self,
+        name: int,
+        realm: str,
+        region: str,
+        discord_user_id: int,
+        item_level: int,
+        class_name: str,
+        profile_url: str,
+        thumbnail_url: str,
+        last_crawled_at: datetime,
+        guild_id: int,
+    ) -> CharacterOrm:
+        async with get_session() as session:
+            db_character = CharacterOrm(
+                name=name,
+                realm=realm,
+                region=region,
+                discord_user_id=discord_user_id,
+                item_level=item_level,
+                class_name=class_name,
+                profile_url=profile_url,
+                thumbnail_url=thumbnail_url,
+                last_crawled_at=last_crawled_at,
+                guild_id=guild_id,
+            )
 
-#         except NoResultFound:
-#             logger.error(
-#                 f"get_by_discord_guild_id Error: No guild with discord_guild_id {discord_guild_id}"
-#             )
-#         except Exception as err:
-#             logger.error(f"get_by_discord_guild_id Error: {err}")
+            session.add(db_character)
+            await session.commit()
+            await session.refresh(db_character)
 
-#     @staticmethod
-#     async def add(
-#         name: str,
-#         realm: str,
-#         region: Region,
-#         discord_guild_id: int,
-#     ) -> Optional[GuildOrm]:
-#         try:
-#             async_session = async_sessionmaker(self.engine, expire_on_commit=False)
-#             async with async_session() as session:
-#                 # check if guild already exists.
-#                 wow_guild_result = (
-#                     await session.execute(
-#                         select(GuildOrm)
-#                         .where(GuildOrm.name == name)
-#                         .options(selectinload(GuildOrm.characters))
-#                     )
-#                 ).scalar_one_or_none()
-
-#                 if wow_guild_result is not None:
-#                     logger.debug("Guild already exists")
-#                     return wow_guild_result
-
-#                 db_wow_guild = GuildOrm(
-#                     name=name,
-#                     realm=realm,
-#                     region=region,
-#                     discord_guild_id=discord_guild_id,
-#                     characters=[],
-#                 )
-
-#                 session.add(db_wow_guild)
-#                 await session.commit()
-#                 await session.refresh(db_wow_guild, ["characters"])
-
-#                 return db_wow_guild
-
-#         except Exception as err:
-#             logger.error(f"add Error: {err}")
+            return db_character
 
 
 # class CharacterRepository:
