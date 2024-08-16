@@ -16,8 +16,8 @@ class GuildService:
 
     repository: GuildRepository
 
-    def __init__(self):
-        self.repository = GuildRepository()
+    def __init__(self, repository: GuildRepository = GuildRepository()):
+        self.repository = repository
 
     async def get_by_guild_name_and_realm(
         self, name: str, realm: str
