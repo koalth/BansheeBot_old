@@ -2,6 +2,7 @@ from src.views.viewmodels import GuildViewModel
 from src.db import GuildRepository
 from src.raiderIO import RaiderIOClient
 import logging
+from sqlalchemy.exc import NoResultFound
 
 logger = logging.getLogger("GuildService")
 logger.setLevel(level=logging.DEBUG)
@@ -18,28 +19,45 @@ class GuildService:
     def __init__(self):
         self.repository = GuildRepository()
 
+    async def get_by_guild_name_and_realm(
+        self, name: str, realm: str
+    ) -> GuildViewModel:
+        guild_result = await self.repository.get_by_guild_name_and_realm(name, realm)
+
+        return GuildViewModel(
+            name=guild_result.name, region=guild_result.region, realm=guild_result.realm
+        )
+
+    async def get_by_discord_guild_id(self, discord_guild_id: int) -> GuildViewModel:
+        guild_result = await self.repository.get_by_discord_guild_id(discord_guild_id)
+
+        return GuildViewModel(
+            name=guild_result.name, region=guild_result.region, realm=guild_result.realm
+        )
+
     async def set_wow_guild(
         self, name: str, realm: str, region: str, discord_guild_id: int
     ) -> GuildViewModel:
-
-        guild_result = await self.repository.get_by_discord_guild_id(discord_guild_id)
-
-        if guild_result is not None:
-            return GuildViewModel(
-                name=guild_result.name,
-                region=guild_result.region,
-                realm=guild_result.realm,
-            )
 
         guild_io = await RaiderIOClient.getGuildProfile(name, realm, region)
 
         if guild_io is None:
             raise Exception("guild io was None")
 
-        guild_db = await self.repository.create_guild(
-            name, realm, region, discord_guild_id
-        )
+        guild_db = await self.repository.create(name, realm, region, discord_guild_id)
 
         return GuildViewModel(
             name=guild_db.name, region=guild_db.region, realm=guild_db.realm
         )
+
+    async def is_discord_already_linked(self, guild_id: int) -> bool:
+        try:
+            return (await self.get_by_discord_guild_id(guild_id)) is not None
+        except NoResultFound:
+            return False
+
+    async def is_wow_guild_already_linked(self, name: str, realm: str) -> bool:
+        try:
+            return (await self.get_by_guild_name_and_realm(name, realm)) is not None
+        except NoResultFound:
+            return False

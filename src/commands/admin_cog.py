@@ -59,6 +59,25 @@ class Admin(commands.Cog):
         region: str = "us",
     ):
 
+        # discord is already tied to a wow guild
+        guildExist = await GuildService().is_discord_already_linked(ctx.guild_id)
+        if guildExist:
+            await ctx.respond(f"`{ctx.guild.name} is already tied to a wow guild`")
+            return
+
+        # wow_guild is already tied to discord
+        wowGuildAlreadyLinked = await GuildService().is_wow_guild_already_linked(
+            name, realm
+        )
+        if wowGuildAlreadyLinked:
+            await ctx.respond(f"`{name}-{realm} is already tied to a discord server`")
+            return
+
+        # wow guild cannot be found
+        # TODO add something
+
+        # everything good
+
         wow_guild = await GuildService().set_wow_guild(
             name, realm, region, ctx.guild_id
         )

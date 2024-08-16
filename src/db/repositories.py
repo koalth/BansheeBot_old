@@ -1,6 +1,6 @@
 from typing import Optional
 from sqlalchemy.exc import NoResultFound
-from sqlalchemy import select
+from sqlalchemy import select, and_
 from sqlalchemy.orm import selectinload
 
 
@@ -24,42 +24,43 @@ class GuildRepository:
         pass
 
     async def get_by_discord_guild_id(self, id: int) -> GuildOrm:
-        try:
-            async with get_session() as session:
-                result = (
-                    await session.execute(
-                        select(GuildOrm).where(GuildOrm.discord_guild_id == id)
-                    )
-                ).scalar_one()
+        async with get_session() as session:
+            result = await session.execute(
+                select(GuildOrm).where(GuildOrm.discord_guild_id == id)
+            )
 
-                return result
-        except Exception as err:
-            logger.error(f"get_by_discord_guild_id error: {err}")
-            raise err
+            return result.scalar_one()
 
-    async def create_guild(
+    async def get_by_guild_name_and_realm(self, name: str, realm: str) -> GuildOrm:
+        async with get_session() as session:
+            result = await session.execute(
+                select(GuildOrm).where(
+                    and_(GuildOrm.name == name), GuildOrm.realm == realm
+                )
+            )
+
+            return result.scalar_one()
+
+    async def create(
         self,
         name: str,
         realm: str,
         region: str,
         discord_guild_id: int,
     ) -> GuildOrm:
-        try:
-            async with get_session() as session:
-                db_wow_guild = GuildOrm(
-                    name=name,
-                    realm=realm,
-                    region=region,
-                    discord_guild_id=discord_guild_id,
-                )
+        async with get_session() as session:
+            db_wow_guild = GuildOrm(
+                name=name,
+                realm=realm,
+                region=region,
+                discord_guild_id=discord_guild_id,
+            )
 
-                session.add(db_wow_guild)
-                await session.commit()
-                await session.refresh(db_wow_guild)
+            session.add(db_wow_guild)
+            await session.commit()
+            await session.refresh(db_wow_guild)
 
-                return db_wow_guild
-        except Exception as err:
-            raise err
+            return db_wow_guild
 
 
 # class GuildRepository:
