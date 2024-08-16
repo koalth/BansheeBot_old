@@ -1,4 +1,4 @@
-from src.views import GuildViewModel
+from src.views import GuildViewModel, CharacterViewModel
 from src.db import CharacterRepository
 from src.raiderIO import RaiderIOClient
 from sqlalchemy.exc import NoResultFound
@@ -17,3 +17,35 @@ class CharacterService:
 
     def __init__(self, repository: CharacterRepository = CharacterRepository()):
         self.repository = repository
+
+    async def get_by_discord_user_id(self, discord_user_id: int) -> CharacterViewModel:
+        character_result = await self.repository.get_by_discord_id(discord_user_id)
+
+        return CharacterViewModel(
+            name=character_result.name,
+            region=character_result.region,
+            realm=character_result.realm,
+            item_level=character_result.item_level,
+            char_class=character_result.class_name,
+            profile_url=character_result.profile_url,
+            thumbnail_url=character_result.thumbnail_url,
+        )
+
+    async def get_by_name_and_realm(self, name: str, realm: str) -> CharacterViewModel:
+        character_result = await self.repository.get_by_name_and_realm(name, realm)
+
+        return CharacterViewModel(
+            name=character_result.name,
+            region=character_result.region,
+            realm=character_result.realm,
+            item_level=character_result.item_level,
+            char_class=character_result.class_name,
+            profile_url=character_result.profile_url,
+            thumbnail_url=character_result.thumbnail_url,
+        )
+
+    async def does_character_already_exist(self, name: str, realm: str) -> bool:
+        try:
+            return (await self.get_by_name_and_realm(name, realm)) is not None
+        except NoResultFound:
+            return False

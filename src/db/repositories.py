@@ -35,7 +35,7 @@ class GuildRepository:
         async with get_session() as session:
             result = await session.execute(
                 select(GuildOrm).where(
-                    and_(GuildOrm.name == name), GuildOrm.realm == realm
+                    and_(GuildOrm.name == name, GuildOrm.realm == realm)
                 )
             )
 
@@ -72,6 +72,16 @@ class CharacterRepository:
         async with get_session() as session:
             result = await session.execute(
                 select(CharacterOrm).where(CharacterOrm.discord_user_id == id)
+            )
+
+            return result.scalar_one()
+
+    async def get_by_name_and_realm(self, name: str, realm: str) -> CharacterOrm:
+        async with get_session() as session:
+            result = await session.execute(
+                select(CharacterOrm).where(
+                    and_(CharacterOrm.name == name, CharacterOrm.realm == realm)
+                )
             )
 
             return result.scalar_one()

@@ -10,18 +10,19 @@ class GuildViewModel:
     realm: str
 
 
+@dataclass
 class CharacterViewModel:
     name: str
     region: str
     realm: str
-    faction: Optional[str]
+    faction: Optional[str] = None
 
-    race: Optional[str]
-    char_class: Optional[str]
-    spec_name: Optional[str]
-    role: Optional[str]
+    race: Optional[str] = None
+    char_class: Optional[str] = None
+    spec_name: Optional[str] = None
+    role: Optional[str] = None
 
-    profile_url: Optional[str]
-    thumbnail_url: Optional[str]
+    profile_url: Optional[str] = None
+    thumbnail_url: Optional[str] = None
 
-    item_level: Optional[int]
+    item_level: Optional[int] = None
