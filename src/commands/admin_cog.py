@@ -78,9 +78,13 @@ class Admin(commands.Cog):
 
         # everything good
 
-        wow_guild = await GuildService().set_wow_guild(
+        wow_guild = await GuildService().add_wow_guild(
             name, realm, region, ctx.guild_id
         )
+
+        if wow_guild is None:
+            await ctx.respond(f"`{name}-{realm} was not found.`")
+            return
 
         await ctx.respond(
             f"Guild `{wow_guild.name}-{wow_guild.realm}` was added to `{ctx.guild.name}`"

@@ -26,7 +26,7 @@ class GuildOrm(Base):
     discord_guild_id: Mapped[int]
 
     characters: Mapped[List["CharacterOrm"]] = relationship(
-        back_populates="guild", cascade="all, delete-orphan"
+        back_populates="guild", cascade="all, delete-orphan", lazy="selectin"
     )
 
     def __repr__(self) -> str:

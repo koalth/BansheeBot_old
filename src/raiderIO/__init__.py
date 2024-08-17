@@ -14,12 +14,7 @@ formatter = logging.Formatter("%(asctime)s - %(name)s - %(levelname)s - %(messag
 ch.setFormatter(formatter)
 logger.addHandler(ch)
 
-from src.models import (
-    GuildDTO,
-    CharacterDTO,
-    Region,
-)
-from src.raiderIO.models import CharacterResponse, GuildResponse
+from .models import CharacterResponse, GuildResponse
 from pydantic import ValidationError
 
 API_URL = "https://raider.io/api/v1"
@@ -59,7 +54,7 @@ class RaiderIOClient:
     @staticmethod
     async def getCharacterProfile(
         name: str, realm="Dalaran", region="us"
-    ) -> Optional[CharacterDTO]:
+    ) -> Optional[CharacterResponse]:
         try:
             params = {
                 "region": region,
@@ -74,16 +69,7 @@ class RaiderIOClient:
                 logger.debug("Response was none")
                 return None
 
-            return CharacterDTO(
-                name=response.name,
-                realm=response.realm,
-                region=Region(response.region),
-                class_name=response.character_class,
-                profile_url=response.profile_url,
-                last_crawled_at=response.last_crawled_at,
-                item_level=0,  # will need to be updated
-                thumbnail_url=response.thumbnail_url,
-            )
+            return response
         except ValidationError as err:
             logger.error(f"Validation error in getCharacterProfile: {err}")
             return None
@@ -94,7 +80,7 @@ class RaiderIOClient:
     @staticmethod
     async def getGuildProfile(
         name: str, realm: str = "Dalaran", region: str = "us"
-    ) -> Optional[GuildDTO]:
+    ) -> Optional[GuildResponse]:
         try:
             params = {"region": region, "realm": realm, "name": name}
             response = await get("guilds/profile", params, GuildResponse)
@@ -102,9 +88,7 @@ class RaiderIOClient:
             if response is None:
                 logger.debug("Response was none")
                 return None
-            return GuildDTO(
-                name=response.name, region=Region(response.region), realm=response.realm
-            )
+            return response
         except ValidationError as err:
             logger.error(f"Validation error in getGuildProfile: {err}")
             return None

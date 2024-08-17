@@ -1,5 +1,6 @@
-from src.views import GuildViewModel, CharacterViewModel
+from typing import List, Optional
 from src.db import CharacterRepository
+from src.entities import Character, Guild
 from src.raiderIO import RaiderIOClient
 from sqlalchemy.exc import NoResultFound
 import logging
@@ -18,31 +19,14 @@ class CharacterService:
     def __init__(self, repository: CharacterRepository = CharacterRepository()):
         self.repository = repository
 
-    async def get_by_discord_user_id(self, discord_user_id: int) -> CharacterViewModel:
-        character_result = await self.repository.get_by_discord_id(discord_user_id)
+    async def add_character(self, character: Character) -> Optional[Character]:
+        return await self.repository.add(character)
 
-        return CharacterViewModel(
-            name=character_result.name,
-            region=character_result.region,
-            realm=character_result.realm,
-            item_level=character_result.item_level,
-            char_class=character_result.class_name,
-            profile_url=character_result.profile_url,
-            thumbnail_url=character_result.thumbnail_url,
-        )
+    async def get_by_discord_user_id(self, discord_user_id: int) -> Optional[Character]:
+        return await self.repository.get_by_discord_user_id(discord_user_id)
 
-    async def get_by_name_and_realm(self, name: str, realm: str) -> CharacterViewModel:
-        character_result = await self.repository.get_by_name_and_realm(name, realm)
-
-        return CharacterViewModel(
-            name=character_result.name,
-            region=character_result.region,
-            realm=character_result.realm,
-            item_level=character_result.item_level,
-            char_class=character_result.class_name,
-            profile_url=character_result.profile_url,
-            thumbnail_url=character_result.thumbnail_url,
-        )
+    async def get_by_name_and_realm(self, name: str, realm: str) -> Optional[Character]:
+        return await self.repository.get_by_name_and_realm(name, realm)
 
     async def does_character_already_exist(self, name: str, realm: str) -> bool:
         try:

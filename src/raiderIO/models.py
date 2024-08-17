@@ -333,7 +333,7 @@ class GearResponse(MyBaseModel):
 class GuildResponse(MyBaseModel):
     name: str
     realm: str
-    region: Optional[str] = None
+    region: str
     faction: Optional[str] = None
     last_crawled_at: Optional[datetime] = None
     profile_url: Optional[str] = None
@@ -355,5 +355,5 @@ class CharacterResponse(MyBaseModel):
     last_crawled_at: datetime
     profile_url: str
     profile_banner: str
-    gear: Optional[GearResponse] = None
+    gear: GearResponse
     guild: Optional[GuildResponse] = None
