@@ -356,4 +356,3 @@ class CharacterResponse(MyBaseModel):
     profile_url: str
     profile_banner: str
     gear: GearResponse
-    guild: Optional[GuildResponse] = None

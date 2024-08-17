@@ -2,6 +2,7 @@ from typing import List, Optional
 from src.db import CharacterRepository
 from src.entities import Character, Guild
 from src.raiderIO import RaiderIOClient
+from src.mapper import character_response_to_entity
 from sqlalchemy.exc import NoResultFound
 import logging
 
@@ -21,6 +22,27 @@ class CharacterService:
 
     async def add_character(self, character: Character) -> Optional[Character]:
         return await self.repository.add(character)
+
+    async def add_character_to_guild(
+        self,
+        name: str,
+        realm: str,
+        region: str,
+        discord_user_id: int,
+        discord_guild_id: int,
+    ) -> Optional[Character]:
+        character_io = await RaiderIOClient.getCharacterProfile(name, realm, region)
+
+        if character_io is None:
+            raise Exception("charcter_io was None")
+
+        char_entity = character_response_to_entity(character_io)
+        char_entity.discord_user_id = discord_user_id
+        char_entity.guild_id = discord_guild_id
+
+        char_db = await self.repository.add(char_entity)
+
+        return char_db
 
     async def get_by_discord_user_id(self, discord_user_id: int) -> Optional[Character]:
         return await self.repository.get_by_discord_user_id(discord_user_id)

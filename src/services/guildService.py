@@ -2,8 +2,9 @@ from typing import Optional
 from src.entities import Guild
 from src.db import GuildRepository
 from src.raiderIO import RaiderIOClient
-import logging
 from sqlalchemy.exc import NoResultFound
+from src.mapper import guild_response_to_entity
+import logging
 
 logger = logging.getLogger("GuildService")
 logger.setLevel(level=logging.DEBUG)
@@ -11,8 +12,6 @@ ch = logging.StreamHandler()
 formatter = logging.Formatter("%(asctime)s - %(name)s - %(levelname)s - %(message)s")
 ch.setFormatter(formatter)
 logger.addHandler(ch)
-
-from src.mapper import guild_response_to_entity, character_response_to_entity
 
 
 class GuildService:

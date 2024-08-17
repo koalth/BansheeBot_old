@@ -4,7 +4,7 @@ from discord.commands import SlashCommandGroup
 from discord.ext import commands
 from src import BansheeBot
 from src.views import AdminRoleSelectView
-from src.services import GuildService
+from src.services import GuildService, CharacterService
 
 
 logger = logging.getLogger(__name__)
@@ -90,44 +90,28 @@ class Admin(commands.Cog):
             f"Guild `{wow_guild.name}-{wow_guild.realm}` was added to `{ctx.guild.name}`"
         )
 
-    # @admin.command(
-    #     name="add_character_to_guild",
-    #     description="Adds a WoW character to the server's WoW guild",
-    # )
-    # @commands.has_permissions(administrator=True)
-    # async def add_character_to_guild(
-    #     self,
-    #     ctx: discord.ApplicationContext,
-    #     name: str,
-    #     realm: str = "Dalaran",
-    #     region: str = "us",
-    # ):
-    #     character_io = await RaiderIOClient.getCharacterProfile(name, realm)
+    @admin.command(
+        name="add_character_to_guild",
+        description="Adds a wow character to the server's wow guild",
+    )
+    @commands.has_permissions(administrator=True)
+    async def add_character_to_guild(
+        self,
+        ctx: discord.ApplicationContext,
+        name: str,
+        realm: str = "Dalaran",
+        region: str = "us",
+    ):
 
-    #     if character_io is None:
-    #         await ctx.respond(
-    #             f"Character {name}-{realm} was not found or does not exist"
-    #         )
-    #         return
+        wow_char = await CharacterService().add_character_to_guild(
+            name, realm, region, ctx.author.id, ctx.guild_id
+        )
 
-    #     if ctx.guild is None:
-    #         await ctx.respond(f"No valid guild in discord")
-    #         return
+        if wow_char is None:
+            await ctx.respond(f"Something went wrong adding character to guild")
+            return
 
-    #     wow_guild = await self.bot.db.getWowGuildByDiscordGuildId(ctx.guild.id)
-
-    #     if wow_guild is None:
-    #         await ctx.respond(f"Guild {name}-{realm} was not found or does not exist")
-    #         return
-
-    #     character_io.discord_user_id = ctx.author.id
-    #     character_io.guild_id = wow_guild.id
-    #     wow_character = await self.bot.db.createWowCharacter(character_io)
-
-    #     if wow_character is None or wow_character.guild_id is None:
-    #         raise Exception("add_character_to_guild wasn't working")
-
-    #     await ctx.respond(f"`{wow_character.name}` was added to `{wow_guild.name}`")
+        await ctx.respond(f"`{wow_char.name}` was added")
 
     # @admin.command(
     #     name="get_guild_summary",

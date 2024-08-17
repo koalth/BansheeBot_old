@@ -60,7 +60,7 @@ class RaiderIOClient:
                 "region": region,
                 "realm": realm,
                 "name": name,
-                "fields": "guild,gear",
+                "fields": "gear",
             }
 
             response = await get("characters/profile", params, CharacterResponse)

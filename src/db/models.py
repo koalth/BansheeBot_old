@@ -51,7 +51,7 @@ class CharacterOrm(Base):
 
     last_crawled_at: Mapped[datetime]
 
-    guild_id: Mapped[int] = mapped_column(ForeignKey("guilds.id"))
+    guild_id: Mapped[int] = mapped_column(ForeignKey("guilds.discord_guild_id"))
     guild: Mapped[GuildOrm] = relationship(back_populates="characters")
 
     def __repr__(self) -> str:
