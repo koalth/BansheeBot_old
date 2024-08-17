@@ -2,6 +2,7 @@ import logging
 import discord
 from discord.commands import SlashCommandGroup
 from discord.ext import commands
+from discord.embeds import Embed
 from src import BansheeBot
 from src.views import AdminRoleSelectView
 from src.services import GuildService, CharacterService
@@ -113,27 +114,34 @@ class Admin(commands.Cog):
 
         await ctx.respond(f"`{wow_char.name}` was added")
 
-    # @admin.command(
-    #     name="get_guild_summary",
-    #     description="Get a summary of the current guild",
-    # )
-    # @commands.has_permissions(administrator=True)
-    # async def get_guild_summary(self, ctx: discord.ApplicationContext):
-    #     if ctx.guild is None:
-    #         await ctx.respond(f"No valid guild in discord")
-    #         return
+    @admin.command(
+        name="get_guild_summary",
+        description="Gets a short summary of the guild member's and their item levels",
+    )
+    @commands.has_permissions(administrator=True)
+    async def get_guild_summary(self, ctx: discord.ApplicationContext):
 
-    #     wow_guild = await self.bot.db.getWowGuild(ctx.guild.id)
+        wow_guild = await GuildService().get_by_discord_guild_id(ctx.guild_id)
 
-    #     if wow_guild is None or len(wow_guild.characters) == 0:
-    #         await ctx.respond(f"get guild summary had a problem")
-    #         return
+        if wow_guild is None:
+            await ctx.respond(f"No guild was found")
+            return
 
-    #     guild_vm = CharacterVie
+        title = f"{wow_guild.name} Summary"
+        embed = discord.Embed(
+            title=title,
+            description="Small summary of all characters registered in the guild\n",
+        )
 
-    #     embed = GuildViews.getGuildSummary(wow_guild, wow_guild.characters)
+        embed.set_author(name="BansheeBot")
 
-    #     await ctx.respond(embed=embed)
+        for character in wow_guild.characters:
+            field_value = f"> Item Lv: {character.item_level}"
+            embed.add_field(name=character.name, value=field_value)
+
+        embed.set_footer(text="Data from Raider.IO")
+
+        await ctx.respond(embed=embed)
 
     async def cog_command_error(
         self, ctx: discord.ApplicationContext, error: Exception
