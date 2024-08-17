@@ -1,6 +1,6 @@
 import discord
 from discord.embeds import Embed
-from src.views.viewmodels import GuildViewModel, CharacterViewModel
+from src.entities import Character, Guild
 
 from typing import List
 
@@ -11,9 +11,7 @@ footer = "Data from Raider.IO"
 class GuildViews:
 
     @staticmethod
-    def getGuildSummary(
-        guild: GuildViewModel, characters: List[CharacterViewModel]
-    ) -> Embed:
+    def getGuildSummary(guild: Guild) -> Embed:
         title = f"{guild.name} Summary"
         embed = discord.Embed(
             title=title,
@@ -22,7 +20,7 @@ class GuildViews:
 
         embed.set_author(name="BansheeBot")
 
-        for character in characters:
+        for character in guild.characters:
             field_value = f"> Item Lv: {character.item_level}"
             embed.add_field(name=character.name, value=field_value)
 

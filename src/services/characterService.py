@@ -6,7 +6,7 @@ from src.mapper import character_response_to_entity
 from sqlalchemy.exc import NoResultFound
 import logging
 
-logger = logging.getLogger("GuildService")
+logger = logging.getLogger("CharacterService")
 logger.setLevel(level=logging.DEBUG)
 ch = logging.StreamHandler()
 formatter = logging.Formatter("%(asctime)s - %(name)s - %(levelname)s - %(message)s")

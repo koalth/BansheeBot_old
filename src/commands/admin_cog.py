@@ -4,7 +4,7 @@ from discord.commands import SlashCommandGroup
 from discord.ext import commands
 from discord.embeds import Embed
 from src import BansheeBot
-from src.views import AdminRoleSelectView
+from src.views import AdminRoleSelectView, GuildViews
 from src.services import GuildService, CharacterService
 
 
@@ -127,19 +127,7 @@ class Admin(commands.Cog):
             await ctx.respond(f"No guild was found")
             return
 
-        title = f"{wow_guild.name} Summary"
-        embed = discord.Embed(
-            title=title,
-            description="Small summary of all characters registered in the guild\n",
-        )
-
-        embed.set_author(name="BansheeBot")
-
-        for character in wow_guild.characters:
-            field_value = f"> Item Lv: {character.item_level}"
-            embed.add_field(name=character.name, value=field_value)
-
-        embed.set_footer(text="Data from Raider.IO")
+        embed = GuildViews.getGuildSummary(wow_guild)
 
         await ctx.respond(embed=embed)
 
