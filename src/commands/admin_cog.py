@@ -23,29 +23,11 @@ class Admin(commands.Cog):
 
     admin = SlashCommandGroup(name="admin", description="Admin commands")
 
-    @admin.command(name="set_role", description="Set the role you would like to track")
-    @commands.has_permissions(administrator=True)
-    async def set_role(self, ctx: discord.ApplicationContext):
-        view = AdminRoleSelectView()
-        await ctx.respond("Select roles: ", view=view, ephemeral=True)
-
-    @admin.command(
-        name="delete_last_messages",
-        description="Delete the last n messages in the current channel",
-    )
-    @commands.has_permissions(administrator=True)
-    async def delete_last_messages(
-        self, ctx: discord.ApplicationContext, amount: int
-    ) -> None:
-
-        if ctx.channel is None:
-            raise Exception("Channel was none")
-
-        messages = await ctx.channel.history(limit=amount).flatten()  # type: ignore
-        for msg in messages:
-            await msg.delete()
-
-        await ctx.send("Deleted messages")
+    # @admin.command(name="set_role", description="Set the role you would like to track")
+    # @commands.has_permissions(administrator=True)
+    # async def set_role(self, ctx: discord.ApplicationContext):
+    #     view = AdminRoleSelectView()
+    #     await ctx.respond("Select roles: ", view=view, ephemeral=True)
 
     @admin.command(
         name="set_wow_guild",
@@ -105,6 +87,15 @@ class Admin(commands.Cog):
         region: str = "us",
     ):
 
+        # ensure that wow guild is linked to this server
+        wow_guild = await GuildService().get_by_discord_guild_id(ctx.guild_id)
+
+        if wow_guild is None:
+            await ctx.respond(
+                f"A WoW guild needs to be setup first before adding characters"
+            )
+            return
+
         # check if character already exists in guild (discord guild)
         wow_char = await CharacterService().get_by_discord_user_id(member.id)
 
@@ -118,14 +109,6 @@ class Admin(commands.Cog):
 
         if wow_char is None:
             await ctx.respond(f"Something went wrong adding character to guild")
-            return
-
-        wow_guild = await GuildService().get_by_discord_guild_id(ctx.guild_id)
-
-        if wow_guild is None:
-            await ctx.respond(
-                f"Something went wrong getting the guild while adding charater to guild"
-            )
             return
 
         await ctx.respond(f"`{wow_char.name}` was added to `{wow_guild.name}`")
