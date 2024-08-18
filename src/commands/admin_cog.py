@@ -99,20 +99,36 @@ class Admin(commands.Cog):
     async def add_character_to_guild(
         self,
         ctx: discord.ApplicationContext,
+        member: discord.Member,
         name: str,
         realm: str = "Dalaran",
         region: str = "us",
     ):
 
+        # check if character already exists in guild (discord guild)
+        wow_char = await CharacterService().get_by_discord_user_id(member.id)
+
+        if wow_char is not None:
+            await ctx.respond(f"`{wow_char.name}` is already registered")
+            return
+
         wow_char = await CharacterService().add_character_to_guild(
-            name, realm, region, ctx.author.id, ctx.guild_id
+            name, realm, region, member.id, ctx.guild_id
         )
 
         if wow_char is None:
             await ctx.respond(f"Something went wrong adding character to guild")
             return
 
-        await ctx.respond(f"`{wow_char.name}` was added")
+        wow_guild = await GuildService().get_by_discord_guild_id(ctx.guild_id)
+
+        if wow_guild is None:
+            await ctx.respond(
+                f"Something went wrong getting the guild while adding charater to guild"
+            )
+            return
+
+        await ctx.respond(f"`{wow_char.name}` was added to `{wow_guild.name}`")
 
     @admin.command(
         name="get_guild_summary",
