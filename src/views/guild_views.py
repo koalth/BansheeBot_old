@@ -16,13 +16,18 @@ class GuildViews:
         embed = discord.Embed(
             title=title,
             description="Shows a summary of all the characters registered in the guild\n",
+            color=discord.Colour.blurple(),
         )
 
         embed.set_author(name="BansheeBot")
 
-        for character in guild.characters:
-            field_value = f"> Item Lv: {character.item_level}"
-            embed.add_field(name=character.name, value=field_value)
+        names = "\n".join([character.name for character in guild.characters])
+        item_levels = "\n".join(
+            [str(character.item_level) for character in guild.characters]
+        )
+
+        embed.add_field(name="Members", value=names, inline=True)
+        embed.add_field(name="Item Level", value=item_levels, inline=True)
 
         embed.set_footer(text=footer)
 

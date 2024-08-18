@@ -18,8 +18,14 @@ logger.addHandler(ch)
 
 class Admin(commands.Cog):
 
+    guildService: GuildService
+    characterService: CharacterService
+
     def __init__(self, bot: BansheeBot) -> None:
         self.bot = bot
+
+        self.guildService = GuildService()
+        self.characterService = CharacterService()
 
     admin = SlashCommandGroup(name="admin", description="Admin commands")
 
@@ -43,13 +49,13 @@ class Admin(commands.Cog):
     ):
 
         # discord is already tied to a wow guild
-        guildExist = await GuildService().is_discord_already_linked(ctx.guild_id)
+        guildExist = await self.guildService.is_discord_already_linked(ctx.guild_id)
         if guildExist:
             await ctx.respond(f"`{ctx.guild.name} is already tied to a wow guild`")
             return
 
         # wow_guild is already tied to discord
-        wowGuildAlreadyLinked = await GuildService().is_wow_guild_already_linked(
+        wowGuildAlreadyLinked = await self.guildService.is_wow_guild_already_linked(
             name, realm
         )
         if wowGuildAlreadyLinked:
@@ -61,7 +67,7 @@ class Admin(commands.Cog):
 
         # everything good
 
-        wow_guild = await GuildService().add_wow_guild(
+        wow_guild = await self.guildService.add_wow_guild(
             name, realm, region, ctx.guild_id
         )
 
@@ -88,7 +94,7 @@ class Admin(commands.Cog):
     ):
 
         # ensure that wow guild is linked to this server
-        wow_guild = await GuildService().get_by_discord_guild_id(ctx.guild_id)
+        wow_guild = await self.guildService.get_by_discord_guild_id(ctx.guild_id)
 
         if wow_guild is None:
             await ctx.respond(
@@ -97,13 +103,13 @@ class Admin(commands.Cog):
             return
 
         # check if character already exists in guild (discord guild)
-        wow_char = await CharacterService().get_by_discord_user_id(member.id)
+        wow_char = await self.characterService.get_by_discord_user_id(member.id)
 
         if wow_char is not None:
             await ctx.respond(f"`{wow_char.name}` is already registered")
             return
 
-        wow_char = await CharacterService().add_character_to_guild(
+        wow_char = await self.characterService.add_character_to_guild(
             name, realm, region, member.id, ctx.guild_id
         )
 
@@ -120,7 +126,7 @@ class Admin(commands.Cog):
     @commands.has_permissions(administrator=True)
     async def get_guild_summary(self, ctx: discord.ApplicationContext):
 
-        wow_guild = await GuildService().get_by_discord_guild_id(ctx.guild_id)
+        wow_guild = await self.guildService.get_by_discord_guild_id(ctx.guild_id)
 
         if wow_guild is None:
             await ctx.respond(f"No guild was found")
