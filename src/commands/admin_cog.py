@@ -18,34 +18,22 @@ logger.addHandler(ch)
 
 class Admin(commands.Cog):
 
+    guildService: GuildService
+    characterService: CharacterService
+
     def __init__(self, bot: BansheeBot) -> None:
         self.bot = bot
 
+        self.guildService = GuildService()
+        self.characterService = CharacterService()
+
     admin = SlashCommandGroup(name="admin", description="Admin commands")
 
-    @admin.command(name="set_role", description="Set the role you would like to track")
-    @commands.has_permissions(administrator=True)
-    async def set_role(self, ctx: discord.ApplicationContext):
-        view = AdminRoleSelectView()
-        await ctx.respond("Select roles: ", view=view, ephemeral=True)
-
-    @admin.command(
-        name="delete_last_messages",
-        description="Delete the last n messages in the current channel",
-    )
-    @commands.has_permissions(administrator=True)
-    async def delete_last_messages(
-        self, ctx: discord.ApplicationContext, amount: int
-    ) -> None:
-
-        if ctx.channel is None:
-            raise Exception("Channel was none")
-
-        messages = await ctx.channel.history(limit=amount).flatten()  # type: ignore
-        for msg in messages:
-            await msg.delete()
-
-        await ctx.send("Deleted messages")
+    # @admin.command(name="set_role", description="Set the role you would like to track")
+    # @commands.has_permissions(administrator=True)
+    # async def set_role(self, ctx: discord.ApplicationContext):
+    #     view = AdminRoleSelectView()
+    #     await ctx.respond("Select roles: ", view=view, ephemeral=True)
 
     @admin.command(
         name="set_wow_guild",
@@ -61,13 +49,13 @@ class Admin(commands.Cog):
     ):
 
         # discord is already tied to a wow guild
-        guildExist = await GuildService().is_discord_already_linked(ctx.guild_id)
+        guildExist = await self.guildService.is_discord_already_linked(ctx.guild_id)
         if guildExist:
             await ctx.respond(f"`{ctx.guild.name} is already tied to a wow guild`")
             return
 
         # wow_guild is already tied to discord
-        wowGuildAlreadyLinked = await GuildService().is_wow_guild_already_linked(
+        wowGuildAlreadyLinked = await self.guildService.is_wow_guild_already_linked(
             name, realm
         )
         if wowGuildAlreadyLinked:
@@ -79,7 +67,7 @@ class Admin(commands.Cog):
 
         # everything good
 
-        wow_guild = await GuildService().add_wow_guild(
+        wow_guild = await self.guildService.add_wow_guild(
             name, realm, region, ctx.guild_id
         )
 
@@ -99,20 +87,37 @@ class Admin(commands.Cog):
     async def add_character_to_guild(
         self,
         ctx: discord.ApplicationContext,
+        member: discord.Member,
         name: str,
         realm: str = "Dalaran",
         region: str = "us",
     ):
 
-        wow_char = await CharacterService().add_character_to_guild(
-            name, realm, region, ctx.author.id, ctx.guild_id
+        # ensure that wow guild is linked to this server
+        wow_guild = await self.guildService.get_by_discord_guild_id(ctx.guild_id)
+
+        if wow_guild is None:
+            await ctx.respond(
+                f"A WoW guild needs to be setup first before adding characters"
+            )
+            return
+
+        # check if character already exists in guild (discord guild)
+        wow_char = await self.characterService.get_by_discord_user_id(member.id)
+
+        if wow_char is not None:
+            await ctx.respond(f"`{wow_char.name}` is already registered")
+            return
+
+        wow_char = await self.characterService.add_character_to_guild(
+            name, realm, region, member.id, ctx.guild_id
         )
 
         if wow_char is None:
             await ctx.respond(f"Something went wrong adding character to guild")
             return
 
-        await ctx.respond(f"`{wow_char.name}` was added")
+        await ctx.respond(f"`{wow_char.name}` was added to `{wow_guild.name}`")
 
     @admin.command(
         name="get_guild_summary",
@@ -121,7 +126,7 @@ class Admin(commands.Cog):
     @commands.has_permissions(administrator=True)
     async def get_guild_summary(self, ctx: discord.ApplicationContext):
 
-        wow_guild = await GuildService().get_by_discord_guild_id(ctx.guild_id)
+        wow_guild = await self.guildService.get_by_discord_guild_id(ctx.guild_id)
 
         if wow_guild is None:
             await ctx.respond(f"No guild was found")
