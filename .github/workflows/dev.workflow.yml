@@ -3,7 +3,9 @@
 
 name: Dev Workflow - Build and Test
 
-on: workflow_dispatch
+on:
+  push:
+    branches: [main]
 
 permissions:
   contents: read
