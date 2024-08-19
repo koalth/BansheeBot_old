@@ -35,8 +35,10 @@ jobs:
         if: steps.cached-poetry-dependencies.outputs.cache-hit != 'true'
       - name: Lint with ruff
         run: |
+          source .venv/bin/activate
           ruff --format=github --target-version=py311 .
         continue-on-error: true
       - name: Run pytest
         run: |
+          source .venv/bin/activate
           pytest
