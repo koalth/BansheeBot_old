@@ -1,3 +1,5 @@
+from src.injector import inject
+
 from typing import Optional
 from src.entities import Guild
 from src.db import GuildRepository
@@ -16,10 +18,10 @@ logger.addHandler(ch)
 
 class GuildService:
 
-    repository: GuildRepository
+    repository: GuildRepository = inject.attr(GuildRepository)
 
-    def __init__(self, repository: GuildRepository = GuildRepository()):
-        self.repository = repository
+    # def __init__(self):
+    #     pass
 
     async def get_by_guild_name_and_realm(
         self, name: str, realm: str
