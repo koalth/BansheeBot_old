@@ -20,9 +20,6 @@ class GuildService:
 
     repository: GuildRepository = inject.attr(GuildRepository)
 
-    # def __init__(self):
-    #     pass
-
     async def get_by_guild_name_and_realm(
         self, name: str, realm: str
     ) -> Optional[Guild]:

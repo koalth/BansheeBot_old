@@ -2,6 +2,7 @@ from typing import Optional
 from sqlalchemy import select, and_
 
 from .database import get_session
+from .interfaces import ICharacterRepository
 
 from src.mapper import (
     character_entity_to_model,
@@ -65,7 +66,7 @@ class GuildRepository:
             return self._get_entity(model)
 
 
-class CharacterRepository:
+class CharacterRepository(ICharacterRepository):
 
     def __init__(self):
         pass

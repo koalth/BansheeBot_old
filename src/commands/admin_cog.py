@@ -14,17 +14,16 @@ formatter = logging.Formatter("%(asctime)s - %(name)s - %(levelname)s - %(messag
 ch.setFormatter(formatter)
 logger.addHandler(ch)
 
+from src.injector import inject
+
 
 class Admin(commands.Cog):
 
-    guildService: GuildService
-    characterService: CharacterService
+    guildService: GuildService = inject.attr(GuildService)
+    characterService: CharacterService = inject.attr(CharacterService)
 
     def __init__(self, bot: BansheeBot) -> None:
         self.bot = bot
-
-        self.guildService = GuildService()
-        self.characterService = CharacterService()
 
     admin = SlashCommandGroup(name="admin", description="Admin commands")
 
