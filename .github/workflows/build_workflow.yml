@@ -1,0 +1,25 @@
+# This workflow will install Python dependencies, run tests and lint with a single version of Python
+# For more information see: https://docs.github.com/en/actions/automating-builds-and-tests/building-and-testing-python
+
+name: BansheeBot Build Workflow
+
+on: workflow_dispatch
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+      - name: Set up Python 3.11
+        uses: actions/setup-python@v3
+        with:
+          python-version: "3.11"
+      - name: Setup Poetry
+        uses: Gr1N/setup-poetry@v9
+      - name: Install dependencies from Poetry
+        run: |
+          poetry install
