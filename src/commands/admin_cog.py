@@ -2,9 +2,8 @@ import logging
 import discord
 from discord.commands import SlashCommandGroup
 from discord.ext import commands
-from discord.embeds import Embed
 from src import BansheeBot
-from src.views import AdminRoleSelectView, GuildViews
+from src.views import GuildViews
 from src.services import GuildService, CharacterService
 
 
@@ -98,7 +97,7 @@ class Admin(commands.Cog):
 
         if wow_guild is None:
             await ctx.respond(
-                f"A WoW guild needs to be setup first before adding characters"
+                "A WoW guild needs to be setup first before adding characters"
             )
             return
 
@@ -114,7 +113,7 @@ class Admin(commands.Cog):
         )
 
         if wow_char is None:
-            await ctx.respond(f"Something went wrong adding character to guild")
+            await ctx.respond("Something went wrong adding character to guild")
             return
 
         await ctx.respond(f"`{wow_char.name}` was added to `{wow_guild.name}`")
@@ -129,7 +128,7 @@ class Admin(commands.Cog):
         wow_guild = await self.guildService.get_by_discord_guild_id(ctx.guild_id)
 
         if wow_guild is None:
-            await ctx.respond(f"No guild was found")
+            await ctx.respond("No guild was found")
             return
 
         embed = GuildViews.getGuildSummary(wow_guild)

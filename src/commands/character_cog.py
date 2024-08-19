@@ -1,4 +1,3 @@
-from typing import Optional, List
 
 import discord
 from discord.commands import SlashCommandGroup
@@ -13,8 +12,6 @@ formatter = logging.Formatter("%(asctime)s - %(name)s - %(levelname)s - %(messag
 ch.setFormatter(formatter)
 logger.addHandler(ch)
 
-from src.raiderIO import RaiderIOClient
-from src.views.viewmodels import CharacterViewModel
 
 
 class Character(commands.Cog):

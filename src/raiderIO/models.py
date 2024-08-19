@@ -4,7 +4,7 @@
 
 from __future__ import annotations
 
-from typing import List, Optional, Dict
+from typing import List, Optional
 from typing_extensions import TypedDict
 from datetime import datetime
 

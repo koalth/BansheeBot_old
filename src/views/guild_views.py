@@ -1,8 +1,7 @@
 import discord
 from discord.embeds import Embed
-from src.entities import Character, Guild
+from src.entities import Guild
 
-from typing import List
 
 
 footer = "Data from Raider.IO"

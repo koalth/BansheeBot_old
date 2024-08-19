@@ -1,8 +1,5 @@
 from typing import Optional
-from sqlalchemy.exc import NoResultFound
 from sqlalchemy import select, and_
-from sqlalchemy.orm import selectinload
-from datetime import datetime
 
 from .database import get_session
 

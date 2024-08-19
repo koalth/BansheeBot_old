@@ -1,6 +1,6 @@
-from typing import List, Optional
+from typing import Optional
 from src.db import CharacterRepository
-from src.entities import Character, Guild
+from src.entities import Character
 from src.raiderIO import RaiderIOClient
 from src.mapper import character_response_to_entity
 from sqlalchemy.exc import NoResultFound

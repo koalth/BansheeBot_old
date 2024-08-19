@@ -1,7 +1,7 @@
 # This workflow will install Python dependencies, run tests and lint with a single version of Python
 # For more information see: https://docs.github.com/en/actions/automating-builds-and-tests/building-and-testing-python
 
-name: BansheeBot Build Workflow
+name: Dev Workflow - Build and Test
 
 on: workflow_dispatch
 
@@ -23,3 +23,10 @@ jobs:
       - name: Install dependencies from Poetry
         run: |
           poetry install
+      - name: Lint with ruff
+        run: |
+          ruff --format=github --target-version=py311 .
+        continue-on-error: true
+      - name: Run pytest
+        run: |
+          pytest

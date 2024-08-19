@@ -1,7 +1,6 @@
 from src.db import GuildRepository
 from src.services import GuildService
 from src.entities import Guild
-from pytest_mock import mocker
 import pytest
 
 
