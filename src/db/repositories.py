@@ -2,7 +2,7 @@ from typing import Optional
 from sqlalchemy import select, and_
 
 from .database import get_session
-from .interfaces import ICharacterRepository
+from .interfaces import ICharacterRepository, IGuildRepository
 
 from src.mapper import (
     character_entity_to_model,
@@ -24,10 +24,7 @@ ch.setFormatter(formatter)
 logger.addHandler(ch)
 
 
-class GuildRepository:
-
-    def __init__(self):
-        pass
+class GuildRepository(IGuildRepository):
 
     def _get_entity(self, instance: Optional[GuildOrm]) -> Optional[Guild]:
         if instance is None:
@@ -67,9 +64,6 @@ class GuildRepository:
 
 
 class CharacterRepository(ICharacterRepository):
-
-    def __init__(self):
-        pass
 
     def _get_entity(self, instance: Optional[CharacterOrm]) -> Optional[Character]:
         if instance is None:
