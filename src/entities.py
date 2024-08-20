@@ -11,6 +11,7 @@ class Character:
 
     item_level: int
     class_name: str
+    spec_name: str
 
     profile_url: str
     thumbnail_url: str

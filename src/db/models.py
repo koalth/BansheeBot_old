@@ -46,6 +46,7 @@ class CharacterOrm(Base):
 
     item_level: Mapped[int]
     class_name: Mapped[str]
+    spec_name: Mapped[str]
     profile_url: Mapped[str]
     thumbnail_url: Mapped[str]
 

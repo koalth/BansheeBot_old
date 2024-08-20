@@ -1,12 +1,12 @@
+from src.db import ICharacterRepository
+from src.injector import inject
 from typing import Optional
-from src.db import CharacterRepository
 from src.entities import Character
 from src.raiderIO import RaiderIOClient
 from src.mapper import character_response_to_entity
 from sqlalchemy.exc import NoResultFound
 import logging
 
-from src.injector import inject
 
 logger = logging.getLogger("CharacterService")
 logger.setLevel(level=logging.DEBUG)
@@ -18,7 +18,7 @@ logger.addHandler(ch)
 
 class CharacterService:
 
-    repository: CharacterRepository = inject.attr(CharacterRepository)
+    repository: ICharacterRepository = inject.attr(ICharacterRepository)
 
     async def add_character(self, character: Character) -> Optional[Character]:
         return await self.repository.add(character)

@@ -1,6 +1,5 @@
 from typing import List, Optional
 from abc import ABC, abstractmethod
-
 from src.entities import Character, Guild
 
 

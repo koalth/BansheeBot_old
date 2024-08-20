@@ -1,8 +1,8 @@
+from src.db import IGuildRepository
 from src.injector import inject
 
 from typing import Optional
 from src.entities import Guild
-from src.db import GuildRepository
 from src.raiderIO import RaiderIOClient
 from sqlalchemy.exc import NoResultFound
 from src.mapper import guild_response_to_entity
@@ -18,7 +18,7 @@ logger.addHandler(ch)
 
 class GuildService:
 
-    repository: GuildRepository = inject.attr(GuildRepository)
+    repository: IGuildRepository = inject.attr(IGuildRepository)
 
     async def get_by_guild_name_and_realm(
         self, name: str, realm: str
