@@ -7,8 +7,8 @@ class MockGuildRepository(IGuildRepository):
 
     db: List[Guild]
 
-    def __init__(self):
-        self.db = []
+    def __init__(self, guilds: List[Guild] = []):
+        self.db = guilds
 
     async def get_by_discord_guild_id(self, discord_guild_id: int) -> Optional[Guild]:
         for guild in self.db:
@@ -16,7 +16,9 @@ class MockGuildRepository(IGuildRepository):
                 return guild
         return None
 
-    async def get_by_guild_name_and_realm(self, name: str, realm: str) -> Guild | None:
+    async def get_by_guild_name_and_realm(
+        self, name: str, realm: str
+    ) -> Optional[Guild]:
         result = None
         for guild in self.db:
             if guild.name == name and guild.realm == realm:
@@ -33,8 +35,8 @@ class MockCharacterRepository(ICharacterRepository):
 
     db: List[Character]
 
-    def __init__(self):
-        self.db = []
+    def __init__(self, characters: List[Character] = []):
+        self.db = characters
 
     async def get_by_discord_user_id(self, discord_user_id: int) -> Character | None:
         result = None

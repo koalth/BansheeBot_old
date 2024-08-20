@@ -23,6 +23,7 @@ class GuildService:
     async def get_by_guild_name_and_realm(
         self, name: str, realm: str
     ) -> Optional[Guild]:
+        print(name, realm)
         return await self.repository.get_by_guild_name_and_realm(name, realm)
 
     async def get_by_discord_guild_id(self, discord_guild_id: int) -> Optional[Guild]:
