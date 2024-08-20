@@ -5,15 +5,7 @@ from discord.ext import commands
 from src import BansheeBot
 from src.views import GuildViews
 from src.services import GuildService, CharacterService
-
-
-logger = logging.getLogger(__name__)
-logger.setLevel(level=logging.DEBUG)
-ch = logging.StreamHandler()
-formatter = logging.Formatter("%(asctime)s - %(name)s - %(levelname)s - %(message)s")
-ch.setFormatter(formatter)
-logger.addHandler(ch)
-
+from typing import Optional
 from src.injector import inject
 
 
@@ -22,8 +14,11 @@ class Admin(commands.Cog):
     guildService: GuildService = inject.attr(GuildService)
     characterService: CharacterService = inject.attr(CharacterService)
 
-    def __init__(self, bot: BansheeBot) -> None:
+    def __init__(
+        self, bot: BansheeBot, logger: Optional[logging.Logger] = None
+    ) -> None:
         self.bot = bot
+        self.logger = logger or logging.getLogger(__name__)
 
     admin = SlashCommandGroup(name="admin", description="Admin commands")
 
@@ -137,11 +132,12 @@ class Admin(commands.Cog):
     async def cog_command_error(
         self, ctx: discord.ApplicationContext, error: Exception
     ) -> None:
-        logger.error(f"There was a problem: {error}")
+        self.logger.error(f"There was a problem: {error}")
         await ctx.respond("Something weng wrong :(")
         return await super().cog_command_error(ctx, error)
 
 
 def setup(bot: BansheeBot) -> None:
     bot.add_cog(Admin(bot))
+    logger = logging.getLogger(__name__)
     logger.info("Admin cog has loaded successfully")

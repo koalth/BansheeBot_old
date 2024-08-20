@@ -4,15 +4,8 @@ from sqlalchemy.ext.asyncio import create_async_engine
 from src.config import Config
 from src.db.models import Base
 
-logger = logging.getLogger("Migrations")
-logger.setLevel(level=logging.DEBUG)
-ch = logging.StreamHandler()
-formatter = logging.Formatter("%(asctime)s - %(name)s - %(levelname)s - %(message)s")
-ch.setFormatter(formatter)
-logger.addHandler(ch)
-
-
 async def migrate_tables() -> None:
+    logger = logging.getLogger(__name__)
     logger.info("Starting to migrate...")
 
     engine = create_async_engine(Config.SQLITE_URL)
@@ -24,6 +17,7 @@ async def migrate_tables() -> None:
 
 
 async def destroy_tables() -> None:
+    logger = logging.getLogger(__name__)
     logger.info("Starting to destroy tables...")
 
     engine = create_async_engine(Config.SQLITE_URL)
@@ -35,6 +29,7 @@ async def destroy_tables() -> None:
 
 
 async def reset_tables() -> None:
+    logger = logging.getLogger(__name__)
     logger.info("Starting to reset tables...")
     await destroy_tables()
     await migrate_tables()

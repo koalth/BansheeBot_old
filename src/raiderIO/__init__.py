@@ -7,13 +7,6 @@ from pydantic import BaseModel
 
 import logging
 
-logger = logging.getLogger("RaiderIOClient")
-logger.setLevel(level=logging.DEBUG)
-ch = logging.StreamHandler()
-formatter = logging.Formatter("%(asctime)s - %(name)s - %(levelname)s - %(message)s")
-ch.setFormatter(formatter)
-logger.addHandler(ch)
-
 from .models import CharacterResponse, GuildResponse
 from pydantic import ValidationError
 
@@ -29,6 +22,7 @@ T = TypeVar("T", bound=BaseModel)
 
 
 async def get(endpoint: str, params: Dict[str, str], content: type[T]) -> Optional[T]:
+    logger = logging.getLogger(__name__)
     try:
         async with AsyncLimiter(100):
             async with aiohttp.ClientSession() as client:
@@ -55,6 +49,7 @@ class RaiderIOClient:
     async def getCharacterProfile(
         name: str, realm="Dalaran", region="us"
     ) -> Optional[CharacterResponse]:
+        logger = logging.getLogger(__name__)
         try:
             params = {
                 "region": region,
@@ -81,6 +76,7 @@ class RaiderIOClient:
     async def getGuildProfile(
         name: str, realm: str = "Dalaran", region: str = "us"
     ) -> Optional[GuildResponse]:
+        logger = logging.getLogger(__name__)
         try:
             params = {"region": region, "realm": realm, "name": name}
             response = await get("guilds/profile", params, GuildResponse)

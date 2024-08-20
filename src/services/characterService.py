@@ -7,18 +7,12 @@ from src.mapper import character_response_to_entity
 from sqlalchemy.exc import NoResultFound
 import logging
 
-
-logger = logging.getLogger("CharacterService")
-logger.setLevel(level=logging.DEBUG)
-ch = logging.StreamHandler()
-formatter = logging.Formatter("%(asctime)s - %(name)s - %(levelname)s - %(message)s")
-ch.setFormatter(formatter)
-logger.addHandler(ch)
-
-
 class CharacterService:
 
     repository: ICharacterRepository = inject.attr(ICharacterRepository)
+
+    def __init__(self, logger: Optional[logging.Logger] = None):
+        self.logger = logger or logging.getLogger(__name__)
 
     async def add_character(self, character: Character) -> Optional[Character]:
         return await self.repository.add(character)
