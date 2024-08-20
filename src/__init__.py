@@ -1,8 +1,13 @@
 from loguru import logger
 from src.bot import BansheeBot
+from src.config import config
 
 
 def main():
+
+    if config.DEBUG:
+        logger.debug("Debugging is enabled")
+
     logger.debug("This is a test message")
     try:
         bot = BansheeBot()

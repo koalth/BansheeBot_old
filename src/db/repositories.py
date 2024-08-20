@@ -14,8 +14,6 @@ from src.mapper import (
 from src.entities import Character, Guild
 from .models import GuildOrm, CharacterOrm
 
-import logging
-
 
 class GuildRepository(IGuildRepository):
 

@@ -1,8 +1,8 @@
 from sqlalchemy.ext.asyncio import create_async_engine, async_sessionmaker, AsyncSession
 from contextlib import asynccontextmanager
-from src.config import Config
+from src.config import config
 
-engine = create_async_engine(Config.SQLITE_URL)
+engine = create_async_engine(config.SQLITE_URL)
 
 
 def async_session_generator():

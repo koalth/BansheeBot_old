@@ -24,6 +24,7 @@ pytest-asyncio = "^0.23.8"
 ruff = "^0.6.1"
 inject = "^5.2.1"
 loguru = "^0.7.2"
+pydantic-settings = "^2.4.0"
 
 [tool.poetry.scripts]
 bot = 'src:main'

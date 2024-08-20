@@ -1,16 +1,15 @@
 from typing import Optional
 import discord
 from discord.ext import commands
-from src.config import Config
+from src.config import config
 from loguru import logger
 
 
 class BansheeBot(commands.Bot):
-    config: Config
 
     def __init__(self) -> None:
         logger.info("BansheeBot started initialization...")
-        self.config = Config()
+        self.config = config
         super().__init__(
             intents=discord.Intents(
                 guilds=True,
