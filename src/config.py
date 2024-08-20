@@ -16,6 +16,14 @@ class Config:
     SQLALCHEMY_DATABASE_URI = os.getenv("SQLALCHEMY_DATABASE_URI")
     SQLITE_URL = f"sqlite+aiosqlite:///{SQLALCHEMY_DATABASE_URI}"
 
+    # RaiderIO
+    API_URL = os.getenv("API_URL")
+    CALLS = os.getenv("CALLS")
+    RATE_LIMIT = os.getenv("RATE_LIMIT")
+    TIMEOUT = os.getenv("TIMEOUT")
+    RETRIES = os.getenv("RETRIES")
+    BACKOFF_FACTOR = os.getenv("BACKOFF_FACTOR")
+
     def __init__(self):
 
         if self.DISCORD_TOKEN is None:

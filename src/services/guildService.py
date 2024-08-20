@@ -6,12 +6,12 @@ from src.entities import Guild
 from src.raiderIO import RaiderIOClient
 from sqlalchemy.exc import NoResultFound
 from src.mapper import guild_response_to_entity
-import logging
 
 
 class GuildService:
 
     repository: IGuildRepository = inject.attr(IGuildRepository)
+    raiderIOClient: RaiderIOClient = inject.attr(RaiderIOClient)
 
     async def get_by_guild_name_and_realm(
         self, name: str, realm: str
@@ -26,7 +26,7 @@ class GuildService:
         self, name: str, realm: str, region: str, discord_guild_id: int
     ) -> Optional[Guild]:
 
-        guild_io = await RaiderIOClient.getGuildProfile(name, realm, region)
+        guild_io = await self.raiderIOClient.getGuildProfile(name, realm, region)
 
         if guild_io is None:
             raise Exception("guild io was None")

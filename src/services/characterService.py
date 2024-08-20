@@ -10,6 +10,7 @@ from sqlalchemy.exc import NoResultFound
 class CharacterService:
 
     repository: ICharacterRepository = inject.attr(ICharacterRepository)
+    raiderIOClient: RaiderIOClient = inject.attr(RaiderIOClient)
 
     async def add_character(self, character: Character) -> Optional[Character]:
         return await self.repository.add(character)
@@ -22,7 +23,9 @@ class CharacterService:
         discord_user_id: int,
         discord_guild_id: int,
     ) -> Optional[Character]:
-        character_io = await RaiderIOClient.getCharacterProfile(name, realm, region)
+        character_io = await self.raiderIOClient.getCharacterProfile(
+            name, realm, region
+        )
 
         if character_io is None:
             raise Exception("charcter_io was None")
