@@ -1,11 +1,11 @@
 import asyncio
-import logging
+from loguru import logger
 from sqlalchemy.ext.asyncio import create_async_engine
 from src.config import Config
 from src.db.models import Base
 
+
 async def migrate_tables() -> None:
-    logger = logging.getLogger(__name__)
     logger.info("Starting to migrate...")
 
     engine = create_async_engine(Config.SQLITE_URL)
@@ -17,7 +17,6 @@ async def migrate_tables() -> None:
 
 
 async def destroy_tables() -> None:
-    logger = logging.getLogger(__name__)
     logger.info("Starting to destroy tables...")
 
     engine = create_async_engine(Config.SQLITE_URL)
@@ -29,7 +28,6 @@ async def destroy_tables() -> None:
 
 
 async def reset_tables() -> None:
-    logger = logging.getLogger(__name__)
     logger.info("Starting to reset tables...")
     await destroy_tables()
     await migrate_tables()
