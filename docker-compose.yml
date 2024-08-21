@@ -1,15 +1,19 @@
 services:
   db:
-    image: postgres
+    image: postgres:latest
     container_name: bansheebot_db
     env_file: ".env"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
     ports:
       - '5432:5432'
     networks:
       - app-network
   app:
     build: .
-    image: bansheebotapp
+    volumes:
+      - ./:/app
+    image: bansheebotapp:lastest
     container_name: bansheebot_app
     command: >
       bash -c "poetry install
@@ -37,3 +41,7 @@ services:
 
 networks:
   app-network:
+
+volumes:
+  pgdata:
+  
