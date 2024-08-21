@@ -34,5 +34,5 @@ destroy = 'src.db.migrations:destroy'
 reset = 'src.db.migrations:reset'
 
 [build-system]
-requires = ["poetry-core"]
+requires = ["poetry-core>=1.0.0"]
 build-backend = "poetry.core.masonry.api"

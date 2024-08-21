@@ -1,16 +1,25 @@
-# Builder stage
-FROM python:3.11-slim as builder
-WORKDIR /usr/src/app
-RUN pip install poetry
-COPY pyproject.toml poetry.lock* ./
-RUN poetry export -f requirements.txt --output requirements.txt --without-hashes
-RUN pip wheel --no-cache-dir --no-deps --wheel-dir /usr/src/app/wheels -r requirements.txt
+FROM python:3.11-slim-bookworm
 
-# Runtime stage
-FROM python:3.11-slim
-WORKDIR /usr/src/app
-COPY --from=builder /usr/src/app/wheels /wheels
-COPY --from=builder /usr/src/app/requirements.txt .
-RUN pip install --no-cache /wheels/*
-COPY . .
-CMD ["python", "-m", "src"]
+# Configure Poetry
+ENV POETRY_VERSION=1.8.3
+ENV POETRY_HOME=/opt/poetry
+ENV POETRY_VENV=/opt/poetry-venv
+ENV POETRY_CACHE_DIR=/opt/.cache
+
+# Install poetry separated from system interpreter
+RUN python3 -m venv $POETRY_VENV \
+    && $POETRY_VENV/bin/pip install -U pip setuptools \
+    && $POETRY_VENV/bin/pip install poetry==${POETRY_VERSION}
+
+# Add 'poetry' to PATH
+ENV PATH="${PATH}:${POETRY_VENV}/bin"
+
+WORKDIR /app
+
+# Install dependencies
+COPY poetry.lock pyproject.toml ./
+RUN poetry install
+
+# Run your app
+COPY . /app
+CMD ["poetry", "run", "bot"]
