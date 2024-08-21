@@ -2,7 +2,7 @@ from sqlalchemy.ext.asyncio import create_async_engine, async_sessionmaker, Asyn
 from contextlib import asynccontextmanager
 from src.config import config
 
-engine = create_async_engine(config.SQLITE_URL)
+engine = create_async_engine(config.DATABASE_URL)
 
 
 def async_session_generator():
