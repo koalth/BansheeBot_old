@@ -23,6 +23,7 @@ class CharacterService:
         discord_user_id: int,
         discord_guild_id: int,
     ) -> Optional[Character]:
+
         character_io = await self.raiderIOClient.getCharacterProfile(
             name, realm, region
         )

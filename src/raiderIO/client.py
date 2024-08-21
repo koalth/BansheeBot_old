@@ -70,7 +70,7 @@ class RaiderIOClient:
             response = await self._get("characters/profile", params, CharacterResponse)
 
             if response is None:
-                logger.debug("Response was none")
+                logger.debug("getCharacterProfile :: response was none")
                 return None
 
             return response
@@ -89,7 +89,7 @@ class RaiderIOClient:
             response = await self._get("guilds/profile", params, GuildResponse)
 
             if response is None:
-                logger.debug("Response was none")
+                logger.debug("getGuildProfile :: response was none")
                 return None
             return response
         except ValidationError as err:
