@@ -1,8 +1,7 @@
 services:
   db:
     image: postgres
-    restart: unless-stopped
-    container_name: db
+    container_name: bansheebot_db
     env_file: ".env"
     ports:
       - '5432:5432'
@@ -10,7 +9,12 @@ services:
       - app-network
   app:
     build: .
-    # command: bash -c "poetry run alembic upgrade head"
+    image: bansheebotapp
+    container_name: bansheebot_app
+    command: >
+      bash -c "poetry install
+      && poetry run alembic upgrade head
+      && poetry run bot"
     env_file: ".env"
     depends_on:
       - db
@@ -19,7 +23,7 @@ services:
     networks:
       - app-network
   pgadmin:
-    container_name: pgadmin
+    container_name: bansheebot_pgadmin
     image: dpage/pgadmin4
     environment:
       - PGADMIN_DEFAULT_EMAIL=pgadmin4@pgadmin.org
