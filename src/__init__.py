@@ -7,8 +7,6 @@ def main():
 
     if config.DEBUG:
         logger.debug("Debugging is enabled")
-
-    logger.debug("This is a test message")
     try:
         bot = BansheeBot()
         bot.run()

@@ -8,7 +8,7 @@ from loguru import logger
 class BansheeBot(commands.Bot):
 
     def __init__(self) -> None:
-        logger.info("BansheeBot started initialization...")
+        logger.debug("BansheeBot started initialization...")
         self.config = config
         super().__init__(
             intents=discord.Intents(
@@ -22,15 +22,7 @@ class BansheeBot(commands.Bot):
                 type=discord.ActivityType.watching, name="for slash commands!"
             ),
         )
-        logger.info("...BansheeBot ended initialization")
-
-    # async def start(self, token: str, *, reconnect: bool = True) -> None:
-    #     await self.db.start_engine()
-    #     return await super().start(token, reconnect=reconnect)
-
-    # async def close(self) -> None:
-    #     await self.db.stop_engine()
-    #     return await super().close()
+        logger.debug("...BansheeBot ended initialization")
 
     def run(self):
         cogs_list = ["src.commands.admin_cog"]

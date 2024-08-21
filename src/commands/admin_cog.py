@@ -37,7 +37,6 @@ class Admin(commands.Cog):
         realm: str = "Dalaran",
         region: str = "us",
     ):
-
         # discord is already tied to a wow guild
         guildExist = await self.guildService.is_discord_already_linked(ctx.guild_id)
         if guildExist:
@@ -136,4 +135,4 @@ class Admin(commands.Cog):
 
 def setup(bot: BansheeBot) -> None:
     bot.add_cog(Admin(bot))
-    logger.info("Admin cog has loaded successfully")
+    logger.debug("Admin cog has loaded successfully")
