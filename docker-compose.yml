@@ -2,7 +2,7 @@ services:
   db:
     image: postgres:latest
     container_name: bansheebot_db
-    env_file: ".env"
+    env_file: ".dev.env"
     volumes:
       - pgdata:/var/lib/postgresql/data
     ports:
@@ -19,7 +19,7 @@ services:
       bash -c "poetry install
       && poetry run alembic upgrade head
       && poetry run bot"
-    env_file: ".env"
+    env_file: ".dev.env"
     depends_on:
       - db
     ports:

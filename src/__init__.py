@@ -2,7 +2,6 @@ from loguru import logger
 from src.bot import BansheeBot
 from src.config import config
 
-
 def main():
 
     if config.DEBUG:
@@ -10,8 +9,8 @@ def main():
     try:
         bot = BansheeBot()
         bot.run()
-    except Exception as err:
-        logger.error("Error running main: ", err)
+    except Exception:
+        logger.exception("Error in main")
 
 
 if __name__ == "__init__":

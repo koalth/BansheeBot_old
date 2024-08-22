@@ -7,27 +7,22 @@ from loguru import logger
 
 class BansheeBot(commands.Bot):
 
-    intents: discord.Intents
-    activity: discord.Activity
-
     def __init__(self) -> None:
         logger.debug("BansheeBot started initialization...")
         self.config = config
-        super().__init__(intents=self.intents, activity=self.activity)
+        super().__init__(
+            intents=discord.Intents(
+                guilds=True,
+                messages=True,
+                guild_messages=True,
+                message_content=True,
+                members=True,
+            ),
+            activity=discord.Activity(
+                type=discord.ActivityType.watching, name="for slash commands!"
+            ),
+        )
         logger.debug("...BansheeBot ended initialization")
-
-    def setup(self):
-        self.intents = discord.Intents(
-            guilds=True,
-            messages=True,
-            guild_messages=True,
-            message_content=True,
-            members=True,
-        )
-
-        self.activity = discord.Activity(
-            type=discord.ActivityType.watching, name="for slash commands!"
-        )
 
     def run(self):
         cogs_list = ["src.commands.admin_cog"]
