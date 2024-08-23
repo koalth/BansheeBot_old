@@ -30,7 +30,9 @@ class GuildRepository(IGuildRepository):
     async def get_by_discord_guild_id(self, discord_guild_id: int) -> Optional[Guild]:
         async with get_session() as session:
             result = await session.execute(
-                select(GuildOrm).where(GuildOrm.discord_guild_id == discord_guild_id)
+                select(GuildOrm).where(
+                    GuildOrm.discord_guild_id == str(discord_guild_id)
+                )
             )
             return self._get_entity(result.scalar_one_or_none())
 
@@ -65,7 +67,7 @@ class CharacterRepository(ICharacterRepository):
         async with get_session() as session:
             result = await session.execute(
                 select(CharacterOrm).where(
-                    CharacterOrm.discord_user_id == discord_user_id
+                    CharacterOrm.discord_user_id == str(discord_user_id)
                 )
             )
 

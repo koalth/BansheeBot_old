@@ -1,6 +1,12 @@
 from src.db.models import CharacterOrm, GuildOrm
 from src.entities import Character, Guild
 from src.raiderIO import CharacterResponse, GuildResponse
+import pytz
+from datetime import datetime, timezone
+
+
+def convert_datetime(dt: datetime) -> datetime:
+    return dt.replace(tzinfo=timezone.utc)
 
 
 def character_model_to_entity(instance: CharacterOrm) -> Character:
@@ -15,7 +21,7 @@ def character_model_to_entity(instance: CharacterOrm) -> Character:
         spec_name=instance.spec_name,
         profile_url=instance.profile_url,
         thumbnail_url=instance.thumbnail_url,
-        last_crawled_at=instance.last_crawled_at,
+        last_crawled_at=convert_datetime(instance.last_crawled_at),
         guild_id=instance.guild_id,
     )
 
@@ -31,7 +37,7 @@ def character_entity_to_model(instance: Character) -> CharacterOrm:
         spec_name=instance.spec_name,
         profile_url=instance.profile_url,
         thumbnail_url=instance.thumbnail_url,
-        last_crawled_at=instance.last_crawled_at,
+        last_crawled_at=convert_datetime(instance.last_crawled_at),
         guild_id=instance.guild_id,
     )
 
@@ -46,7 +52,7 @@ def character_response_to_entity(instance: CharacterResponse) -> Character:
         spec_name=instance.active_spec_name,
         profile_url=instance.profile_url,
         thumbnail_url=instance.thumbnail_url,
-        last_crawled_at=instance.last_crawled_at,
+        last_crawled_at=convert_datetime(instance.last_crawled_at),
     )
 
 

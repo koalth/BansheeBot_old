@@ -18,7 +18,7 @@ class Character:
     last_crawled_at: datetime
 
     id: Optional[int] = None
-    discord_user_id: Optional[int] = None
+    discord_user_id: Optional[str] = None
     guild_id: Optional[int] = None
 
 
@@ -29,6 +29,6 @@ class Guild:
     region: str
 
     id: Optional[int] = None
-    discord_guild_id: Optional[int] = None
+    discord_guild_id: Optional[str] = None
 
     characters: List[Character] = field(default_factory=list[Character])

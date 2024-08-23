@@ -21,7 +21,7 @@ class CharacterService:
         realm: str,
         region: str,
         discord_user_id: int,
-        discord_guild_id: int,
+        guild_id: int,
     ) -> Optional[Character]:
 
         character_io = await self.raiderIOClient.getCharacterProfile(
@@ -32,8 +32,8 @@ class CharacterService:
             raise Exception("charcter_io was None")
 
         char_entity = character_response_to_entity(character_io)
-        char_entity.discord_user_id = discord_user_id
-        char_entity.guild_id = discord_guild_id
+        char_entity.discord_user_id = str(discord_user_id)
+        char_entity.guild_id = guild_id
 
         char_db = await self.repository.add(char_entity)
 

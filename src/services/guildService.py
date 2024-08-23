@@ -31,7 +31,7 @@ class GuildService:
             raise Exception("guild io was None")
 
         guild_entity = guild_response_to_entity(guild_io)
-        guild_entity.discord_guild_id = discord_guild_id
+        guild_entity.discord_guild_id = str(discord_guild_id)
 
         guild_db = await self.repository.add(guild_entity)
 

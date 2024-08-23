@@ -12,7 +12,7 @@ class MockGuildRepository(IGuildRepository):
 
     async def get_by_discord_guild_id(self, discord_guild_id: int) -> Optional[Guild]:
         for guild in self.db:
-            if guild.discord_guild_id == discord_guild_id:
+            if guild.discord_guild_id == str(discord_guild_id):
                 return guild
         return None
 
@@ -41,7 +41,7 @@ class MockCharacterRepository(ICharacterRepository):
     async def get_by_discord_user_id(self, discord_user_id: int) -> Character | None:
         result = None
         for char in self.db:
-            if char.discord_user_id == discord_user_id:
+            if char.discord_user_id == str(discord_user_id):
                 result = char
         return result
 

@@ -5,9 +5,7 @@ from sqlalchemy import pool
 from sqlalchemy.engine import Connection
 from sqlalchemy.ext.asyncio import async_engine_from_config
 from src.config import config as myconfig
-from src.db.models import Base
-
-from src.db.models import CharacterOrm, GuildOrm
+from src.db.models import Base, CharacterOrm, GuildOrm
 
 from alembic import context
 

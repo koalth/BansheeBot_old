@@ -85,7 +85,7 @@ class Admin(commands.Cog):
         # ensure that wow guild is linked to this server
         wow_guild = await self.guildService.get_by_discord_guild_id(ctx.guild_id)
 
-        if wow_guild is None:
+        if wow_guild is None or wow_guild.id is None:
             await ctx.respond(
                 "A WoW guild needs to be setup first before adding characters"
             )
@@ -99,7 +99,7 @@ class Admin(commands.Cog):
             return
 
         wow_char = await self.characterService.add_character_to_guild(
-            name, realm, region, member.id, ctx.guild_id
+            name, realm, region, member.id, wow_guild.id
         )
 
         if wow_char is None:

@@ -1,4 +1,4 @@
-from sqlalchemy import ForeignKey
+from sqlalchemy import ForeignKey, DateTime
 from sqlalchemy.orm import (
     DeclarativeBase,
     relationship,
@@ -19,11 +19,11 @@ class GuildOrm(Base):
     __tablename__ = "guilds"
     id: Mapped[int] = mapped_column(primary_key=True)
 
+    discord_guild_id: Mapped[str] = mapped_column(index=True)
+
     name: Mapped[str] = mapped_column(index=True)
     region: Mapped[str]
     realm: Mapped[str]
-
-    discord_guild_id: Mapped[int]
 
     characters: Mapped[List["CharacterOrm"]] = relationship(
         back_populates="guild", cascade="all, delete-orphan", lazy="selectin"
@@ -42,7 +42,7 @@ class CharacterOrm(Base):
     region: Mapped[str]
     realm: Mapped[str]
 
-    discord_user_id: Mapped[int]
+    discord_user_id: Mapped[str] = mapped_column(index=True)
 
     item_level: Mapped[int]
     class_name: Mapped[str]
@@ -50,9 +50,9 @@ class CharacterOrm(Base):
     profile_url: Mapped[str]
     thumbnail_url: Mapped[str]
 
-    last_crawled_at: Mapped[datetime]
+    last_crawled_at: Mapped[datetime] = mapped_column(DateTime(timezone=True))
 
-    guild_id: Mapped[int] = mapped_column(ForeignKey("guilds.discord_guild_id"))
+    guild_id: Mapped[int] = mapped_column(ForeignKey("guilds.id"))
     guild: Mapped[GuildOrm] = relationship(back_populates="characters")
 
     def __repr__(self) -> str:
