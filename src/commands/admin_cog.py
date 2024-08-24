@@ -7,6 +7,7 @@ from src.views import GuildViews
 from src.services import GuildService, CharacterService
 from typing import Optional
 from src.injector import inject
+from src.views.character_views import LinkCharacterView
 
 
 class Admin(commands.Cog):
@@ -124,6 +125,13 @@ class Admin(commands.Cog):
         embed = GuildViews.getGuildSummary(wow_guild)
 
         await ctx.respond(embed=embed)
+
+    @admin.command(name="test")
+    async def test(self, ctx: discord.ApplicationContext):
+
+        await ctx.respond(
+            view=LinkCharacterView(),
+        )
 
     async def cog_command_error(
         self, ctx: discord.ApplicationContext, error: Exception
