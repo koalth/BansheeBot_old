@@ -25,7 +25,7 @@ class BansheeBot(commands.Bot):
         logger.debug("...BansheeBot ended initialization")
 
     def run(self):
-        cogs_list = ["src.commands.admin_cog"]
+        cogs_list = ["src.commands.admin_cog", "src.commands.character_cog"]
         for cog in cogs_list:
             self.load_extension(cog)
         super().run(self.config.DISCORD_TOKEN)

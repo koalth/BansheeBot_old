@@ -4,7 +4,7 @@ import urllib.parse
 import aiohttp
 from pydantic import BaseModel, ValidationError
 from loguru import logger
-from .models import CharacterResponse, GuildResponse
+from .models import CharacterResponse
 
 T = TypeVar("T", bound=BaseModel)
 

@@ -3,15 +3,9 @@ import discord
 from discord.commands import SlashCommandGroup
 from discord.ext import commands
 from src.bot import BansheeBot
-from src.services import CharacterService
-from typing import Optional
-from src.injector import inject
-from src.views.character_views import LinkCharacterView
 
 
 class Admin(commands.Cog):
-
-    characterService: CharacterService = inject.attr(CharacterService)
 
     def __init__(self, bot: BansheeBot) -> None:
         self.bot = bot
