@@ -10,11 +10,6 @@ def base_config(binder: inject.Binder):
         RaiderIOClient,
         RaiderIOClient(
             config.API_URL,
-            config.CALLS,
-            config.RATE_LIMIT,
-            config.TIMEOUT,
-            config.RETRIES,
-            config.BACKOFF_FACTOR,
         ),
     )
 

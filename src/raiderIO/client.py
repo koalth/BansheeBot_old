@@ -1,60 +1,14 @@
-from aiolimiter import AsyncLimiter
-from typing import Optional, Dict, TypeVar
-import urllib.parse
-import aiohttp
-from pydantic import BaseModel, ValidationError
-from loguru import logger
+from typing import Optional
 from .models import CharacterResponse
+from .interface import APIClient
 
-T = TypeVar("T", bound=BaseModel)
+from loguru import logger
 
 
-class RaiderIOClient:
+class RaiderIOClient(APIClient):
 
-    api_url: str
-    calls: int
-    rate_limit: int
-    timeout: int
-    retries: int
-    backoff_factor: int
-
-    def __init__(
-        self,
-        api_url: str,
-        calls: int,
-        rate_limit: int,
-        timeout: int,
-        retries: int,
-        backoff_factor: int,
-    ):
-        self.api_url = api_url
-        self.calls = calls
-        self.rate_limit = rate_limit
-        self.timeout = timeout
-        self.retries = retries
-        self.backoff_factor = backoff_factor
-
-    async def _get(
-        self, endpoint: str, params: Dict[str, str], content: type[T]
-    ) -> Optional[T]:
-        try:
-            async with AsyncLimiter(100):
-                async with aiohttp.ClientSession() as client:
-                    if len(params) > 0:
-                        endpoint = f"{endpoint}?{urllib.parse.urlencode(params)}"
-                    async with client.get(f"{self.api_url}/{endpoint}") as response:
-                        response.raise_for_status()
-                        json_data = await response.json()
-                        return content(**json_data)
-        except ValidationError as err:
-            logger.debug(err.json())
-            logger.error(f"Validation error in getCharacterProfile: {err}")
-            return None
-        except Exception as err:
-            logger.error(
-                f"There was an error requesting endpoint: {endpoint} with params: {params}. Error: {err}"
-            )
-            return None
+    def __init__(self, api_url: str):
+        super().__init__(api_url=api_url)
 
     async def getCharacterProfile(
         self, name: str, realm="Dalaran", region="us"
@@ -74,9 +28,6 @@ class RaiderIOClient:
                 return None
 
             return response
-        except ValidationError as err:
-            logger.error(f"Validation error in getCharacterProfile: {err}")
-            return None
-        except Exception as err:
-            logger.error(f"There was an error in getCharacterProfile: {err}")
+        except Exception:
+            logger.exception(f"There was an error in getCharacterProfile")
             return None
