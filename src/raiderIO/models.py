@@ -67,7 +67,7 @@ class GuildResponse(MyBaseModel):
 class CharacterResponse(MyBaseModel):
     name: str
     race: str
-    character_class: str = Field(alias="class")
+    character_class: str
     active_spec_name: str
     active_spec_role: str
     gender: str

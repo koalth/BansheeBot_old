@@ -1,6 +1,5 @@
 import inject
 from src.config import config
-
 from src.raiderIO import RaiderIOClient
 
 
