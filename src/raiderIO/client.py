@@ -80,21 +80,3 @@ class RaiderIOClient:
         except Exception as err:
             logger.error(f"There was an error in getCharacterProfile: {err}")
             return None
-
-    async def getGuildProfile(
-        self, name: str, realm: str = "Dalaran", region: str = "us"
-    ) -> Optional[GuildResponse]:
-        try:
-            params = {"region": region, "realm": realm, "name": name}
-            response = await self._get("guilds/profile", params, GuildResponse)
-
-            if response is None:
-                logger.debug("getGuildProfile :: response was none")
-                return None
-            return response
-        except ValidationError as err:
-            logger.error(f"Validation error in getGuildProfile: {err}")
-            return None
-        except Exception as err:
-            logger.error(f"There was an error in getGuildProfile: {err}")
-            return None
