@@ -1,17 +1,22 @@
 import discord
 from discord.embeds import Embed
 import discord.ui
+from src.entities import Character
 
 
-class LinkCharacterView(discord.ui.View):
-    @discord.ui.button(label="Link Character", style=discord.ButtonStyle.primary)
-    async def button_callback(
-        self, button: discord.ui.Button, interaction: discord.Interaction
-    ):
-        await interaction.response.send_message("You smell", ephemeral=True)
+def get_character_embed(author_name: str, character: Character) -> Embed:
 
+    embed = discord.Embed(
+        title=f"{author_name}'s Character", colour=discord.colour.Colour.blurple()
+    )
 
-# class CharacterViews:
+    embed.set_footer(text="Data from Raider.io")
+    embed.set_thumbnail(url=character.thumbnail_url)
 
-#     # linkCharacterEmbed: LinkCharacterEmbed = LinkCharacterEmbed()
-#     linkCharacterView: LinkCharacterView = LinkCharacterView()
+    embed.add_field(name="Name", value=character.name)
+    embed.add_field(name="Item Level", value=str(character.item_level))
+    embed.add_field(
+        name="Class/Spec", value=f"{character.class_name}/{character.spec_name}"
+    )
+
+    return embed

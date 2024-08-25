@@ -1,15 +1,16 @@
 from typing import Optional
 import discord
 from discord.ext import commands
-from src.config import config
 from loguru import logger
+from src.config import Config
 
 
 class BansheeBot(commands.Bot):
 
+    config: Optional[Config] = None
+
     def __init__(self) -> None:
         logger.debug("BansheeBot started initialization...")
-        self.config = config
         super().__init__(
             intents=discord.Intents(
                 guilds=True,
@@ -24,10 +25,21 @@ class BansheeBot(commands.Bot):
         )
         logger.debug("...BansheeBot ended initialization")
 
+    def set_config(self, config: Config) -> None:
+        self.config = config
+
     def run(self):
+
+        if self.config is None:
+            raise Exception("Configuration is not set. Cannot run bot.")
+
+        logger.debug("Loading cogs...")
         cogs_list = ["src.commands.admin_cog", "src.commands.character_cog"]
         for cog in cogs_list:
+            logger.debug(f"Loading {cog}...")
             self.load_extension(cog)
+        logger.debug("...Cogs loaded")
+        logger.debug("Bot should be good to go!")
         super().run(self.config.DISCORD_TOKEN)
 
     async def on_guild_join(self, guild: discord.Guild):

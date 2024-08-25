@@ -4,6 +4,7 @@ from discord.commands import SlashCommandGroup
 from discord.ext import commands
 from src.bot import BansheeBot
 from src.services import CharacterService
+from src.views import get_character_embed
 import inject
 
 
@@ -37,18 +38,9 @@ class Character(commands.Cog):
                 "I wasn't able to grab your character. Please try again."
             )
 
-        embed = discord.Embed(title=f"{ctx.author.display_name}'s Character")
-
-        embed.set_footer(text=f"Data from Raider.io")
-        embed.set_thumbnail(url=character.thumbnail_url)
-
-        embed.add_field(name="Name", value=character.name)
-        embed.add_field(name="Item Level", value=str(character.item_level))
-        embed.add_field(
-            name="Class/Spec", value=f"{character.class_name}/{character.spec_name}"
+        return await ctx.respond(
+            embed=get_character_embed(ctx.author.display_name, character)
         )
-
-        return await ctx.respond(embed=embed)
 
     async def cog_command_error(
         self, ctx: discord.ApplicationContext, error: Exception
