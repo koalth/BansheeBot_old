@@ -1,0 +1,428 @@
+{
+  "name": "Turing",
+  "race": "Dwarf",
+  "class": "Mage",
+  "active_spec_name": "Frost",
+  "active_spec_role": "DPS",
+  "gender": "male",
+  "faction": "alliance",
+  "achievement_points": 7820,
+  "honorable_kills": 0,
+  "thumbnail_url": "https://render.worldofwarcraft.com/us/character/dalaran/39/228088103-avatar.jpg?alt=/wow/static/images/2d/avatar/3-0.jpg",
+  "region": "us",
+  "realm": "Dalaran",
+  "last_crawled_at": "2024-08-22T22:59:05.000Z",
+  "profile_url": "https://raider.io/characters/us/dalaran/Turing",
+  "profile_banner": "alliancebanner1",
+  "gear": {
+    "updated_at": "2024-07-03T23:06:26.000Z",
+    "item_level_equipped": 525,
+    "item_level_total": 0,
+    "artifact_traits": 0,
+    "corruption": {
+      "added": 0,
+      "resisted": 0,
+      "total": 0,
+      "cloakRank": 0,
+      "spells": []
+    },
+    "items": {
+      "head": {
+        "item_id": 217232,
+        "item_level": 528,
+        "enchant": 7052,
+        "icon": "inv_cloth_raidmageemerald_d_01_helm",
+        "name": "Wayward Chronomancer's Chronocap",
+        "item_quality": 4,
+        "is_legendary": false,
+        "is_azerite_armor": true,
+        "azerite_powers": [
+          null,
+          null,
+          {
+            "id": 580,
+            "spell": {
+              "id": 0,
+              "school": 0,
+              "icon": "inv_misc_questionmark",
+              "name": "Unknown",
+              "rank": null
+            },
+            "tier": 999
+          },
+          {
+            "id": 580,
+            "spell": {
+              "id": 0,
+              "school": 0,
+              "icon": "inv_misc_questionmark",
+              "name": "Unknown",
+              "rank": null
+            },
+            "tier": 999
+          },
+          null
+        ],
+        "corruption": {
+          "added": 0,
+          "resisted": 0,
+          "total": 0
+        },
+        "domination_shards": [],
+        "tier": "31_5",
+        "gems": [192945],
+        "bonuses": [6652, 10531, 10867, 9639, 10884, 10338, 1520, 8767]
+      },
+      "neck": {
+        "item_id": 201759,
+        "item_level": 525,
+        "icon": "inv_10_jewelcrafting_necklace_necklace1_color2",
+        "name": "Torc of Passed Time",
+        "item_quality": 4,
+        "is_legendary": false,
+        "is_azerite_armor": false,
+        "azerite_powers": [],
+        "corruption": {
+          "added": 0,
+          "resisted": 0,
+          "total": 0
+        },
+        "domination_shards": [],
+        "gems": [192985, 192945, 192945],
+        "bonuses": [8836, 8840, 8902, 9477, 8782, 9405, 8792, 10359, 10249]
+      },
+      "shoulder": {
+        "item_id": 217234,
+        "item_level": 522,
+        "icon": "inv_cloth_raidmageemerald_d_01_shoulder",
+        "name": "Wayward Chronomancer's Metronomes",
+        "item_quality": 4,
+        "is_legendary": false,
+        "is_azerite_armor": true,
+        "azerite_powers": [
+          null,
+          {
+            "id": 580,
+            "spell": {
+              "id": 0,
+              "school": 0,
+              "icon": "inv_misc_questionmark",
+              "name": "Unknown",
+              "rank": null
+            },
+            "tier": 999
+          },
+          {
+            "id": 580,
+            "spell": {
+              "id": 0,
+              "school": 0,
+              "icon": "inv_misc_questionmark",
+              "name": "Unknown",
+              "rank": null
+            },
+            "tier": 999
+          },
+          {
+            "id": 580,
+            "spell": {
+              "id": 0,
+              "school": 0,
+              "icon": "inv_misc_questionmark",
+              "name": "Unknown",
+              "rank": null
+            },
+            "tier": 999
+          },
+          null
+        ],
+        "corruption": {
+          "added": 0,
+          "resisted": 0,
+          "total": 0
+        },
+        "domination_shards": [],
+        "tier": "31_5",
+        "gems": [],
+        "bonuses": [6652, 7980, 10869, 10884, 10334, 1514, 8767]
+      },
+      "back": {
+        "item_id": 204465,
+        "item_level": 535,
+        "icon": "inv_cloth_raidpriestdragon_d_01_cape",
+        "name": "Voice of the Silent Star",
+        "item_quality": 4,
+        "is_legendary": false,
+        "is_azerite_armor": false,
+        "azerite_powers": [],
+        "corruption": {
+          "added": 0,
+          "resisted": 0,
+          "total": 0
+        },
+        "domination_shards": [],
+        "gems": [],
+        "bonuses": [10503, 1576, 8767]
+      },
+      "chest": {
+        "item_id": 217235,
+        "item_level": 522,
+        "enchant": 6625,
+        "icon": "inv_cloth_raidmageemerald_d_01_chest",
+        "name": "Wayward Chronomancer's Patchwork",
+        "item_quality": 4,
+        "is_legendary": false,
+        "is_azerite_armor": true,
+        "azerite_powers": [
+          {
+            "id": 580,
+            "spell": {
+              "id": 0,
+              "school": 0,
+              "icon": "inv_misc_questionmark",
+              "name": "Unknown",
+              "rank": null
+            },
+            "tier": 999
+          },
+          {
+            "id": 580,
+            "spell": {
+              "id": 0,
+              "school": 0,
+              "icon": "inv_misc_questionmark",
+              "name": "Unknown",
+              "rank": null
+            },
+            "tier": 999
+          },
+          {
+            "id": 580,
+            "spell": {
+              "id": 0,
+              "school": 0,
+              "icon": "inv_misc_questionmark",
+              "name": "Unknown",
+              "rank": null
+            },
+            "tier": 999
+          },
+          {
+            "id": 580,
+            "spell": {
+              "id": 0,
+              "school": 0,
+              "icon": "inv_misc_questionmark",
+              "name": "Unknown",
+              "rank": null
+            },
+            "tier": 999
+          },
+          null
+        ],
+        "corruption": {
+          "added": 0,
+          "resisted": 0,
+          "total": 0
+        },
+        "domination_shards": [],
+        "tier": "31_5",
+        "gems": [],
+        "bonuses": [6652, 9639, 10865, 10334, 1514, 8767]
+      },
+      "waist": {
+        "item_id": 193516,
+        "item_level": 525,
+        "enchant": 6904,
+        "icon": "inv_cloth_dragonpvp_d_01_belt",
+        "name": "Vibrant Wildercloth Girdle",
+        "item_quality": 4,
+        "is_legendary": false,
+        "is_azerite_armor": false,
+        "azerite_powers": [],
+        "corruption": {
+          "added": 0,
+          "resisted": 0,
+          "total": 0
+        },
+        "domination_shards": [],
+        "gems": [192945],
+        "bonuses": [
+          8836, 8840, 8902, 9405, 10359, 8792, 8932, 8960, 10249, 10531
+        ]
+      },
+      "wrist": {
+        "item_id": 193510,
+        "item_level": 525,
+        "enchant": 6574,
+        "icon": "inv_cloth_dragonpvp_d_01_bracer",
+        "name": "Vibrant Wildercloth Wristwraps",
+        "item_quality": 4,
+        "is_legendary": false,
+        "is_azerite_armor": false,
+        "azerite_powers": [],
+        "corruption": {
+          "added": 0,
+          "resisted": 0,
+          "total": 0
+        },
+        "domination_shards": [],
+        "gems": [192945],
+        "bonuses": [
+          8836, 8840, 8902, 9405, 10359, 8792, 8932, 8960, 10249, 10531
+        ]
+      },
+      "hands": {
+        "item_id": 217231,
+        "item_level": 522,
+        "icon": "inv_cloth_raidmageemerald_d_01_glove",
+        "name": "Wayward Chronomancer's Gloves",
+        "item_quality": 4,
+        "is_legendary": false,
+        "is_azerite_armor": false,
+        "azerite_powers": [],
+        "corruption": {
+          "added": 0,
+          "resisted": 0,
+          "total": 0
+        },
+        "domination_shards": [],
+        "tier": "31_5",
+        "gems": [],
+        "bonuses": [6652, 9639, 10866, 10334, 1514, 8767]
+      },
+      "legs": {
+        "item_id": 217233,
+        "item_level": 522,
+        "enchant": 6541,
+        "icon": "inv_cloth_raidmageemerald_d_01_pant",
+        "name": "Wayward Chronomancer's Pantaloons",
+        "item_quality": 4,
+        "is_legendary": false,
+        "is_azerite_armor": false,
+        "azerite_powers": [],
+        "corruption": {
+          "added": 0,
+          "resisted": 0,
+          "total": 0
+        },
+        "domination_shards": [],
+        "tier": "31_5",
+        "gems": [],
+        "bonuses": [6652, 7980, 10868, 10884, 10334, 1514, 8767]
+      },
+      "feet": {
+        "item_id": 193519,
+        "item_level": 525,
+        "enchant": 6613,
+        "icon": "inv_cloth_dragonpvp_d_01_boot",
+        "name": "Vibrant Wildercloth Slippers",
+        "item_quality": 4,
+        "is_legendary": false,
+        "is_azerite_armor": false,
+        "azerite_powers": [],
+        "corruption": {
+          "added": 0,
+          "resisted": 0,
+          "total": 0
+        },
+        "domination_shards": [],
+        "gems": [],
+        "bonuses": [8836, 8840, 8902, 9405, 10359, 8792, 10249]
+      },
+      "finger1": {
+        "item_id": 193633,
+        "item_level": 528,
+        "enchant": 6556,
+        "icon": "inv_10_dungeonjewelry_tuskarr_ring_2_color4",
+        "name": "Unstable Arcane Loop",
+        "item_quality": 4,
+        "is_legendary": false,
+        "is_azerite_armor": false,
+        "azerite_powers": [],
+        "corruption": {
+          "added": 0,
+          "resisted": 0,
+          "total": 0
+        },
+        "domination_shards": [],
+        "gems": [],
+        "bonuses": [9639, 6652, 10532, 9144, 10338, 3207, 8767]
+      },
+      "finger2": {
+        "item_id": 195480,
+        "item_level": 528,
+        "enchant": 6556,
+        "icon": "inv_10_dungeonjewelry_primalist_ring_2_fire",
+        "name": "Seal of Diurna's Chosen",
+        "item_quality": 4,
+        "is_legendary": false,
+        "is_azerite_armor": false,
+        "azerite_powers": [],
+        "corruption": {
+          "added": 0,
+          "resisted": 0,
+          "total": 0
+        },
+        "domination_shards": [],
+        "gems": [192922],
+        "bonuses": [6652, 10418, 1605, 8767, 10531]
+      },
+      "trinket1": {
+        "item_id": 207172,
+        "item_level": 528,
+        "icon": "inv_wand_1h_firelandsraid_d_01",
+        "name": "Belor'relos, the Suncaller",
+        "item_quality": 4,
+        "is_legendary": false,
+        "is_azerite_armor": false,
+        "azerite_powers": [],
+        "corruption": {
+          "added": 0,
+          "resisted": 0,
+          "total": 0
+        },
+        "domination_shards": [],
+        "gems": [],
+        "bonuses": [6652, 10418, 1559, 8767]
+      },
+      "trinket2": {
+        "item_id": 212685,
+        "item_level": 522,
+        "icon": "inv_jewelry_trinket_17",
+        "name": "Tome of Unstable Power",
+        "item_quality": 4,
+        "is_legendary": false,
+        "is_azerite_armor": false,
+        "azerite_powers": [],
+        "corruption": {
+          "added": 0,
+          "resisted": 0,
+          "total": 0
+        },
+        "domination_shards": [],
+        "gems": [],
+        "bonuses": [9639, 6652, 9144, 10334, 3201, 8767]
+      },
+      "mainhand": {
+        "item_id": 208616,
+        "item_level": 528,
+        "enchant": 6655,
+        "icon": "inv_staff_2h_dreamweaver_d_01",
+        "name": "Dreambinder, Loom of the Great Cycle",
+        "item_quality": 4,
+        "is_legendary": false,
+        "is_azerite_armor": false,
+        "azerite_powers": [],
+        "corruption": {
+          "added": 0,
+          "resisted": 0,
+          "total": 0
+        },
+        "domination_shards": [],
+        "gems": [],
+        "bonuses": [9418, 10418, 1559, 8767]
+      }
+    }
+  }
+}

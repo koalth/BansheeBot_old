@@ -1,9 +1,10 @@
 import pytest
 from typing import Optional
-from src.raiderIO import RaiderIOClient, CharacterResponse, mock_character_response
+from src.raiderIO import RaiderIOClient, CharacterResponse
 from src.services import CharacterService
 from src.mapper import character_response_to_entity
 import inject
+import json
 
 
 class MockRaiderIOClient(RaiderIOClient):
@@ -21,8 +22,9 @@ class MockRaiderIOClient(RaiderIOClient):
 
 
 @pytest.fixture
-def mockCharacterResponse() -> CharacterResponse:
-    return mock_character_response
+def mockCharacterResponse(dataset) -> CharacterResponse:
+    data = dataset["test_data"]
+    return CharacterResponse(**data)
 
 
 @pytest.fixture
