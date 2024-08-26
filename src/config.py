@@ -11,10 +11,10 @@ class Config(BaseSettings):
 
     DEBUG: bool = Field(default=False)
 
-    DISCORD_CLIENT_ID: str = Field(init=False)
-    DISCORD_TOKEN: str = Field(init=False)
+    DISCORD_CLIENT_ID: str = Field(default="", init=False)
+    DISCORD_TOKEN: str = Field(default="", init=False)
 
-    API_URL: str = Field(init=False)
+    API_URL: str = Field(default="", init=False)
 
 
 config = Config()

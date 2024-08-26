@@ -1,12 +1,12 @@
 import inject
 from src.config import config
-from src.raiderIO import RaiderIOClient
+from src.raiderIO import IRaiderIOClient, RaiderIOClient
 
 
 def base_config(binder: inject.Binder):
 
     binder.bind(
-        RaiderIOClient,
+        IRaiderIOClient,
         RaiderIOClient(
             config.API_URL,
         ),
