@@ -8,6 +8,7 @@ services:
     command: >
       bash -c "poetry install
       && poetry run bot"
-    env_file: ".dev.env"
+    env_file:
+      - .env.${BOT_ENV:-dev}
     ports:
       - "3000:3000"

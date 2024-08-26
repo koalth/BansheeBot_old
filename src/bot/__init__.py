@@ -1,3 +1,4 @@
+import os
 from typing import Optional
 import discord
 from discord.ext import commands
@@ -26,6 +27,7 @@ class BansheeBot(commands.Bot):
         logger.debug("...BansheeBot ended initialization")
 
     def set_config(self, config: Config) -> None:
+        logger.debug(f"BansheeBot configured as {os.getenv('BOT_ENV', 'dev')}")
         self.config = config
 
     def run(self):
