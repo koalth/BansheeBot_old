@@ -15,4 +15,4 @@ jobs:
       with:
         token: ${{ secrets.DIGITALOCEAN_ACCESS_TOKEN }}
     - name: Create Deployment
-      run: doctl apps create-deployment ${{ vars.APPID }} --force-rebuild --format ID,Status --wait
+      run: doctl apps create-deployment ${{ vars.APPID }} --force-rebuild --wait
