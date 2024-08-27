@@ -1,0 +1,18 @@
+name: Main Workflow - Deploy to Digital Ocean
+
+on: workflow_dispatch
+
+permissions:
+  contents: read
+
+jobs:
+  deploy:
+    name: Deploy in Digital Ocean
+    runs-on: ubuntu-latest
+    steps:
+    - name: Install doctl
+      uses: digitalocean/action-doctl@v2
+      with:
+        token: ${{ secrets.DIGITALOCEAN_ACCESS_TOKEN }}
+    - name: Create Deployment
+      run: doctl apps create-deployment ${{ vars.APPID }} --force-rebuild --format ID,Status --wait
