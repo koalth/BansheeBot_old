@@ -1,6 +1,6 @@
-from src.entities import Character
+from src.entities import Character, Settings
 from src.raiderIO import CharacterResponse, GuildResponse
-import pytz
+from src.db import SettingOrm
 from datetime import datetime, timezone
 
 
@@ -19,4 +19,10 @@ def character_response_to_entity(instance: CharacterResponse) -> Character:
         profile_url=instance.profile_url,
         thumbnail_url=instance.thumbnail_url,
         last_crawled_at=convert_datetime(instance.last_crawled_at),
+    )
+
+
+def setting_model_to_entity(instance: SettingOrm) -> Settings:
+    return Settings(
+        default_realm=instance.default_realm, default_region=instance.default_region
     )

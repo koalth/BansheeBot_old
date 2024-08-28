@@ -16,3 +16,9 @@ class Character:
     profile_url: str
     thumbnail_url: str
     last_crawled_at: datetime
+
+
+@dataclass
+class Settings:
+    default_region: Optional[str]
+    default_realm: Optional[str]
