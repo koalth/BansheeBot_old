@@ -1,4 +1,15 @@
 services:
+  db:
+    image: postgres:latest
+    container_name: bansheebot_db
+    env_file:
+      - .env.${BOT_ENV:-dev}
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+    networks:
+      - app-network
   app:
     build: .
     volumes:
@@ -12,3 +23,27 @@ services:
       - .env.${BOT_ENV:-dev}
     ports:
       - "3000:3000"
+    depends_on:
+      - db
+    networks:
+      - app-network
+  pgadmin:
+    container_name: bansheebot_pgadmin
+    image: dpage/pgadmin4
+    environment:
+      - PGADMIN_DEFAULT_EMAIL=pgadmin4@pgadmin.org
+      - PGADMIN_DEFAULT_PASSWORD=admin
+      - PGADMIN_CONFIG_SERVER_MODE=False
+      - PGADMIN_CONFIG_MASTER_PASSWORD_REQUIRED=False
+    ports:
+      - "5050:80"
+    depends_on:
+      - db
+    networks:
+      - app-network
+
+networks:
+  app-network:
+
+volumes:
+  pgdata:
