@@ -1,8 +1,18 @@
 Project:
-  - Add workflow to auto deploy to the DigitalOcean
-  - Figure out how to deploy the bot and then also be able to test locally on a test version of the bot
-  - Add database feature
-  - allow discord admins to set the settings for the discord server
+  - When bot joins a guild, automatically setup a new "settings" for that guild
+  - Allow server admins to check if raiders meet item level requirements
+
+User Stories (0):
+  - Create new "Settings" models
+  - Create new "Settings" model when bot first joins server
+
+User Stories (1):
+  - Allow server own to set admin role
+  - Allow Server owner to set "Raider" role
+  - Admins can use command for bot to ask all unlinked raiders to link their raid character through DM
+  - Allow player to link their raid character to guild's roster
+
+
 
 Quality:
   - add pytest-cov to find test coverage
