@@ -18,6 +18,7 @@ services:
     container_name: bansheebot_app
     command: >
       bash -c "poetry install
+      && poetry run alembic upgrade head
       && poetry run bot"
     env_file:
       - .env.${BOT_ENV:-dev}
