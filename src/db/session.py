@@ -9,10 +9,12 @@ from sqlalchemy.ext.asyncio import (
     async_sessionmaker,
     create_async_engine,
 )
-from .models import Base
 
 
 class DatabaseSessionManager:
+
+    _engine: Optional[AsyncEngine]
+    _sessionmaker: Optional[async_sessionmaker]
 
     def __init__(self, database_url: str, engine_kwargs: dict[str, Any] = {}):
         self._engine = create_async_engine(database_url, **engine_kwargs)

@@ -1,4 +1,5 @@
-from uuid import UUID
+import uuid
+from sqlalchemy.dialects.postgresql import UUID
 from sqlalchemy import ForeignKey, DateTime
 from sqlalchemy.orm import DeclarativeBase, relationship, Mapped, mapped_column
 
@@ -8,7 +9,7 @@ from typing import List, Optional
 
 
 class Base(AsyncAttrs, DeclarativeBase):
-    id: Mapped[UUID] = mapped_column(primary_key=True)
+    id: Mapped[UUID] = mapped_column(primary_key=True, default=uuid.uuid5)
 
 
 class SettingOrm(Base):
