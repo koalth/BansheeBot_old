@@ -5,7 +5,7 @@ from discord.ext import commands
 from src.bot import BansheeBot
 from src.services import CharacterService
 from src.views import get_character_embed
-import inject
+from src.injector import inject
 
 
 class Character(commands.Cog):

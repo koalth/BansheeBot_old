@@ -21,3 +21,15 @@ class Setting(commands.Cog):
             return
 
         await self.settingService.setup_guild_settings(str(guild.id))
+
+    async def cog_command_error(
+        self, ctx: discord.ApplicationContext, error: Exception
+    ) -> None:
+        logger.error(f"There was a problem in Setting cog: {error}")
+        await ctx.respond("Something went wrong :(")
+        return await super().cog_command_error(ctx, error)
+
+
+def setup(bot: BansheeBot) -> None:
+    bot.add_cog(Setting(bot))
+    logger.debug("Setting cog has loaded successfully")
