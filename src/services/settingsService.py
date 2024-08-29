@@ -1,6 +1,6 @@
 from loguru import logger
 from typing import Optional, List
-from src.db import add_setting, get_by_discord_guild_id
+from src.db import add_setting, get_by_discord_guild_id, update_setting
 from src.entities import Settings
 from abc import ABC, abstractmethod
 
@@ -19,6 +19,12 @@ class ISettingsService(ABC):
     async def setup_guild_settings(self, discord_guild_id: str) -> Optional[Settings]:
         raise NotImplementedError()
 
+    @abstractmethod
+    async def update_setting(
+        self, discord_guild_id: str, setting_attr: str, attr_value
+    ) -> Optional[Settings]:
+        raise NotImplementedError()
+
 
 class SettingsService(ISettingsService):
 
@@ -30,6 +36,11 @@ class SettingsService(ISettingsService):
 
     async def setup_guild_settings(self, discord_guild_id: str) -> Optional[Settings]:
         return await add_setting(discord_guild_id)
+
+    async def update_setting(
+        self, discord_guild_id: str, setting_attr: str, attr_value
+    ) -> Settings | None:
+        return await update_setting(discord_guild_id, setting_attr, attr_value)
 
 
 class MockSettingsService(ISettingsService):

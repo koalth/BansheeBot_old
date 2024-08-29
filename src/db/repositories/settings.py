@@ -1,7 +1,8 @@
-from typing import List, Optional
+from typing import List, Optional, Any
 from src.db import SettingOrm, sessionmanager
 from src.entities import Settings
 from sqlalchemy import select
+from sqlalchemy.exc import NoResultFound
 from src.mapper import setting_model_to_entity
 
 
@@ -23,6 +24,32 @@ async def get_by_discord_guild_id(discord_guild_id: str) -> Optional[Settings]:
 async def add_setting(discord_guild_id: str) -> Optional[Settings]:
     async with sessionmanager.session() as session:
         model = SettingOrm(discord_guild_id=discord_guild_id)
+        session.add(model)
+        await session.commit()
+        await session.refresh(model)
+        return setting_model_to_entity(model)
+
+
+async def update_setting(
+    discord_guild_id: str, setting_attr: str, attr_value: Any
+) -> Optional[Settings]:
+    async with sessionmanager.session() as session:
+        model = (
+            await session.execute(
+                select(SettingOrm).where(
+                    SettingOrm.discord_guild_id == discord_guild_id
+                )
+            )
+        ).scalar_one_or_none()
+
+        if model is None:
+            raise NoResultFound
+
+        if hasattr(model, setting_attr):
+            setattr(model, setting_attr, attr_value)
+        else:
+            raise AttributeError
+
         session.add(model)
         await session.commit()
         await session.refresh(model)
