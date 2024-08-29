@@ -19,3 +19,6 @@ class SettingOrm(Base):
 
     default_region: Mapped[Optional[str]] = mapped_column(nullable=True)
     default_realm: Mapped[Optional[str]] = mapped_column(nullable=True)
+
+    admin_role_id: Mapped[Optional[str]] = mapped_column(nullable=True)
+    raider_role_id: Mapped[Optional[str]] = mapped_column(nullable=True)

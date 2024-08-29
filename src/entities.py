@@ -20,5 +20,8 @@ class Character:
 
 @dataclass
 class Settings:
+    discord_guild_id: str
     default_region: Optional[str]
     default_realm: Optional[str]
+    admin_role_id: Optional[str]
+    raider_role_id: Optional[str]

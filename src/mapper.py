@@ -24,5 +24,9 @@ def character_response_to_entity(instance: CharacterResponse) -> Character:
 
 def setting_model_to_entity(instance: SettingOrm) -> Settings:
     return Settings(
-        default_realm=instance.default_realm, default_region=instance.default_region
+        discord_guild_id=instance.discord_guild_id,
+        default_realm=instance.default_realm,
+        default_region=instance.default_region,
+        raider_role_id=instance.raider_role_id,
+        admin_role_id=instance.admin_role_id,
     )
