@@ -36,20 +36,14 @@ class BansheeBot(commands.Bot):
             raise Exception("Configuration is not set. Cannot run bot.")
 
         logger.debug("Loading cogs...")
-        cogs_list = ["src.commands.admin_cog", "src.commands.character_cog"]
+        cogs_list = [
+            "src.commands.admin_cog",
+            "src.commands.character_cog",
+            "src.commands.setting_cog",
+        ]
         for cog in cogs_list:
             logger.debug(f"Loading {cog}...")
             self.load_extension(cog)
         logger.debug("...Cogs loaded")
         logger.debug("Bot should be good to go!")
         super().run(self.config.DISCORD_TOKEN)
-
-    async def on_guild_join(self, guild: discord.Guild):
-        try:
-            if guild.owner is None:
-                print("Guild owner was none, cannot create setup dm")
-                return
-            dm_channel = await guild.owner.create_dm()
-            await dm_channel.send(f"Hello! You've added BansheeBot to {guild.name}")
-        except Exception as err:
-            print("There was a problem when joining guild: ", err)

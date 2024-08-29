@@ -9,7 +9,7 @@ from typing import List, Optional
 
 
 class Base(AsyncAttrs, DeclarativeBase):
-    id: Mapped[UUID] = mapped_column(primary_key=True, default=uuid.uuid5)
+    id: Mapped[uuid.UUID] = mapped_column(primary_key=True, default=uuid.uuid4)
 
 
 class SettingOrm(Base):
