@@ -9,6 +9,10 @@ import inject
 
 class Setting(commands.Cog):
 
+    settingCommands = SlashCommandGroup = SlashCommandGroup(
+        name="settings", description="Commands related to the server's settings"
+    )
+
     settingService: ISettingsService = inject.attr(ISettingsService)
 
     def __init__(self, bot: BansheeBot) -> None:
@@ -17,10 +21,17 @@ class Setting(commands.Cog):
     @commands.Cog.listener()
     async def on_guild_join(self, guild: discord.Guild):
 
-        if self.settingService.does_guild_settings_exist(str(guild.id)):
+        guild_id = str(guild.id)
+
+        if self.settingService.does_guild_settings_exist(guild_id):
             return
 
-        await self.settingService.setup_guild_settings(str(guild.id))
+        await self.settingService.setup_guild_settings(guild_id)
+        return
+
+    @settingCommands.command()
+    async def set_default_region(self, ctx: discord.ApplicationContext):
+        pass
 
     async def cog_command_error(
         self, ctx: discord.ApplicationContext, error: Exception
