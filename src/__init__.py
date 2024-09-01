@@ -2,9 +2,14 @@ from loguru import logger
 from src.bot import BansheeBot
 from src.config import Config, config
 from typing import Optional
+from src.injector import inject
 
 
 def create_bot(alt_config: Optional[Config] = None) -> BansheeBot:
+
+    if not inject.is_configured():
+        logger.error("Injector is not configured")
+        raise Exception("Injector is not configured")
 
     bot = BansheeBot()
 
