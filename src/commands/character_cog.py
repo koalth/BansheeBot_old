@@ -2,10 +2,10 @@ from loguru import logger
 import discord
 from discord.commands import SlashCommandGroup
 from discord.ext import commands
+import inject
 from src.bot import BansheeBot
-from src.services import CharacterService
+from src.services.characterService import CharacterService
 from src.views import get_character_embed
-from src.injector import inject
 
 
 class Character(commands.Cog):

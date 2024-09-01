@@ -2,7 +2,16 @@ from typing import List, Optional
 from src.db import SettingOrm, sessionmanager
 from src.entities import Settings
 from sqlalchemy import select
-from src.mapper import setting_model_to_entity
+
+
+def setting_model_to_entity(instance: SettingOrm) -> Settings:
+    return Settings(
+        discord_guild_id=instance.discord_guild_id,
+        default_realm=instance.default_realm,
+        default_region=instance.default_region,
+        raider_role_id=instance.raider_role_id,
+        admin_role_id=instance.admin_role_id,
+    )
 
 
 async def get_by_discord_guild_id(discord_guild_id: str) -> Optional[Settings]:

@@ -1,5 +1,5 @@
 from loguru import logger
-from src.injector import inject
+import inject
 from typing import Optional
 from src.entities import Character
 from src.raiderIO import IRaiderIOClient

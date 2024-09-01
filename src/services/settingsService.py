@@ -1,8 +1,8 @@
-from loguru import logger
 from typing import Optional, List
+from abc import ABC, abstractmethod
+from loguru import logger
 from src.db import add_setting, get_by_discord_guild_id
 from src.entities import Settings
-from abc import ABC, abstractmethod
 
 
 class ISettingsService(ABC):
