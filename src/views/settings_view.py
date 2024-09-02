@@ -33,7 +33,7 @@ class SettingsSelectRegion(discord.ui.View):
         max_values=1,
     )
     async def select_callback(
-        self, select: discord.SelectMenu, interaction: discord.Interaction
+        self, select: discord.ui.Select, interaction: discord.Interaction
     ):
 
         self.disable_all_items()
