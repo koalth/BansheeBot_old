@@ -4,12 +4,13 @@ from discord.commands import SlashCommandGroup
 from discord.ext import commands
 from src.bot import BansheeBot
 from src.services import ISettingsService
+from src.views import settings_view
 import inject
 
 
 class Setting(commands.Cog):
 
-    settingCommands = SlashCommandGroup = SlashCommandGroup(
+    settingCommands = SlashCommandGroup(
         name="settings", description="Commands related to the server's settings"
     )
 
@@ -22,16 +23,43 @@ class Setting(commands.Cog):
     async def on_guild_join(self, guild: discord.Guild):
 
         guild_id = str(guild.id)
+        logger.debug(f"guild_id: {guild_id}")
 
-        if self.settingService.does_guild_settings_exist(guild_id):
+        if await self.settingService.does_guild_settings_exist(
+            discord_guild_id=guild_id
+        ):
             return
 
         await self.settingService.setup_guild_settings(guild_id)
         return
 
-    @settingCommands.command()
+    @settingCommands.command(
+        name="init",
+        description="Initalizes the settings for the server if not already initialized.",
+    )
+    async def init_settings(self, ctx: discord.ApplicationContext):
+        guild_id = str(ctx.guild_id)
+        logger.debug(f"guild id: {guild_id}")
+        if await self.settingService.does_guild_settings_exist(
+            discord_guild_id=guild_id
+        ):
+            return await ctx.respond("Setting already exist")
+
+        await self.settingService.setup_guild_settings(discord_guild_id=guild_id)
+
+        return await ctx.respond("Guild setting have been created")
+
+    @settingCommands.command(name="region")
     async def set_default_region(self, ctx: discord.ApplicationContext):
-        pass
+        guild_id = str(ctx.guild_id)
+        if not (
+            await self.settingService.does_guild_settings_exist(
+                discord_guild_id=guild_id
+            )
+        ):
+            return ctx.respond("Setting doesn't exist.")
+
+        return await ctx.respond(view=settings_view.SettingsSelectRegion(guild_id))
 
     async def cog_command_error(
         self, ctx: discord.ApplicationContext, error: Exception

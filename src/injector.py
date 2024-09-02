@@ -14,7 +14,7 @@ def base_config(binder: inject.Binder):
         ),
     )
 
-    binder.bind(ISettingsService, SettingsService)
+    binder.bind(ISettingsService, SettingsService())
 
 
 inject.configure(base_config, allow_override=True, clear=True)

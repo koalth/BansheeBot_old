@@ -1,10 +1,10 @@
 from typing import Optional, List
 from src.db import add_setting, get_by_discord_guild_id, update_setting
 from src.entities import Settings
-from abc import ABC, abstractmethod
+from abc import ABC, abstractmethod, ABCMeta
 
 
-class ISettingsService(ABC):
+class ISettingsService(metaclass=ABCMeta):
 
     @abstractmethod
     async def get_settings(self, discord_guild_id: str) -> Optional[Settings]:
