@@ -59,7 +59,11 @@ class Setting(commands.Cog):
         ):
             return ctx.respond("Setting doesn't exist.")
 
-        return await ctx.respond(view=settings_view.SettingsSelectRegion(guild_id))
+        return await ctx.respond(
+            "Please select a region to set as default",
+            view=settings_view.SettingsSelectRegion(guild_id, timeout=30),
+            ephemeral=True,
+        )
 
     async def cog_command_error(
         self, ctx: discord.ApplicationContext, error: Exception
