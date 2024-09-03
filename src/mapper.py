@@ -12,6 +12,8 @@ def character_response_to_entity(instance: CharacterResponse) -> Character:
         name=instance.name,
         realm=instance.realm,
         region=instance.region,
+        discord_user_id="",
+        guild_id=None,
         item_level=instance.gear.item_level_equipped,
         class_name=instance.character_class,
         spec_name=instance.active_spec_name,

@@ -1,5 +1,5 @@
 from typing import Optional
-from .models import CharacterResponse
+from .models import CharacterResponse, GuildResponse
 from .interface import APIClient
 from abc import ABC, abstractmethod
 
@@ -12,6 +12,12 @@ class IRaiderIOClient(ABC):
     async def getCharacterProfile(
         self, name: str, realm: str, region: str
     ) -> Optional[CharacterResponse]:
+        raise NotImplementedError()
+
+    @abstractmethod
+    async def getGuildProfile(
+        self, name: str, realm: str, region: str
+    ) -> Optional[GuildResponse]:
         raise NotImplementedError()
 
 
@@ -40,6 +46,25 @@ class RaiderIOClient(IRaiderIOClient, APIClient):
             return response
         except Exception:
             logger.exception(f"There was an error in getCharacterProfile")
+            return None
+
+    async def getGuildProfile(
+        self, name: str, realm: str, region: str
+    ) -> GuildResponse | None:
+        try:
+            params = {
+                "region": region,
+                "realm": realm,
+                "name": name,
+            }
+
+            response = await self._get("guilds/profile", params, GuildResponse)
+
+            if response is None:
+                logger.debug("getGuildProfile :: response was none")
+                return None
+        except Exception:
+            logger.exception(f"There was an error in getGuildProfile")
             return None
 
 

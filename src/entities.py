@@ -1,6 +1,7 @@
 from dataclasses import dataclass, field
 from typing import List, Optional
 from datetime import datetime
+import uuid
 
 
 @dataclass
@@ -9,6 +10,10 @@ class Character:
     realm: str
     region: str
 
+    discord_user_id: str
+
+    guild_id: Optional[uuid.UUID]
+
     item_level: int
     class_name: str
     spec_name: str
@@ -16,6 +21,17 @@ class Character:
     profile_url: str
     thumbnail_url: str
     last_crawled_at: datetime
+
+
+@dataclass
+class Guild:
+    name: str
+    realm: str
+    region: str
+
+    discord_guild_id: str
+
+    characters: List[Character]
 
 
 @dataclass
