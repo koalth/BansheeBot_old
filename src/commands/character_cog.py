@@ -31,7 +31,9 @@ class Character(commands.Cog):
         realm: str = "Dalaran",
         region: str = "us",
     ):
-        character = await self.characterService.get_character(name, realm, region)
+        character = await self.characterService.get_character_from_raider_io(
+            name, realm, region
+        )
 
         if character is None:
             return await ctx.respond(

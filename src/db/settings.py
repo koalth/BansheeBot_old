@@ -1,6 +1,6 @@
 from typing import List, Optional, Any
 from src.db import SettingOrm, sessionmanager
-from src.entities import Settings
+from src.entities import Settings, SettingsCreate
 from sqlalchemy import select
 from sqlalchemy.exc import NoResultFound
 
@@ -18,8 +18,7 @@ def setting_model_to_entity(instance: SettingOrm) -> Settings:
 
 class SettingsRepository:
 
-    @staticmethod
-    async def get_by_discord_guild_id(discord_guild_id: str) -> Optional[Settings]:
+    async def get_by_discord_guild_id(self, discord_guild_id: str) -> Settings:
         async with sessionmanager.session() as session:
             result = (
                 await session.execute(
@@ -27,14 +26,11 @@ class SettingsRepository:
                         SettingOrm.discord_guild_id == discord_guild_id
                     )
                 )
-            ).scalar_one_or_none()
+            ).scalar_one()
 
-            if result is None:
-                return None
             return setting_model_to_entity(result)
 
-    @staticmethod
-    async def add_setting(discord_guild_id: str) -> Optional[Settings]:
+    async def add_setting(self, discord_guild_id: str) -> Settings:
         async with sessionmanager.session() as session:
             model = SettingOrm(discord_guild_id=discord_guild_id)
             session.add(model)
@@ -42,10 +38,9 @@ class SettingsRepository:
             await session.refresh(model)
             return setting_model_to_entity(model)
 
-    @staticmethod
     async def update_setting(
-        discord_guild_id: str, setting_attr: str, attr_value: Any
-    ) -> Optional[Settings]:
+        self, discord_guild_id: str, setting_attr: str, attr_value: Any
+    ) -> Settings:
         async with sessionmanager.session() as session:
             model = (
                 await session.execute(
@@ -53,7 +48,7 @@ class SettingsRepository:
                         SettingOrm.discord_guild_id == discord_guild_id
                     )
                 )
-            ).scalar_one_or_none()
+            ).scalar_one()
 
             if model is None:
                 raise NoResultFound

@@ -1,9 +1,11 @@
+from datetime import datetime
 import discord
 from discord.ui.item import Item
+from src.entities import Settings
 import inject
 from src.services import ISettingsService, ICharacterService, IGuildService
 from loguru import logger
-from typing import List, cast
+from typing import List, cast, Optional
 import uuid
 
 
@@ -11,6 +13,43 @@ region_options = [
     discord.SelectOption(label="US", value="us"),
     discord.SelectOption(label="EU", value="eu"),
 ]
+
+
+class SettingsShowEmbed(discord.Embed):
+
+    settingsService: ISettingsService = inject.attr(ISettingsService)
+
+    def __init__(
+        self,
+        region: Optional[str],
+        realm: Optional[str],
+        admin_role: Optional[str],
+        raider_role: Optional[str],
+        *args,
+        **kwargs,
+    ):
+        super().__init__(*args, **kwargs)
+
+        self.title = "Settings"
+        self.description = "The server's current settings"
+
+        self.add_field(
+            name="Default Region",
+            value=(region if region is not None else "Not set"),
+        )
+        self.add_field(
+            name="Default Realm",
+            value=realm if realm is not None else "Not set",
+        )
+
+        self.add_field(
+            name="Admin Role",
+            value=(admin_role if admin_role is not None else "Not set"),
+        )
+        self.add_field(
+            name="Raider Role",
+            value=(raider_role if raider_role is not None else "Not set"),
+        )
 
 
 def get_select_option(
@@ -125,7 +164,7 @@ class SettingsRaiderRoleMemberSelectModal(discord.ui.Modal):
         if character_name is None:
             return await interaction.response.send_message("There was an error")
 
-        character = await self.characterService.get_character(
+        character = await self.characterService.get_character_from_raider_io(
             character_name, settings.default_realm, settings.default_region
         )
 
@@ -139,6 +178,7 @@ class SettingsRaiderRoleMemberSelectModal(discord.ui.Modal):
             character=character,
             discord_user_id=str(interaction.user.id),
             guild_id=self.guild_id,
+            on_raider_role=True,
         )
 
         embed = discord.Embed(

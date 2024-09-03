@@ -1,9 +1,8 @@
 from typing import List, Optional, Any
 from src.db import GuildOrm, sessionmanager
 from src.db.character import character_model_to_entity
-from src.entities import Guild
+from src.entities import Guild, GuildCreate
 from sqlalchemy import select
-from sqlalchemy.exc import NoResultFound
 
 
 def guild_model_to_entity(instance: GuildOrm) -> Guild:
@@ -27,10 +26,18 @@ def guild_entity_to_model(instance: Guild) -> GuildOrm:
     )
 
 
+def guild_create_entity_to_model(instance: GuildCreate) -> GuildOrm:
+    return GuildOrm(
+        name=instance.name,
+        realm=instance.realm,
+        region=instance.region,
+        discord_guild_id=instance.discord_guild_id,
+    )
+
+
 class GuildRepository:
 
-    @staticmethod
-    async def get_by_discord_guild_id(discord_guild_id: str) -> Optional[Guild]:
+    async def get_by_discord_guild_id(self, discord_guild_id: str) -> Guild:
         async with sessionmanager.session() as session:
             result = (
                 await session.execute(
@@ -38,16 +45,13 @@ class GuildRepository:
                         GuildOrm.discord_guild_id == discord_guild_id
                     )
                 )
-            ).scalar_one_or_none()
+            ).scalar_one()
 
-            if result is None:
-                return None
             return guild_model_to_entity(result)
 
-    @staticmethod
-    async def add_guild(guild: Guild) -> Optional[Guild]:
+    async def add_guild(self, guild: GuildCreate) -> Guild:
         async with sessionmanager.session() as session:
-            model = guild_entity_to_model(guild)
+            model = guild_create_entity_to_model(guild)
             session.add(model)
             await session.commit()
             await session.refresh(model)

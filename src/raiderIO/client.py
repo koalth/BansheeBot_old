@@ -63,6 +63,8 @@ class RaiderIOClient(IRaiderIOClient, APIClient):
             if response is None:
                 logger.debug("getGuildProfile :: response was none")
                 return None
+
+            return response
         except Exception:
             logger.exception(f"There was an error in getGuildProfile")
             return None

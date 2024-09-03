@@ -1,7 +1,7 @@
 from loguru import logger
 import inject
 from typing import Optional
-from src.entities import Guild
+from src.entities import Guild, GuildCreate
 from src.raiderIO import IRaiderIOClient
 from src.db import GuildRepository
 from abc import abstractmethod, ABCMeta
@@ -22,10 +22,11 @@ class IGuildService(metaclass=ABCMeta):
 
 class GuildService(IGuildService):
 
+    guildRepository: GuildRepository = inject.attr(GuildRepository)
     raiderIOClient: IRaiderIOClient = inject.attr(IRaiderIOClient)
 
     async def get_by_discord_guild_id(self, discord_guild_id: str) -> Optional[Guild]:
-        return await GuildRepository.get_by_discord_guild_id(discord_guild_id)
+        return await self.guildRepository.get_by_discord_guild_id(discord_guild_id)
 
     async def create_guild(
         self, name: str, realm: str, region: str, discord_guild_id: str
@@ -33,15 +34,15 @@ class GuildService(IGuildService):
 
         guild_io = await self.raiderIOClient.getGuildProfile(name, realm, region)
 
+        logger.debug(f"guild io: {guild_io}")
+
         if guild_io is None:
             return None
 
-        guild_ent = Guild(
-            id=None,
+        guild_ent = GuildCreate(
             name=guild_io.name,
             realm=guild_io.realm,
             region=guild_io.region,
             discord_guild_id=discord_guild_id,
-            characters=[],
         )
-        return await GuildRepository.add_guild(guild_ent)
+        return await self.guildRepository.add_guild(guild_ent)

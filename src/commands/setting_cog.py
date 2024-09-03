@@ -6,19 +6,72 @@ from src.bot import BansheeBot
 from src.services import ISettingsService, IGuildService
 from src.views import settings_view
 import inject
+from typing import Optional
 
 
 class Setting(commands.Cog):
-
-    settingCommands = SlashCommandGroup(
-        name="settings", description="Commands related to the server's settings"
-    )
 
     settingService: ISettingsService = inject.attr(ISettingsService)
     guildService: IGuildService = inject.attr(IGuildService)
 
     def __init__(self, bot: BansheeBot) -> None:
         self.bot = bot
+
+    settingCommands = SlashCommandGroup(
+        name="settings", description="Commands related to the server's settings"
+    )
+    admin_role = settingCommands.create_subgroup(name="admin_role")
+    raider_role = settingCommands.create_subgroup(name="raider_role")
+
+    async def _get_guild_role(
+        self, role_id: Optional[str], ctx: discord.Interaction
+    ) -> Optional[discord.Role]:
+        if ctx.guild is None:
+            raise Exception("guild not on context")
+
+        if role_id is None:
+            return None
+
+        role = ctx.guild.get_role(int(role_id))
+
+        if role is None:
+            raise Exception("role not found")
+        return role
+
+    @settingCommands.command(
+        name="show", description="Show the current server settings."
+    )
+    async def show(self, ctx: discord.ApplicationContext):
+        guild_id = str(ctx.guild_id)
+        settings = await self.settingService.get_settings(guild_id)
+
+        if settings is None:
+            return await ctx.respond("Setting doesn't exist.")
+
+        admin_role = await self._get_guild_role(
+            settings.admin_role_id,
+            ctx.interaction,
+        )
+
+        raider_role = await self._get_guild_role(
+            settings.raider_role_id,
+            ctx.interaction,
+        )
+
+        return await ctx.respond(
+            embed=settings_view.SettingsShowEmbed(
+                region=settings.default_region,
+                realm=settings.default_realm,
+                admin_role=admin_role.name if admin_role is not None else None,
+                raider_role=raider_role.name if raider_role is not None else None,
+            )
+        )
+
+    @admin_role.command(
+        name="set", description="Set the admin role. Admins can use admin commands"
+    )
+    async def admin_role_set(self, ctx: discord.ApplicationContext):
+        pass
 
     @commands.Cog.listener()
     async def on_guild_join(self, guild: discord.Guild):

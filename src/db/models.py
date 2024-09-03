@@ -55,6 +55,8 @@ class CharacterOrm(Base):
     profile_url: Mapped[str]
     thumbnail_url: Mapped[str]
 
+    on_raid_roster: Mapped[bool] = mapped_column(default=False)
+
     last_crawled_at: Mapped[datetime] = mapped_column(DateTime(timezone=True))
 
     guild_id: Mapped[uuid.UUID] = mapped_column(ForeignKey("guilds.id"))

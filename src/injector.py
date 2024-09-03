@@ -1,6 +1,7 @@
 import inject
 from src.config import config
 from src.raiderIO import IRaiderIOClient, RaiderIOClient
+from src.db import SettingsRepository, GuildRepository, CharacterRepository
 
 from src.services import (
     ISettingsService,
@@ -20,6 +21,10 @@ def base_config(binder: inject.Binder):
             config.API_URL,
         ),
     )
+
+    binder.bind(SettingsRepository, SettingsRepository())
+    binder.bind(GuildRepository, GuildRepository())
+    binder.bind(CharacterRepository, CharacterRepository())
 
     binder.bind(ISettingsService, SettingsService())
     binder.bind(ICharacterService, CharacterService())
