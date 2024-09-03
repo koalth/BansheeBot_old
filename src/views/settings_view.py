@@ -1,9 +1,9 @@
 import discord
 from discord.ui.item import Item
 import inject
-from src.services import ISettingsService
+from src.services import ISettingsService, CharacterService
 from loguru import logger
-from typing import List
+from typing import List, cast
 
 
 region_options = [
@@ -22,9 +22,9 @@ def get_select_option(
     raise Exception("Option does not exist")
 
 
-class SettingsSelectRegion(discord.ui.View):
-
+class SettingsView(discord.ui.View):
     discord_guild_id: str
+    settingsService: ISettingsService = inject.attr(ISettingsService)
 
     def __init__(
         self,
@@ -36,7 +36,8 @@ class SettingsSelectRegion(discord.ui.View):
         self.discord_guild_id = discord_guild_id
         super().__init__(*items, timeout=timeout, disable_on_timeout=disable_on_timeout)
 
-    settingsService: ISettingsService = inject.attr(ISettingsService)
+
+class SettingsSelectRegion(SettingsView):
 
     @discord.ui.select(
         placeholder="Choose your default region",
@@ -62,4 +63,85 @@ class SettingsSelectRegion(discord.ui.View):
             content=f"Default region set to `{selected_option.label}`",
             delete_after=10,
             view=None,
+        )
+
+
+class SettingsRaiderRoleSelect(SettingsView):
+
+    @discord.ui.role_select(
+        placeholder="Choose the role for your raiders", min_values=1, max_values=1
+    )
+    async def select_callback(
+        self, select: discord.ui.Select, interaction: discord.Interaction
+    ):
+        select_values = cast(List[discord.Role], select.values)
+        selected_value = select_values[0]
+
+        await self.settingsService.update_setting(
+            discord_guild_id=self.discord_guild_id,
+            setting_attr="raider_role_id",
+            attr_value=str(selected_value.id),
+        )
+
+        await interaction.response.edit_message(
+            content=f"Raider role set to: `{selected_value.name}`",
+            delete_after=10,
+            view=None,
+        )
+
+
+class SettingsRaiderRoleMemberSelectModal(discord.ui.Modal):
+
+    settingsService: ISettingsService = inject.attr(ISettingsService)
+    characterService: CharacterService = inject.attr(CharacterService)
+
+    def __init__(self, discord_guild_id: str, *args, **kwargs) -> None:
+        self.discord_guild_id = discord_guild_id
+        super().__init__(*args, **kwargs)
+
+        self.add_item(discord.ui.InputText(label="Character Name", required=True))
+
+    async def callback(self, interaction: discord.Interaction):
+
+        settings = await self.settingsService.get_settings(
+            discord_guild_id=self.discord_guild_id
+        )
+        if settings is None:
+            return await interaction.response.send_message("There was an error")
+
+        if settings.default_region is None:
+            return await interaction.response.send_message("There was an error")
+
+        if settings.default_realm is None:
+            return await interaction.response.send_message("There was an error")
+
+        character_name = self.children[0].value
+
+        if character_name is None:
+            return await interaction.response.send_message("There was an error")
+
+        character = await self.characterService.get_character(
+            character_name, settings.default_realm, settings.default_region
+        )
+
+        if character is None:
+            return await interaction.response.send_message("There was an error")
+
+        embed = discord.Embed(
+            title=f"You have added {character_name} to the guild's raid roster!"
+        )
+        await interaction.response.send_message(embed=embed)
+
+
+class SettingsRaiderRoleMemberSelectView(SettingsView):
+
+    @discord.ui.button(label="Add Character", style=discord.ButtonStyle.primary)
+    async def button_callback(
+        self, button: discord.ui.Button, interaction: discord.Interaction
+    ):
+        self.disable_all_items()
+        await interaction.response.send_modal(
+            SettingsRaiderRoleMemberSelectModal(
+                title="Add your wow character!", discord_guild_id=self.discord_guild_id
+            )
         )

@@ -57,13 +57,87 @@ class Setting(commands.Cog):
                 discord_guild_id=guild_id
             )
         ):
-            return ctx.respond("Setting doesn't exist.")
+            return await ctx.respond("Setting doesn't exist.")
 
         return await ctx.respond(
             "Please select a region to set as default",
             view=settings_view.SettingsSelectRegion(guild_id, timeout=30),
             ephemeral=True,
         )
+
+    @settingCommands.command(name="realm")
+    async def set_default_realm(self, ctx: discord.ApplicationContext, realm: str):
+        guild_id = str(ctx.guild_id)
+        if not (
+            await self.settingService.does_guild_settings_exist(
+                discord_guild_id=guild_id
+            )
+        ):
+            return await ctx.respond("Setting doesn't exist.")
+
+        await self.settingService.update_setting(guild_id, "default_realm", realm)
+
+        return await ctx.respond(
+            f"Default realm has been set to {realm}", ephemeral=True
+        )
+
+    @settingCommands.command(name="raiderrole", description="Set the raider role")
+    async def set_raider_role(self, ctx: discord.ApplicationContext):
+        guild_id = str(ctx.guild_id)
+        if not (
+            await self.settingService.does_guild_settings_exist(
+                discord_guild_id=guild_id
+            )
+        ):
+            return await ctx.respond("Setting doesn't exist.")
+
+        return await ctx.respond(
+            "Please select a role for your raiders",
+            view=settings_view.SettingsRaiderRoleSelect(
+                discord_guild_id=guild_id, timeout=30
+            ),
+            ephemeral=True,
+        )
+
+    @settingCommands.command(
+        name="sendraidlinks",
+        description="Send all raiders a dm to add their wow character",
+    )
+    async def send_raider_links(self, ctx: discord.ApplicationContext):
+        guild_id = str(ctx.guild_id)
+        if not (
+            await self.settingService.does_guild_settings_exist(
+                discord_guild_id=guild_id
+            )
+        ):
+            return await ctx.respond("Setting doesn't exist.")
+
+        settings = await self.settingService.get_settings(discord_guild_id=guild_id)
+
+        if settings is None:
+            return await ctx.respond("Setting doesn't exist.")
+
+        if settings.raider_role_id is None:
+            return await ctx.respond("Raider role doesn't exist.")
+
+        ctx_guild = ctx.interaction.guild
+        if ctx_guild is None:
+            return await ctx.respond("Guild doesn't exist.")
+
+        raider_role = ctx_guild.get_role(int(settings.raider_role_id))
+
+        if raider_role is None:
+            return await ctx.respond("Role wasn't found")
+
+        for member in raider_role.members:
+            await member.send(
+                content="Hello! Please add your wow character using the button below!",
+                view=settings_view.SettingsRaiderRoleMemberSelectView(
+                    discord_guild_id=guild_id
+                ),
+            )
+
+        return await ctx.respond("Members have been sent a message", ephemeral=True)
 
     async def cog_command_error(
         self, ctx: discord.ApplicationContext, error: Exception
