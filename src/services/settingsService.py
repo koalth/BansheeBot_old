@@ -1,4 +1,4 @@
-from typing import Optional, List
+from typing import Optional, List, Tuple
 from src.db import SettingsRepository
 from src.entities import Settings
 from abc import ABC, abstractmethod, ABCMeta
@@ -22,6 +22,16 @@ class ISettingsService(metaclass=ABCMeta):
     async def update_setting(
         self, discord_guild_id: str, setting_attr: str, attr_value
     ) -> Optional[Settings]:
+        raise NotImplementedError()
+
+    @abstractmethod
+    async def get_raider_role_id(self, discord_guild_id: str) -> Optional[str]:
+        raise NotImplementedError()
+
+    @abstractmethod
+    async def get_default_region_and_realm(
+        self, discord_guild_id: str
+    ) -> Optional[Tuple[str, str]]:
         raise NotImplementedError()
 
 
