@@ -3,11 +3,23 @@ from discord.ui.item import Item
 import inject
 from src.services import ISettingsService
 from loguru import logger
+from typing import List
+
 
 region_options = [
     discord.SelectOption(label="US", value="us"),
     discord.SelectOption(label="EU", value="eu"),
 ]
+
+
+def get_select_option(
+    selected_value, options: List[discord.SelectOption]
+) -> discord.SelectOption:
+    for option in options:
+        if option.value == selected_value:
+            return option
+
+    raise Exception("Option does not exist")
 
 
 class SettingsSelectRegion(discord.ui.View):
@@ -35,28 +47,19 @@ class SettingsSelectRegion(discord.ui.View):
     async def select_callback(
         self, select: discord.ui.Select, interaction: discord.Interaction
     ):
-
         self.disable_all_items()
         self.timeout = 10
-        logger.debug(f"interaction data: {interaction.data}")
-        logger.debug(f"Selected: {select.options[0].value}")
-        selected_value = select.options[0].value
+
+        selected_option = get_select_option(select.values[0], select.options)
 
         await self.settingsService.update_setting(
             discord_guild_id=self.discord_guild_id,
             setting_attr="default_region",
-            attr_value=selected_value,
+            attr_value=selected_option.value,
         )
 
         await interaction.response.edit_message(
-            content=f"Default region set to `{selected_value}`",
-            view=self,
+            content=f"Default region set to `{selected_option.label}`",
             delete_after=10,
+            view=None,
         )
-
-        # await interaction.respond(f"Default region set to `{selected_value}`")
-        # await interaction.response.edit_message(view=self)
-
-        # return await interaction.response.send_message(
-        #     f"Default Region set to `{selected_value}`", ephemeral=True
-        # )
