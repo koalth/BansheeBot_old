@@ -32,6 +32,8 @@ class GuildOrm(Base):
     region: Mapped[str]
     realm: Mapped[str]
 
+    item_level_requirement: Mapped[Optional[int]] = mapped_column(nullable=True)
+
     characters: Mapped[List["CharacterOrm"]] = relationship(
         back_populates="guild", cascade="all, delete-orphan", lazy="selectin"
     )

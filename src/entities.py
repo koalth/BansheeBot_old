@@ -43,6 +43,8 @@ class _GuildBase:
 
     discord_guild_id: str
 
+    item_level_requirement: Optional[int]
+
 
 @dataclass
 class GuildCreate(_GuildBase):

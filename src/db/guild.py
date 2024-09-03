@@ -12,6 +12,7 @@ def guild_model_to_entity(instance: GuildOrm) -> Guild:
         realm=instance.realm,
         region=instance.region,
         discord_guild_id=instance.discord_guild_id,
+        item_level_requirement=0,
         characters=[character_model_to_entity(char) for char in instance.characters],
     )
 
