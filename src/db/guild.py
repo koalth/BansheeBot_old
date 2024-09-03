@@ -12,7 +12,7 @@ def guild_model_to_entity(instance: GuildOrm) -> Guild:
         realm=instance.realm,
         region=instance.region,
         discord_guild_id=instance.discord_guild_id,
-        item_level_requirement=0,
+        item_level_requirement=instance.item_level_requirement,
         characters=[character_model_to_entity(char) for char in instance.characters],
     )
 
@@ -23,6 +23,7 @@ def guild_entity_to_model(instance: Guild) -> GuildOrm:
         realm=instance.realm,
         region=instance.region,
         discord_guild_id=instance.discord_guild_id,
+        item_level_requirement=instance.item_level_requirement,
         characters=[],
     )
 
@@ -32,6 +33,7 @@ def guild_create_entity_to_model(instance: GuildCreate) -> GuildOrm:
         name=instance.name,
         realm=instance.realm,
         region=instance.region,
+        item_level_requirement=instance.item_level_requirement,
         discord_guild_id=instance.discord_guild_id,
     )
 

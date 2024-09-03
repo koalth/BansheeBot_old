@@ -43,6 +43,7 @@ class GuildService(IGuildService):
             name=guild_io.name,
             realm=guild_io.realm,
             region=guild_io.region,
+            item_level_requirement=None,
             discord_guild_id=discord_guild_id,
         )
         return await self.guildRepository.add_guild(guild_ent)

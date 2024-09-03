@@ -22,6 +22,8 @@ class Setting(commands.Cog):
     )
     admin_role = settingCommands.create_subgroup(name="admin_role")
     raider_role = settingCommands.create_subgroup(name="raider_role")
+    region = settingCommands.create_subgroup(name="region")
+    realm = settingCommands.create_subgroup(name="realm")
 
     async def _get_guild_role(
         self, role_id: Optional[str], ctx: discord.Interaction
@@ -71,6 +73,27 @@ class Setting(commands.Cog):
         name="set", description="Set the admin role. Admins can use admin commands"
     )
     async def admin_role_set(self, ctx: discord.ApplicationContext):
+        pass
+
+    @raider_role.command(
+        name="set",
+        description="Set the raider role. This role will be used for the raid roster",
+    )
+    async def raider_role_set(self, ctx: discord.ApplicationContext):
+        pass
+
+    @region.command(
+        name="set",
+        description="Set the default region. This region will be used for all requests",
+    )
+    async def region_set(self, ctx: discord.ApplicationContext):
+        pass
+
+    @realm.command(
+        name="set",
+        description="Set the default realm. This realm will be used for all requests",
+    )
+    async def realm_set(self, ctx: discord.ApplicationContext):
         pass
 
     @commands.Cog.listener()

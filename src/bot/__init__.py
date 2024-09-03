@@ -40,6 +40,8 @@ class BansheeBot(commands.Bot):
             "src.commands.admin_cog",
             "src.commands.character_cog",
             "src.commands.setting_cog",
+            "src.commands.guild_cog",
+            "src.commands.raid_cog",
         ]
         for cog in cogs_list:
             logger.debug(f"Loading {cog}...")

@@ -20,6 +20,15 @@ class Character(commands.Cog):
     def __init__(self, bot: BansheeBot) -> None:
         self.bot = bot
 
+    @discord.slash_command(
+        name="character",
+        description="Gets a quick summary of a World of Warcraft character",
+    )
+    async def character_get(
+        self, ctx: discord.ApplicationContext, name: str, realm: str, region: str = "us"
+    ):
+        pass
+
     @characterGroup.command(
         name="get",
         description="Retrieves a quick summary of a World of Warcraft Character from RaiderIO",
