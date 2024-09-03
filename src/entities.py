@@ -1,7 +1,22 @@
 from dataclasses import dataclass, field
 from typing import List, Optional
 from datetime import datetime
-import uuid
+from uuid import UUID
+
+
+@dataclass
+class _BaseEntity:
+    id: UUID
+
+
+@dataclass
+class _CreateBaseEntity:
+    pass
+
+
+@dataclass
+class _UpdateBaseEntity:
+    pass
 
 
 @dataclass
@@ -11,7 +26,7 @@ class _CharacterBase:
     region: str
 
     discord_user_id: str
-    guild_id: Optional[uuid.UUID]
+    guild_id: Optional[UUID]
 
     on_raid_roster: bool
 
@@ -25,14 +40,13 @@ class _CharacterBase:
 
 
 @dataclass
-class CharacterCreate(_CharacterBase):
+class CharacterCreate(_CharacterBase, _CreateBaseEntity):
     pass
 
 
 @dataclass
-class Character(_CharacterBase):
-    id: Optional[uuid.UUID]
-    guild_id: Optional[uuid.UUID]
+class Character(_CharacterBase, _BaseEntity):
+    pass
 
 
 @dataclass
@@ -47,13 +61,12 @@ class _GuildBase:
 
 
 @dataclass
-class GuildCreate(_GuildBase):
+class GuildCreate(_GuildBase, _CreateBaseEntity):
     pass
 
 
 @dataclass
-class Guild(_GuildBase):
-    id: uuid.UUID
+class Guild(_GuildBase, _BaseEntity):
     characters: List[Character]
 
 
@@ -67,10 +80,10 @@ class _SettingsBase:
 
 
 @dataclass
-class SettingsCreate(_SettingsBase):
+class SettingsCreate(_SettingsBase, _CreateBaseEntity):
     pass
 
 
 @dataclass
-class Settings(_SettingsBase):
-    id: Optional[uuid.UUID]
+class Settings(_SettingsBase, _BaseEntity):
+    pass
