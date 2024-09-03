@@ -6,6 +6,7 @@ import uuid
 
 @dataclass
 class Character:
+    id: Optional[uuid.UUID]
     name: str
     realm: str
     region: str
@@ -25,6 +26,7 @@ class Character:
 
 @dataclass
 class Guild:
+    id: Optional[uuid.UUID]
     name: str
     realm: str
     region: str
@@ -36,6 +38,7 @@ class Guild:
 
 @dataclass
 class Settings:
+    id: Optional[uuid.UUID]
     discord_guild_id: str
     default_region: Optional[str]
     default_realm: Optional[str]

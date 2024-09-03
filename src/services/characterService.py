@@ -6,9 +6,28 @@ from src.raiderIO import IRaiderIOClient
 from src.mapper import character_response_to_entity
 from src.db import CharacterRepository
 import uuid
+from abc import abstractmethod, ABCMeta
 
 
-class CharacterService:
+class ICharacterService(metaclass=ABCMeta):
+
+    @abstractmethod
+    async def get_character(
+        self, name: str, realm: str, region: str
+    ) -> Optional[Character]:
+        raise NotImplementedError()
+
+    @abstractmethod
+    async def add_character_to_guild(
+        self,
+        character: Character,
+        discord_user_id: str,
+        guild_id: uuid.UUID,
+    ):
+        raise NotImplementedError()
+
+
+class CharacterService(ICharacterService):
 
     raiderIOClient: IRaiderIOClient = inject.attr(IRaiderIOClient)
 
@@ -31,29 +50,18 @@ class CharacterService:
 
     async def add_character_to_guild(
         self,
-        name: str,
-        realm: str,
-        region: str,
+        character: Character,
         discord_user_id: str,
         guild_id: uuid.UUID,
     ):
         try:
-            character_io = await self.raiderIOClient.getCharacterProfile(
-                name, realm, region
-            )
-
-            if character_io == None:
-                return None
-
-            character_ent = character_response_to_entity(character_io)
-
             result = await CharacterRepository.get_by_discord_user_id(discord_user_id)
             if result is not None:
                 return None
 
-            character_ent.guild_id = guild_id
+            character.guild_id = guild_id
 
-            return await CharacterRepository.add_character(character_ent)
+            return await CharacterRepository.add_character(character=character)
         except Exception:
             logger.exception("There was problem in CharacterService")
             raise

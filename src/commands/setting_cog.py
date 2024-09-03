@@ -3,7 +3,7 @@ import discord
 from discord.commands import SlashCommandGroup
 from discord.ext import commands
 from src.bot import BansheeBot
-from src.services import ISettingsService
+from src.services import ISettingsService, IGuildService
 from src.views import settings_view
 import inject
 
@@ -15,6 +15,7 @@ class Setting(commands.Cog):
     )
 
     settingService: ISettingsService = inject.attr(ISettingsService)
+    guildService: IGuildService = inject.attr(IGuildService)
 
     def __init__(self, bot: BansheeBot) -> None:
         self.bot = bot
@@ -129,11 +130,18 @@ class Setting(commands.Cog):
         if raider_role is None:
             return await ctx.respond("Role wasn't found")
 
+        guild = await self.guildService.get_by_discord_guild_id(guild_id)
+        if guild is None:
+            return await ctx.respond("guild wasn't found")
+
+        if guild.id is None:
+            return await ctx.respond("guild id wasn't found")
+
         for member in raider_role.members:
             await member.send(
                 content="Hello! Please add your wow character using the button below!",
                 view=settings_view.SettingsRaiderRoleMemberSelectView(
-                    discord_guild_id=guild_id
+                    discord_guild_id=guild_id, guild_id=guild.id
                 ),
             )
 

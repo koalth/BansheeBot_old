@@ -4,7 +4,7 @@ from discord.commands import SlashCommandGroup
 from discord.ext import commands
 import inject
 from src.bot import BansheeBot
-from src.services.characterService import CharacterService
+from src.services import ICharacterService
 from src.views import get_character_embed
 
 
@@ -15,7 +15,7 @@ class Character(commands.Cog):
         description="Commands related to a World of Warcraft character",
     )
 
-    characterService: CharacterService = inject.attr(CharacterService)
+    characterService: ICharacterService = inject.attr(ICharacterService)
 
     def __init__(self, bot: BansheeBot) -> None:
         self.bot = bot

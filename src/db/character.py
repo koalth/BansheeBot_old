@@ -7,6 +7,7 @@ from sqlalchemy.exc import NoResultFound
 
 def character_model_to_entity(instance: CharacterOrm) -> Character:
     return Character(
+        id=instance.id,
         name=instance.name,
         region=instance.region,
         realm=instance.realm,

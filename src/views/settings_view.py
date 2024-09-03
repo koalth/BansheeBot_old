@@ -1,9 +1,10 @@
 import discord
 from discord.ui.item import Item
 import inject
-from src.services import ISettingsService, CharacterService
+from src.services import ISettingsService, ICharacterService, IGuildService
 from loguru import logger
 from typing import List, cast
+import uuid
 
 
 region_options = [
@@ -93,10 +94,14 @@ class SettingsRaiderRoleSelect(SettingsView):
 class SettingsRaiderRoleMemberSelectModal(discord.ui.Modal):
 
     settingsService: ISettingsService = inject.attr(ISettingsService)
-    characterService: CharacterService = inject.attr(CharacterService)
+    characterService: ICharacterService = inject.attr(ICharacterService)
 
-    def __init__(self, discord_guild_id: str, *args, **kwargs) -> None:
+    def __init__(
+        self, guild_id: uuid.UUID, discord_guild_id: str, *args, **kwargs
+    ) -> None:
+        self.guild_id = guild_id
         self.discord_guild_id = discord_guild_id
+
         super().__init__(*args, **kwargs)
 
         self.add_item(discord.ui.InputText(label="Character Name", required=True))
@@ -127,6 +132,15 @@ class SettingsRaiderRoleMemberSelectModal(discord.ui.Modal):
         if character is None:
             return await interaction.response.send_message("There was an error")
 
+        if interaction.user is None:
+            return await interaction.response.send_message("There was an error")
+
+        await self.characterService.add_character_to_guild(
+            character=character,
+            discord_user_id=str(interaction.user.id),
+            guild_id=self.guild_id,
+        )
+
         embed = discord.Embed(
             title=f"You have added {character_name} to the guild's raid roster!"
         )
@@ -135,6 +149,22 @@ class SettingsRaiderRoleMemberSelectModal(discord.ui.Modal):
 
 class SettingsRaiderRoleMemberSelectView(SettingsView):
 
+    def __init__(
+        self,
+        guild_id: uuid.UUID,
+        discord_guild_id: str,
+        *items: Item,
+        timeout: float | None = 180,
+        disable_on_timeout: bool = False,
+    ):
+        self.guild_id = guild_id
+        super().__init__(
+            discord_guild_id,
+            *items,
+            timeout=timeout,
+            disable_on_timeout=disable_on_timeout,
+        )
+
     @discord.ui.button(label="Add Character", style=discord.ButtonStyle.primary)
     async def button_callback(
         self, button: discord.ui.Button, interaction: discord.Interaction
@@ -142,6 +172,8 @@ class SettingsRaiderRoleMemberSelectView(SettingsView):
         self.disable_all_items()
         await interaction.response.send_modal(
             SettingsRaiderRoleMemberSelectModal(
-                title="Add your wow character!", discord_guild_id=self.discord_guild_id
+                title="Add your wow character!",
+                discord_guild_id=self.discord_guild_id,
+                guild_id=self.guild_id,
             )
         )

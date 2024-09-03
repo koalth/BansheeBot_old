@@ -8,6 +8,7 @@ from sqlalchemy.exc import NoResultFound
 
 def guild_model_to_entity(instance: GuildOrm) -> Guild:
     return Guild(
+        id=instance.id,
         name=instance.name,
         realm=instance.realm,
         region=instance.region,
