@@ -10,8 +10,7 @@ from typing import List, Optional
 
 
 class ICharacterService(
-    IGenericService[CharacterOrm, CharacterCreate, CharacterUpdate, Character],
-    metaclass=ABCMeta,
+    IGenericService[CharacterOrm, CharacterCreate, CharacterUpdate, Character]
 ):
 
     @abstractmethod
@@ -27,7 +26,6 @@ class ICharacterService(
 
 class CharacterService(
     ICharacterService,
-    GenericService[CharacterOrm, CharacterCreate, CharacterUpdate, Character],
 ):
 
     raiderioClient: IRaiderIOClient = inject.attr(IRaiderIOClient)

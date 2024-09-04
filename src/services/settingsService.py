@@ -8,8 +8,7 @@ import inject
 
 
 class ISettingService(
-    IGenericService[SettingOrm, SettingCreate, SettingUpdate, Setting],
-    metaclass=ABCMeta,
+    IGenericService[SettingOrm, SettingCreate, SettingUpdate, Setting]
 ):
     @abstractmethod
     async def get_by_discord_guild_id(self, discord_guild_id: str) -> Setting:
@@ -24,9 +23,7 @@ class ISettingService(
         raise NotImplementedError()
 
 
-class SettingService(
-    ISettingService, GenericService[SettingOrm, SettingCreate, SettingUpdate, Setting]
-):
+class SettingService(ISettingService):
     repository: ISettingRepository = inject.attr(ISettingRepository)
 
     async def get_by_discord_guild_id(self, discord_guild_id: str) -> Setting:

@@ -1,18 +1,12 @@
-from src.db import SettingOrm, GenericRepository, IGenericRepository
+from .base import GenericRepository
+from .interfaces import ISettingRepository
+from ..models.setting import SettingOrm
 from src.entities import Setting, SettingCreate, SettingUpdate
-from abc import ABCMeta
-
-
-class ISettingRepository(
-    IGenericRepository[SettingOrm, SettingCreate, SettingUpdate, Setting],
-    metaclass=ABCMeta,
-):
-    pass
 
 
 class SettingRepository(
-    ISettingRepository,
     GenericRepository[SettingOrm, SettingCreate, SettingUpdate, Setting],
+    ISettingRepository,
 ):
     def __init__(self):
         super().__init__(SettingOrm, Setting)

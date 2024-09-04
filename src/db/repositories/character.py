@@ -1,18 +1,12 @@
-from src.db import CharacterOrm, GenericRepository, IGenericRepository
+from .base import GenericRepository
+from .interfaces import ICharacterRepository
+from ..models.character import CharacterOrm
 from src.entities import Character, CharacterCreate, CharacterUpdate
-from abc import ABCMeta, abstractmethod
-
-
-class ICharacterRepository(
-    IGenericRepository[CharacterOrm, CharacterCreate, CharacterUpdate, Character],
-    metaclass=ABCMeta,
-):
-    pass
 
 
 class CharacterRepository(
-    ICharacterRepository,
     GenericRepository[CharacterOrm, CharacterCreate, CharacterUpdate, Character],
+    ICharacterRepository,
 ):
     def __init__(self):
         super().__init__(CharacterOrm, Character)

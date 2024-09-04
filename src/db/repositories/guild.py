@@ -1,16 +1,11 @@
-from src.db import GuildOrm, GenericRepository, IGenericRepository
+from .base import GenericRepository
+from .interfaces import IGuildRepository
+from ..models.guild import GuildOrm
 from src.entities import Guild, GuildCreate, GuildUpdate
-from abc import ABCMeta
-
-
-class IGuildRepository(
-    IGenericRepository[GuildOrm, GuildCreate, GuildUpdate, Guild], metaclass=ABCMeta
-):
-    pass
 
 
 class GuildRepository(
-    IGuildRepository, GenericRepository[GuildOrm, GuildCreate, GuildUpdate, Guild]
+    GenericRepository[GuildOrm, GuildCreate, GuildUpdate, Guild], IGuildRepository
 ):
     def __init__(self):
         super().__init__(GuildOrm, Guild)
