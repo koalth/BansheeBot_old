@@ -23,8 +23,8 @@ class Setting(commands.Cog):
     )
     admin_role = settingCommands.create_subgroup(name="admin_role")
     raider_role = settingCommands.create_subgroup(name="raider_role")
-    # region = settingCommands.create_subgroup(name="region")
-    # realm = settingCommands.create_subgroup(name="realm")
+    region = settingCommands.create_subgroup(name="region")
+    realm = settingCommands.create_subgroup(name="realm")
 
     async def _get_guild_role(
         self, role_id: Optional[str], ctx: discord.Interaction
@@ -67,32 +67,100 @@ class Setting(commands.Cog):
             )
         )
 
-    # @admin_role.command(
-    #     name="set", description="Set the admin role. Admins can use admin commands"
-    # )
-    # async def admin_role_set(self, ctx: discord.ApplicationContext):
-    #     pass
+    @admin_role.command(
+        name="set", description="Set the admin role. Admins can use admin commands"
+    )
+    async def admin_role_set(self, ctx: discord.ApplicationContext, role: discord.Role):
+        guild_id = str(ctx.guild_id)
+        if not (
+            await self.settingService.does_guild_settings_exist(
+                discord_guild_id=guild_id
+            )
+        ):
+            return await ctx.respond("Settings must exist first before you can do this")
 
-    # @raider_role.command(
-    #     name="set",
-    #     description="Set the raider role. This role will be used for the raid roster",
-    # )
-    # async def raider_role_set(self, ctx: discord.ApplicationContext):
-    #     pass
+        settings = await self.settingService.get_by_discord_guild_id(
+            discord_guild_id=guild_id
+        )
 
-    # @region.command(
-    #     name="set",
-    #     description="Set the default region. This region will be used for all requests",
-    # )
-    # async def region_set(self, ctx: discord.ApplicationContext):
-    #     pass
+        update_obj = SettingUpdate(admin_role_id=str(role.id))
 
-    # @realm.command(
-    #     name="set",
-    #     description="Set the default realm. This realm will be used for all requests",
-    # )
-    # async def realm_set(self, ctx: discord.ApplicationContext):
-    #     pass
+        newly_updated = await self.settingService.update(settings.id, update_obj)
+
+        return await ctx.respond(
+            f"You have set {role.mention} as the Admin role", ephemeral=True
+        )
+
+    @raider_role.command(
+        name="set",
+        description="Set the raider role. This role will be used for the raid roster",
+    )
+    async def raider_role_set(
+        self, ctx: discord.ApplicationContext, role: discord.Role
+    ):
+        guild_id = str(ctx.guild_id)
+        if not (
+            await self.settingService.does_guild_settings_exist(
+                discord_guild_id=guild_id
+            )
+        ):
+            return await ctx.respond("Settings must exist first before you can do this")
+
+        settings = await self.settingService.get_by_discord_guild_id(
+            discord_guild_id=guild_id
+        )
+
+        update_obj = SettingUpdate(raider_role_id=str(role.id))
+
+        newly_updated = await self.settingService.update(settings.id, update_obj)
+
+        return await ctx.respond(
+            f"You have set {role.mention} as the Raider role", ephemeral=True
+        )
+
+    @region.command(
+        name="set",
+        description="Set the default region. This region will be used for all requests",
+    )
+    async def region_set(self, ctx: discord.ApplicationContext):
+        guild_id = str(ctx.guild_id)
+        if not (
+            await self.settingService.does_guild_settings_exist(
+                discord_guild_id=guild_id
+            )
+        ):
+            return await ctx.respond("Settings must exist first before you can do this")
+
+        return await ctx.respond(
+            "Please select a region to set as default",
+            view=setting.SettingsSelectRegion(guild_id, timeout=30),
+            ephemeral=True,
+        )
+
+    @realm.command(
+        name="set",
+        description="Set the default realm. This realm will be used for all requests",
+    )
+    async def realm_set(self, ctx: discord.ApplicationContext, realm: str):
+        guild_id = str(ctx.guild_id)
+        if not (
+            await self.settingService.does_guild_settings_exist(
+                discord_guild_id=guild_id
+            )
+        ):
+            return await ctx.respond("Settings must exist first before you can do this")
+
+        settings = await self.settingService.get_by_discord_guild_id(
+            discord_guild_id=guild_id
+        )
+
+        update_obj = SettingUpdate(default_realm=realm)
+
+        newly_updated = await self.settingService.update(settings.id, update_obj)
+
+        return await ctx.respond(
+            f"You have set `{newly_updated.default_realm}`", ephemeral=True
+        )
 
     @commands.Cog.listener()
     async def on_guild_join(self, guild: discord.Guild):
@@ -123,63 +191,6 @@ class Setting(commands.Cog):
         await self.settingService.setup_guild_settings(discord_guild_id=guild_id)
 
         return await ctx.respond("Guild setting have been created")
-
-    @settingCommands.command(name="region")
-    async def set_default_region(self, ctx: discord.ApplicationContext):
-        guild_id = str(ctx.guild_id)
-        if not (
-            await self.settingService.does_guild_settings_exist(
-                discord_guild_id=guild_id
-            )
-        ):
-            return await ctx.respond("Setting doesn't exist.")
-
-        return await ctx.respond(
-            "Please select a region to set as default",
-            view=setting.SettingsSelectRegion(guild_id, timeout=30),
-            ephemeral=True,
-        )
-
-    @settingCommands.command(name="realm")
-    async def set_default_realm(self, ctx: discord.ApplicationContext, realm: str):
-        guild_id = str(ctx.guild_id)
-        if not (
-            await self.settingService.does_guild_settings_exist(
-                discord_guild_id=guild_id
-            )
-        ):
-            return await ctx.respond("Setting doesn't exist.")
-
-        settings = await self.settingService.get_by_discord_guild_id(
-            discord_guild_id=guild_id
-        )
-
-        update_obj = SettingUpdate(default_realm=realm)
-
-        updated_settings = await self.settingService.update(settings.id, update_obj)
-
-        return await ctx.respond(
-            f"Default realm has been set to {updated_settings.default_realm}",
-            ephemeral=True,
-        )
-
-    @settingCommands.command(name="raiderrole", description="Set the raider role")
-    async def set_raider_role(self, ctx: discord.ApplicationContext):
-        guild_id = str(ctx.guild_id)
-        if not (
-            await self.settingService.does_guild_settings_exist(
-                discord_guild_id=guild_id
-            )
-        ):
-            return await ctx.respond("Setting doesn't exist.")
-
-        return await ctx.respond(
-            "Please select a role for your raiders",
-            view=setting.SettingsRaiderRoleSelect(
-                discord_guild_id=guild_id, timeout=30
-            ),
-            ephemeral=True,
-        )
 
     @settingCommands.command(
         name="sendraidlinks",

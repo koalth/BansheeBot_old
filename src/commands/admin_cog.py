@@ -41,19 +41,6 @@ class Admin(commands.Cog):
 
         return await ctx.respond(f"`{guild.name}`-`{guild.realm}` has been added")
 
-    @admin.command(name="roster", description="Get the characters on the raid roster")
-    async def get_roster(self, ctx: discord.ApplicationContext):
-
-        guild_id = str(ctx.guild_id)
-        guild = await self.guildService.get_by_discord_guild_id(guild_id)
-
-        raiders = await self.characterService.get_characters_with_raid_role(guild.id)
-
-        embed = admin.AdminRaidRosterEmbed()
-        embed.add_characters(raiders)
-
-        return await ctx.respond(embed=embed)
-
     @admin.command(
         name="test",
         description="This is a test command to make sure the bot is working",

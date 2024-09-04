@@ -3,7 +3,8 @@ import discord
 from discord.commands import SlashCommandGroup
 from discord.ext import commands
 from src.bot import BansheeBot
-from src.views import admin
+from src.views import raid
+from src.entities import GuildUpdate
 from src.services import IGuildService, ICharacterService, ISettingService
 import inject
 
@@ -30,19 +31,48 @@ class Raid(commands.Cog):
 
     @raidCommands.command(name="show", description="Show the current raid roster")
     async def show_raid(self, ctx: discord.ApplicationContext):
-        pass
+        guild_id = str(ctx.guild_id)
+        guild = await self.guildService.get_by_discord_guild_id(guild_id)
+
+        raiders = await self.characterService.get_characters_with_raid_role(guild.id)
+
+        embed = raid.RaidRosterShowEmbed()
+        embed.add_characters(raiders, guild.item_level_requirement)
+
+        return await ctx.respond(embed=embed)
 
     @item_levelCommands.command(
         name="set", description="Set the item level requirement for the raid roster"
     )
     async def set_item_level(self, ctx: discord.ApplicationContext, item_level: int):
-        pass
+        guild_id = str(ctx.guild_id)
+        guild = await self.guildService.get_by_discord_guild_id(
+            discord_guild_id=guild_id
+        )
+
+        guild_update = GuildUpdate(item_level_requirement=item_level)
+
+        updated_guild = await self.guildService.update(guild.id, guild_update)
+
+        return await ctx.respond(
+            f"Item level Requirement set to `{updated_guild.item_level_requirement}`"
+        )
 
     @item_levelCommands.command(
         name="show", description="show the item level requirement for the raid roster"
     )
     async def show_item_level(self, ctx: discord.ApplicationContext):
-        pass
+        guild_id = str(ctx.guild_id)
+        guild = await self.guildService.get_by_discord_guild_id(
+            discord_guild_id=guild_id
+        )
+
+        if guild.item_level_requirement is None:
+            return await ctx.respond(f"There is currently no item level requirement")
+
+        return await ctx.respond(
+            f"Item level Requirement is currently set to `{guild.item_level_requirement}`"
+        )
 
     @unlinkedCommands.command(
         name="list", description="List the unlinked members with raid roles"
