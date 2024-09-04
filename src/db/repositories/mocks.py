@@ -1,7 +1,7 @@
 from pydantic import BaseModel
 import uuid
 from src.db import Base
-from unittest.mock import AsyncMock
+from unittest.mock import AsyncMock, MagicMock
 
 from .interfaces import IMockRepository
 from typing import List, Generic, TypeVar, Type

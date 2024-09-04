@@ -24,6 +24,8 @@ pytest-dataset = "^0.3.2"
 sqlalchemy = "^2.0.32"
 asyncpg = "^0.29.0"
 alembic = "^1.13.2"
+mock-alchemy = "^0.2.6"
+faker = "^28.4.1"
 
 [tool.poetry.scripts]
 bot = 'src.main:main'

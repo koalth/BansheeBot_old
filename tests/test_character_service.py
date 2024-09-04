@@ -5,11 +5,38 @@ from src.external.raiderIO import (
     CharacterResponse,
     GuildResponse,
 )
+from typing import List
+import uuid
 from src.db import CharacterOrm, CharacterMockRepository, ICharacterRepository
 from src.entities import Character, CharacterCreate, CharacterUpdate
 from src.services import CharacterService, ICharacterService
 import inject
 from unittest.mock import AsyncMock
+
+
+from faker import Faker
+
+fake = Faker()
+from faker.providers import BaseProvider
+
+
+class CharacterProvider(BaseProvider):
+    def character(self) -> Character:
+        return Character(
+            id=fake.u,
+            name=fake.name(),
+            realm=fake.color(),
+            region=fake.region_code(),
+            guild_id=fake.uid(),
+            discord_user_id=fake.uid(),
+            item_level=int(fake.rd_number()),
+            class_name=fake.color(),
+            spec_name=fake.color(),
+            profile_url=fake.url(),
+            thumbnail_url=fake.url(),
+            on_raid_roster=fake.boolean(50),
+            last_crawled_at=fake.date_time(),
+        )
 
 
 class TestCharacterService_Client:
@@ -83,6 +110,17 @@ class TestCharacterService_Client:
 class TestCharacterService_Repository:
 
     @pytest.fixture
+    def mock_character_entities(self) -> List[Character]:
+
+        return [
+            Character(
+                id=fake.uid(),
+                name="character",
+                realm="dalaran",
+            )
+        ]
+
+    @pytest.fixture
     def mock_character_repository(self) -> ICharacterRepository:
         return CharacterMockRepository()
 
@@ -94,5 +132,6 @@ class TestCharacterService_Repository:
         inject.configure(tests_config, allow_override=True, clear=True)
 
     @pytest.mark.asyncio
-    async def test_create_character(setup_mock_injector):
+    async def test_get_characters_with_raid_role(setup_mock_injector):
+
         _sut = CharacterService()
