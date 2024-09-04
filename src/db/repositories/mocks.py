@@ -20,6 +20,9 @@ class MockGenericRepository(
         self.model = model
         self.entity = entity
 
+    async def create(self, obj_in: CreateSchemaType) -> EntityType:
+        return AsyncMock()()
+
     async def get(self, id: uuid.UUID) -> EntityType:
         return AsyncMock()()
 
