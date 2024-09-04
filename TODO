@@ -1,9 +1,16 @@
 Project:
-  - Allow server admins to check if raiders meet item level requirements
-  - Refactor commands 
+  - Add proper validation on commands
+  - Add admin permission requirement on settings and other commands
+  - Allow a users to get their character's profile from Raider.IO
+  - Create two separate environments for test and prod bot
+  - Deploy prod bot for server
 
 
 
 
 Quality:
   - add pytest-cov to find test coverage
+  - Create interfaces and mocks for each service and repositories
+  - Add more tests to automated pipelines
+  - Add a Redis cache to the docker services for all API requests/responses
+  - Create documentation (probably through Read https://docs.readthedocs.io/en/stable/)
