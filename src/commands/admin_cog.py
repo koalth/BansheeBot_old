@@ -5,6 +5,7 @@ from discord.ext import commands
 from src.bot import BansheeBot
 from src.views import admin
 from src.services import IGuildService, ICharacterService
+from src.entities import GuildCreate
 import inject
 
 
@@ -26,22 +27,25 @@ class Admin(commands.Cog):
         realm: str = "Dalaran",
         region: str = "us",
     ):
-        guild = await self.guildService.create_guild(
-            name, realm, region, str(ctx.guild_id)
+
+        guild_id = str(ctx.guild_id)
+        guild = await self.guildService.create(
+            GuildCreate(
+                name=name,
+                realm=realm,
+                region=region,
+                discord_guild_id=guild_id,
+                item_level_requirement=None,
+            )
         )
 
-        if guild is None:
-            return await ctx.respond("There was a problem adding the guild")
-
-        return await ctx.respond(f"`{name}`-`{realm}` has been added")
+        return await ctx.respond(f"`{guild.name}`-`{guild.realm}` has been added")
 
     @admin.command(name="roster", description="Get the characters on the raid roster")
     async def get_roster(self, ctx: discord.ApplicationContext):
 
-        guild = await self.guildService.get_by_discord_guild_id(str(ctx.guild_id))
-
-        if guild is None:
-            return await ctx.respond("There was a problem getting the guild")
+        guild_id = str(ctx.guild_id)
+        guild = await self.guildService.get_by_discord_guild_id(guild_id)
 
         raiders = await self.characterService.get_characters_on_raid_role(guild.id)
 

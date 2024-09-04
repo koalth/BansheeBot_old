@@ -30,6 +30,10 @@ class IGenericService(
         raise NotImplementedError()
 
     @abstractmethod
+    async def get_by_filters(self, *filter_conditions) -> EntityType:
+        raise NotImplementedError()
+
+    @abstractmethod
     async def update(
         self, id: uuid.UUID, update_entity: UpdateSchemaType
     ) -> EntityType:
@@ -53,6 +57,9 @@ class GenericService(
 
     async def get_all(self, *filter_conditions) -> List[EntityType]:
         return await self.repository.get_all(*filter_conditions)
+
+    async def get_by_filters(self, *filter_conditions) -> EntityType:
+        return await self.repository.get_by_filters(*filter_conditions)
 
     async def update(
         self, id: uuid.UUID, update_entity: UpdateSchemaType

@@ -30,6 +30,10 @@ class IGenericRepository(
         raise NotImplementedError()
 
     @abstractmethod
+    async def get_by_filters(self, *filter_conditions) -> EntityType:
+        raise NotImplementedError()
+
+    @abstractmethod
     async def update(self, id: uuid.UUID, obj_in: UpdateSchemaType) -> EntityType:
         raise NotImplementedError()
 
@@ -67,6 +71,15 @@ class GenericRepository(
         async with sessionmanager.session() as session:
             results = await session.execute(stmt)
             return [self.entity.model_validate(obj) for obj in results.scalars().all()]
+
+    async def get_by_filters(self, *filter_conditions) -> EntityType:
+        stmt = select(self.model)
+        if filter_conditions:
+            stmt.where(*filter_conditions)
+        async with sessionmanager.session() as session:
+            results = await session.execute(stmt)
+            obj = results.scalar_one()
+            return self.entity.model_validate(obj)
 
     async def update(self, id: uuid.UUID, obj_in: UpdateSchemaType) -> EntityType:
         stmt = select(self.model).where(self.model.id == id)

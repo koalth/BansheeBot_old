@@ -1,8 +1,9 @@
 import pytest
-from src.raiderIO import IRaiderIOClient, MockRaiderIOClient, CharacterResponse
+from src.external.raiderIO import IRaiderIOClient, MockRaiderIOClient, CharacterResponse
 from src.services import CharacterService
 from src.mapper import character_response_to_entity
 import inject
+
 
 @pytest.fixture
 def mockCharacterResponse(dataset) -> CharacterResponse:

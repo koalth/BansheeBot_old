@@ -11,10 +11,17 @@ from abc import abstractmethod, ABCMeta
 class IGuildService(
     IGenericService[GuildOrm, GuildCreate, GuildUpdate, Guild], metaclass=ABCMeta
 ):
-    pass
+    @abstractmethod
+    async def get_by_discord_guild_id(self, discord_guild_id: str) -> Guild:
+        raise NotImplementedError()
 
 
 class GuildService(
     IGuildService, GenericService[GuildOrm, GuildCreate, GuildUpdate, Guild]
 ):
     repository: IGuildRepository = inject.attr(IGuildRepository)
+
+    async def get_by_discord_guild_id(self, discord_guild_id: str) -> Guild:
+        return await self.repository.get_by_filters(
+            GuildOrm.discord_guild_id == discord_guild_id
+        )
