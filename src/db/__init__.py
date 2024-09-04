@@ -6,8 +6,11 @@ from .repositories.interfaces import (
     ICharacterRepository,
     IGuildRepository,
     ISettingRepository,
+    IMockRepository,
 )
+
 from .repositories.base import GenericRepository
-from .repositories.character import CharacterRepository
-from .repositories.guild import GuildRepository
-from .repositories.setting import SettingRepository
+from .repositories.character import CharacterRepository, CharacterMockRepository
+from .repositories.guild import GuildRepository, GuildMockRepository
+from .repositories.setting import SettingRepository, SettingMockRepository
+from .repositories.mocks import MockGenericRepository

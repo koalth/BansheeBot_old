@@ -72,20 +72,24 @@ class RaiderIOClient(IRaiderIOClient, APIClient):
 
 class MockRaiderIOClient(IRaiderIOClient):
 
-    response: CharacterResponse
+    character_response: Optional[CharacterResponse]
+    guild_response: Optional[GuildResponse]
 
-    def __init__(self, response: CharacterResponse):
-        self.response = response
+    def __init__(
+        self,
+        character_response: Optional[CharacterResponse] = None,
+        guild_response: Optional[GuildResponse] = None,
+    ):
+        self.character_response = character_response
+        self.guild_response = guild_response
 
     async def getCharacterProfile(
         self, name: str, realm: str, region: str
     ) -> Optional[CharacterResponse]:
 
-        if (
-            self.response.name == name
-            and self.response.realm == realm
-            and self.response.region == region
-        ):
-            return self.response
-        else:
-            return None
+        return self.character_response
+
+    async def getGuildProfile(
+        self, name: str, realm: str, region: str
+    ) -> GuildResponse | None:
+        return self.guild_response

@@ -4,6 +4,7 @@ from typing import List, Generic, TypeVar
 from src.db import Base
 from abc import ABCMeta, abstractmethod
 
+
 ModelType = TypeVar("ModelType", bound=Base)
 EntityType = TypeVar("EntityType", bound=BaseModel)
 CreateSchemaType = TypeVar("CreateSchemaType", bound=BaseModel)
@@ -55,6 +56,13 @@ class IGuildRepository(
 
 
 class ISettingRepository(
+    IGenericRepository[ModelType, CreateSchemaType, UpdateSchemaType, EntityType],
+    metaclass=ABCMeta,
+):
+    pass
+
+
+class IMockRepository(
     IGenericRepository[ModelType, CreateSchemaType, UpdateSchemaType, EntityType],
     metaclass=ABCMeta,
 ):
