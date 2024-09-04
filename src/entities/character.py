@@ -10,6 +10,7 @@ class CharacterBase(BaseModel):
     region: str
 
     discord_user_id: str
+    guild_id: Optional[UUID] = None
 
     on_raid_roster: bool
 
@@ -46,5 +47,4 @@ class CharacterUpdate(BaseModel):
 
 class Character(CharacterBase):
     id: UUID
-    guild_id: UUID
     model_config = ConfigDict(from_attributes=True)

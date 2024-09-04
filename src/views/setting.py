@@ -1,7 +1,13 @@
 from datetime import datetime
 import discord
 from discord.ui.item import Item
-from src.entities import Setting
+from src.entities import (
+    Setting,
+    SettingCreate,
+    SettingUpdate,
+    CharacterUpdate,
+    CharacterCreate,
+)
 import inject
 from src.services import ISettingService, ICharacterService, IGuildService
 from loguru import logger
@@ -93,11 +99,14 @@ class SettingsSelectRegion(SettingsView):
 
         selected_option = get_select_option(select.values[0], select.options)
 
-        await self.settingsService.update_setting(
-            discord_guild_id=self.discord_guild_id,
-            setting_attr="default_region",
-            attr_value=selected_option.value,
+        update_obj = SettingUpdate(
+            discord_guild_id=self.discord_guild_id, default_region=selected_option.value
         )
+
+        settings = await self.settingsService.get_by_discord_guild_id(
+            discord_guild_id=self.discord_guild_id
+        )
+        await self.settingsService.update(settings.id, update_obj)
 
         await interaction.response.edit_message(
             content=f"Default region set to `{selected_option.label}`",
@@ -117,11 +126,16 @@ class SettingsRaiderRoleSelect(SettingsView):
         select_values = cast(List[discord.Role], select.values)
         selected_value = select_values[0]
 
-        await self.settingsService.update_setting(
+        update_obj = SettingUpdate(
             discord_guild_id=self.discord_guild_id,
-            setting_attr="raider_role_id",
-            attr_value=str(selected_value.id),
+            raider_role_id=str(selected_value.id),
         )
+
+        settings = await self.settingsService.get_by_discord_guild_id(
+            discord_guild_id=self.discord_guild_id
+        )
+
+        await self.settingsService.update(settings.id, update_obj)
 
         await interaction.response.edit_message(
             content=f"Raider role set to: `{selected_value.name}`",
@@ -147,11 +161,9 @@ class SettingsRaiderRoleMemberSelectModal(discord.ui.Modal):
 
     async def callback(self, interaction: discord.Interaction):
 
-        settings = await self.settingsService.get_settings(
+        settings = await self.settingsService.get_by_discord_guild_id(
             discord_guild_id=self.discord_guild_id
         )
-        if settings is None:
-            return await interaction.response.send_message("There was an error")
 
         if settings.default_region is None:
             return await interaction.response.send_message("There was an error")
@@ -174,15 +186,25 @@ class SettingsRaiderRoleMemberSelectModal(discord.ui.Modal):
         if interaction.user is None:
             return await interaction.response.send_message("There was an error")
 
-        await self.characterService.add_character_to_guild(
-            character=character,
+        character_create_obj = CharacterCreate(
             discord_user_id=str(interaction.user.id),
+            on_raid_roster=True,
             guild_id=self.guild_id,
-            on_raider_role=True,
+            name=character.name,
+            realm=character.realm,
+            region=character.region,
+            item_level=character.gear.item_level_equipped,
+            class_name=character.character_class,
+            spec_name=character.active_spec_name,
+            profile_url=character.profile_url,
+            thumbnail_url=character.thumbnail_url,
+            last_crawled_at=character.last_crawled_at,
         )
 
+        created_character = await self.characterService.create(character_create_obj)
+
         embed = discord.Embed(
-            title=f"You have added {character_name} to the guild's raid roster!"
+            title=f"You have added `{created_character.name}`-`{created_character.realm}` to the guild's raid roster!"
         )
         await interaction.response.send_message(embed=embed)
 

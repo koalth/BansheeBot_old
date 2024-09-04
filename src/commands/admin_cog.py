@@ -47,7 +47,7 @@ class Admin(commands.Cog):
         guild_id = str(ctx.guild_id)
         guild = await self.guildService.get_by_discord_guild_id(guild_id)
 
-        raiders = await self.characterService.get_characters_on_raid_role(guild.id)
+        raiders = await self.characterService.get_characters_with_raid_role(guild.id)
 
         embed = admin.AdminRaidRosterEmbed()
         embed.add_characters(raiders)

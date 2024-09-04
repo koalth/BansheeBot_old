@@ -3,7 +3,8 @@ import discord
 from discord.commands import SlashCommandGroup
 from discord.ext import commands
 from src.bot import BansheeBot
-from src.services import ISettingsService, IGuildService
+from src.services import ISettingService, IGuildService
+from src.entities import SettingUpdate
 from src.views import setting
 import inject
 from typing import Optional
@@ -11,7 +12,7 @@ from typing import Optional
 
 class Setting(commands.Cog):
 
-    settingService: ISettingsService = inject.attr(ISettingsService)
+    settingService: ISettingService = inject.attr(ISettingService)
     guildService: IGuildService = inject.attr(IGuildService)
 
     def __init__(self, bot: BansheeBot) -> None:
@@ -45,10 +46,7 @@ class Setting(commands.Cog):
     )
     async def show(self, ctx: discord.ApplicationContext):
         guild_id = str(ctx.guild_id)
-        settings = await self.settingService.get_settings(guild_id)
-
-        if settings is None:
-            return await ctx.respond("Setting doesn't exist.")
+        settings = await self.settingService.get_by_discord_guild_id(guild_id)
 
         admin_role = await self._get_guild_role(
             settings.admin_role_id,
@@ -152,10 +150,17 @@ class Setting(commands.Cog):
         ):
             return await ctx.respond("Setting doesn't exist.")
 
-        await self.settingService.update_setting(guild_id, "default_realm", realm)
+        settings = await self.settingService.get_by_discord_guild_id(
+            discord_guild_id=guild_id
+        )
+
+        update_obj = SettingUpdate(default_realm=realm)
+
+        updated_settings = await self.settingService.update(settings.id, update_obj)
 
         return await ctx.respond(
-            f"Default realm has been set to {realm}", ephemeral=True
+            f"Default realm has been set to {updated_settings.default_realm}",
+            ephemeral=True,
         )
 
     @settingCommands.command(name="raiderrole", description="Set the raider role")
@@ -189,10 +194,9 @@ class Setting(commands.Cog):
         ):
             return await ctx.respond("Setting doesn't exist.")
 
-        settings = await self.settingService.get_settings(discord_guild_id=guild_id)
-
-        if settings is None:
-            return await ctx.respond("Setting doesn't exist.")
+        settings = await self.settingService.get_by_discord_guild_id(
+            discord_guild_id=guild_id
+        )
 
         if settings.raider_role_id is None:
             return await ctx.respond("Raider role doesn't exist.")
