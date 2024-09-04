@@ -4,7 +4,7 @@ from discord.commands import SlashCommandGroup
 from discord.ext import commands
 from src.bot import BansheeBot
 from src.services import ISettingsService, IGuildService
-from src.views import settings_view
+from src.views import setting
 import inject
 from typing import Optional
 
@@ -61,7 +61,7 @@ class Setting(commands.Cog):
         )
 
         return await ctx.respond(
-            embed=settings_view.SettingsShowEmbed(
+            embed=setting.SettingsShowEmbed(
                 region=settings.default_region,
                 realm=settings.default_realm,
                 admin_role=admin_role.name if admin_role is not None else None,
@@ -138,7 +138,7 @@ class Setting(commands.Cog):
 
         return await ctx.respond(
             "Please select a region to set as default",
-            view=settings_view.SettingsSelectRegion(guild_id, timeout=30),
+            view=setting.SettingsSelectRegion(guild_id, timeout=30),
             ephemeral=True,
         )
 
@@ -170,7 +170,7 @@ class Setting(commands.Cog):
 
         return await ctx.respond(
             "Please select a role for your raiders",
-            view=settings_view.SettingsRaiderRoleSelect(
+            view=setting.SettingsRaiderRoleSelect(
                 discord_guild_id=guild_id, timeout=30
             ),
             ephemeral=True,
@@ -216,7 +216,7 @@ class Setting(commands.Cog):
         for member in raider_role.members:
             await member.send(
                 content="Hello! Please add your wow character using the button below!",
-                view=settings_view.SettingsRaiderRoleMemberSelectView(
+                view=setting.SettingsRaiderRoleMemberSelectView(
                     discord_guild_id=guild_id, guild_id=guild.id
                 ),
             )

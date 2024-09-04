@@ -3,11 +3,13 @@ import discord
 from discord.commands import SlashCommandGroup
 from discord.ext import commands
 from src.bot import BansheeBot
-from src.services import GuildService
+from src.services import IGuildService
 import inject
 
 
 class Guild(commands.Cog):
+
+    guildService: IGuildService = inject.attr(IGuildService)
 
     def __init__(self, bot: BansheeBot) -> None:
         self.bot = bot

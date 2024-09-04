@@ -3,15 +3,15 @@ import discord
 from discord.commands import SlashCommandGroup
 from discord.ext import commands
 from src.bot import BansheeBot
-from src.views import admin_views
-from src.services import GuildService, CharacterService
+from src.views import admin
+from src.services import IGuildService, ICharacterService
 import inject
 
 
 class Admin(commands.Cog):
 
-    guildService: GuildService = inject.attr(GuildService)
-    characterService: CharacterService = inject.attr(CharacterService)
+    guildService: IGuildService = inject.attr(IGuildService)
+    characterService: ICharacterService = inject.attr(ICharacterService)
 
     def __init__(self, bot: BansheeBot) -> None:
         self.bot = bot
@@ -45,7 +45,7 @@ class Admin(commands.Cog):
 
         raiders = await self.characterService.get_characters_on_raid_role(guild.id)
 
-        embed = admin_views.AdminRaidRosterEmbed()
+        embed = admin.AdminRaidRosterEmbed()
         embed.add_characters(raiders)
 
         return await ctx.respond(embed=embed)

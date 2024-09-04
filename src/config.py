@@ -1,6 +1,6 @@
 import os
 from pydantic_settings import BaseSettings, SettingsConfigDict
-from pydantic import Field, computed_field, field_validator, ValidationInfo
+from pydantic import Field, field_validator, ValidationInfo
 from typing import Optional
 
 

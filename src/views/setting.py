@@ -1,9 +1,9 @@
 from datetime import datetime
 import discord
 from discord.ui.item import Item
-from src.entities import Settings
+from src.entities import Setting
 import inject
-from src.services import ISettingsService, ICharacterService, IGuildService
+from src.services import ISettingService, ICharacterService, IGuildService
 from loguru import logger
 from typing import List, cast, Optional
 import uuid
@@ -17,7 +17,7 @@ region_options = [
 
 class SettingsShowEmbed(discord.Embed):
 
-    settingsService: ISettingsService = inject.attr(ISettingsService)
+    settingsService: ISettingService = inject.attr(ISettingService)
 
     def __init__(
         self,
@@ -64,7 +64,7 @@ def get_select_option(
 
 class SettingsView(discord.ui.View):
     discord_guild_id: str
-    settingsService: ISettingsService = inject.attr(ISettingsService)
+    settingsService: ISettingService = inject.attr(ISettingService)
 
     def __init__(
         self,
@@ -132,7 +132,7 @@ class SettingsRaiderRoleSelect(SettingsView):
 
 class SettingsRaiderRoleMemberSelectModal(discord.ui.Modal):
 
-    settingsService: ISettingsService = inject.attr(ISettingsService)
+    settingsService: ISettingService = inject.attr(ISettingService)
     characterService: ICharacterService = inject.attr(ICharacterService)
 
     def __init__(

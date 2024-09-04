@@ -3,12 +3,16 @@ import discord
 from discord.commands import SlashCommandGroup
 from discord.ext import commands
 from src.bot import BansheeBot
-from src.views import admin_views
-from src.services import GuildService, CharacterService
+from src.views import admin
+from src.services import IGuildService, ICharacterService, ISettingService
 import inject
 
 
 class Raid(commands.Cog):
+
+    settingService: ISettingService = inject.attr(ISettingService)
+    guildService: IGuildService = inject.attr(IGuildService)
+    characterService: ICharacterService = inject.attr(ICharacterService)
 
     raidCommands = SlashCommandGroup(name="raid", description="Raid Roster commands")
     item_levelCommands = raidCommands.create_subgroup(
