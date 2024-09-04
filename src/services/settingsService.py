@@ -28,7 +28,7 @@ class SettingService(ISettingService):
 
     async def get_by_discord_guild_id(self, discord_guild_id: str) -> Setting:
         return await self.repository.get_by_filters(
-            Setting.discord_guild_id == discord_guild_id
+            SettingOrm.discord_guild_id == discord_guild_id
         )
 
     async def does_guild_settings_exist(self, discord_guild_id: str) -> bool:
