@@ -23,6 +23,14 @@ class ICharacterService(
     ) -> CharacterResponse:
         raise NotImplementedError()
 
+    @abstractmethod
+    async def get_by_did(self, discord_id: str) -> List[Character]:
+        raise NotImplementedError()
+
+    @abstractmethod
+    async def has_character(self, discord_id: str) -> bool:
+        raise NotImplementedError()
+
 
 class CharacterService(
     ICharacterService,
@@ -47,3 +55,9 @@ class CharacterService(
             return character_io
         except Exception:
             return None
+
+    async def get_by_did(self, discord_id: str) -> List[Character]:
+        return await self.repository.get_all(CharacterOrm.discord_user_id == discord_id)
+
+    async def has_character(self, discord_id: str) -> bool:
+        return await self.get_by_did(discord_id) is not None
