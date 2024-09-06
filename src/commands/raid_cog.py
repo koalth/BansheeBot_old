@@ -1,7 +1,8 @@
 from loguru import logger
 import discord
 from discord.commands import SlashCommandGroup
-from discord.ext import commands
+from discord.ext import commands, tasks
+import asyncio
 from src.bot import BansheeBot
 from src.views import raid
 from src.entities import GuildUpdate
@@ -184,17 +185,12 @@ class Raid(commands.Cog):
     )
     async def message_unlinked(self, ctx: discord.ApplicationContext):
         assert type(ctx.guild) is discord.Guild
-        guild_id = self._get_guild_id(ctx)
         ctx_guild = ctx.guild
         assert type(ctx_guild) is discord.Guild
 
-        guild = await self.guildService.get_by_discord_guild_id(
-            discord_guild_id=guild_id
-        )
-
         embed = discord.Embed(
             title="Link Character",
-            description=f"Please link your World of Warcraft character to be tracked for `{ctx.guild.name}`",
+            description=f"Please link your World of Warcraft character to be tracked for **{ctx.guild.name}** using the `/add` command in the server",
             color=discord.Color.orange(),
         )
 
@@ -203,9 +199,6 @@ class Raid(commands.Cog):
         for member in members:
             await member.send(
                 embed=embed,
-                view=raid.RaidRosterMemberLinkCharacterView(
-                    discord_guild_id=guild_id, guild_id=guild.id
-                ),
             )
 
         return await ctx.respond("Messages has been sent.", ephemeral=True)

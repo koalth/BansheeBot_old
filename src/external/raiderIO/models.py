@@ -50,7 +50,7 @@ class ItemsResponse(TypedDict):
 
 class GearResponse(MyBaseModel):
     updated_at: str
-    item_level_equipped: int
+    item_level_equipped: int  # use this one
     item_level_total: int
     items: ItemsResponse
 
