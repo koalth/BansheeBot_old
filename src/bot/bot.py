@@ -4,7 +4,7 @@ import discord
 from discord.ext import commands
 from loguru import logger
 from src.config import Config
-
+from src.context import BansheeBotCommandContext
 
 class BansheeBot(commands.Bot):
 
@@ -25,6 +25,11 @@ class BansheeBot(commands.Bot):
             ),
         )
         logger.debug("...BansheeBot ended initialization")
+
+    async def get_context(
+        self, message: discord.Message, *, cls=BansheeBotCommandContext
+    ):
+        return await super().get_context(message, cls=cls)
 
     def set_config(self, config: Config) -> None:
         logger.debug(f"BansheeBot configured as {os.getenv('BOT_ENV', 'dev')}")
