@@ -201,13 +201,12 @@ class Raid(commands.Cog):
         members = await self._get_unlinked_members(ctx)
 
         for member in members:
-            if not await self.characterService.has_character(str(member.id)):
-                await member.send(
-                    embed=embed,
-                    view=raid.RaidRosterMemberLinkCharacterView(
-                        discord_guild_id=guild_id, guild_id=guild.id
-                    ),
-                )
+            await member.send(
+                embed=embed,
+                view=raid.RaidRosterMemberLinkCharacterView(
+                    discord_guild_id=guild_id, guild_id=guild.id
+                ),
+            )
 
         return await ctx.respond("Messages has been sent.", ephemeral=True)
 
@@ -227,8 +226,7 @@ class Raid(commands.Cog):
         members = await self._get_linked_members(ctx)
         member_names = []
         for member in members:
-            if await self.characterService.has_character(str(member.id)):
-                member_names.append(member.display_name)
+            member_names.append(member.display_name)
 
         embed.add_field(name="Name", value="\n".join(member_names))
 
@@ -244,10 +242,8 @@ class Raid(commands.Cog):
         assert type(ctx_guild) is discord.Guild
 
         members = await self._get_linked_members(ctx)
-
         for member in members:
-            if await self.characterService.has_character(str(member.id)):
-                await member.send(content=f"Message from {ctx.author.name}: {message}")
+            await member.send(content=f"Message from {ctx.author.name}: {message}")
 
         return await ctx.respond("Messages has been sent.", ephemeral=True)
 
