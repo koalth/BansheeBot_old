@@ -193,52 +193,6 @@ class Setting(commands.Cog):
 
         return await ctx.respond("Guild setting have been created")
 
-    @settingCommands.command(
-        name="sendraidlinks",
-        description="Send all raiders a dm to add their wow character",
-    )
-    async def send_raider_links(self, ctx: discord.ApplicationContext):
-        guild_id = str(ctx.guild_id)
-        if not (
-            await self.settingService.does_guild_settings_exist(
-                discord_guild_id=guild_id
-            )
-        ):
-            return await ctx.respond("Setting doesn't exist.")
-
-        settings = await self.settingService.get_by_discord_guild_id(
-            discord_guild_id=guild_id
-        )
-
-        if settings.raider_role_id is None:
-            return await ctx.respond("Raider role doesn't exist.")
-
-        ctx_guild = ctx.interaction.guild
-        if ctx_guild is None:
-            return await ctx.respond("Guild doesn't exist.")
-
-        raider_role = ctx_guild.get_role(int(settings.raider_role_id))
-
-        if raider_role is None:
-            return await ctx.respond("Role wasn't found")
-
-        guild = await self.guildService.get_by_discord_guild_id(guild_id)
-        if guild is None:
-            return await ctx.respond("guild wasn't found")
-
-        if guild.id is None:
-            return await ctx.respond("guild id wasn't found")
-
-        for member in raider_role.members:
-            await member.send(
-                content="Hello! Please add your wow character using the button below!",
-                view=setting.SettingsRaiderRoleMemberSelectView(
-                    discord_guild_id=guild_id, guild_id=guild.id
-                ),
-            )
-
-        return await ctx.respond("Members have been sent a message", ephemeral=True)
-
     @commands.Cog.listener()
     async def on_guild_join(self, guild: discord.Guild):
 
