@@ -106,6 +106,8 @@ class LinkCharacterModal(discord.ui.Modal):
         embed = discord.Embed(
             title=f"You have added `{created_character.name}`-`{created_character.realm}` to the guild's raid roster!"
         )
+
+        self.view.disable_all_items()
         await interaction.response.send_message(embed=embed)
 
 
@@ -119,7 +121,7 @@ class RaidRosterMemberLinkCharacterView(discord.ui.View):
     def __init__(self, discord_guild_id: str, guild_id: UUID):
         self.discord_guild_id = discord_guild_id
         self.guild_id = guild_id
-        super().__init__(timeout=3600, disable_on_timeout=True)
+        super().__init__(timeout=60, disable_on_timeout=True)
 
     @discord.ui.button(label="Link Character", style=discord.ButtonStyle.blurple)
     async def link_character(self, _, interaction: discord.Interaction) -> None:

@@ -8,6 +8,12 @@ from src.entities import SettingUpdate
 from src.views import setting
 import inject
 from typing import Optional
+from enum import Enum
+
+
+class Region(Enum):
+    US = "us"
+    EU = "eu"
 
 
 class Setting(commands.Cog):
@@ -124,7 +130,10 @@ class Setting(commands.Cog):
         name="set",
         description="Set the default region. This region will be used for all requests",
     )
-    async def set_default_region(self, ctx: discord.ApplicationContext):
+    @discord.option(
+        "region", Region, description="Region in which guild resides", default=Region.US
+    )
+    async def set_default_region(self, ctx: discord.ApplicationContext, region: Region):
         guild_id = str(ctx.guild_id)
         if not (
             await self.settingService.does_guild_settings_exist(
@@ -133,9 +142,14 @@ class Setting(commands.Cog):
         ):
             return await ctx.respond("Settings must exist first before you can do this")
 
+        settings = await self.settingService.get_by_discord_guild_id(guild_id)
+
+        update_obj = SettingUpdate(default_region=region.value)
+
+        await self.settingService.update(settings.id, update_obj)
+
         return await ctx.respond(
-            "Please select a region to set as default",
-            view=setting.SettingsSelectRegion(guild_id, timeout=30),
+            f"Default region has been set to `{region.name}`",
             ephemeral=True,
         )
 

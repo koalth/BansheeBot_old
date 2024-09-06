@@ -68,7 +68,7 @@ class Raid(commands.Cog):
 
         members = []
         for member in raider_role.members:
-            if not await self.characterService.has_character(str(member.id)):
+            if not (await self.characterService.has_character(str(member.id))):
                 members.append(member)
 
         return members
@@ -165,7 +165,7 @@ class Raid(commands.Cog):
         embed = discord.Embed(
             title="Unlinked Raiders",
             description="These are members with the set raider role but have not linked their character",
-            colour=0x0060FF,
+            colour=discord.Colour.dark_orange(),
         )
 
         members = await self._get_unlinked_members(ctx)
@@ -209,18 +209,54 @@ class Raid(commands.Cog):
                     ),
                 )
 
+        return await ctx.respond("Messages has been sent.", ephemeral=True)
+
     @linkedCommands.command(
         name="list", description="List the linked members with raid roles"
     )
     async def list_linked(self, ctx: discord.ApplicationContext):
-        pass
+        ctx_guild = ctx.guild
+        assert type(ctx_guild) is discord.Guild
+
+        embed = discord.Embed(
+            title="Linked Raiders",
+            description="These are members with the set raider role but have not linked their character",
+            colour=discord.Colour.dark_green(),
+        )
+
+        members = await self._get_linked_members(ctx)
+        member_names = []
+        for member in members:
+            if await self.characterService.has_character(str(member.id)):
+                member_names.append(member.display_name)
+
+        embed.add_field(name="Name", value="\n".join(member_names))
+
+        return await ctx.respond(embed=embed)
 
     @linkedCommands.command(
         name="message",
         description="Message the linked members with raid roles",
     )
-    async def message_linked(self, ctx: discord.ApplicationContext):
-        pass
+    async def message_linked(self, ctx: discord.ApplicationContext, message: str):
+        assert type(ctx.guild) is discord.Guild
+        ctx_guild = ctx.guild
+        assert type(ctx_guild) is discord.Guild
+
+        members = await self._get_linked_members(ctx)
+
+        for member in members:
+            if await self.characterService.has_character(str(member.id)):
+                await member.send(content=f"Message from {ctx.author.name}: {message}")
+
+        return await ctx.respond("Messages has been sent.", ephemeral=True)
+
+    async def cog_command_error(
+        self, ctx: discord.ApplicationContext, error: Exception
+    ) -> None:
+        logger.error(f"There was a problem in Raid cog: {error}")
+        await ctx.respond("Something went wrong :(")
+        return await super().cog_command_error(ctx, error)
 
 
 def setup(bot: BansheeBot) -> None:

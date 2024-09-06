@@ -7,6 +7,7 @@ from src.db import ICharacterRepository, CharacterOrm
 from abc import abstractmethod, ABCMeta
 from uuid import UUID
 from typing import List, Optional
+from sqlalchemy.exc import NoResultFound
 
 
 class ICharacterService(
@@ -24,7 +25,7 @@ class ICharacterService(
         raise NotImplementedError()
 
     @abstractmethod
-    async def get_by_did(self, discord_id: str) -> List[Character]:
+    async def get_by_did(self, discord_id: str) -> Character:
         raise NotImplementedError()
 
     @abstractmethod
@@ -56,8 +57,14 @@ class CharacterService(
         except Exception:
             return None
 
-    async def get_by_did(self, discord_id: str) -> List[Character]:
-        return await self.repository.get_all(CharacterOrm.discord_user_id == discord_id)
+    async def get_by_did(self, discord_id: str) -> Character:
+        return await self.repository.get_by_filters(
+            CharacterOrm.discord_user_id == discord_id
+        )
 
     async def has_character(self, discord_id: str) -> bool:
-        return await self.get_by_did(discord_id) is not None
+        try:
+            result = await self.get_by_did(discord_id)
+            return result is not None
+        except NoResultFound:
+            return False
