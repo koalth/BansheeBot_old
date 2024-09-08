@@ -24,10 +24,12 @@ class Raid(commands.Cog):
         name="item_level", description="Item level commands"
     )
     unlinkedCommands = raidCommands.create_subgroup(
-        name="unlinked", description="Commands related to unlinked raid members"
+        name="unlinked",
+        description="Commands related to unlinked raid members",
     )
     linkedCommands = raidCommands.create_subgroup(
-        name="linked", description="Commands relating to linked raid members"
+        name="linked",
+        description="Commands relating to linked raid members",
     )
 
     def __init__(self, bot: BansheeBot) -> None:

@@ -24,12 +24,26 @@ class Setting(commands.Cog):
     guildService: IGuildService = inject.attr(IGuildService)
 
     settingCommands = SlashCommandGroup(
-        name="settings", description="Commands related to the server's settings"
+        name="settings",
+        description="Commands related to the server's settings",
+        default_member_permissions=discord.Permissions(manage_guild=True),
     )
-    admin_role = settingCommands.create_subgroup(name="admin_role")
-    raider_role = settingCommands.create_subgroup(name="raider_role")
-    region = settingCommands.create_subgroup(name="region")
-    realm = settingCommands.create_subgroup(name="realm")
+    admin_role = settingCommands.create_subgroup(
+        name="admin_role",
+        default_member_permissions=discord.Permissions(manage_guild=True),
+    )
+    raider_role = settingCommands.create_subgroup(
+        name="raider_role",
+        default_member_permissions=discord.Permissions(manage_guild=True),
+    )
+    region = settingCommands.create_subgroup(
+        name="region",
+        default_member_permissions=discord.Permissions(manage_guild=True),
+    )
+    realm = settingCommands.create_subgroup(
+        name="realm",
+        default_member_permissions=discord.Permissions(manage_guild=True),
+    )
 
     def __init__(self, bot: BansheeBot) -> None:
         self.bot = bot
@@ -53,7 +67,9 @@ class Setting(commands.Cog):
         name="show", description="Show the current server settings."
     )
     async def show(self, ctx: discord.ApplicationContext):
-        guild_id = str(ctx.guild_id)
+        assert ctx.guild()
+
+        guild_id = str(ctx.guild())
         settings = await self.settingService.get_by_discord_guild_id(guild_id)
 
         admin_role = await self._get_guild_role(

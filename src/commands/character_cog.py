@@ -20,39 +20,6 @@ class Character(commands.Cog):
     def __init__(self, bot: BansheeBot) -> None:
         self.bot = bot
 
-    # @discord.slash_command(
-    #     name="character",
-    #     description="Gets a quick summary of a World of Warcraft character",
-    # )
-    # async def character_get(
-    #     self, ctx: discord.ApplicationContext, name: str, realm: str, region: str = "us"
-    # ):
-    #     pass
-
-    # @characterGroup.command(
-    #     name="get",
-    #     description="Retrieves a quick summary of a World of Warcraft Character from RaiderIO",
-    # )
-    # async def get(
-    #     self,
-    #     ctx: discord.ApplicationContext,
-    #     name: str,
-    #     realm: str = "Dalaran",
-    #     region: str = "us",
-    # ):
-    #     character = await self.characterService.get_character_from_raider_io(
-    #         name, realm, region
-    #     )
-
-    #     if character is None:
-    #         return await ctx.respond(
-    #             "I wasn't able to grab your character. Please try again."
-    #         )
-
-    #     return await ctx.respond(
-    #         embed=get_character_embed(ctx.author.display_name, character)
-    #     )
-
     async def cog_command_error(
         self, ctx: discord.ApplicationContext, error: Exception
     ) -> None:

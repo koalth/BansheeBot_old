@@ -17,36 +17,9 @@ class Admin(commands.Cog):
     def __init__(self, bot: BansheeBot) -> None:
         self.bot = bot
 
-    admin = SlashCommandGroup(name="admin", description="Admin commands")
-
-    @admin.command(name="setguild", description="Set the guild for the server")
-    async def set_guild(
-        self,
-        ctx: discord.ApplicationContext,
-        name: str,
-        realm: str = "Dalaran",
-        region: str = "us",
-    ):
-
-        guild_id = str(ctx.guild_id)
-        guild = await self.guildService.create(
-            GuildCreate(
-                name=name,
-                realm=realm,
-                region=region,
-                discord_guild_id=guild_id,
-                item_level_requirement=None,
-            )
-        )
-
-        return await ctx.respond(f"`{guild.name}`-`{guild.realm}` has been added")
-
-    @admin.command(
-        name="test",
-        description="This is a test command to make sure the bot is working",
-    )
-    async def test(self, ctx: discord.ApplicationContext):
-        return await ctx.respond("You are smelly!")
+    @discord.command(name="balls")
+    async def balls(self, ctx: discord.ApplicationContext):
+        return await ctx.respond("balls")
 
     async def cog_command_error(
         self, ctx: discord.ApplicationContext, error: Exception
