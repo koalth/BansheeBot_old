@@ -2,6 +2,7 @@ from loguru import logger
 import discord
 from discord.commands import SlashCommandGroup
 from discord.ext import commands, tasks
+from discord import guild_only
 import asyncio
 from src.bot import BansheeBot
 from src.views import raid
@@ -19,7 +20,11 @@ class Raid(commands.Cog):
     guildService: IGuildService = inject.attr(IGuildService)
     characterService: ICharacterService = inject.attr(ICharacterService)
 
-    raidCommands = SlashCommandGroup(name="raid", description="Raid Roster commands")
+    raidCommands = SlashCommandGroup(
+        name="raid",
+        description="Raid Roster commands",
+        contexts={discord.InteractionContextType.guild},
+    )
     item_levelCommands = raidCommands.create_subgroup(
         name="item_level", description="Item level commands"
     )
@@ -128,6 +133,7 @@ class Raid(commands.Cog):
     @item_levelCommands.command(
         name="set", description="Set the item level requirement for the raid roster"
     )
+    @guild_only()
     async def set_item_level(self, ctx: discord.ApplicationContext, item_level: int):
         guild_id = str(ctx.guild_id)
         guild = await self.guildService.get_by_discord_guild_id(
@@ -145,6 +151,7 @@ class Raid(commands.Cog):
     @item_levelCommands.command(
         name="show", description="show the item level requirement for the raid roster"
     )
+    @guild_only()
     async def show_item_level(self, ctx: discord.ApplicationContext):
         guild_id = str(ctx.guild_id)
         guild = await self.guildService.get_by_discord_guild_id(

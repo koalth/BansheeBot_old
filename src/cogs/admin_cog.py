@@ -1,25 +1,25 @@
-from loguru import logger
 import discord
 from discord.commands import SlashCommandGroup
 from discord.ext import commands
+
+from loguru import logger
+
+from src.context import Context
+from .base import Cog
 from src.bot import BansheeBot
-from src.views import admin
-from src.services import IGuildService, ICharacterService
-from src.entities import GuildCreate
-import inject
 
 
-class Admin(commands.Cog):
-
-    guildService: IGuildService = inject.attr(IGuildService)
-    characterService: ICharacterService = inject.attr(ICharacterService)
+class Admin(Cog):
 
     def __init__(self, bot: BansheeBot) -> None:
         self.bot = bot
 
-    @discord.command(name="balls")
-    async def balls(self, ctx: discord.ApplicationContext):
-        return await ctx.respond("balls")
+    @discord.slash_command()
+    async def balls(self, ctx: Context):
+        guild_id = ctx.get_guild_id()
+        settings = await ctx._settingService.get_by_discord_guild_id(guild_id)
+
+        return await ctx.respond(settings.default_realm)
 
     async def cog_command_error(
         self, ctx: discord.ApplicationContext, error: Exception

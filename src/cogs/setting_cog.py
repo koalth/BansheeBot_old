@@ -2,6 +2,7 @@ from loguru import logger
 import discord
 from discord.commands import SlashCommandGroup
 from discord.ext import commands
+from discord import guild_only
 from src.bot import BansheeBot
 from src.services import ISettingService, IGuildService
 from src.entities import SettingUpdate
@@ -66,6 +67,8 @@ class Setting(commands.Cog):
     @settingCommands.command(
         name="show", description="Show the current server settings."
     )
+    @commands.is_owner()
+    @guild_only()
     async def show(self, ctx: discord.ApplicationContext):
         assert ctx.guild()
 
@@ -94,6 +97,8 @@ class Setting(commands.Cog):
     @admin_role.command(
         name="set", description="Set the admin role. Admins can use admin commands"
     )
+    @commands.is_owner()
+    @guild_only()
     async def set_admin_role(self, ctx: discord.ApplicationContext, role: discord.Role):
         guild_id = str(ctx.guild_id)
         if not (
@@ -119,6 +124,8 @@ class Setting(commands.Cog):
         name="set",
         description="Set the raider role. This role will be used for the raid roster",
     )
+    @commands.is_owner()
+    @guild_only()
     async def set_raider_role(
         self, ctx: discord.ApplicationContext, role: discord.Role
     ):
@@ -149,6 +156,8 @@ class Setting(commands.Cog):
     @discord.option(
         "region", Region, description="Region in which guild resides", default=Region.US
     )
+    @commands.is_owner()
+    @guild_only()
     async def set_default_region(self, ctx: discord.ApplicationContext, region: Region):
         guild_id = str(ctx.guild_id)
         if not (
@@ -173,6 +182,8 @@ class Setting(commands.Cog):
         name="set",
         description="Set the default realm. This realm will be used for all requests",
     )
+    @commands.is_owner()
+    @guild_only()
     async def set_default_realm(self, ctx: discord.ApplicationContext, realm: str):
         guild_id = str(ctx.guild_id)
         if not (
@@ -198,6 +209,8 @@ class Setting(commands.Cog):
         name="init",
         description="Initalizes the settings for the server if not already initialized.",
     )
+    @commands.is_owner()
+    @guild_only()
     async def init_settings(self, ctx: discord.ApplicationContext):
         guild_id = str(ctx.guild_id)
         if await self.settingService.does_guild_settings_exist(

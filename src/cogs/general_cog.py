@@ -1,5 +1,6 @@
 from loguru import logger
 import discord
+from discord import guild_only
 from discord.ext import commands
 import inject
 from src.bot import BansheeBot
@@ -33,9 +34,6 @@ class General(commands.Cog):
     async def add_character(
         self, ctx: discord.ApplicationContext, name: str, realm: str
     ):
-
-        logger.debug(f"guild _id: {self._get_guild_id(ctx)}")
-
         if not await self._check_guild_exist(ctx):
             return await ctx.respond(
                 f"There isn't a guild to be linked. Yell at your server admin"
