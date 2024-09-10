@@ -3,11 +3,13 @@ import discord
 from discord import guild_only
 from discord.ext import commands
 import inject
+
+from .base import Cog
 from src.bot import BansheeBot
 from src.services import ICharacterService, ISettingService, IGuildService
 
 
-class General(commands.Cog):
+class General(Cog):
 
     characterService: ICharacterService = inject.attr(ICharacterService)
     settingService: ISettingService = inject.attr(ISettingService)

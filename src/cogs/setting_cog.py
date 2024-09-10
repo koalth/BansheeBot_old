@@ -3,10 +3,13 @@ import discord
 from discord.commands import SlashCommandGroup
 from discord.ext import commands
 from discord import guild_only
+
+from .base import Cog
 from src.bot import BansheeBot
 from src.services import ISettingService, IGuildService
 from src.entities import SettingUpdate
 from src.views import setting
+
 import inject
 from typing import Optional
 from enum import Enum
@@ -17,7 +20,7 @@ class Region(Enum):
     EU = "eu"
 
 
-class Setting(commands.Cog):
+class Setting(Cog):
 
     bot: BansheeBot
 
@@ -27,23 +30,18 @@ class Setting(commands.Cog):
     settingCommands = SlashCommandGroup(
         name="settings",
         description="Commands related to the server's settings",
-        default_member_permissions=discord.Permissions(manage_guild=True),
     )
     admin_role = settingCommands.create_subgroup(
         name="admin_role",
-        default_member_permissions=discord.Permissions(manage_guild=True),
     )
     raider_role = settingCommands.create_subgroup(
         name="raider_role",
-        default_member_permissions=discord.Permissions(manage_guild=True),
     )
     region = settingCommands.create_subgroup(
         name="region",
-        default_member_permissions=discord.Permissions(manage_guild=True),
     )
     realm = settingCommands.create_subgroup(
         name="realm",
-        default_member_permissions=discord.Permissions(manage_guild=True),
     )
 
     def __init__(self, bot: BansheeBot) -> None:

@@ -3,12 +3,14 @@ import discord
 from discord.commands import SlashCommandGroup
 from discord.ext import commands
 import inject
+
+from .base import Cog
 from src.bot import BansheeBot
 from src.services import ICharacterService
 from src.views import get_character_embed
 
 
-class Character(commands.Cog):
+class Character(Cog):
 
     characterGroup: SlashCommandGroup = SlashCommandGroup(
         name="character",
@@ -16,9 +18,6 @@ class Character(commands.Cog):
     )
 
     characterService: ICharacterService = inject.attr(ICharacterService)
-
-    def __init__(self, bot: BansheeBot) -> None:
-        self.bot = bot
 
     async def cog_command_error(
         self, ctx: discord.ApplicationContext, error: Exception

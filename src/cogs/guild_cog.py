@@ -1,13 +1,16 @@
 from loguru import logger
+
 import discord
 from discord.commands import SlashCommandGroup
 from discord.ext import commands
 from discord import guild_only
+from enum import Enum
+import inject
+
+from .base import Cog
 from src.bot import BansheeBot
 from src.services import IGuildService
 from src.entities import GuildCreate
-import inject
-from enum import Enum
 
 
 class Region(Enum):
@@ -15,12 +18,9 @@ class Region(Enum):
     EU = "eu"
 
 
-class Guild(commands.Cog):
+class Guild(Cog):
 
     guildService: IGuildService = inject.attr(IGuildService)
-
-    def __init__(self, bot: BansheeBot) -> None:
-        self.bot = bot
 
     guildCommands = SlashCommandGroup(
         name="guild", description="Commands for the guild"
