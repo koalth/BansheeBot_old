@@ -1,0 +1,5910 @@
+[
+  {
+    "name": "Aegwynn",
+    "slug": "aegwynn",
+    "locale": "en-US",
+    "timezone": "CDT",
+    "online": true,
+    "category": "United States",
+    "realmLockStatus": null,
+    "type": {
+      "id": "1",
+      "name": "Normal",
+      "slug": "normal",
+      "enum": "NORMAL",
+      "__typename": "RealmTypeEnum"
+    },
+    "population": {
+      "id": "8",
+      "name": "New Players",
+      "slug": "new-players",
+      "enum": "RECOMMENDED",
+      "__typename": "RealmPopulationEnum"
+    },
+    "__typename": "Realm"
+  },
+  {
+    "name": "Aerie Peak",
+    "slug": "aerie-peak",
+    "locale": "en-US",
+    "timezone": "PDT",
+    "online": true,
+    "category": "United States",
+    "realmLockStatus": null,
+    "type": {
+      "id": "1",
+      "name": "Normal",
+      "slug": "normal",
+      "enum": "NORMAL",
+      "__typename": "RealmTypeEnum"
+    },
+    "population": {
+      "id": "2",
+      "name": "Medium",
+      "slug": "medium",
+      "enum": "MEDIUM",
+      "__typename": "RealmPopulationEnum"
+    },
+    "__typename": "Realm"
+  },
+  {
+    "name": "Agamaggan",
+    "slug": "agamaggan",
+    "locale": "en-US",
+    "timezone": "CDT",
+    "online": true,
+    "category": "United States",
+    "realmLockStatus": null,
+    "type": {
+      "id": "1",
+      "name": "Normal",
+      "slug": "normal",
+      "enum": "NORMAL",
+      "__typename": "RealmTypeEnum"
+    },
+    "population": {
+      "id": "3",
+      "name": "High",
+      "slug": "high",
+      "enum": "HIGH",
+      "__typename": "RealmPopulationEnum"
+    },
+    "__typename": "Realm"
+  },
+  {
+    "name": "Aggramar",
+    "slug": "aggramar",
+    "locale": "en-US",
+    "timezone": "CDT",
+    "online": true,
+    "category": "United States",
+    "realmLockStatus": null,
+    "type": {
+      "id": "1",
+      "name": "Normal",
+      "slug": "normal",
+      "enum": "NORMAL",
+      "__typename": "RealmTypeEnum"
+    },
+    "population": {
+      "id": "4",
+      "name": "Full",
+      "slug": "full",
+      "enum": "FULL",
+      "__typename": "RealmPopulationEnum"
+    },
+    "__typename": "Realm"
+  },
+  {
+    "name": "Akama",
+    "slug": "akama",
+    "locale": "en-US",
+    "timezone": "PDT",
+    "online": true,
+    "category": "United States",
+    "realmLockStatus": null,
+    "type": {
+      "id": "1",
+      "name": "Normal",
+      "slug": "normal",
+      "enum": "NORMAL",
+      "__typename": "RealmTypeEnum"
+    },
+    "population": {
+      "id": "3",
+      "name": "High",
+      "slug": "high",
+      "enum": "HIGH",
+      "__typename": "RealmPopulationEnum"
+    },
+    "__typename": "Realm"
+  },
+  {
+    "name": "Alexstrasza",
+    "slug": "alexstrasza",
+    "locale": "en-US",
+    "timezone": "CDT",
+    "online": true,
+    "category": "United States",
+    "realmLockStatus": null,
+    "type": {
+      "id": "1",
+      "name": "Normal",
+      "slug": "normal",
+      "enum": "NORMAL",
+      "__typename": "RealmTypeEnum"
+    },
+    "population": {
+      "id": "1",
+      "name": "Low",
+      "slug": "low",
+      "enum": "LOW",
+      "__typename": "RealmPopulationEnum"
+    },
+    "__typename": "Realm"
+  },
+  {
+    "name": "Alleria",
+    "slug": "alleria",
+    "locale": "en-US",
+    "timezone": "CDT",
+    "online": true,
+    "category": "United States",
+    "realmLockStatus": null,
+    "type": {
+      "id": "1",
+      "name": "Normal",
+      "slug": "normal",
+      "enum": "NORMAL",
+      "__typename": "RealmTypeEnum"
+    },
+    "population": {
+      "id": "3",
+      "name": "High",
+      "slug": "high",
+      "enum": "HIGH",
+      "__typename": "RealmPopulationEnum"
+    },
+    "__typename": "Realm"
+  },
+  {
+    "name": "Altar of Storms",
+    "slug": "altar-of-storms",
+    "locale": "en-US",
+    "timezone": "EDT",
+    "online": true,
+    "category": "United States",
+    "realmLockStatus": null,
+    "type": {
+      "id": "1",
+      "name": "Normal",
+      "slug": "normal",
+      "enum": "NORMAL",
+      "__typename": "RealmTypeEnum"
+    },
+    "population": {
+      "id": "1",
+      "name": "Low",
+      "slug": "low",
+      "enum": "LOW",
+      "__typename": "RealmPopulationEnum"
+    },
+    "__typename": "Realm"
+  },
+  {
+    "name": "Alterac Mountains",
+    "slug": "alterac-mountains",
+    "locale": "en-US",
+    "timezone": "EDT",
+    "online": true,
+    "category": "United States",
+    "realmLockStatus": null,
+    "type": {
+      "id": "1",
+      "name": "Normal",
+      "slug": "normal",
+      "enum": "NORMAL",
+      "__typename": "RealmTypeEnum"
+    },
+    "population": {
+      "id": "4",
+      "name": "Full",
+      "slug": "full",
+      "enum": "FULL",
+      "__typename": "RealmPopulationEnum"
+    },
+    "__typename": "Realm"
+  },
+  {
+    "name": "Aman'Thul",
+    "slug": "amanthul",
+    "locale": "en-US",
+    "timezone": "AEST",
+    "online": true,
+    "category": "Oceanic",
+    "realmLockStatus": null,
+    "type": {
+      "id": "1",
+      "name": "Normal",
+      "slug": "normal",
+      "enum": "NORMAL",
+      "__typename": "RealmTypeEnum"
+    },
+    "population": {
+      "id": "3",
+      "name": "High",
+      "slug": "high",
+      "enum": "HIGH",
+      "__typename": "RealmPopulationEnum"
+    },
+    "__typename": "Realm"
+  },
+  {
+    "name": "Andorhal",
+    "slug": "andorhal",
+    "locale": "en-US",
+    "timezone": "EDT",
+    "online": true,
+    "category": "United States",
+    "realmLockStatus": null,
+    "type": {
+      "id": "1",
+      "name": "Normal",
+      "slug": "normal",
+      "enum": "NORMAL",
+      "__typename": "RealmTypeEnum"
+    },
+    "population": {
+      "id": "3",
+      "name": "High",
+      "slug": "high",
+      "enum": "HIGH",
+      "__typename": "RealmPopulationEnum"
+    },
+    "__typename": "Realm"
+  },
+  {
+    "name": "Anetheron",
+    "slug": "anetheron",
+    "locale": "en-US",
+    "timezone": "EDT",
+    "online": true,
+    "category": "United States",
+    "realmLockStatus": null,
+    "type": {
+      "id": "1",
+      "name": "Normal",
+      "slug": "normal",
+      "enum": "NORMAL",
+      "__typename": "RealmTypeEnum"
+    },
+    "population": {
+      "id": "1",
+      "name": "Low",
+      "slug": "low",
+      "enum": "LOW",
+      "__typename": "RealmPopulationEnum"
+    },
+    "__typename": "Realm"
+  },
+  {
+    "name": "Antonidas",
+    "slug": "antonidas",
+    "locale": "en-US",
+    "timezone": "PDT",
+    "online": true,
+    "category": "United States",
+    "realmLockStatus": null,
+    "type": {
+      "id": "1",
+      "name": "Normal",
+      "slug": "normal",
+      "enum": "NORMAL",
+      "__typename": "RealmTypeEnum"
+    },
+    "population": {
+      "id": "3",
+      "name": "High",
+      "slug": "high",
+      "enum": "HIGH",
+      "__typename": "RealmPopulationEnum"
+    },
+    "__typename": "Realm"
+  },
+  {
+    "name": "Anub'arak",
+    "slug": "anubarak",
+    "locale": "en-US",
+    "timezone": "CDT",
+    "online": true,
+    "category": "United States",
+    "realmLockStatus": null,
+    "type": {
+      "id": "1",
+      "name": "Normal",
+      "slug": "normal",
+      "enum": "NORMAL",
+      "__typename": "RealmTypeEnum"
+    },
+    "population": {
+      "id": "2",
+      "name": "Medium",
+      "slug": "medium",
+      "enum": "MEDIUM",
+      "__typename": "RealmPopulationEnum"
+    },
+    "__typename": "Realm"
+  },
+  {
+    "name": "Anvilmar",
+    "slug": "anvilmar",
+    "locale": "en-US",
+    "timezone": "EDT",
+    "online": true,
+    "category": "United States",
+    "realmLockStatus": null,
+    "type": {
+      "id": "1",
+      "name": "Normal",
+      "slug": "normal",
+      "enum": "NORMAL",
+      "__typename": "RealmTypeEnum"
+    },
+    "population": {
+      "id": "4",
+      "name": "Full",
+      "slug": "full",
+      "enum": "FULL",
+      "__typename": "RealmPopulationEnum"
+    },
+    "__typename": "Realm"
+  },
+  {
+    "name": "Arathor",
+    "slug": "arathor",
+    "locale": "en-US",
+    "timezone": "CDT",
+    "online": true,
+    "category": "United States",
+    "realmLockStatus": null,
+    "type": {
+      "id": "1",
+      "name": "Normal",
+      "slug": "normal",
+      "enum": "NORMAL",
+      "__typename": "RealmTypeEnum"
+    },
+    "population": {
+      "id": "2",
+      "name": "Medium",
+      "slug": "medium",
+      "enum": "MEDIUM",
+      "__typename": "RealmPopulationEnum"
+    },
+    "__typename": "Realm"
+  },
+  {
+    "name": "Archimonde",
+    "slug": "archimonde",
+    "locale": "en-US",
+    "timezone": "CDT",
+    "online": true,
+    "category": "United States",
+    "realmLockStatus": null,
+    "type": {
+      "id": "1",
+      "name": "Normal",
+      "slug": "normal",
+      "enum": "NORMAL",
+      "__typename": "RealmTypeEnum"
+    },
+    "population": {
+      "id": "3",
+      "name": "High",
+      "slug": "high",
+      "enum": "HIGH",
+      "__typename": "RealmPopulationEnum"
+    },
+    "__typename": "Realm"
+  },
+  {
+    "name": "Area 52",
+    "slug": "area-52",
+    "locale": "en-US",
+    "timezone": "EDT",
+    "online": true,
+    "category": "United States",
+    "realmLockStatus": null,
+    "type": {
+      "id": "1",
+      "name": "Normal",
+      "slug": "normal",
+      "enum": "NORMAL",
+      "__typename": "RealmTypeEnum"
+    },
+    "population": {
+      "id": "4",
+      "name": "Full",
+      "slug": "full",
+      "enum": "FULL",
+      "__typename": "RealmPopulationEnum"
+    },
+    "__typename": "Realm"
+  },
+  {
+    "name": "Argent Dawn",
+    "slug": "argent-dawn",
+    "locale": "en-US",
+    "timezone": "EDT",
+    "online": true,
+    "category": "United States",
+    "realmLockStatus": null,
+    "type": {
+      "id": "3",
+      "name": "Roleplaying",
+      "slug": "roleplaying",
+      "enum": "RP",
+      "__typename": "RealmTypeEnum"
+    },
+    "population": {
+      "id": "1",
+      "name": "Low",
+      "slug": "low",
+      "enum": "LOW",
+      "__typename": "RealmPopulationEnum"
+    },
+    "__typename": "Realm"
+  },
+  {
+    "name": "Arthas",
+    "slug": "arthas",
+    "locale": "en-US",
+    "timezone": "EDT",
+    "online": true,
+    "category": "United States",
+    "realmLockStatus": null,
+    "type": {
+      "id": "1",
+      "name": "Normal",
+      "slug": "normal",
+      "enum": "NORMAL",
+      "__typename": "RealmTypeEnum"
+    },
+    "population": {
+      "id": "1",
+      "name": "Low",
+      "slug": "low",
+      "enum": "LOW",
+      "__typename": "RealmPopulationEnum"
+    },
+    "__typename": "Realm"
+  },
+  {
+    "name": "Arygos",
+    "slug": "arygos",
+    "locale": "en-US",
+    "timezone": "EDT",
+    "online": true,
+    "category": "United States",
+    "realmLockStatus": null,
+    "type": {
+      "id": "1",
+      "name": "Normal",
+      "slug": "normal",
+      "enum": "NORMAL",
+      "__typename": "RealmTypeEnum"
+    },
+    "population": {
+      "id": "1",
+      "name": "Low",
+      "slug": "low",
+      "enum": "LOW",
+      "__typename": "RealmPopulationEnum"
+    },
+    "__typename": "Realm"
+  },
+  {
+    "name": "Auchindoun",
+    "slug": "auchindoun",
+    "locale": "en-US",
+    "timezone": "EDT",
+    "online": true,
+    "category": "United States",
+    "realmLockStatus": null,
+    "type": {
+      "id": "1",
+      "name": "Normal",
+      "slug": "normal",
+      "enum": "NORMAL",
+      "__typename": "RealmTypeEnum"
+    },
+    "population": {
+      "id": "3",
+      "name": "High",
+      "slug": "high",
+      "enum": "HIGH",
+      "__typename": "RealmPopulationEnum"
+    },
+    "__typename": "Realm"
+  },
+  {
+    "name": "Azgalor",
+    "slug": "azgalor",
+    "locale": "en-US",
+    "timezone": "CDT",
+    "online": true,
+    "category": "United States",
+    "realmLockStatus": null,
+    "type": {
+      "id": "1",
+      "name": "Normal",
+      "slug": "normal",
+      "enum": "NORMAL",
+      "__typename": "RealmTypeEnum"
+    },
+    "population": {
+      "id": "8",
+      "name": "New Players",
+      "slug": "new-players",
+      "enum": "RECOMMENDED",
+      "__typename": "RealmPopulationEnum"
+    },
+    "__typename": "Realm"
+  },
+  {
+    "name": "Azjol-Nerub",
+    "slug": "azjolnerub",
+    "locale": "en-US",
+    "timezone": "MDT",
+    "online": true,
+    "category": "United States",
+    "realmLockStatus": null,
+    "type": {
+      "id": "1",
+      "name": "Normal",
+      "slug": "normal",
+      "enum": "NORMAL",
+      "__typename": "RealmTypeEnum"
+    },
+    "population": {
+      "id": "3",
+      "name": "High",
+      "slug": "high",
+      "enum": "HIGH",
+      "__typename": "RealmPopulationEnum"
+    },
+    "__typename": "Realm"
+  },
+  {
+    "name": "Azralon",
+    "slug": "azralon",
+    "locale": "pt-BR",
+    "timezone": "BRT",
+    "online": true,
+    "category": "Brazil",
+    "realmLockStatus": null,
+    "type": {
+      "id": "1",
+      "name": "Normal",
+      "slug": "normal",
+      "enum": "NORMAL",
+      "__typename": "RealmTypeEnum"
+    },
+    "population": {
+      "id": "4",
+      "name": "Full",
+      "slug": "full",
+      "enum": "FULL",
+      "__typename": "RealmPopulationEnum"
+    },
+    "__typename": "Realm"
+  },
+  {
+    "name": "Azshara",
+    "slug": "azshara",
+    "locale": "en-US",
+    "timezone": "CDT",
+    "online": true,
+    "category": "United States",
+    "realmLockStatus": null,
+    "type": {
+      "id": "1",
+      "name": "Normal",
+      "slug": "normal",
+      "enum": "NORMAL",
+      "__typename": "RealmTypeEnum"
+    },
+    "population": {
+      "id": "8",
+      "name": "New Players",
+      "slug": "new-players",
+      "enum": "RECOMMENDED",
+      "__typename": "RealmPopulationEnum"
+    },
+    "__typename": "Realm"
+  },
+  {
+    "name": "Azuremyst",
+    "slug": "azuremyst",
+    "locale": "en-US",
+    "timezone": "CDT",
+    "online": true,
+    "category": "United States",
+    "realmLockStatus": null,
+    "type": {
+      "id": "1",
+      "name": "Normal",
+      "slug": "normal",
+      "enum": "NORMAL",
+      "__typename": "RealmTypeEnum"
+    },
+    "population": {
+      "id": "2",
+      "name": "Medium",
+      "slug": "medium",
+      "enum": "MEDIUM",
+      "__typename": "RealmPopulationEnum"
+    },
+    "__typename": "Realm"
+  },
+  {
+    "name": "Baelgun",
+    "slug": "baelgun",
+    "locale": "en-US",
+    "timezone": "PDT",
+    "online": true,
+    "category": "United States",
+    "realmLockStatus": null,
+    "type": {
+      "id": "1",
+      "name": "Normal",
+      "slug": "normal",
+      "enum": "NORMAL",
+      "__typename": "RealmTypeEnum"
+    },
+    "population": {
+      "id": "1",
+      "name": "Low",
+      "slug": "low",
+      "enum": "LOW",
+      "__typename": "RealmPopulationEnum"
+    },
+    "__typename": "Realm"
+  },
+  {
+    "name": "Balnazzar",
+    "slug": "balnazzar",
+    "locale": "en-US",
+    "timezone": "EDT",
+    "online": true,
+    "category": "United States",
+    "realmLockStatus": null,
+    "type": {
+      "id": "1",
+      "name": "Normal",
+      "slug": "normal",
+      "enum": "NORMAL",
+      "__typename": "RealmTypeEnum"
+    },
+    "population": {
+      "id": "4",
+      "name": "Full",
+      "slug": "full",
+      "enum": "FULL",
+      "__typename": "RealmPopulationEnum"
+    },
+    "__typename": "Realm"
+  },
+  {
+    "name": "Barthilas",
+    "slug": "barthilas",
+    "locale": "en-US",
+    "timezone": "AEST",
+    "online": true,
+    "category": "Oceanic",
+    "realmLockStatus": null,
+    "type": {
+      "id": "1",
+      "name": "Normal",
+      "slug": "normal",
+      "enum": "NORMAL",
+      "__typename": "RealmTypeEnum"
+    },
+    "population": {
+      "id": "3",
+      "name": "High",
+      "slug": "high",
+      "enum": "HIGH",
+      "__typename": "RealmPopulationEnum"
+    },
+    "__typename": "Realm"
+  },
+  {
+    "name": "Black Dragonflight",
+    "slug": "black-dragonflight",
+    "locale": "en-US",
+    "timezone": "EDT",
+    "online": true,
+    "category": "United States",
+    "realmLockStatus": null,
+    "type": {
+      "id": "1",
+      "name": "Normal",
+      "slug": "normal",
+      "enum": "NORMAL",
+      "__typename": "RealmTypeEnum"
+    },
+    "population": {
+      "id": "3",
+      "name": "High",
+      "slug": "high",
+      "enum": "HIGH",
+      "__typename": "RealmPopulationEnum"
+    },
+    "__typename": "Realm"
+  },
+  {
+    "name": "Blackhand",
+    "slug": "blackhand",
+    "locale": "en-US",
+    "timezone": "CDT",
+    "online": true,
+    "category": "United States",
+    "realmLockStatus": null,
+    "type": {
+      "id": "1",
+      "name": "Normal",
+      "slug": "normal",
+      "enum": "NORMAL",
+      "__typename": "RealmTypeEnum"
+    },
+    "population": {
+      "id": "1",
+      "name": "Low",
+      "slug": "low",
+      "enum": "LOW",
+      "__typename": "RealmPopulationEnum"
+    },
+    "__typename": "Realm"
+  },
+  {
+    "name": "Blackrock",
+    "slug": "blackrock",
+    "locale": "en-US",
+    "timezone": "MDT",
+    "online": true,
+    "category": "United States",
+    "realmLockStatus": null,
+    "type": {
+      "id": "1",
+      "name": "Normal",
+      "slug": "normal",
+      "enum": "NORMAL",
+      "__typename": "RealmTypeEnum"
+    },
+    "population": {
+      "id": "3",
+      "name": "High",
+      "slug": "high",
+      "enum": "HIGH",
+      "__typename": "RealmPopulationEnum"
+    },
+    "__typename": "Realm"
+  },
+  {
+    "name": "Blackwater Raiders",
+    "slug": "blackwater-raiders",
+    "locale": "en-US",
+    "timezone": "MDT",
+    "online": true,
+    "category": "United States",
+    "realmLockStatus": null,
+    "type": {
+      "id": "3",
+      "name": "Roleplaying",
+      "slug": "roleplaying",
+      "enum": "RP",
+      "__typename": "RealmTypeEnum"
+    },
+    "population": {
+      "id": "2",
+      "name": "Medium",
+      "slug": "medium",
+      "enum": "MEDIUM",
+      "__typename": "RealmPopulationEnum"
+    },
+    "__typename": "Realm"
+  },
+  {
+    "name": "Blackwing Lair",
+    "slug": "blackwing-lair",
+    "locale": "en-US",
+    "timezone": "CDT",
+    "online": true,
+    "category": "United States",
+    "realmLockStatus": null,
+    "type": {
+      "id": "1",
+      "name": "Normal",
+      "slug": "normal",
+      "enum": "NORMAL",
+      "__typename": "RealmTypeEnum"
+    },
+    "population": {
+      "id": "1",
+      "name": "Low",
+      "slug": "low",
+      "enum": "LOW",
+      "__typename": "RealmPopulationEnum"
+    },
+    "__typename": "Realm"
+  },
+  {
+    "name": "Blade's Edge",
+    "slug": "blades-edge",
+    "locale": "en-US",
+    "timezone": "CDT",
+    "online": true,
+    "category": "United States",
+    "realmLockStatus": null,
+    "type": {
+      "id": "1",
+      "name": "Normal",
+      "slug": "normal",
+      "enum": "NORMAL",
+      "__typename": "RealmTypeEnum"
+    },
+    "population": {
+      "id": "3",
+      "name": "High",
+      "slug": "high",
+      "enum": "HIGH",
+      "__typename": "RealmPopulationEnum"
+    },
+    "__typename": "Realm"
+  },
+  {
+    "name": "Bladefist",
+    "slug": "bladefist",
+    "locale": "en-US",
+    "timezone": "CDT",
+    "online": true,
+    "category": "United States",
+    "realmLockStatus": null,
+    "type": {
+      "id": "1",
+      "name": "Normal",
+      "slug": "normal",
+      "enum": "NORMAL",
+      "__typename": "RealmTypeEnum"
+    },
+    "population": {
+      "id": "1",
+      "name": "Low",
+      "slug": "low",
+      "enum": "LOW",
+      "__typename": "RealmPopulationEnum"
+    },
+    "__typename": "Realm"
+  },
+  {
+    "name": "Bleeding Hollow",
+    "slug": "bleeding-hollow",
+    "locale": "en-US",
+    "timezone": "EDT",
+    "online": true,
+    "category": "United States",
+    "realmLockStatus": null,
+    "type": {
+      "id": "1",
+      "name": "Normal",
+      "slug": "normal",
+      "enum": "NORMAL",
+      "__typename": "RealmTypeEnum"
+    },
+    "population": {
+      "id": "3",
+      "name": "High",
+      "slug": "high",
+      "enum": "HIGH",
+      "__typename": "RealmPopulationEnum"
+    },
+    "__typename": "Realm"
+  },
+  {
+    "name": "Blood Furnace",
+    "slug": "blood-furnace",
+    "locale": "en-US",
+    "timezone": "CDT",
+    "online": true,
+    "category": "United States",
+    "realmLockStatus": null,
+    "type": {
+      "id": "1",
+      "name": "Normal",
+      "slug": "normal",
+      "enum": "NORMAL",
+      "__typename": "RealmTypeEnum"
+    },
+    "population": {
+      "id": "8",
+      "name": "New Players",
+      "slug": "new-players",
+      "enum": "RECOMMENDED",
+      "__typename": "RealmPopulationEnum"
+    },
+    "__typename": "Realm"
+  },
+  {
+    "name": "Bloodhoof",
+    "slug": "bloodhoof",
+    "locale": "en-US",
+    "timezone": "EDT",
+    "online": true,
+    "category": "United States",
+    "realmLockStatus": null,
+    "type": {
+      "id": "1",
+      "name": "Normal",
+      "slug": "normal",
+      "enum": "NORMAL",
+      "__typename": "RealmTypeEnum"
+    },
+    "population": {
+      "id": "1",
+      "name": "Low",
+      "slug": "low",
+      "enum": "LOW",
+      "__typename": "RealmPopulationEnum"
+    },
+    "__typename": "Realm"
+  },
+  {
+    "name": "Bloodscalp",
+    "slug": "bloodscalp",
+    "locale": "en-US",
+    "timezone": "CDT",
+    "online": true,
+    "category": "United States",
+    "realmLockStatus": null,
+    "type": {
+      "id": "1",
+      "name": "Normal",
+      "slug": "normal",
+      "enum": "NORMAL",
+      "__typename": "RealmTypeEnum"
+    },
+    "population": {
+      "id": "3",
+      "name": "High",
+      "slug": "high",
+      "enum": "HIGH",
+      "__typename": "RealmPopulationEnum"
+    },
+    "__typename": "Realm"
+  },
+  {
+    "name": "Bonechewer",
+    "slug": "bonechewer",
+    "locale": "en-US",
+    "timezone": "CDT",
+    "online": true,
+    "category": "United States",
+    "realmLockStatus": null,
+    "type": {
+      "id": "1",
+      "name": "Normal",
+      "slug": "normal",
+      "enum": "NORMAL",
+      "__typename": "RealmTypeEnum"
+    },
+    "population": {
+      "id": "8",
+      "name": "New Players",
+      "slug": "new-players",
+      "enum": "RECOMMENDED",
+      "__typename": "RealmPopulationEnum"
+    },
+    "__typename": "Realm"
+  },
+  {
+    "name": "Borean Tundra",
+    "slug": "borean-tundra",
+    "locale": "en-US",
+    "timezone": "PDT",
+    "online": true,
+    "category": "United States",
+    "realmLockStatus": null,
+    "type": {
+      "id": "1",
+      "name": "Normal",
+      "slug": "normal",
+      "enum": "NORMAL",
+      "__typename": "RealmTypeEnum"
+    },
+    "population": {
+      "id": "3",
+      "name": "High",
+      "slug": "high",
+      "enum": "HIGH",
+      "__typename": "RealmPopulationEnum"
+    },
+    "__typename": "Realm"
+  },
+  {
+    "name": "Boulderfist",
+    "slug": "boulderfist",
+    "locale": "en-US",
+    "timezone": "CDT",
+    "online": true,
+    "category": "United States",
+    "realmLockStatus": null,
+    "type": {
+      "id": "1",
+      "name": "Normal",
+      "slug": "normal",
+      "enum": "NORMAL",
+      "__typename": "RealmTypeEnum"
+    },
+    "population": {
+      "id": "3",
+      "name": "High",
+      "slug": "high",
+      "enum": "HIGH",
+      "__typename": "RealmPopulationEnum"
+    },
+    "__typename": "Realm"
+  },
+  {
+    "name": "Bronzebeard",
+    "slug": "bronzebeard",
+    "locale": "en-US",
+    "timezone": "PDT",
+    "online": true,
+    "category": "United States",
+    "realmLockStatus": null,
+    "type": {
+      "id": "1",
+      "name": "Normal",
+      "slug": "normal",
+      "enum": "NORMAL",
+      "__typename": "RealmTypeEnum"
+    },
+    "population": {
+      "id": "1",
+      "name": "Low",
+      "slug": "low",
+      "enum": "LOW",
+      "__typename": "RealmPopulationEnum"
+    },
+    "__typename": "Realm"
+  },
+  {
+    "name": "Burning Blade",
+    "slug": "burning-blade",
+    "locale": "en-US",
+    "timezone": "CDT",
+    "online": true,
+    "category": "United States",
+    "realmLockStatus": null,
+    "type": {
+      "id": "1",
+      "name": "Normal",
+      "slug": "normal",
+      "enum": "NORMAL",
+      "__typename": "RealmTypeEnum"
+    },
+    "population": {
+      "id": "3",
+      "name": "High",
+      "slug": "high",
+      "enum": "HIGH",
+      "__typename": "RealmPopulationEnum"
+    },
+    "__typename": "Realm"
+  },
+  {
+    "name": "Burning Legion",
+    "slug": "burning-legion",
+    "locale": "en-US",
+    "timezone": "CDT",
+    "online": true,
+    "category": "United States",
+    "realmLockStatus": null,
+    "type": {
+      "id": "1",
+      "name": "Normal",
+      "slug": "normal",
+      "enum": "NORMAL",
+      "__typename": "RealmTypeEnum"
+    },
+    "population": {
+      "id": "3",
+      "name": "High",
+      "slug": "high",
+      "enum": "HIGH",
+      "__typename": "RealmPopulationEnum"
+    },
+    "__typename": "Realm"
+  },
+  {
+    "name": "Caelestrasz",
+    "slug": "caelestrasz",
+    "locale": "en-US",
+    "timezone": "AEST",
+    "online": true,
+    "category": "Oceanic",
+    "realmLockStatus": null,
+    "type": {
+      "id": "1",
+      "name": "Normal",
+      "slug": "normal",
+      "enum": "NORMAL",
+      "__typename": "RealmTypeEnum"
+    },
+    "population": {
+      "id": "3",
+      "name": "High",
+      "slug": "high",
+      "enum": "HIGH",
+      "__typename": "RealmPopulationEnum"
+    },
+    "__typename": "Realm"
+  },
+  {
+    "name": "Cairne",
+    "slug": "cairne",
+    "locale": "en-US",
+    "timezone": "PDT",
+    "online": true,
+    "category": "United States",
+    "realmLockStatus": null,
+    "type": {
+      "id": "1",
+      "name": "Normal",
+      "slug": "normal",
+      "enum": "NORMAL",
+      "__typename": "RealmTypeEnum"
+    },
+    "population": {
+      "id": "3",
+      "name": "High",
+      "slug": "high",
+      "enum": "HIGH",
+      "__typename": "RealmPopulationEnum"
+    },
+    "__typename": "Realm"
+  },
+  {
+    "name": "Cenarion Circle",
+    "slug": "cenarion-circle",
+    "locale": "en-US",
+    "timezone": "MDT",
+    "online": true,
+    "category": "United States",
+    "realmLockStatus": null,
+    "type": {
+      "id": "3",
+      "name": "Roleplaying",
+      "slug": "roleplaying",
+      "enum": "RP",
+      "__typename": "RealmTypeEnum"
+    },
+    "population": {
+      "id": "2",
+      "name": "Medium",
+      "slug": "medium",
+      "enum": "MEDIUM",
+      "__typename": "RealmPopulationEnum"
+    },
+    "__typename": "Realm"
+  },
+  {
+    "name": "Cenarius",
+    "slug": "cenarius",
+    "locale": "en-US",
+    "timezone": "PDT",
+    "online": true,
+    "category": "United States",
+    "realmLockStatus": null,
+    "type": {
+      "id": "1",
+      "name": "Normal",
+      "slug": "normal",
+      "enum": "NORMAL",
+      "__typename": "RealmTypeEnum"
+    },
+    "population": {
+      "id": "3",
+      "name": "High",
+      "slug": "high",
+      "enum": "HIGH",
+      "__typename": "RealmPopulationEnum"
+    },
+    "__typename": "Realm"
+  },
+  {
+    "name": "Cho'gall",
+    "slug": "chogall",
+    "locale": "en-US",
+    "timezone": "EDT",
+    "online": true,
+    "category": "United States",
+    "realmLockStatus": null,
+    "type": {
+      "id": "1",
+      "name": "Normal",
+      "slug": "normal",
+      "enum": "NORMAL",
+      "__typename": "RealmTypeEnum"
+    },
+    "population": {
+      "id": "3",
+      "name": "High",
+      "slug": "high",
+      "enum": "HIGH",
+      "__typename": "RealmPopulationEnum"
+    },
+    "__typename": "Realm"
+  },
+  {
+    "name": "Chromaggus",
+    "slug": "chromaggus",
+    "locale": "en-US",
+    "timezone": "CDT",
+    "online": true,
+    "category": "United States",
+    "realmLockStatus": null,
+    "type": {
+      "id": "1",
+      "name": "Normal",
+      "slug": "normal",
+      "enum": "NORMAL",
+      "__typename": "RealmTypeEnum"
+    },
+    "population": {
+      "id": "2",
+      "name": "Medium",
+      "slug": "medium",
+      "enum": "MEDIUM",
+      "__typename": "RealmPopulationEnum"
+    },
+    "__typename": "Realm"
+  },
+  {
+    "name": "Coilfang",
+    "slug": "coilfang",
+    "locale": "en-US",
+    "timezone": "PDT",
+    "online": true,
+    "category": "United States",
+    "realmLockStatus": null,
+    "type": {
+      "id": "1",
+      "name": "Normal",
+      "slug": "normal",
+      "enum": "NORMAL",
+      "__typename": "RealmTypeEnum"
+    },
+    "population": {
+      "id": "1",
+      "name": "Low",
+      "slug": "low",
+      "enum": "LOW",
+      "__typename": "RealmPopulationEnum"
+    },
+    "__typename": "Realm"
+  },
+  {
+    "name": "Crushridge",
+    "slug": "crushridge",
+    "locale": "en-US",
+    "timezone": "CDT",
+    "online": true,
+    "category": "United States",
+    "realmLockStatus": null,
+    "type": {
+      "id": "1",
+      "name": "Normal",
+      "slug": "normal",
+      "enum": "NORMAL",
+      "__typename": "RealmTypeEnum"
+    },
+    "population": {
+      "id": "2",
+      "name": "Medium",
+      "slug": "medium",
+      "enum": "MEDIUM",
+      "__typename": "RealmPopulationEnum"
+    },
+    "__typename": "Realm"
+  },
+  {
+    "name": "Daggerspine",
+    "slug": "daggerspine",
+    "locale": "en-US",
+    "timezone": "CDT",
+    "online": true,
+    "category": "United States",
+    "realmLockStatus": null,
+    "type": {
+      "id": "1",
+      "name": "Normal",
+      "slug": "normal",
+      "enum": "NORMAL",
+      "__typename": "RealmTypeEnum"
+    },
+    "population": {
+      "id": "8",
+      "name": "New Players",
+      "slug": "new-players",
+      "enum": "RECOMMENDED",
+      "__typename": "RealmPopulationEnum"
+    },
+    "__typename": "Realm"
+  },
+  {
+    "name": "Dalaran",
+    "slug": "dalaran",
+    "locale": "en-US",
+    "timezone": "EDT",
+    "online": true,
+    "category": "United States",
+    "realmLockStatus": null,
+    "type": {
+      "id": "1",
+      "name": "Normal",
+      "slug": "normal",
+      "enum": "NORMAL",
+      "__typename": "RealmTypeEnum"
+    },
+    "population": {
+      "id": "4",
+      "name": "Full",
+      "slug": "full",
+      "enum": "FULL",
+      "__typename": "RealmPopulationEnum"
+    },
+    "__typename": "Realm"
+  },
+  {
+    "name": "Dalvengyr",
+    "slug": "dalvengyr",
+    "locale": "en-US",
+    "timezone": "PDT",
+    "online": true,
+    "category": "United States",
+    "realmLockStatus": null,
+    "type": {
+      "id": "1",
+      "name": "Normal",
+      "slug": "normal",
+      "enum": "NORMAL",
+      "__typename": "RealmTypeEnum"
+    },
+    "population": {
+      "id": "1",
+      "name": "Low",
+      "slug": "low",
+      "enum": "LOW",
+      "__typename": "RealmPopulationEnum"
+    },
+    "__typename": "Realm"
+  },
+  {
+    "name": "Dark Iron",
+    "slug": "dark-iron",
+    "locale": "en-US",
+    "timezone": "PDT",
+    "online": true,
+    "category": "United States",
+    "realmLockStatus": null,
+    "type": {
+      "id": "1",
+      "name": "Normal",
+      "slug": "normal",
+      "enum": "NORMAL",
+      "__typename": "RealmTypeEnum"
+    },
+    "population": {
+      "id": "1",
+      "name": "Low",
+      "slug": "low",
+      "enum": "LOW",
+      "__typename": "RealmPopulationEnum"
+    },
+    "__typename": "Realm"
+  },
+  {
+    "name": "Darkspear",
+    "slug": "darkspear",
+    "locale": "en-US",
+    "timezone": "MDT",
+    "online": true,
+    "category": "United States",
+    "realmLockStatus": null,
+    "type": {
+      "id": "1",
+      "name": "Normal",
+      "slug": "normal",
+      "enum": "NORMAL",
+      "__typename": "RealmTypeEnum"
+    },
+    "population": {
+      "id": "1",
+      "name": "Low",
+      "slug": "low",
+      "enum": "LOW",
+      "__typename": "RealmPopulationEnum"
+    },
+    "__typename": "Realm"
+  },
+  {
+    "name": "Darrowmere",
+    "slug": "darrowmere",
+    "locale": "en-US",
+    "timezone": "PDT",
+    "online": true,
+    "category": "United States",
+    "realmLockStatus": null,
+    "type": {
+      "id": "1",
+      "name": "Normal",
+      "slug": "normal",
+      "enum": "NORMAL",
+      "__typename": "RealmTypeEnum"
+    },
+    "population": {
+      "id": "2",
+      "name": "Medium",
+      "slug": "medium",
+      "enum": "MEDIUM",
+      "__typename": "RealmPopulationEnum"
+    },
+    "__typename": "Realm"
+  },
+  {
+    "name": "Dath'Remar",
+    "slug": "dathremar",
+    "locale": "en-US",
+    "timezone": "AEST",
+    "online": true,
+    "category": "Oceanic",
+    "realmLockStatus": null,
+    "type": {
+      "id": "1",
+      "name": "Normal",
+      "slug": "normal",
+      "enum": "NORMAL",
+      "__typename": "RealmTypeEnum"
+    },
+    "population": {
+      "id": "3",
+      "name": "High",
+      "slug": "high",
+      "enum": "HIGH",
+      "__typename": "RealmPopulationEnum"
+    },
+    "__typename": "Realm"
+  },
+  {
+    "name": "Dawnbringer",
+    "slug": "dawnbringer",
+    "locale": "en-US",
+    "timezone": "CDT",
+    "online": true,
+    "category": "United States",
+    "realmLockStatus": null,
+    "type": {
+      "id": "1",
+      "name": "Normal",
+      "slug": "normal",
+      "enum": "NORMAL",
+      "__typename": "RealmTypeEnum"
+    },
+    "population": {
+      "id": "2",
+      "name": "Medium",
+      "slug": "medium",
+      "enum": "MEDIUM",
+      "__typename": "RealmPopulationEnum"
+    },
+    "__typename": "Realm"
+  },
+  {
+    "name": "Deathwing",
+    "slug": "deathwing",
+    "locale": "en-US",
+    "timezone": "PDT",
+    "online": true,
+    "category": "United States",
+    "realmLockStatus": null,
+    "type": {
+      "id": "1",
+      "name": "Normal",
+      "slug": "normal",
+      "enum": "NORMAL",
+      "__typename": "RealmTypeEnum"
+    },
+    "population": {
+      "id": "1",
+      "name": "Low",
+      "slug": "low",
+      "enum": "LOW",
+      "__typename": "RealmPopulationEnum"
+    },
+    "__typename": "Realm"
+  },
+  {
+    "name": "Demon Soul",
+    "slug": "demon-soul",
+    "locale": "en-US",
+    "timezone": "PDT",
+    "online": true,
+    "category": "United States",
+    "realmLockStatus": null,
+    "type": {
+      "id": "1",
+      "name": "Normal",
+      "slug": "normal",
+      "enum": "NORMAL",
+      "__typename": "RealmTypeEnum"
+    },
+    "population": {
+      "id": "1",
+      "name": "Low",
+      "slug": "low",
+      "enum": "LOW",
+      "__typename": "RealmPopulationEnum"
+    },
+    "__typename": "Realm"
+  },
+  {
+    "name": "Dentarg",
+    "slug": "dentarg",
+    "locale": "en-US",
+    "timezone": "CDT",
+    "online": true,
+    "category": "United States",
+    "realmLockStatus": null,
+    "type": {
+      "id": "1",
+      "name": "Normal",
+      "slug": "normal",
+      "enum": "NORMAL",
+      "__typename": "RealmTypeEnum"
+    },
+    "population": {
+      "id": "2",
+      "name": "Medium",
+      "slug": "medium",
+      "enum": "MEDIUM",
+      "__typename": "RealmPopulationEnum"
+    },
+    "__typename": "Realm"
+  },
+  {
+    "name": "Destromath",
+    "slug": "destromath",
+    "locale": "en-US",
+    "timezone": "CDT",
+    "online": true,
+    "category": "United States",
+    "realmLockStatus": null,
+    "type": {
+      "id": "1",
+      "name": "Normal",
+      "slug": "normal",
+      "enum": "NORMAL",
+      "__typename": "RealmTypeEnum"
+    },
+    "population": {
+      "id": "8",
+      "name": "New Players",
+      "slug": "new-players",
+      "enum": "RECOMMENDED",
+      "__typename": "RealmPopulationEnum"
+    },
+    "__typename": "Realm"
+  },
+  {
+    "name": "Dethecus",
+    "slug": "dethecus",
+    "locale": "en-US",
+    "timezone": "CDT",
+    "online": true,
+    "category": "United States",
+    "realmLockStatus": null,
+    "type": {
+      "id": "1",
+      "name": "Normal",
+      "slug": "normal",
+      "enum": "NORMAL",
+      "__typename": "RealmTypeEnum"
+    },
+    "population": {
+      "id": "1",
+      "name": "Low",
+      "slug": "low",
+      "enum": "LOW",
+      "__typename": "RealmPopulationEnum"
+    },
+    "__typename": "Realm"
+  },
+  {
+    "name": "Detheroc",
+    "slug": "detheroc",
+    "locale": "en-US",
+    "timezone": "CDT",
+    "online": true,
+    "category": "United States",
+    "realmLockStatus": null,
+    "type": {
+      "id": "1",
+      "name": "Normal",
+      "slug": "normal",
+      "enum": "NORMAL",
+      "__typename": "RealmTypeEnum"
+    },
+    "population": {
+      "id": "1",
+      "name": "Low",
+      "slug": "low",
+      "enum": "LOW",
+      "__typename": "RealmPopulationEnum"
+    },
+    "__typename": "Realm"
+  },
+  {
+    "name": "Doomhammer",
+    "slug": "doomhammer",
+    "locale": "en-US",
+    "timezone": "PDT",
+    "online": true,
+    "category": "United States",
+    "realmLockStatus": null,
+    "type": {
+      "id": "1",
+      "name": "Normal",
+      "slug": "normal",
+      "enum": "NORMAL",
+      "__typename": "RealmTypeEnum"
+    },
+    "population": {
+      "id": "1",
+      "name": "Low",
+      "slug": "low",
+      "enum": "LOW",
+      "__typename": "RealmPopulationEnum"
+    },
+    "__typename": "Realm"
+  },
+  {
+    "name": "Draenor",
+    "slug": "draenor",
+    "locale": "en-US",
+    "timezone": "PDT",
+    "online": true,
+    "category": "United States",
+    "realmLockStatus": null,
+    "type": {
+      "id": "1",
+      "name": "Normal",
+      "slug": "normal",
+      "enum": "NORMAL",
+      "__typename": "RealmTypeEnum"
+    },
+    "population": {
+      "id": "1",
+      "name": "Low",
+      "slug": "low",
+      "enum": "LOW",
+      "__typename": "RealmPopulationEnum"
+    },
+    "__typename": "Realm"
+  },
+  {
+    "name": "Dragonblight",
+    "slug": "dragonblight",
+    "locale": "en-US",
+    "timezone": "PDT",
+    "online": true,
+    "category": "United States",
+    "realmLockStatus": null,
+    "type": {
+      "id": "1",
+      "name": "Normal",
+      "slug": "normal",
+      "enum": "NORMAL",
+      "__typename": "RealmTypeEnum"
+    },
+    "population": {
+      "id": "1",
+      "name": "Low",
+      "slug": "low",
+      "enum": "LOW",
+      "__typename": "RealmPopulationEnum"
+    },
+    "__typename": "Realm"
+  },
+  {
+    "name": "Dragonmaw",
+    "slug": "dragonmaw",
+    "locale": "en-US",
+    "timezone": "PDT",
+    "online": true,
+    "category": "United States",
+    "realmLockStatus": null,
+    "type": {
+      "id": "1",
+      "name": "Normal",
+      "slug": "normal",
+      "enum": "NORMAL",
+      "__typename": "RealmTypeEnum"
+    },
+    "population": {
+      "id": "3",
+      "name": "High",
+      "slug": "high",
+      "enum": "HIGH",
+      "__typename": "RealmPopulationEnum"
+    },
+    "__typename": "Realm"
+  },
+  {
+    "name": "Drak'Tharon",
+    "slug": "draktharon",
+    "locale": "en-US",
+    "timezone": "EDT",
+    "online": true,
+    "category": "United States",
+    "realmLockStatus": null,
+    "type": {
+      "id": "1",
+      "name": "Normal",
+      "slug": "normal",
+      "enum": "NORMAL",
+      "__typename": "RealmTypeEnum"
+    },
+    "population": {
+      "id": "3",
+      "name": "High",
+      "slug": "high",
+      "enum": "HIGH",
+      "__typename": "RealmPopulationEnum"
+    },
+    "__typename": "Realm"
+  },
+  {
+    "name": "Drak'thul",
+    "slug": "drakthul",
+    "locale": "en-US",
+    "timezone": "PDT",
+    "online": true,
+    "category": "United States",
+    "realmLockStatus": null,
+    "type": {
+      "id": "1",
+      "name": "Normal",
+      "slug": "normal",
+      "enum": "NORMAL",
+      "__typename": "RealmTypeEnum"
+    },
+    "population": {
+      "id": "3",
+      "name": "High",
+      "slug": "high",
+      "enum": "HIGH",
+      "__typename": "RealmPopulationEnum"
+    },
+    "__typename": "Realm"
+  },
+  {
+    "name": "Draka",
+    "slug": "draka",
+    "locale": "en-US",
+    "timezone": "PDT",
+    "online": true,
+    "category": "United States",
+    "realmLockStatus": null,
+    "type": {
+      "id": "1",
+      "name": "Normal",
+      "slug": "normal",
+      "enum": "NORMAL",
+      "__typename": "RealmTypeEnum"
+    },
+    "population": {
+      "id": "2",
+      "name": "Medium",
+      "slug": "medium",
+      "enum": "MEDIUM",
+      "__typename": "RealmPopulationEnum"
+    },
+    "__typename": "Realm"
+  },
+  {
+    "name": "Drakkari",
+    "slug": "drakkari",
+    "locale": "es-MX",
+    "timezone": "CDT",
+    "online": true,
+    "category": "Latin America",
+    "realmLockStatus": null,
+    "type": {
+      "id": "1",
+      "name": "Normal",
+      "slug": "normal",
+      "enum": "NORMAL",
+      "__typename": "RealmTypeEnum"
+    },
+    "population": {
+      "id": "8",
+      "name": "New Players",
+      "slug": "new-players",
+      "enum": "RECOMMENDED",
+      "__typename": "RealmPopulationEnum"
+    },
+    "__typename": "Realm"
+  },
+  {
+    "name": "Dreadmaul",
+    "slug": "dreadmaul",
+    "locale": "en-US",
+    "timezone": "AEST",
+    "online": true,
+    "category": "Oceanic",
+    "realmLockStatus": null,
+    "type": {
+      "id": "1",
+      "name": "Normal",
+      "slug": "normal",
+      "enum": "NORMAL",
+      "__typename": "RealmTypeEnum"
+    },
+    "population": {
+      "id": "4",
+      "name": "Full",
+      "slug": "full",
+      "enum": "FULL",
+      "__typename": "RealmPopulationEnum"
+    },
+    "__typename": "Realm"
+  },
+  {
+    "name": "Drenden",
+    "slug": "drenden",
+    "locale": "en-US",
+    "timezone": "CDT",
+    "online": true,
+    "category": "United States",
+    "realmLockStatus": null,
+    "type": {
+      "id": "1",
+      "name": "Normal",
+      "slug": "normal",
+      "enum": "NORMAL",
+      "__typename": "RealmTypeEnum"
+    },
+    "population": {
+      "id": "2",
+      "name": "Medium",
+      "slug": "medium",
+      "enum": "MEDIUM",
+      "__typename": "RealmPopulationEnum"
+    },
+    "__typename": "Realm"
+  },
+  {
+    "name": "Dunemaul",
+    "slug": "dunemaul",
+    "locale": "en-US",
+    "timezone": "CDT",
+    "online": true,
+    "category": "United States",
+    "realmLockStatus": null,
+    "type": {
+      "id": "1",
+      "name": "Normal",
+      "slug": "normal",
+      "enum": "NORMAL",
+      "__typename": "RealmTypeEnum"
+    },
+    "population": {
+      "id": "3",
+      "name": "High",
+      "slug": "high",
+      "enum": "HIGH",
+      "__typename": "RealmPopulationEnum"
+    },
+    "__typename": "Realm"
+  },
+  {
+    "name": "Durotan",
+    "slug": "durotan",
+    "locale": "en-US",
+    "timezone": "EDT",
+    "online": true,
+    "category": "United States",
+    "realmLockStatus": null,
+    "type": {
+      "id": "1",
+      "name": "Normal",
+      "slug": "normal",
+      "enum": "NORMAL",
+      "__typename": "RealmTypeEnum"
+    },
+    "population": {
+      "id": "1",
+      "name": "Low",
+      "slug": "low",
+      "enum": "LOW",
+      "__typename": "RealmPopulationEnum"
+    },
+    "__typename": "Realm"
+  },
+  {
+    "name": "Duskwood",
+    "slug": "duskwood",
+    "locale": "en-US",
+    "timezone": "EDT",
+    "online": true,
+    "category": "United States",
+    "realmLockStatus": null,
+    "type": {
+      "id": "1",
+      "name": "Normal",
+      "slug": "normal",
+      "enum": "NORMAL",
+      "__typename": "RealmTypeEnum"
+    },
+    "population": {
+      "id": "1",
+      "name": "Low",
+      "slug": "low",
+      "enum": "LOW",
+      "__typename": "RealmPopulationEnum"
+    },
+    "__typename": "Realm"
+  },
+  {
+    "name": "Earthen Ring",
+    "slug": "earthen-ring",
+    "locale": "en-US",
+    "timezone": "EDT",
+    "online": true,
+    "category": "United States",
+    "realmLockStatus": null,
+    "type": {
+      "id": "3",
+      "name": "Roleplaying",
+      "slug": "roleplaying",
+      "enum": "RP",
+      "__typename": "RealmTypeEnum"
+    },
+    "population": {
+      "id": "1",
+      "name": "Low",
+      "slug": "low",
+      "enum": "LOW",
+      "__typename": "RealmPopulationEnum"
+    },
+    "__typename": "Realm"
+  },
+  {
+    "name": "Echo Isles",
+    "slug": "echo-isles",
+    "locale": "en-US",
+    "timezone": "PDT",
+    "online": true,
+    "category": "United States",
+    "realmLockStatus": null,
+    "type": {
+      "id": "1",
+      "name": "Normal",
+      "slug": "normal",
+      "enum": "NORMAL",
+      "__typename": "RealmTypeEnum"
+    },
+    "population": {
+      "id": "1",
+      "name": "Low",
+      "slug": "low",
+      "enum": "LOW",
+      "__typename": "RealmPopulationEnum"
+    },
+    "__typename": "Realm"
+  },
+  {
+    "name": "Eitrigg",
+    "slug": "eitrigg",
+    "locale": "en-US",
+    "timezone": "CDT",
+    "online": true,
+    "category": "United States",
+    "realmLockStatus": null,
+    "type": {
+      "id": "1",
+      "name": "Normal",
+      "slug": "normal",
+      "enum": "NORMAL",
+      "__typename": "RealmTypeEnum"
+    },
+    "population": {
+      "id": "1",
+      "name": "Low",
+      "slug": "low",
+      "enum": "LOW",
+      "__typename": "RealmPopulationEnum"
+    },
+    "__typename": "Realm"
+  },
+  {
+    "name": "Eldre'Thalas",
+    "slug": "eldrethalas",
+    "locale": "en-US",
+    "timezone": "PDT",
+    "online": true,
+    "category": "United States",
+    "realmLockStatus": null,
+    "type": {
+      "id": "1",
+      "name": "Normal",
+      "slug": "normal",
+      "enum": "NORMAL",
+      "__typename": "RealmTypeEnum"
+    },
+    "population": {
+      "id": "3",
+      "name": "High",
+      "slug": "high",
+      "enum": "HIGH",
+      "__typename": "RealmPopulationEnum"
+    },
+    "__typename": "Realm"
+  },
+  {
+    "name": "Elune",
+    "slug": "elune",
+    "locale": "en-US",
+    "timezone": "EDT",
+    "online": true,
+    "category": "United States",
+    "realmLockStatus": null,
+    "type": {
+      "id": "1",
+      "name": "Normal",
+      "slug": "normal",
+      "enum": "NORMAL",
+      "__typename": "RealmTypeEnum"
+    },
+    "population": {
+      "id": "3",
+      "name": "High",
+      "slug": "high",
+      "enum": "HIGH",
+      "__typename": "RealmPopulationEnum"
+    },
+    "__typename": "Realm"
+  },
+  {
+    "name": "Emerald Dream",
+    "slug": "emerald-dream",
+    "locale": "en-US",
+    "timezone": "CDT",
+    "online": true,
+    "category": "United States",
+    "realmLockStatus": null,
+    "type": {
+      "id": "3",
+      "name": "Roleplaying",
+      "slug": "roleplaying",
+      "enum": "RP",
+      "__typename": "RealmTypeEnum"
+    },
+    "population": {
+      "id": "3",
+      "name": "High",
+      "slug": "high",
+      "enum": "HIGH",
+      "__typename": "RealmPopulationEnum"
+    },
+    "__typename": "Realm"
+  },
+  {
+    "name": "Eonar",
+    "slug": "eonar",
+    "locale": "en-US",
+    "timezone": "EDT",
+    "online": true,
+    "category": "United States",
+    "realmLockStatus": null,
+    "type": {
+      "id": "1",
+      "name": "Normal",
+      "slug": "normal",
+      "enum": "NORMAL",
+      "__typename": "RealmTypeEnum"
+    },
+    "population": {
+      "id": "3",
+      "name": "High",
+      "slug": "high",
+      "enum": "HIGH",
+      "__typename": "RealmPopulationEnum"
+    },
+    "__typename": "Realm"
+  },
+  {
+    "name": "Eredar",
+    "slug": "eredar",
+    "locale": "en-US",
+    "timezone": "CDT",
+    "online": true,
+    "category": "United States",
+    "realmLockStatus": null,
+    "type": {
+      "id": "1",
+      "name": "Normal",
+      "slug": "normal",
+      "enum": "NORMAL",
+      "__typename": "RealmTypeEnum"
+    },
+    "population": {
+      "id": "4",
+      "name": "Full",
+      "slug": "full",
+      "enum": "FULL",
+      "__typename": "RealmPopulationEnum"
+    },
+    "__typename": "Realm"
+  },
+  {
+    "name": "Executus",
+    "slug": "executus",
+    "locale": "en-US",
+    "timezone": "PDT",
+    "online": true,
+    "category": "United States",
+    "realmLockStatus": null,
+    "type": {
+      "id": "1",
+      "name": "Normal",
+      "slug": "normal",
+      "enum": "NORMAL",
+      "__typename": "RealmTypeEnum"
+    },
+    "population": {
+      "id": "1",
+      "name": "Low",
+      "slug": "low",
+      "enum": "LOW",
+      "__typename": "RealmPopulationEnum"
+    },
+    "__typename": "Realm"
+  },
+  {
+    "name": "Exodar",
+    "slug": "exodar",
+    "locale": "en-US",
+    "timezone": "CDT",
+    "online": true,
+    "category": "United States",
+    "realmLockStatus": null,
+    "type": {
+      "id": "1",
+      "name": "Normal",
+      "slug": "normal",
+      "enum": "NORMAL",
+      "__typename": "RealmTypeEnum"
+    },
+    "population": {
+      "id": "3",
+      "name": "High",
+      "slug": "high",
+      "enum": "HIGH",
+      "__typename": "RealmPopulationEnum"
+    },
+    "__typename": "Realm"
+  },
+  {
+    "name": "Farstriders",
+    "slug": "farstriders",
+    "locale": "en-US",
+    "timezone": "PDT",
+    "online": true,
+    "category": "United States",
+    "realmLockStatus": null,
+    "type": {
+      "id": "3",
+      "name": "Roleplaying",
+      "slug": "roleplaying",
+      "enum": "RP",
+      "__typename": "RealmTypeEnum"
+    },
+    "population": {
+      "id": "1",
+      "name": "Low",
+      "slug": "low",
+      "enum": "LOW",
+      "__typename": "RealmPopulationEnum"
+    },
+    "__typename": "Realm"
+  },
+  {
+    "name": "Feathermoon",
+    "slug": "feathermoon",
+    "locale": "en-US",
+    "timezone": "PDT",
+    "online": true,
+    "category": "United States",
+    "realmLockStatus": null,
+    "type": {
+      "id": "3",
+      "name": "Roleplaying",
+      "slug": "roleplaying",
+      "enum": "RP",
+      "__typename": "RealmTypeEnum"
+    },
+    "population": {
+      "id": "1",
+      "name": "Low",
+      "slug": "low",
+      "enum": "LOW",
+      "__typename": "RealmPopulationEnum"
+    },
+    "__typename": "Realm"
+  },
+  {
+    "name": "Fenris",
+    "slug": "fenris",
+    "locale": "en-US",
+    "timezone": "PDT",
+    "online": true,
+    "category": "United States",
+    "realmLockStatus": null,
+    "type": {
+      "id": "1",
+      "name": "Normal",
+      "slug": "normal",
+      "enum": "NORMAL",
+      "__typename": "RealmTypeEnum"
+    },
+    "population": {
+      "id": "1",
+      "name": "Low",
+      "slug": "low",
+      "enum": "LOW",
+      "__typename": "RealmPopulationEnum"
+    },
+    "__typename": "Realm"
+  },
+  {
+    "name": "Firetree",
+    "slug": "firetree",
+    "locale": "en-US",
+    "timezone": "EDT",
+    "online": true,
+    "category": "United States",
+    "realmLockStatus": null,
+    "type": {
+      "id": "1",
+      "name": "Normal",
+      "slug": "normal",
+      "enum": "NORMAL",
+      "__typename": "RealmTypeEnum"
+    },
+    "population": {
+      "id": "3",
+      "name": "High",
+      "slug": "high",
+      "enum": "HIGH",
+      "__typename": "RealmPopulationEnum"
+    },
+    "__typename": "Realm"
+  },
+  {
+    "name": "Fizzcrank",
+    "slug": "fizzcrank",
+    "locale": "en-US",
+    "timezone": "CDT",
+    "online": true,
+    "category": "United States",
+    "realmLockStatus": null,
+    "type": {
+      "id": "1",
+      "name": "Normal",
+      "slug": "normal",
+      "enum": "NORMAL",
+      "__typename": "RealmTypeEnum"
+    },
+    "population": {
+      "id": "4",
+      "name": "Full",
+      "slug": "full",
+      "enum": "FULL",
+      "__typename": "RealmPopulationEnum"
+    },
+    "__typename": "Realm"
+  },
+  {
+    "name": "Frostmane",
+    "slug": "frostmane",
+    "locale": "en-US",
+    "timezone": "PDT",
+    "online": true,
+    "category": "United States",
+    "realmLockStatus": null,
+    "type": {
+      "id": "1",
+      "name": "Normal",
+      "slug": "normal",
+      "enum": "NORMAL",
+      "__typename": "RealmTypeEnum"
+    },
+    "population": {
+      "id": "3",
+      "name": "High",
+      "slug": "high",
+      "enum": "HIGH",
+      "__typename": "RealmPopulationEnum"
+    },
+    "__typename": "Realm"
+  },
+  {
+    "name": "Frostmourne",
+    "slug": "frostmourne",
+    "locale": "en-US",
+    "timezone": "AEST",
+    "online": true,
+    "category": "Oceanic",
+    "realmLockStatus": null,
+    "type": {
+      "id": "1",
+      "name": "Normal",
+      "slug": "normal",
+      "enum": "NORMAL",
+      "__typename": "RealmTypeEnum"
+    },
+    "population": {
+      "id": "4",
+      "name": "Full",
+      "slug": "full",
+      "enum": "FULL",
+      "__typename": "RealmPopulationEnum"
+    },
+    "__typename": "Realm"
+  },
+  {
+    "name": "Frostwolf",
+    "slug": "frostwolf",
+    "locale": "en-US",
+    "timezone": "EDT",
+    "online": true,
+    "category": "United States",
+    "realmLockStatus": null,
+    "type": {
+      "id": "1",
+      "name": "Normal",
+      "slug": "normal",
+      "enum": "NORMAL",
+      "__typename": "RealmTypeEnum"
+    },
+    "population": {
+      "id": "3",
+      "name": "High",
+      "slug": "high",
+      "enum": "HIGH",
+      "__typename": "RealmPopulationEnum"
+    },
+    "__typename": "Realm"
+  },
+  {
+    "name": "Galakrond",
+    "slug": "galakrond",
+    "locale": "en-US",
+    "timezone": "CDT",
+    "online": true,
+    "category": "United States",
+    "realmLockStatus": null,
+    "type": {
+      "id": "1",
+      "name": "Normal",
+      "slug": "normal",
+      "enum": "NORMAL",
+      "__typename": "RealmTypeEnum"
+    },
+    "population": {
+      "id": "1",
+      "name": "Low",
+      "slug": "low",
+      "enum": "LOW",
+      "__typename": "RealmPopulationEnum"
+    },
+    "__typename": "Realm"
+  },
+  {
+    "name": "Gallywix",
+    "slug": "gallywix",
+    "locale": "pt-BR",
+    "timezone": "BRT",
+    "online": true,
+    "category": "Brazil",
+    "realmLockStatus": null,
+    "type": {
+      "id": "1",
+      "name": "Normal",
+      "slug": "normal",
+      "enum": "NORMAL",
+      "__typename": "RealmTypeEnum"
+    },
+    "population": {
+      "id": "8",
+      "name": "New Players",
+      "slug": "new-players",
+      "enum": "RECOMMENDED",
+      "__typename": "RealmPopulationEnum"
+    },
+    "__typename": "Realm"
+  },
+  {
+    "name": "Garithos",
+    "slug": "garithos",
+    "locale": "en-US",
+    "timezone": "CDT",
+    "online": true,
+    "category": "United States",
+    "realmLockStatus": null,
+    "type": {
+      "id": "1",
+      "name": "Normal",
+      "slug": "normal",
+      "enum": "NORMAL",
+      "__typename": "RealmTypeEnum"
+    },
+    "population": {
+      "id": "2",
+      "name": "Medium",
+      "slug": "medium",
+      "enum": "MEDIUM",
+      "__typename": "RealmPopulationEnum"
+    },
+    "__typename": "Realm"
+  },
+  {
+    "name": "Garona",
+    "slug": "garona",
+    "locale": "en-US",
+    "timezone": "CDT",
+    "online": true,
+    "category": "United States",
+    "realmLockStatus": null,
+    "type": {
+      "id": "1",
+      "name": "Normal",
+      "slug": "normal",
+      "enum": "NORMAL",
+      "__typename": "RealmTypeEnum"
+    },
+    "population": {
+      "id": "3",
+      "name": "High",
+      "slug": "high",
+      "enum": "HIGH",
+      "__typename": "RealmPopulationEnum"
+    },
+    "__typename": "Realm"
+  },
+  {
+    "name": "Garrosh",
+    "slug": "garrosh",
+    "locale": "en-US",
+    "timezone": "CDT",
+    "online": true,
+    "category": "United States",
+    "realmLockStatus": null,
+    "type": {
+      "id": "1",
+      "name": "Normal",
+      "slug": "normal",
+      "enum": "NORMAL",
+      "__typename": "RealmTypeEnum"
+    },
+    "population": {
+      "id": "8",
+      "name": "New Players",
+      "slug": "new-players",
+      "enum": "RECOMMENDED",
+      "__typename": "RealmPopulationEnum"
+    },
+    "__typename": "Realm"
+  },
+  {
+    "name": "Ghostlands",
+    "slug": "ghostlands",
+    "locale": "en-US",
+    "timezone": "EDT",
+    "online": true,
+    "category": "United States",
+    "realmLockStatus": null,
+    "type": {
+      "id": "1",
+      "name": "Normal",
+      "slug": "normal",
+      "enum": "NORMAL",
+      "__typename": "RealmTypeEnum"
+    },
+    "population": {
+      "id": "3",
+      "name": "High",
+      "slug": "high",
+      "enum": "HIGH",
+      "__typename": "RealmPopulationEnum"
+    },
+    "__typename": "Realm"
+  },
+  {
+    "name": "Gilneas",
+    "slug": "gilneas",
+    "locale": "en-US",
+    "timezone": "EDT",
+    "online": true,
+    "category": "United States",
+    "realmLockStatus": null,
+    "type": {
+      "id": "1",
+      "name": "Normal",
+      "slug": "normal",
+      "enum": "NORMAL",
+      "__typename": "RealmTypeEnum"
+    },
+    "population": {
+      "id": "3",
+      "name": "High",
+      "slug": "high",
+      "enum": "HIGH",
+      "__typename": "RealmPopulationEnum"
+    },
+    "__typename": "Realm"
+  },
+  {
+    "name": "Gnomeregan",
+    "slug": "gnomeregan",
+    "locale": "en-US",
+    "timezone": "EDT",
+    "online": true,
+    "category": "United States",
+    "realmLockStatus": null,
+    "type": {
+      "id": "1",
+      "name": "Normal",
+      "slug": "normal",
+      "enum": "NORMAL",
+      "__typename": "RealmTypeEnum"
+    },
+    "population": {
+      "id": "3",
+      "name": "High",
+      "slug": "high",
+      "enum": "HIGH",
+      "__typename": "RealmPopulationEnum"
+    },
+    "__typename": "Realm"
+  },
+  {
+    "name": "Goldrinn",
+    "slug": "goldrinn",
+    "locale": "pt-BR",
+    "timezone": "BRT",
+    "online": true,
+    "category": "Brazil",
+    "realmLockStatus": null,
+    "type": {
+      "id": "1",
+      "name": "Normal",
+      "slug": "normal",
+      "enum": "NORMAL",
+      "__typename": "RealmTypeEnum"
+    },
+    "population": {
+      "id": "1",
+      "name": "Low",
+      "slug": "low",
+      "enum": "LOW",
+      "__typename": "RealmPopulationEnum"
+    },
+    "__typename": "Realm"
+  },
+  {
+    "name": "Gorefiend",
+    "slug": "gorefiend",
+    "locale": "en-US",
+    "timezone": "CDT",
+    "online": true,
+    "category": "United States",
+    "realmLockStatus": null,
+    "type": {
+      "id": "1",
+      "name": "Normal",
+      "slug": "normal",
+      "enum": "NORMAL",
+      "__typename": "RealmTypeEnum"
+    },
+    "population": {
+      "id": "4",
+      "name": "Full",
+      "slug": "full",
+      "enum": "FULL",
+      "__typename": "RealmPopulationEnum"
+    },
+    "__typename": "Realm"
+  },
+  {
+    "name": "Gorgonnash",
+    "slug": "gorgonnash",
+    "locale": "en-US",
+    "timezone": "EDT",
+    "online": true,
+    "category": "United States",
+    "realmLockStatus": null,
+    "type": {
+      "id": "1",
+      "name": "Normal",
+      "slug": "normal",
+      "enum": "NORMAL",
+      "__typename": "RealmTypeEnum"
+    },
+    "population": {
+      "id": "4",
+      "name": "Full",
+      "slug": "full",
+      "enum": "FULL",
+      "__typename": "RealmPopulationEnum"
+    },
+    "__typename": "Realm"
+  },
+  {
+    "name": "Greymane",
+    "slug": "greymane",
+    "locale": "en-US",
+    "timezone": "CDT",
+    "online": true,
+    "category": "United States",
+    "realmLockStatus": null,
+    "type": {
+      "id": "1",
+      "name": "Normal",
+      "slug": "normal",
+      "enum": "NORMAL",
+      "__typename": "RealmTypeEnum"
+    },
+    "population": {
+      "id": "1",
+      "name": "Low",
+      "slug": "low",
+      "enum": "LOW",
+      "__typename": "RealmPopulationEnum"
+    },
+    "__typename": "Realm"
+  },
+  {
+    "name": "Grizzly Hills",
+    "slug": "grizzly-hills",
+    "locale": "en-US",
+    "timezone": "EDT",
+    "online": true,
+    "category": "United States",
+    "realmLockStatus": null,
+    "type": {
+      "id": "1",
+      "name": "Normal",
+      "slug": "normal",
+      "enum": "NORMAL",
+      "__typename": "RealmTypeEnum"
+    },
+    "population": {
+      "id": "3",
+      "name": "High",
+      "slug": "high",
+      "enum": "HIGH",
+      "__typename": "RealmPopulationEnum"
+    },
+    "__typename": "Realm"
+  },
+  {
+    "name": "Gul'dan",
+    "slug": "guldan",
+    "locale": "en-US",
+    "timezone": "EDT",
+    "online": true,
+    "category": "United States",
+    "realmLockStatus": null,
+    "type": {
+      "id": "1",
+      "name": "Normal",
+      "slug": "normal",
+      "enum": "NORMAL",
+      "__typename": "RealmTypeEnum"
+    },
+    "population": {
+      "id": "3",
+      "name": "High",
+      "slug": "high",
+      "enum": "HIGH",
+      "__typename": "RealmPopulationEnum"
+    },
+    "__typename": "Realm"
+  },
+  {
+    "name": "Gundrak",
+    "slug": "gundrak",
+    "locale": "en-US",
+    "timezone": "AEST",
+    "online": true,
+    "category": "Oceanic",
+    "realmLockStatus": null,
+    "type": {
+      "id": "1",
+      "name": "Normal",
+      "slug": "normal",
+      "enum": "NORMAL",
+      "__typename": "RealmTypeEnum"
+    },
+    "population": {
+      "id": "4",
+      "name": "Full",
+      "slug": "full",
+      "enum": "FULL",
+      "__typename": "RealmPopulationEnum"
+    },
+    "__typename": "Realm"
+  },
+  {
+    "name": "Gurubashi",
+    "slug": "gurubashi",
+    "locale": "en-US",
+    "timezone": "CDT",
+    "online": true,
+    "category": "United States",
+    "realmLockStatus": null,
+    "type": {
+      "id": "1",
+      "name": "Normal",
+      "slug": "normal",
+      "enum": "NORMAL",
+      "__typename": "RealmTypeEnum"
+    },
+    "population": {
+      "id": "8",
+      "name": "New Players",
+      "slug": "new-players",
+      "enum": "RECOMMENDED",
+      "__typename": "RealmPopulationEnum"
+    },
+    "__typename": "Realm"
+  },
+  {
+    "name": "Hakkar",
+    "slug": "hakkar",
+    "locale": "en-US",
+    "timezone": "CDT",
+    "online": true,
+    "category": "United States",
+    "realmLockStatus": null,
+    "type": {
+      "id": "1",
+      "name": "Normal",
+      "slug": "normal",
+      "enum": "NORMAL",
+      "__typename": "RealmTypeEnum"
+    },
+    "population": {
+      "id": "8",
+      "name": "New Players",
+      "slug": "new-players",
+      "enum": "RECOMMENDED",
+      "__typename": "RealmPopulationEnum"
+    },
+    "__typename": "Realm"
+  },
+  {
+    "name": "Haomarush",
+    "slug": "haomarush",
+    "locale": "en-US",
+    "timezone": "CDT",
+    "online": true,
+    "category": "United States",
+    "realmLockStatus": null,
+    "type": {
+      "id": "1",
+      "name": "Normal",
+      "slug": "normal",
+      "enum": "NORMAL",
+      "__typename": "RealmTypeEnum"
+    },
+    "population": {
+      "id": "1",
+      "name": "Low",
+      "slug": "low",
+      "enum": "LOW",
+      "__typename": "RealmPopulationEnum"
+    },
+    "__typename": "Realm"
+  },
+  {
+    "name": "Hellscream",
+    "slug": "hellscream",
+    "locale": "en-US",
+    "timezone": "CDT",
+    "online": true,
+    "category": "United States",
+    "realmLockStatus": null,
+    "type": {
+      "id": "1",
+      "name": "Normal",
+      "slug": "normal",
+      "enum": "NORMAL",
+      "__typename": "RealmTypeEnum"
+    },
+    "population": {
+      "id": "4",
+      "name": "Full",
+      "slug": "full",
+      "enum": "FULL",
+      "__typename": "RealmPopulationEnum"
+    },
+    "__typename": "Realm"
+  },
+  {
+    "name": "Hydraxis",
+    "slug": "hydraxis",
+    "locale": "en-US",
+    "timezone": "PDT",
+    "online": true,
+    "category": "United States",
+    "realmLockStatus": null,
+    "type": {
+      "id": "1",
+      "name": "Normal",
+      "slug": "normal",
+      "enum": "NORMAL",
+      "__typename": "RealmTypeEnum"
+    },
+    "population": {
+      "id": "3",
+      "name": "High",
+      "slug": "high",
+      "enum": "HIGH",
+      "__typename": "RealmPopulationEnum"
+    },
+    "__typename": "Realm"
+  },
+  {
+    "name": "Hyjal",
+    "slug": "hyjal",
+    "locale": "en-US",
+    "timezone": "PDT",
+    "online": true,
+    "category": "United States",
+    "realmLockStatus": {
+      "isLockedForNewCharacters": "false",
+      "isLockedForPct": "true",
+      "__typename": "RealmLockStatusEnum"
+    },
+    "type": {
+      "id": "1",
+      "name": "Normal",
+      "slug": "normal",
+      "enum": "NORMAL",
+      "__typename": "RealmTypeEnum"
+    },
+    "population": {
+      "id": "3",
+      "name": "High",
+      "slug": "high",
+      "enum": "HIGH",
+      "__typename": "RealmPopulationEnum"
+    },
+    "__typename": "Realm"
+  },
+  {
+    "name": "Icecrown",
+    "slug": "icecrown",
+    "locale": "en-US",
+    "timezone": "CDT",
+    "online": true,
+    "category": "United States",
+    "realmLockStatus": null,
+    "type": {
+      "id": "1",
+      "name": "Normal",
+      "slug": "normal",
+      "enum": "NORMAL",
+      "__typename": "RealmTypeEnum"
+    },
+    "population": {
+      "id": "3",
+      "name": "High",
+      "slug": "high",
+      "enum": "HIGH",
+      "__typename": "RealmPopulationEnum"
+    },
+    "__typename": "Realm"
+  },
+  {
+    "name": "Illidan",
+    "slug": "illidan",
+    "locale": "en-US",
+    "timezone": "CDT",
+    "online": true,
+    "category": "United States",
+    "realmLockStatus": null,
+    "type": {
+      "id": "1",
+      "name": "Normal",
+      "slug": "normal",
+      "enum": "NORMAL",
+      "__typename": "RealmTypeEnum"
+    },
+    "population": {
+      "id": "4",
+      "name": "Full",
+      "slug": "full",
+      "enum": "FULL",
+      "__typename": "RealmPopulationEnum"
+    },
+    "__typename": "Realm"
+  },
+  {
+    "name": "Jaedenar",
+    "slug": "jaedenar",
+    "locale": "en-US",
+    "timezone": "CDT",
+    "online": true,
+    "category": "United States",
+    "realmLockStatus": null,
+    "type": {
+      "id": "1",
+      "name": "Normal",
+      "slug": "normal",
+      "enum": "NORMAL",
+      "__typename": "RealmTypeEnum"
+    },
+    "population": {
+      "id": "3",
+      "name": "High",
+      "slug": "high",
+      "enum": "HIGH",
+      "__typename": "RealmPopulationEnum"
+    },
+    "__typename": "Realm"
+  },
+  {
+    "name": "Jubei'Thos",
+    "slug": "jubeithos",
+    "locale": "en-US",
+    "timezone": "AEST",
+    "online": true,
+    "category": "Oceanic",
+    "realmLockStatus": null,
+    "type": {
+      "id": "1",
+      "name": "Normal",
+      "slug": "normal",
+      "enum": "NORMAL",
+      "__typename": "RealmTypeEnum"
+    },
+    "population": {
+      "id": "4",
+      "name": "Full",
+      "slug": "full",
+      "enum": "FULL",
+      "__typename": "RealmPopulationEnum"
+    },
+    "__typename": "Realm"
+  },
+  {
+    "name": "Kael'thas",
+    "slug": "kaelthas",
+    "locale": "en-US",
+    "timezone": "EDT",
+    "online": true,
+    "category": "United States",
+    "realmLockStatus": null,
+    "type": {
+      "id": "1",
+      "name": "Normal",
+      "slug": "normal",
+      "enum": "NORMAL",
+      "__typename": "RealmTypeEnum"
+    },
+    "population": {
+      "id": "3",
+      "name": "High",
+      "slug": "high",
+      "enum": "HIGH",
+      "__typename": "RealmPopulationEnum"
+    },
+    "__typename": "Realm"
+  },
+  {
+    "name": "Kalecgos",
+    "slug": "kalecgos",
+    "locale": "en-US",
+    "timezone": "PDT",
+    "online": true,
+    "category": "United States",
+    "realmLockStatus": null,
+    "type": {
+      "id": "1",
+      "name": "Normal",
+      "slug": "normal",
+      "enum": "NORMAL",
+      "__typename": "RealmTypeEnum"
+    },
+    "population": {
+      "id": "1",
+      "name": "Low",
+      "slug": "low",
+      "enum": "LOW",
+      "__typename": "RealmPopulationEnum"
+    },
+    "__typename": "Realm"
+  },
+  {
+    "name": "Kargath",
+    "slug": "kargath",
+    "locale": "en-US",
+    "timezone": "CDT",
+    "online": true,
+    "category": "United States",
+    "realmLockStatus": null,
+    "type": {
+      "id": "1",
+      "name": "Normal",
+      "slug": "normal",
+      "enum": "NORMAL",
+      "__typename": "RealmTypeEnum"
+    },
+    "population": {
+      "id": "3",
+      "name": "High",
+      "slug": "high",
+      "enum": "HIGH",
+      "__typename": "RealmPopulationEnum"
+    },
+    "__typename": "Realm"
+  },
+  {
+    "name": "Kel'Thuzad",
+    "slug": "kelthuzad",
+    "locale": "en-US",
+    "timezone": "MDT",
+    "online": true,
+    "category": "United States",
+    "realmLockStatus": null,
+    "type": {
+      "id": "1",
+      "name": "Normal",
+      "slug": "normal",
+      "enum": "NORMAL",
+      "__typename": "RealmTypeEnum"
+    },
+    "population": {
+      "id": "3",
+      "name": "High",
+      "slug": "high",
+      "enum": "HIGH",
+      "__typename": "RealmPopulationEnum"
+    },
+    "__typename": "Realm"
+  },
+  {
+    "name": "Khadgar",
+    "slug": "khadgar",
+    "locale": "en-US",
+    "timezone": "CDT",
+    "online": true,
+    "category": "United States",
+    "realmLockStatus": null,
+    "type": {
+      "id": "1",
+      "name": "Normal",
+      "slug": "normal",
+      "enum": "NORMAL",
+      "__typename": "RealmTypeEnum"
+    },
+    "population": {
+      "id": "3",
+      "name": "High",
+      "slug": "high",
+      "enum": "HIGH",
+      "__typename": "RealmPopulationEnum"
+    },
+    "__typename": "Realm"
+  },
+  {
+    "name": "Khaz Modan",
+    "slug": "khaz-modan",
+    "locale": "en-US",
+    "timezone": "MDT",
+    "online": true,
+    "category": "United States",
+    "realmLockStatus": null,
+    "type": {
+      "id": "1",
+      "name": "Normal",
+      "slug": "normal",
+      "enum": "NORMAL",
+      "__typename": "RealmTypeEnum"
+    },
+    "population": {
+      "id": "3",
+      "name": "High",
+      "slug": "high",
+      "enum": "HIGH",
+      "__typename": "RealmPopulationEnum"
+    },
+    "__typename": "Realm"
+  },
+  {
+    "name": "Khaz'goroth",
+    "slug": "khazgoroth",
+    "locale": "en-US",
+    "timezone": "AEST",
+    "online": true,
+    "category": "Oceanic",
+    "realmLockStatus": null,
+    "type": {
+      "id": "1",
+      "name": "Normal",
+      "slug": "normal",
+      "enum": "NORMAL",
+      "__typename": "RealmTypeEnum"
+    },
+    "population": {
+      "id": "3",
+      "name": "High",
+      "slug": "high",
+      "enum": "HIGH",
+      "__typename": "RealmPopulationEnum"
+    },
+    "__typename": "Realm"
+  },
+  {
+    "name": "Kil'jaeden",
+    "slug": "kiljaeden",
+    "locale": "en-US",
+    "timezone": "PDT",
+    "online": true,
+    "category": "United States",
+    "realmLockStatus": null,
+    "type": {
+      "id": "1",
+      "name": "Normal",
+      "slug": "normal",
+      "enum": "NORMAL",
+      "__typename": "RealmTypeEnum"
+    },
+    "population": {
+      "id": "2",
+      "name": "Medium",
+      "slug": "medium",
+      "enum": "MEDIUM",
+      "__typename": "RealmPopulationEnum"
+    },
+    "__typename": "Realm"
+  },
+  {
+    "name": "Kilrogg",
+    "slug": "kilrogg",
+    "locale": "en-US",
+    "timezone": "PDT",
+    "online": true,
+    "category": "United States",
+    "realmLockStatus": null,
+    "type": {
+      "id": "1",
+      "name": "Normal",
+      "slug": "normal",
+      "enum": "NORMAL",
+      "__typename": "RealmTypeEnum"
+    },
+    "population": {
+      "id": "1",
+      "name": "Low",
+      "slug": "low",
+      "enum": "LOW",
+      "__typename": "RealmPopulationEnum"
+    },
+    "__typename": "Realm"
+  },
+  {
+    "name": "Kirin Tor",
+    "slug": "kirin-tor",
+    "locale": "en-US",
+    "timezone": "CDT",
+    "online": true,
+    "category": "United States",
+    "realmLockStatus": null,
+    "type": {
+      "id": "3",
+      "name": "Roleplaying",
+      "slug": "roleplaying",
+      "enum": "RP",
+      "__typename": "RealmTypeEnum"
+    },
+    "population": {
+      "id": "1",
+      "name": "Low",
+      "slug": "low",
+      "enum": "LOW",
+      "__typename": "RealmPopulationEnum"
+    },
+    "__typename": "Realm"
+  },
+  {
+    "name": "Korgath",
+    "slug": "korgath",
+    "locale": "en-US",
+    "timezone": "PDT",
+    "online": true,
+    "category": "United States",
+    "realmLockStatus": null,
+    "type": {
+      "id": "1",
+      "name": "Normal",
+      "slug": "normal",
+      "enum": "NORMAL",
+      "__typename": "RealmTypeEnum"
+    },
+    "population": {
+      "id": "3",
+      "name": "High",
+      "slug": "high",
+      "enum": "HIGH",
+      "__typename": "RealmPopulationEnum"
+    },
+    "__typename": "Realm"
+  },
+  {
+    "name": "Korialstrasz",
+    "slug": "korialstrasz",
+    "locale": "en-US",
+    "timezone": "PDT",
+    "online": true,
+    "category": "United States",
+    "realmLockStatus": null,
+    "type": {
+      "id": "1",
+      "name": "Normal",
+      "slug": "normal",
+      "enum": "NORMAL",
+      "__typename": "RealmTypeEnum"
+    },
+    "population": {
+      "id": "3",
+      "name": "High",
+      "slug": "high",
+      "enum": "HIGH",
+      "__typename": "RealmPopulationEnum"
+    },
+    "__typename": "Realm"
+  },
+  {
+    "name": "Kul Tiras",
+    "slug": "kul-tiras",
+    "locale": "en-US",
+    "timezone": "CDT",
+    "online": true,
+    "category": "United States",
+    "realmLockStatus": null,
+    "type": {
+      "id": "1",
+      "name": "Normal",
+      "slug": "normal",
+      "enum": "NORMAL",
+      "__typename": "RealmTypeEnum"
+    },
+    "population": {
+      "id": "1",
+      "name": "Low",
+      "slug": "low",
+      "enum": "LOW",
+      "__typename": "RealmPopulationEnum"
+    },
+    "__typename": "Realm"
+  },
+  {
+    "name": "Laughing Skull",
+    "slug": "laughing-skull",
+    "locale": "en-US",
+    "timezone": "EDT",
+    "online": true,
+    "category": "United States",
+    "realmLockStatus": null,
+    "type": {
+      "id": "1",
+      "name": "Normal",
+      "slug": "normal",
+      "enum": "NORMAL",
+      "__typename": "RealmTypeEnum"
+    },
+    "population": {
+      "id": "3",
+      "name": "High",
+      "slug": "high",
+      "enum": "HIGH",
+      "__typename": "RealmPopulationEnum"
+    },
+    "__typename": "Realm"
+  },
+  {
+    "name": "Lethon",
+    "slug": "lethon",
+    "locale": "en-US",
+    "timezone": "CDT",
+    "online": true,
+    "category": "United States",
+    "realmLockStatus": null,
+    "type": {
+      "id": "1",
+      "name": "Normal",
+      "slug": "normal",
+      "enum": "NORMAL",
+      "__typename": "RealmTypeEnum"
+    },
+    "population": {
+      "id": "1",
+      "name": "Low",
+      "slug": "low",
+      "enum": "LOW",
+      "__typename": "RealmPopulationEnum"
+    },
+    "__typename": "Realm"
+  },
+  {
+    "name": "Lightbringer",
+    "slug": "lightbringer",
+    "locale": "en-US",
+    "timezone": "PDT",
+    "online": true,
+    "category": "United States",
+    "realmLockStatus": null,
+    "type": {
+      "id": "1",
+      "name": "Normal",
+      "slug": "normal",
+      "enum": "NORMAL",
+      "__typename": "RealmTypeEnum"
+    },
+    "population": {
+      "id": "2",
+      "name": "Medium",
+      "slug": "medium",
+      "enum": "MEDIUM",
+      "__typename": "RealmPopulationEnum"
+    },
+    "__typename": "Realm"
+  },
+  {
+    "name": "Lightning's Blade",
+    "slug": "lightnings-blade",
+    "locale": "en-US",
+    "timezone": "CDT",
+    "online": true,
+    "category": "United States",
+    "realmLockStatus": null,
+    "type": {
+      "id": "1",
+      "name": "Normal",
+      "slug": "normal",
+      "enum": "NORMAL",
+      "__typename": "RealmTypeEnum"
+    },
+    "population": {
+      "id": "3",
+      "name": "High",
+      "slug": "high",
+      "enum": "HIGH",
+      "__typename": "RealmPopulationEnum"
+    },
+    "__typename": "Realm"
+  },
+  {
+    "name": "Lightninghoof",
+    "slug": "lightninghoof",
+    "locale": "en-US",
+    "timezone": "CDT",
+    "online": true,
+    "category": "United States",
+    "realmLockStatus": null,
+    "type": {
+      "id": "3",
+      "name": "Roleplaying",
+      "slug": "roleplaying",
+      "enum": "RP",
+      "__typename": "RealmTypeEnum"
+    },
+    "population": {
+      "id": "2",
+      "name": "Medium",
+      "slug": "medium",
+      "enum": "MEDIUM",
+      "__typename": "RealmPopulationEnum"
+    },
+    "__typename": "Realm"
+  },
+  {
+    "name": "Llane",
+    "slug": "llane",
+    "locale": "en-US",
+    "timezone": "EDT",
+    "online": true,
+    "category": "United States",
+    "realmLockStatus": null,
+    "type": {
+      "id": "1",
+      "name": "Normal",
+      "slug": "normal",
+      "enum": "NORMAL",
+      "__typename": "RealmTypeEnum"
+    },
+    "population": {
+      "id": "1",
+      "name": "Low",
+      "slug": "low",
+      "enum": "LOW",
+      "__typename": "RealmPopulationEnum"
+    },
+    "__typename": "Realm"
+  },
+  {
+    "name": "Lothar",
+    "slug": "lothar",
+    "locale": "en-US",
+    "timezone": "EDT",
+    "online": true,
+    "category": "United States",
+    "realmLockStatus": null,
+    "type": {
+      "id": "1",
+      "name": "Normal",
+      "slug": "normal",
+      "enum": "NORMAL",
+      "__typename": "RealmTypeEnum"
+    },
+    "population": {
+      "id": "3",
+      "name": "High",
+      "slug": "high",
+      "enum": "HIGH",
+      "__typename": "RealmPopulationEnum"
+    },
+    "__typename": "Realm"
+  },
+  {
+    "name": "Madoran",
+    "slug": "madoran",
+    "locale": "en-US",
+    "timezone": "CDT",
+    "online": true,
+    "category": "United States",
+    "realmLockStatus": null,
+    "type": {
+      "id": "1",
+      "name": "Normal",
+      "slug": "normal",
+      "enum": "NORMAL",
+      "__typename": "RealmTypeEnum"
+    },
+    "population": {
+      "id": "2",
+      "name": "Medium",
+      "slug": "medium",
+      "enum": "MEDIUM",
+      "__typename": "RealmPopulationEnum"
+    },
+    "__typename": "Realm"
+  },
+  {
+    "name": "Maelstrom",
+    "slug": "maelstrom",
+    "locale": "en-US",
+    "timezone": "CDT",
+    "online": true,
+    "category": "United States",
+    "realmLockStatus": null,
+    "type": {
+      "id": "3",
+      "name": "Roleplaying",
+      "slug": "roleplaying",
+      "enum": "RP",
+      "__typename": "RealmTypeEnum"
+    },
+    "population": {
+      "id": "2",
+      "name": "Medium",
+      "slug": "medium",
+      "enum": "MEDIUM",
+      "__typename": "RealmPopulationEnum"
+    },
+    "__typename": "Realm"
+  },
+  {
+    "name": "Magtheridon",
+    "slug": "magtheridon",
+    "locale": "en-US",
+    "timezone": "EDT",
+    "online": true,
+    "category": "United States",
+    "realmLockStatus": null,
+    "type": {
+      "id": "1",
+      "name": "Normal",
+      "slug": "normal",
+      "enum": "NORMAL",
+      "__typename": "RealmTypeEnum"
+    },
+    "population": {
+      "id": "1",
+      "name": "Low",
+      "slug": "low",
+      "enum": "LOW",
+      "__typename": "RealmPopulationEnum"
+    },
+    "__typename": "Realm"
+  },
+  {
+    "name": "Maiev",
+    "slug": "maiev",
+    "locale": "en-US",
+    "timezone": "CDT",
+    "online": true,
+    "category": "United States",
+    "realmLockStatus": null,
+    "type": {
+      "id": "1",
+      "name": "Normal",
+      "slug": "normal",
+      "enum": "NORMAL",
+      "__typename": "RealmTypeEnum"
+    },
+    "population": {
+      "id": "3",
+      "name": "High",
+      "slug": "high",
+      "enum": "HIGH",
+      "__typename": "RealmPopulationEnum"
+    },
+    "__typename": "Realm"
+  },
+  {
+    "name": "Mal'Ganis",
+    "slug": "malganis",
+    "locale": "en-US",
+    "timezone": "CDT",
+    "online": true,
+    "category": "United States",
+    "realmLockStatus": null,
+    "type": {
+      "id": "1",
+      "name": "Normal",
+      "slug": "normal",
+      "enum": "NORMAL",
+      "__typename": "RealmTypeEnum"
+    },
+    "population": {
+      "id": "4",
+      "name": "Full",
+      "slug": "full",
+      "enum": "FULL",
+      "__typename": "RealmPopulationEnum"
+    },
+    "__typename": "Realm"
+  },
+  {
+    "name": "Malfurion",
+    "slug": "malfurion",
+    "locale": "en-US",
+    "timezone": "EDT",
+    "online": true,
+    "category": "United States",
+    "realmLockStatus": null,
+    "type": {
+      "id": "1",
+      "name": "Normal",
+      "slug": "normal",
+      "enum": "NORMAL",
+      "__typename": "RealmTypeEnum"
+    },
+    "population": {
+      "id": "3",
+      "name": "High",
+      "slug": "high",
+      "enum": "HIGH",
+      "__typename": "RealmPopulationEnum"
+    },
+    "__typename": "Realm"
+  },
+  {
+    "name": "Malorne",
+    "slug": "malorne",
+    "locale": "en-US",
+    "timezone": "EDT",
+    "online": true,
+    "category": "United States",
+    "realmLockStatus": null,
+    "type": {
+      "id": "1",
+      "name": "Normal",
+      "slug": "normal",
+      "enum": "NORMAL",
+      "__typename": "RealmTypeEnum"
+    },
+    "population": {
+      "id": "3",
+      "name": "High",
+      "slug": "high",
+      "enum": "HIGH",
+      "__typename": "RealmPopulationEnum"
+    },
+    "__typename": "Realm"
+  },
+  {
+    "name": "Malygos",
+    "slug": "malygos",
+    "locale": "en-US",
+    "timezone": "CDT",
+    "online": true,
+    "category": "United States",
+    "realmLockStatus": null,
+    "type": {
+      "id": "1",
+      "name": "Normal",
+      "slug": "normal",
+      "enum": "NORMAL",
+      "__typename": "RealmTypeEnum"
+    },
+    "population": {
+      "id": "3",
+      "name": "High",
+      "slug": "high",
+      "enum": "HIGH",
+      "__typename": "RealmPopulationEnum"
+    },
+    "__typename": "Realm"
+  },
+  {
+    "name": "Mannoroth",
+    "slug": "mannoroth",
+    "locale": "en-US",
+    "timezone": "CDT",
+    "online": true,
+    "category": "United States",
+    "realmLockStatus": null,
+    "type": {
+      "id": "1",
+      "name": "Normal",
+      "slug": "normal",
+      "enum": "NORMAL",
+      "__typename": "RealmTypeEnum"
+    },
+    "population": {
+      "id": "8",
+      "name": "New Players",
+      "slug": "new-players",
+      "enum": "RECOMMENDED",
+      "__typename": "RealmPopulationEnum"
+    },
+    "__typename": "Realm"
+  },
+  {
+    "name": "Medivh",
+    "slug": "medivh",
+    "locale": "en-US",
+    "timezone": "CDT",
+    "online": true,
+    "category": "United States",
+    "realmLockStatus": null,
+    "type": {
+      "id": "1",
+      "name": "Normal",
+      "slug": "normal",
+      "enum": "NORMAL",
+      "__typename": "RealmTypeEnum"
+    },
+    "population": {
+      "id": "3",
+      "name": "High",
+      "slug": "high",
+      "enum": "HIGH",
+      "__typename": "RealmPopulationEnum"
+    },
+    "__typename": "Realm"
+  },
+  {
+    "name": "Misha",
+    "slug": "misha",
+    "locale": "en-US",
+    "timezone": "CDT",
+    "online": true,
+    "category": "United States",
+    "realmLockStatus": null,
+    "type": {
+      "id": "1",
+      "name": "Normal",
+      "slug": "normal",
+      "enum": "NORMAL",
+      "__typename": "RealmTypeEnum"
+    },
+    "population": {
+      "id": "1",
+      "name": "Low",
+      "slug": "low",
+      "enum": "LOW",
+      "__typename": "RealmPopulationEnum"
+    },
+    "__typename": "Realm"
+  },
+  {
+    "name": "Mok'Nathal",
+    "slug": "moknathal",
+    "locale": "en-US",
+    "timezone": "PDT",
+    "online": true,
+    "category": "United States",
+    "realmLockStatus": null,
+    "type": {
+      "id": "1",
+      "name": "Normal",
+      "slug": "normal",
+      "enum": "NORMAL",
+      "__typename": "RealmTypeEnum"
+    },
+    "population": {
+      "id": "3",
+      "name": "High",
+      "slug": "high",
+      "enum": "HIGH",
+      "__typename": "RealmPopulationEnum"
+    },
+    "__typename": "Realm"
+  },
+  {
+    "name": "Moon Guard",
+    "slug": "moon-guard",
+    "locale": "en-US",
+    "timezone": "CDT",
+    "online": true,
+    "category": "United States",
+    "realmLockStatus": null,
+    "type": {
+      "id": "3",
+      "name": "Roleplaying",
+      "slug": "roleplaying",
+      "enum": "RP",
+      "__typename": "RealmTypeEnum"
+    },
+    "population": {
+      "id": "4",
+      "name": "Full",
+      "slug": "full",
+      "enum": "FULL",
+      "__typename": "RealmPopulationEnum"
+    },
+    "__typename": "Realm"
+  },
+  {
+    "name": "Moonrunner",
+    "slug": "moonrunner",
+    "locale": "en-US",
+    "timezone": "EDT",
+    "online": true,
+    "category": "United States",
+    "realmLockStatus": null,
+    "type": {
+      "id": "1",
+      "name": "Normal",
+      "slug": "normal",
+      "enum": "NORMAL",
+      "__typename": "RealmTypeEnum"
+    },
+    "population": {
+      "id": "3",
+      "name": "High",
+      "slug": "high",
+      "enum": "HIGH",
+      "__typename": "RealmPopulationEnum"
+    },
+    "__typename": "Realm"
+  },
+  {
+    "name": "Mug'thol",
+    "slug": "mugthol",
+    "locale": "en-US",
+    "timezone": "PDT",
+    "online": true,
+    "category": "United States",
+    "realmLockStatus": null,
+    "type": {
+      "id": "1",
+      "name": "Normal",
+      "slug": "normal",
+      "enum": "NORMAL",
+      "__typename": "RealmTypeEnum"
+    },
+    "population": {
+      "id": "3",
+      "name": "High",
+      "slug": "high",
+      "enum": "HIGH",
+      "__typename": "RealmPopulationEnum"
+    },
+    "__typename": "Realm"
+  },
+  {
+    "name": "Muradin",
+    "slug": "muradin",
+    "locale": "en-US",
+    "timezone": "MDT",
+    "online": true,
+    "category": "United States",
+    "realmLockStatus": null,
+    "type": {
+      "id": "1",
+      "name": "Normal",
+      "slug": "normal",
+      "enum": "NORMAL",
+      "__typename": "RealmTypeEnum"
+    },
+    "population": {
+      "id": "3",
+      "name": "High",
+      "slug": "high",
+      "enum": "HIGH",
+      "__typename": "RealmPopulationEnum"
+    },
+    "__typename": "Realm"
+  },
+  {
+    "name": "Nagrand",
+    "slug": "nagrand",
+    "locale": "en-US",
+    "timezone": "AEST",
+    "online": true,
+    "category": "Oceanic",
+    "realmLockStatus": null,
+    "type": {
+      "id": "1",
+      "name": "Normal",
+      "slug": "normal",
+      "enum": "NORMAL",
+      "__typename": "RealmTypeEnum"
+    },
+    "population": {
+      "id": "3",
+      "name": "High",
+      "slug": "high",
+      "enum": "HIGH",
+      "__typename": "RealmPopulationEnum"
+    },
+    "__typename": "Realm"
+  },
+  {
+    "name": "Nathrezim",
+    "slug": "nathrezim",
+    "locale": "en-US",
+    "timezone": "CDT",
+    "online": true,
+    "category": "United States",
+    "realmLockStatus": null,
+    "type": {
+      "id": "1",
+      "name": "Normal",
+      "slug": "normal",
+      "enum": "NORMAL",
+      "__typename": "RealmTypeEnum"
+    },
+    "population": {
+      "id": "2",
+      "name": "Medium",
+      "slug": "medium",
+      "enum": "MEDIUM",
+      "__typename": "RealmPopulationEnum"
+    },
+    "__typename": "Realm"
+  },
+  {
+    "name": "Nazgrel",
+    "slug": "nazgrel",
+    "locale": "en-US",
+    "timezone": "CDT",
+    "online": true,
+    "category": "United States",
+    "realmLockStatus": null,
+    "type": {
+      "id": "1",
+      "name": "Normal",
+      "slug": "normal",
+      "enum": "NORMAL",
+      "__typename": "RealmTypeEnum"
+    },
+    "population": {
+      "id": "1",
+      "name": "Low",
+      "slug": "low",
+      "enum": "LOW",
+      "__typename": "RealmPopulationEnum"
+    },
+    "__typename": "Realm"
+  },
+  {
+    "name": "Nazjatar",
+    "slug": "nazjatar",
+    "locale": "en-US",
+    "timezone": "CDT",
+    "online": true,
+    "category": "United States",
+    "realmLockStatus": null,
+    "type": {
+      "id": "1",
+      "name": "Normal",
+      "slug": "normal",
+      "enum": "NORMAL",
+      "__typename": "RealmTypeEnum"
+    },
+    "population": {
+      "id": "8",
+      "name": "New Players",
+      "slug": "new-players",
+      "enum": "RECOMMENDED",
+      "__typename": "RealmPopulationEnum"
+    },
+    "__typename": "Realm"
+  },
+  {
+    "name": "Nemesis",
+    "slug": "nemesis",
+    "locale": "pt-BR",
+    "timezone": "BRT",
+    "online": true,
+    "category": "Brazil",
+    "realmLockStatus": null,
+    "type": {
+      "id": "1",
+      "name": "Normal",
+      "slug": "normal",
+      "enum": "NORMAL",
+      "__typename": "RealmTypeEnum"
+    },
+    "population": {
+      "id": "2",
+      "name": "Medium",
+      "slug": "medium",
+      "enum": "MEDIUM",
+      "__typename": "RealmPopulationEnum"
+    },
+    "__typename": "Realm"
+  },
+  {
+    "name": "Ner'zhul",
+    "slug": "nerzhul",
+    "locale": "en-US",
+    "timezone": "PDT",
+    "online": true,
+    "category": "United States",
+    "realmLockStatus": null,
+    "type": {
+      "id": "1",
+      "name": "Normal",
+      "slug": "normal",
+      "enum": "NORMAL",
+      "__typename": "RealmTypeEnum"
+    },
+    "population": {
+      "id": "3",
+      "name": "High",
+      "slug": "high",
+      "enum": "HIGH",
+      "__typename": "RealmPopulationEnum"
+    },
+    "__typename": "Realm"
+  },
+  {
+    "name": "Nesingwary",
+    "slug": "nesingwary",
+    "locale": "en-US",
+    "timezone": "CDT",
+    "online": true,
+    "category": "United States",
+    "realmLockStatus": null,
+    "type": {
+      "id": "1",
+      "name": "Normal",
+      "slug": "normal",
+      "enum": "NORMAL",
+      "__typename": "RealmTypeEnum"
+    },
+    "population": {
+      "id": "1",
+      "name": "Low",
+      "slug": "low",
+      "enum": "LOW",
+      "__typename": "RealmPopulationEnum"
+    },
+    "__typename": "Realm"
+  },
+  {
+    "name": "Nordrassil",
+    "slug": "nordrassil",
+    "locale": "en-US",
+    "timezone": "MDT",
+    "online": true,
+    "category": "United States",
+    "realmLockStatus": null,
+    "type": {
+      "id": "1",
+      "name": "Normal",
+      "slug": "normal",
+      "enum": "NORMAL",
+      "__typename": "RealmTypeEnum"
+    },
+    "population": {
+      "id": "3",
+      "name": "High",
+      "slug": "high",
+      "enum": "HIGH",
+      "__typename": "RealmPopulationEnum"
+    },
+    "__typename": "Realm"
+  },
+  {
+    "name": "Norgannon",
+    "slug": "norgannon",
+    "locale": "en-US",
+    "timezone": "CDT",
+    "online": true,
+    "category": "United States",
+    "realmLockStatus": null,
+    "type": {
+      "id": "1",
+      "name": "Normal",
+      "slug": "normal",
+      "enum": "NORMAL",
+      "__typename": "RealmTypeEnum"
+    },
+    "population": {
+      "id": "3",
+      "name": "High",
+      "slug": "high",
+      "enum": "HIGH",
+      "__typename": "RealmPopulationEnum"
+    },
+    "__typename": "Realm"
+  },
+  {
+    "name": "Onyxia",
+    "slug": "onyxia",
+    "locale": "en-US",
+    "timezone": "CDT",
+    "online": true,
+    "category": "United States",
+    "realmLockStatus": null,
+    "type": {
+      "id": "1",
+      "name": "Normal",
+      "slug": "normal",
+      "enum": "NORMAL",
+      "__typename": "RealmTypeEnum"
+    },
+    "population": {
+      "id": "3",
+      "name": "High",
+      "slug": "high",
+      "enum": "HIGH",
+      "__typename": "RealmPopulationEnum"
+    },
+    "__typename": "Realm"
+  },
+  {
+    "name": "Perenolde",
+    "slug": "perenolde",
+    "locale": "en-US",
+    "timezone": "PDT",
+    "online": true,
+    "category": "United States",
+    "realmLockStatus": null,
+    "type": {
+      "id": "1",
+      "name": "Normal",
+      "slug": "normal",
+      "enum": "NORMAL",
+      "__typename": "RealmTypeEnum"
+    },
+    "population": {
+      "id": "3",
+      "name": "High",
+      "slug": "high",
+      "enum": "HIGH",
+      "__typename": "RealmPopulationEnum"
+    },
+    "__typename": "Realm"
+  },
+  {
+    "name": "Proudmoore",
+    "slug": "proudmoore",
+    "locale": "en-US",
+    "timezone": "PDT",
+    "online": true,
+    "category": "United States",
+    "realmLockStatus": null,
+    "type": {
+      "id": "1",
+      "name": "Normal",
+      "slug": "normal",
+      "enum": "NORMAL",
+      "__typename": "RealmTypeEnum"
+    },
+    "population": {
+      "id": "4",
+      "name": "Full",
+      "slug": "full",
+      "enum": "FULL",
+      "__typename": "RealmPopulationEnum"
+    },
+    "__typename": "Realm"
+  },
+  {
+    "name": "Quel'Thalas",
+    "slug": "quelthalas",
+    "locale": "es-MX",
+    "timezone": "CDT",
+    "online": true,
+    "category": "Latin America",
+    "realmLockStatus": null,
+    "type": {
+      "id": "1",
+      "name": "Normal",
+      "slug": "normal",
+      "enum": "NORMAL",
+      "__typename": "RealmTypeEnum"
+    },
+    "population": {
+      "id": "4",
+      "name": "Full",
+      "slug": "full",
+      "enum": "FULL",
+      "__typename": "RealmPopulationEnum"
+    },
+    "__typename": "Realm"
+  },
+  {
+    "name": "Quel'dorei",
+    "slug": "queldorei",
+    "locale": "en-US",
+    "timezone": "CDT",
+    "online": true,
+    "category": "United States",
+    "realmLockStatus": null,
+    "type": {
+      "id": "1",
+      "name": "Normal",
+      "slug": "normal",
+      "enum": "NORMAL",
+      "__typename": "RealmTypeEnum"
+    },
+    "population": {
+      "id": "3",
+      "name": "High",
+      "slug": "high",
+      "enum": "HIGH",
+      "__typename": "RealmPopulationEnum"
+    },
+    "__typename": "Realm"
+  },
+  {
+    "name": "Ragnaros",
+    "slug": "ragnaros",
+    "locale": "es-MX",
+    "timezone": "CDT",
+    "online": true,
+    "category": "Latin America",
+    "realmLockStatus": null,
+    "type": {
+      "id": "1",
+      "name": "Normal",
+      "slug": "normal",
+      "enum": "NORMAL",
+      "__typename": "RealmTypeEnum"
+    },
+    "population": {
+      "id": "4",
+      "name": "Full",
+      "slug": "full",
+      "enum": "FULL",
+      "__typename": "RealmPopulationEnum"
+    },
+    "__typename": "Realm"
+  },
+  {
+    "name": "Ravencrest",
+    "slug": "ravencrest",
+    "locale": "en-US",
+    "timezone": "CDT",
+    "online": true,
+    "category": "United States",
+    "realmLockStatus": null,
+    "type": {
+      "id": "1",
+      "name": "Normal",
+      "slug": "normal",
+      "enum": "NORMAL",
+      "__typename": "RealmTypeEnum"
+    },
+    "population": {
+      "id": "1",
+      "name": "Low",
+      "slug": "low",
+      "enum": "LOW",
+      "__typename": "RealmPopulationEnum"
+    },
+    "__typename": "Realm"
+  },
+  {
+    "name": "Ravenholdt",
+    "slug": "ravenholdt",
+    "locale": "en-US",
+    "timezone": "CDT",
+    "online": true,
+    "category": "United States",
+    "realmLockStatus": null,
+    "type": {
+      "id": "3",
+      "name": "Roleplaying",
+      "slug": "roleplaying",
+      "enum": "RP",
+      "__typename": "RealmTypeEnum"
+    },
+    "population": {
+      "id": "2",
+      "name": "Medium",
+      "slug": "medium",
+      "enum": "MEDIUM",
+      "__typename": "RealmPopulationEnum"
+    },
+    "__typename": "Realm"
+  },
+  {
+    "name": "Rexxar",
+    "slug": "rexxar",
+    "locale": "en-US",
+    "timezone": "CDT",
+    "online": true,
+    "category": "United States",
+    "realmLockStatus": null,
+    "type": {
+      "id": "1",
+      "name": "Normal",
+      "slug": "normal",
+      "enum": "NORMAL",
+      "__typename": "RealmTypeEnum"
+    },
+    "population": {
+      "id": "1",
+      "name": "Low",
+      "slug": "low",
+      "enum": "LOW",
+      "__typename": "RealmPopulationEnum"
+    },
+    "__typename": "Realm"
+  },
+  {
+    "name": "Rivendare",
+    "slug": "rivendare",
+    "locale": "en-US",
+    "timezone": "EDT",
+    "online": true,
+    "category": "United States",
+    "realmLockStatus": null,
+    "type": {
+      "id": "1",
+      "name": "Normal",
+      "slug": "normal",
+      "enum": "NORMAL",
+      "__typename": "RealmTypeEnum"
+    },
+    "population": {
+      "id": "3",
+      "name": "High",
+      "slug": "high",
+      "enum": "HIGH",
+      "__typename": "RealmPopulationEnum"
+    },
+    "__typename": "Realm"
+  },
+  {
+    "name": "Runetotem",
+    "slug": "runetotem",
+    "locale": "en-US",
+    "timezone": "CDT",
+    "online": true,
+    "category": "United States",
+    "realmLockStatus": null,
+    "type": {
+      "id": "1",
+      "name": "Normal",
+      "slug": "normal",
+      "enum": "NORMAL",
+      "__typename": "RealmTypeEnum"
+    },
+    "population": {
+      "id": "1",
+      "name": "Low",
+      "slug": "low",
+      "enum": "LOW",
+      "__typename": "RealmPopulationEnum"
+    },
+    "__typename": "Realm"
+  },
+  {
+    "name": "Sargeras",
+    "slug": "sargeras",
+    "locale": "en-US",
+    "timezone": "CDT",
+    "online": true,
+    "category": "United States",
+    "realmLockStatus": null,
+    "type": {
+      "id": "1",
+      "name": "Normal",
+      "slug": "normal",
+      "enum": "NORMAL",
+      "__typename": "RealmTypeEnum"
+    },
+    "population": {
+      "id": "4",
+      "name": "Full",
+      "slug": "full",
+      "enum": "FULL",
+      "__typename": "RealmPopulationEnum"
+    },
+    "__typename": "Realm"
+  },
+  {
+    "name": "Saurfang",
+    "slug": "saurfang",
+    "locale": "en-US",
+    "timezone": "AEST",
+    "online": true,
+    "category": "Oceanic",
+    "realmLockStatus": null,
+    "type": {
+      "id": "1",
+      "name": "Normal",
+      "slug": "normal",
+      "enum": "NORMAL",
+      "__typename": "RealmTypeEnum"
+    },
+    "population": {
+      "id": "3",
+      "name": "High",
+      "slug": "high",
+      "enum": "HIGH",
+      "__typename": "RealmPopulationEnum"
+    },
+    "__typename": "Realm"
+  },
+  {
+    "name": "Scarlet Crusade",
+    "slug": "scarlet-crusade",
+    "locale": "en-US",
+    "timezone": "PDT",
+    "online": true,
+    "category": "United States",
+    "realmLockStatus": null,
+    "type": {
+      "id": "3",
+      "name": "Roleplaying",
+      "slug": "roleplaying",
+      "enum": "RP",
+      "__typename": "RealmTypeEnum"
+    },
+    "population": {
+      "id": "1",
+      "name": "Low",
+      "slug": "low",
+      "enum": "LOW",
+      "__typename": "RealmPopulationEnum"
+    },
+    "__typename": "Realm"
+  },
+  {
+    "name": "Scilla",
+    "slug": "scilla",
+    "locale": "en-US",
+    "timezone": "EDT",
+    "online": true,
+    "category": "United States",
+    "realmLockStatus": null,
+    "type": {
+      "id": "1",
+      "name": "Normal",
+      "slug": "normal",
+      "enum": "NORMAL",
+      "__typename": "RealmTypeEnum"
+    },
+    "population": {
+      "id": "3",
+      "name": "High",
+      "slug": "high",
+      "enum": "HIGH",
+      "__typename": "RealmPopulationEnum"
+    },
+    "__typename": "Realm"
+  },
+  {
+    "name": "Sen'jin",
+    "slug": "senjin",
+    "locale": "en-US",
+    "timezone": "CDT",
+    "online": true,
+    "category": "United States",
+    "realmLockStatus": null,
+    "type": {
+      "id": "1",
+      "name": "Normal",
+      "slug": "normal",
+      "enum": "NORMAL",
+      "__typename": "RealmTypeEnum"
+    },
+    "population": {
+      "id": "3",
+      "name": "High",
+      "slug": "high",
+      "enum": "HIGH",
+      "__typename": "RealmPopulationEnum"
+    },
+    "__typename": "Realm"
+  },
+  {
+    "name": "Sentinels",
+    "slug": "sentinels",
+    "locale": "en-US",
+    "timezone": "CDT",
+    "online": true,
+    "category": "United States",
+    "realmLockStatus": null,
+    "type": {
+      "id": "3",
+      "name": "Roleplaying",
+      "slug": "roleplaying",
+      "enum": "RP",
+      "__typename": "RealmTypeEnum"
+    },
+    "population": {
+      "id": "1",
+      "name": "Low",
+      "slug": "low",
+      "enum": "LOW",
+      "__typename": "RealmPopulationEnum"
+    },
+    "__typename": "Realm"
+  },
+  {
+    "name": "Shadow Council",
+    "slug": "shadow-council",
+    "locale": "en-US",
+    "timezone": "MDT",
+    "online": true,
+    "category": "United States",
+    "realmLockStatus": null,
+    "type": {
+      "id": "3",
+      "name": "Roleplaying",
+      "slug": "roleplaying",
+      "enum": "RP",
+      "__typename": "RealmTypeEnum"
+    },
+    "population": {
+      "id": "2",
+      "name": "Medium",
+      "slug": "medium",
+      "enum": "MEDIUM",
+      "__typename": "RealmPopulationEnum"
+    },
+    "__typename": "Realm"
+  },
+  {
+    "name": "Shadowmoon",
+    "slug": "shadowmoon",
+    "locale": "en-US",
+    "timezone": "CDT",
+    "online": true,
+    "category": "United States",
+    "realmLockStatus": null,
+    "type": {
+      "id": "1",
+      "name": "Normal",
+      "slug": "normal",
+      "enum": "NORMAL",
+      "__typename": "RealmTypeEnum"
+    },
+    "population": {
+      "id": "1",
+      "name": "Low",
+      "slug": "low",
+      "enum": "LOW",
+      "__typename": "RealmPopulationEnum"
+    },
+    "__typename": "Realm"
+  },
+  {
+    "name": "Shadowsong",
+    "slug": "shadowsong",
+    "locale": "en-US",
+    "timezone": "PDT",
+    "online": true,
+    "category": "United States",
+    "realmLockStatus": null,
+    "type": {
+      "id": "1",
+      "name": "Normal",
+      "slug": "normal",
+      "enum": "NORMAL",
+      "__typename": "RealmTypeEnum"
+    },
+    "population": {
+      "id": "3",
+      "name": "High",
+      "slug": "high",
+      "enum": "HIGH",
+      "__typename": "RealmPopulationEnum"
+    },
+    "__typename": "Realm"
+  },
+  {
+    "name": "Shandris",
+    "slug": "shandris",
+    "locale": "en-US",
+    "timezone": "PDT",
+    "online": true,
+    "category": "United States",
+    "realmLockStatus": null,
+    "type": {
+      "id": "1",
+      "name": "Normal",
+      "slug": "normal",
+      "enum": "NORMAL",
+      "__typename": "RealmTypeEnum"
+    },
+    "population": {
+      "id": "1",
+      "name": "Low",
+      "slug": "low",
+      "enum": "LOW",
+      "__typename": "RealmPopulationEnum"
+    },
+    "__typename": "Realm"
+  },
+  {
+    "name": "Shattered Halls",
+    "slug": "shattered-halls",
+    "locale": "en-US",
+    "timezone": "PDT",
+    "online": true,
+    "category": "United States",
+    "realmLockStatus": null,
+    "type": {
+      "id": "1",
+      "name": "Normal",
+      "slug": "normal",
+      "enum": "NORMAL",
+      "__typename": "RealmTypeEnum"
+    },
+    "population": {
+      "id": "1",
+      "name": "Low",
+      "slug": "low",
+      "enum": "LOW",
+      "__typename": "RealmPopulationEnum"
+    },
+    "__typename": "Realm"
+  },
+  {
+    "name": "Shattered Hand",
+    "slug": "shattered-hand",
+    "locale": "en-US",
+    "timezone": "PDT",
+    "online": true,
+    "category": "United States",
+    "realmLockStatus": null,
+    "type": {
+      "id": "1",
+      "name": "Normal",
+      "slug": "normal",
+      "enum": "NORMAL",
+      "__typename": "RealmTypeEnum"
+    },
+    "population": {
+      "id": "1",
+      "name": "Low",
+      "slug": "low",
+      "enum": "LOW",
+      "__typename": "RealmPopulationEnum"
+    },
+    "__typename": "Realm"
+  },
+  {
+    "name": "Shu'halo",
+    "slug": "shuhalo",
+    "locale": "en-US",
+    "timezone": "CDT",
+    "online": true,
+    "category": "United States",
+    "realmLockStatus": null,
+    "type": {
+      "id": "1",
+      "name": "Normal",
+      "slug": "normal",
+      "enum": "NORMAL",
+      "__typename": "RealmTypeEnum"
+    },
+    "population": {
+      "id": "1",
+      "name": "Low",
+      "slug": "low",
+      "enum": "LOW",
+      "__typename": "RealmPopulationEnum"
+    },
+    "__typename": "Realm"
+  },
+  {
+    "name": "Silver Hand",
+    "slug": "silver-hand",
+    "locale": "en-US",
+    "timezone": "PDT",
+    "online": true,
+    "category": "United States",
+    "realmLockStatus": null,
+    "type": {
+      "id": "3",
+      "name": "Roleplaying",
+      "slug": "roleplaying",
+      "enum": "RP",
+      "__typename": "RealmTypeEnum"
+    },
+    "population": {
+      "id": "1",
+      "name": "Low",
+      "slug": "low",
+      "enum": "LOW",
+      "__typename": "RealmPopulationEnum"
+    },
+    "__typename": "Realm"
+  },
+  {
+    "name": "Silvermoon",
+    "slug": "silvermoon",
+    "locale": "en-US",
+    "timezone": "PDT",
+    "online": true,
+    "category": "United States",
+    "realmLockStatus": null,
+    "type": {
+      "id": "1",
+      "name": "Normal",
+      "slug": "normal",
+      "enum": "NORMAL",
+      "__typename": "RealmTypeEnum"
+    },
+    "population": {
+      "id": "3",
+      "name": "High",
+      "slug": "high",
+      "enum": "HIGH",
+      "__typename": "RealmPopulationEnum"
+    },
+    "__typename": "Realm"
+  },
+  {
+    "name": "Sisters of Elune",
+    "slug": "sisters-of-elune",
+    "locale": "en-US",
+    "timezone": "MDT",
+    "online": true,
+    "category": "United States",
+    "realmLockStatus": null,
+    "type": {
+      "id": "3",
+      "name": "Roleplaying",
+      "slug": "roleplaying",
+      "enum": "RP",
+      "__typename": "RealmTypeEnum"
+    },
+    "population": {
+      "id": "2",
+      "name": "Medium",
+      "slug": "medium",
+      "enum": "MEDIUM",
+      "__typename": "RealmPopulationEnum"
+    },
+    "__typename": "Realm"
+  },
+  {
+    "name": "Skullcrusher",
+    "slug": "skullcrusher",
+    "locale": "en-US",
+    "timezone": "EDT",
+    "online": true,
+    "category": "United States",
+    "realmLockStatus": null,
+    "type": {
+      "id": "1",
+      "name": "Normal",
+      "slug": "normal",
+      "enum": "NORMAL",
+      "__typename": "RealmTypeEnum"
+    },
+    "population": {
+      "id": "3",
+      "name": "High",
+      "slug": "high",
+      "enum": "HIGH",
+      "__typename": "RealmPopulationEnum"
+    },
+    "__typename": "Realm"
+  },
+  {
+    "name": "Skywall",
+    "slug": "skywall",
+    "locale": "en-US",
+    "timezone": "PDT",
+    "online": true,
+    "category": "United States",
+    "realmLockStatus": null,
+    "type": {
+      "id": "1",
+      "name": "Normal",
+      "slug": "normal",
+      "enum": "NORMAL",
+      "__typename": "RealmTypeEnum"
+    },
+    "population": {
+      "id": "3",
+      "name": "High",
+      "slug": "high",
+      "enum": "HIGH",
+      "__typename": "RealmPopulationEnum"
+    },
+    "__typename": "Realm"
+  },
+  {
+    "name": "Smolderthorn",
+    "slug": "smolderthorn",
+    "locale": "en-US",
+    "timezone": "CDT",
+    "online": true,
+    "category": "United States",
+    "realmLockStatus": null,
+    "type": {
+      "id": "1",
+      "name": "Normal",
+      "slug": "normal",
+      "enum": "NORMAL",
+      "__typename": "RealmTypeEnum"
+    },
+    "population": {
+      "id": "2",
+      "name": "Medium",
+      "slug": "medium",
+      "enum": "MEDIUM",
+      "__typename": "RealmPopulationEnum"
+    },
+    "__typename": "Realm"
+  },
+  {
+    "name": "Spinebreaker",
+    "slug": "spinebreaker",
+    "locale": "en-US",
+    "timezone": "CDT",
+    "online": true,
+    "category": "United States",
+    "realmLockStatus": null,
+    "type": {
+      "id": "1",
+      "name": "Normal",
+      "slug": "normal",
+      "enum": "NORMAL",
+      "__typename": "RealmTypeEnum"
+    },
+    "population": {
+      "id": "4",
+      "name": "Full",
+      "slug": "full",
+      "enum": "FULL",
+      "__typename": "RealmPopulationEnum"
+    },
+    "__typename": "Realm"
+  },
+  {
+    "name": "Spirestone",
+    "slug": "spirestone",
+    "locale": "en-US",
+    "timezone": "EDT",
+    "online": true,
+    "category": "United States",
+    "realmLockStatus": null,
+    "type": {
+      "id": "1",
+      "name": "Normal",
+      "slug": "normal",
+      "enum": "NORMAL",
+      "__typename": "RealmTypeEnum"
+    },
+    "population": {
+      "id": "3",
+      "name": "High",
+      "slug": "high",
+      "enum": "HIGH",
+      "__typename": "RealmPopulationEnum"
+    },
+    "__typename": "Realm"
+  },
+  {
+    "name": "Staghelm",
+    "slug": "staghelm",
+    "locale": "en-US",
+    "timezone": "CDT",
+    "online": true,
+    "category": "United States",
+    "realmLockStatus": null,
+    "type": {
+      "id": "1",
+      "name": "Normal",
+      "slug": "normal",
+      "enum": "NORMAL",
+      "__typename": "RealmTypeEnum"
+    },
+    "population": {
+      "id": "2",
+      "name": "Medium",
+      "slug": "medium",
+      "enum": "MEDIUM",
+      "__typename": "RealmPopulationEnum"
+    },
+    "__typename": "Realm"
+  },
+  {
+    "name": "Steamwheedle Cartel",
+    "slug": "steamwheedle-cartel",
+    "locale": "en-US",
+    "timezone": "CDT",
+    "online": true,
+    "category": "United States",
+    "realmLockStatus": null,
+    "type": {
+      "id": "3",
+      "name": "Roleplaying",
+      "slug": "roleplaying",
+      "enum": "RP",
+      "__typename": "RealmTypeEnum"
+    },
+    "population": {
+      "id": "1",
+      "name": "Low",
+      "slug": "low",
+      "enum": "LOW",
+      "__typename": "RealmPopulationEnum"
+    },
+    "__typename": "Realm"
+  },
+  {
+    "name": "Stonemaul",
+    "slug": "stonemaul",
+    "locale": "en-US",
+    "timezone": "CDT",
+    "online": true,
+    "category": "United States",
+    "realmLockStatus": null,
+    "type": {
+      "id": "1",
+      "name": "Normal",
+      "slug": "normal",
+      "enum": "NORMAL",
+      "__typename": "RealmTypeEnum"
+    },
+    "population": {
+      "id": "3",
+      "name": "High",
+      "slug": "high",
+      "enum": "HIGH",
+      "__typename": "RealmPopulationEnum"
+    },
+    "__typename": "Realm"
+  },
+  {
+    "name": "Stormrage",
+    "slug": "stormrage",
+    "locale": "en-US",
+    "timezone": "EDT",
+    "online": true,
+    "category": "United States",
+    "realmLockStatus": null,
+    "type": {
+      "id": "1",
+      "name": "Normal",
+      "slug": "normal",
+      "enum": "NORMAL",
+      "__typename": "RealmTypeEnum"
+    },
+    "population": {
+      "id": "4",
+      "name": "Full",
+      "slug": "full",
+      "enum": "FULL",
+      "__typename": "RealmPopulationEnum"
+    },
+    "__typename": "Realm"
+  },
+  {
+    "name": "Stormreaver",
+    "slug": "stormreaver",
+    "locale": "en-US",
+    "timezone": "CDT",
+    "online": true,
+    "category": "United States",
+    "realmLockStatus": null,
+    "type": {
+      "id": "1",
+      "name": "Normal",
+      "slug": "normal",
+      "enum": "NORMAL",
+      "__typename": "RealmTypeEnum"
+    },
+    "population": {
+      "id": "1",
+      "name": "Low",
+      "slug": "low",
+      "enum": "LOW",
+      "__typename": "RealmPopulationEnum"
+    },
+    "__typename": "Realm"
+  },
+  {
+    "name": "Stormscale",
+    "slug": "stormscale",
+    "locale": "en-US",
+    "timezone": "EDT",
+    "online": true,
+    "category": "United States",
+    "realmLockStatus": null,
+    "type": {
+      "id": "1",
+      "name": "Normal",
+      "slug": "normal",
+      "enum": "NORMAL",
+      "__typename": "RealmTypeEnum"
+    },
+    "population": {
+      "id": "3",
+      "name": "High",
+      "slug": "high",
+      "enum": "HIGH",
+      "__typename": "RealmPopulationEnum"
+    },
+    "__typename": "Realm"
+  },
+  {
+    "name": "Suramar",
+    "slug": "suramar",
+    "locale": "en-US",
+    "timezone": "PDT",
+    "online": true,
+    "category": "United States",
+    "realmLockStatus": null,
+    "type": {
+      "id": "1",
+      "name": "Normal",
+      "slug": "normal",
+      "enum": "NORMAL",
+      "__typename": "RealmTypeEnum"
+    },
+    "population": {
+      "id": "2",
+      "name": "Medium",
+      "slug": "medium",
+      "enum": "MEDIUM",
+      "__typename": "RealmPopulationEnum"
+    },
+    "__typename": "Realm"
+  },
+  {
+    "name": "Tanaris",
+    "slug": "tanaris",
+    "locale": "en-US",
+    "timezone": "CDT",
+    "online": true,
+    "category": "United States",
+    "realmLockStatus": null,
+    "type": {
+      "id": "1",
+      "name": "Normal",
+      "slug": "normal",
+      "enum": "NORMAL",
+      "__typename": "RealmTypeEnum"
+    },
+    "population": {
+      "id": "1",
+      "name": "Low",
+      "slug": "low",
+      "enum": "LOW",
+      "__typename": "RealmPopulationEnum"
+    },
+    "__typename": "Realm"
+  },
+  {
+    "name": "Terenas",
+    "slug": "terenas",
+    "locale": "en-US",
+    "timezone": "PDT",
+    "online": true,
+    "category": "United States",
+    "realmLockStatus": null,
+    "type": {
+      "id": "1",
+      "name": "Normal",
+      "slug": "normal",
+      "enum": "NORMAL",
+      "__typename": "RealmTypeEnum"
+    },
+    "population": {
+      "id": "3",
+      "name": "High",
+      "slug": "high",
+      "enum": "HIGH",
+      "__typename": "RealmPopulationEnum"
+    },
+    "__typename": "Realm"
+  },
+  {
+    "name": "Terokkar",
+    "slug": "terokkar",
+    "locale": "en-US",
+    "timezone": "CDT",
+    "online": true,
+    "category": "United States",
+    "realmLockStatus": null,
+    "type": {
+      "id": "1",
+      "name": "Normal",
+      "slug": "normal",
+      "enum": "NORMAL",
+      "__typename": "RealmTypeEnum"
+    },
+    "population": {
+      "id": "1",
+      "name": "Low",
+      "slug": "low",
+      "enum": "LOW",
+      "__typename": "RealmPopulationEnum"
+    },
+    "__typename": "Realm"
+  },
+  {
+    "name": "Thaurissan",
+    "slug": "thaurissan",
+    "locale": "en-US",
+    "timezone": "AEST",
+    "online": true,
+    "category": "Oceanic",
+    "realmLockStatus": null,
+    "type": {
+      "id": "1",
+      "name": "Normal",
+      "slug": "normal",
+      "enum": "NORMAL",
+      "__typename": "RealmTypeEnum"
+    },
+    "population": {
+      "id": "4",
+      "name": "Full",
+      "slug": "full",
+      "enum": "FULL",
+      "__typename": "RealmPopulationEnum"
+    },
+    "__typename": "Realm"
+  },
+  {
+    "name": "The Forgotten Coast",
+    "slug": "the-forgotten-coast",
+    "locale": "en-US",
+    "timezone": "EDT",
+    "online": true,
+    "category": "United States",
+    "realmLockStatus": null,
+    "type": {
+      "id": "1",
+      "name": "Normal",
+      "slug": "normal",
+      "enum": "NORMAL",
+      "__typename": "RealmTypeEnum"
+    },
+    "population": {
+      "id": "4",
+      "name": "Full",
+      "slug": "full",
+      "enum": "FULL",
+      "__typename": "RealmPopulationEnum"
+    },
+    "__typename": "Realm"
+  },
+  {
+    "name": "The Scryers",
+    "slug": "the-scryers",
+    "locale": "en-US",
+    "timezone": "EDT",
+    "online": true,
+    "category": "United States",
+    "realmLockStatus": null,
+    "type": {
+      "id": "3",
+      "name": "Roleplaying",
+      "slug": "roleplaying",
+      "enum": "RP",
+      "__typename": "RealmTypeEnum"
+    },
+    "population": {
+      "id": "1",
+      "name": "Low",
+      "slug": "low",
+      "enum": "LOW",
+      "__typename": "RealmPopulationEnum"
+    },
+    "__typename": "Realm"
+  },
+  {
+    "name": "The Underbog",
+    "slug": "the-underbog",
+    "locale": "en-US",
+    "timezone": "CDT",
+    "online": true,
+    "category": "United States",
+    "realmLockStatus": null,
+    "type": {
+      "id": "1",
+      "name": "Normal",
+      "slug": "normal",
+      "enum": "NORMAL",
+      "__typename": "RealmTypeEnum"
+    },
+    "population": {
+      "id": "3",
+      "name": "High",
+      "slug": "high",
+      "enum": "HIGH",
+      "__typename": "RealmPopulationEnum"
+    },
+    "__typename": "Realm"
+  },
+  {
+    "name": "The Venture Co",
+    "slug": "the-venture-co",
+    "locale": "en-US",
+    "timezone": "CDT",
+    "online": true,
+    "category": "United States",
+    "realmLockStatus": null,
+    "type": {
+      "id": "3",
+      "name": "Roleplaying",
+      "slug": "roleplaying",
+      "enum": "RP",
+      "__typename": "RealmTypeEnum"
+    },
+    "population": {
+      "id": "2",
+      "name": "Medium",
+      "slug": "medium",
+      "enum": "MEDIUM",
+      "__typename": "RealmPopulationEnum"
+    },
+    "__typename": "Realm"
+  },
+  {
+    "name": "Thorium Brotherhood",
+    "slug": "thorium-brotherhood",
+    "locale": "en-US",
+    "timezone": "PDT",
+    "online": true,
+    "category": "United States",
+    "realmLockStatus": null,
+    "type": {
+      "id": "3",
+      "name": "Roleplaying",
+      "slug": "roleplaying",
+      "enum": "RP",
+      "__typename": "RealmTypeEnum"
+    },
+    "population": {
+      "id": "1",
+      "name": "Low",
+      "slug": "low",
+      "enum": "LOW",
+      "__typename": "RealmPopulationEnum"
+    },
+    "__typename": "Realm"
+  },
+  {
+    "name": "Thrall",
+    "slug": "thrall",
+    "locale": "en-US",
+    "timezone": "EDT",
+    "online": true,
+    "category": "United States",
+    "realmLockStatus": null,
+    "type": {
+      "id": "1",
+      "name": "Normal",
+      "slug": "normal",
+      "enum": "NORMAL",
+      "__typename": "RealmTypeEnum"
+    },
+    "population": {
+      "id": "4",
+      "name": "Full",
+      "slug": "full",
+      "enum": "FULL",
+      "__typename": "RealmPopulationEnum"
+    },
+    "__typename": "Realm"
+  },
+  {
+    "name": "Thunderhorn",
+    "slug": "thunderhorn",
+    "locale": "en-US",
+    "timezone": "CDT",
+    "online": true,
+    "category": "United States",
+    "realmLockStatus": null,
+    "type": {
+      "id": "1",
+      "name": "Normal",
+      "slug": "normal",
+      "enum": "NORMAL",
+      "__typename": "RealmTypeEnum"
+    },
+    "population": {
+      "id": "3",
+      "name": "High",
+      "slug": "high",
+      "enum": "HIGH",
+      "__typename": "RealmPopulationEnum"
+    },
+    "__typename": "Realm"
+  },
+  {
+    "name": "Thunderlord",
+    "slug": "thunderlord",
+    "locale": "en-US",
+    "timezone": "CDT",
+    "online": true,
+    "category": "United States",
+    "realmLockStatus": null,
+    "type": {
+      "id": "1",
+      "name": "Normal",
+      "slug": "normal",
+      "enum": "NORMAL",
+      "__typename": "RealmTypeEnum"
+    },
+    "population": {
+      "id": "8",
+      "name": "New Players",
+      "slug": "new-players",
+      "enum": "RECOMMENDED",
+      "__typename": "RealmPopulationEnum"
+    },
+    "__typename": "Realm"
+  },
+  {
+    "name": "Tichondrius",
+    "slug": "tichondrius",
+    "locale": "en-US",
+    "timezone": "PDT",
+    "online": true,
+    "category": "United States",
+    "realmLockStatus": null,
+    "type": {
+      "id": "1",
+      "name": "Normal",
+      "slug": "normal",
+      "enum": "NORMAL",
+      "__typename": "RealmTypeEnum"
+    },
+    "population": {
+      "id": "4",
+      "name": "Full",
+      "slug": "full",
+      "enum": "FULL",
+      "__typename": "RealmPopulationEnum"
+    },
+    "__typename": "Realm"
+  },
+  {
+    "name": "Tol Barad",
+    "slug": "tol-barad",
+    "locale": "pt-BR",
+    "timezone": "BRT",
+    "online": true,
+    "category": "Brazil",
+    "realmLockStatus": null,
+    "type": {
+      "id": "1",
+      "name": "Normal",
+      "slug": "normal",
+      "enum": "NORMAL",
+      "__typename": "RealmTypeEnum"
+    },
+    "population": {
+      "id": "2",
+      "name": "Medium",
+      "slug": "medium",
+      "enum": "MEDIUM",
+      "__typename": "RealmPopulationEnum"
+    },
+    "__typename": "Realm"
+  },
+  {
+    "name": "Tortheldrin",
+    "slug": "tortheldrin",
+    "locale": "en-US",
+    "timezone": "PDT",
+    "online": true,
+    "category": "United States",
+    "realmLockStatus": null,
+    "type": {
+      "id": "1",
+      "name": "Normal",
+      "slug": "normal",
+      "enum": "NORMAL",
+      "__typename": "RealmTypeEnum"
+    },
+    "population": {
+      "id": "3",
+      "name": "High",
+      "slug": "high",
+      "enum": "HIGH",
+      "__typename": "RealmPopulationEnum"
+    },
+    "__typename": "Realm"
+  },
+  {
+    "name": "Trollbane",
+    "slug": "trollbane",
+    "locale": "en-US",
+    "timezone": "EDT",
+    "online": true,
+    "category": "United States",
+    "realmLockStatus": null,
+    "type": {
+      "id": "1",
+      "name": "Normal",
+      "slug": "normal",
+      "enum": "NORMAL",
+      "__typename": "RealmTypeEnum"
+    },
+    "population": {
+      "id": "3",
+      "name": "High",
+      "slug": "high",
+      "enum": "HIGH",
+      "__typename": "RealmPopulationEnum"
+    },
+    "__typename": "Realm"
+  },
+  {
+    "name": "Turalyon",
+    "slug": "turalyon",
+    "locale": "en-US",
+    "timezone": "EDT",
+    "online": true,
+    "category": "United States",
+    "realmLockStatus": null,
+    "type": {
+      "id": "1",
+      "name": "Normal",
+      "slug": "normal",
+      "enum": "NORMAL",
+      "__typename": "RealmTypeEnum"
+    },
+    "population": {
+      "id": "1",
+      "name": "Low",
+      "slug": "low",
+      "enum": "LOW",
+      "__typename": "RealmPopulationEnum"
+    },
+    "__typename": "Realm"
+  },
+  {
+    "name": "Twisting Nether",
+    "slug": "twisting-nether",
+    "locale": "en-US",
+    "timezone": "CDT",
+    "online": true,
+    "category": "United States",
+    "realmLockStatus": null,
+    "type": {
+      "id": "3",
+      "name": "Roleplaying",
+      "slug": "roleplaying",
+      "enum": "RP",
+      "__typename": "RealmTypeEnum"
+    },
+    "population": {
+      "id": "2",
+      "name": "Medium",
+      "slug": "medium",
+      "enum": "MEDIUM",
+      "__typename": "RealmPopulationEnum"
+    },
+    "__typename": "Realm"
+  },
+  {
+    "name": "Uldaman",
+    "slug": "uldaman",
+    "locale": "en-US",
+    "timezone": "CDT",
+    "online": true,
+    "category": "United States",
+    "realmLockStatus": null,
+    "type": {
+      "id": "1",
+      "name": "Normal",
+      "slug": "normal",
+      "enum": "NORMAL",
+      "__typename": "RealmTypeEnum"
+    },
+    "population": {
+      "id": "1",
+      "name": "Low",
+      "slug": "low",
+      "enum": "LOW",
+      "__typename": "RealmPopulationEnum"
+    },
+    "__typename": "Realm"
+  },
+  {
+    "name": "Uldum",
+    "slug": "uldum",
+    "locale": "en-US",
+    "timezone": "PDT",
+    "online": true,
+    "category": "United States",
+    "realmLockStatus": null,
+    "type": {
+      "id": "1",
+      "name": "Normal",
+      "slug": "normal",
+      "enum": "NORMAL",
+      "__typename": "RealmTypeEnum"
+    },
+    "population": {
+      "id": "3",
+      "name": "High",
+      "slug": "high",
+      "enum": "HIGH",
+      "__typename": "RealmPopulationEnum"
+    },
+    "__typename": "Realm"
+  },
+  {
+    "name": "Undermine",
+    "slug": "undermine",
+    "locale": "en-US",
+    "timezone": "EDT",
+    "online": true,
+    "category": "United States",
+    "realmLockStatus": null,
+    "type": {
+      "id": "1",
+      "name": "Normal",
+      "slug": "normal",
+      "enum": "NORMAL",
+      "__typename": "RealmTypeEnum"
+    },
+    "population": {
+      "id": "4",
+      "name": "Full",
+      "slug": "full",
+      "enum": "FULL",
+      "__typename": "RealmPopulationEnum"
+    },
+    "__typename": "Realm"
+  },
+  {
+    "name": "Ursin",
+    "slug": "ursin",
+    "locale": "en-US",
+    "timezone": "EDT",
+    "online": true,
+    "category": "United States",
+    "realmLockStatus": null,
+    "type": {
+      "id": "1",
+      "name": "Normal",
+      "slug": "normal",
+      "enum": "NORMAL",
+      "__typename": "RealmTypeEnum"
+    },
+    "population": {
+      "id": "3",
+      "name": "High",
+      "slug": "high",
+      "enum": "HIGH",
+      "__typename": "RealmPopulationEnum"
+    },
+    "__typename": "Realm"
+  },
+  {
+    "name": "Uther",
+    "slug": "uther",
+    "locale": "en-US",
+    "timezone": "CDT",
+    "online": true,
+    "category": "United States",
+    "realmLockStatus": null,
+    "type": {
+      "id": "1",
+      "name": "Normal",
+      "slug": "normal",
+      "enum": "NORMAL",
+      "__typename": "RealmTypeEnum"
+    },
+    "population": {
+      "id": "1",
+      "name": "Low",
+      "slug": "low",
+      "enum": "LOW",
+      "__typename": "RealmPopulationEnum"
+    },
+    "__typename": "Realm"
+  },
+  {
+    "name": "Vashj",
+    "slug": "vashj",
+    "locale": "en-US",
+    "timezone": "EDT",
+    "online": true,
+    "category": "United States",
+    "realmLockStatus": null,
+    "type": {
+      "id": "1",
+      "name": "Normal",
+      "slug": "normal",
+      "enum": "NORMAL",
+      "__typename": "RealmTypeEnum"
+    },
+    "population": {
+      "id": "3",
+      "name": "High",
+      "slug": "high",
+      "enum": "HIGH",
+      "__typename": "RealmPopulationEnum"
+    },
+    "__typename": "Realm"
+  },
+  {
+    "name": "Vek'nilash",
+    "slug": "veknilash",
+    "locale": "en-US",
+    "timezone": "CDT",
+    "online": true,
+    "category": "United States",
+    "realmLockStatus": null,
+    "type": {
+      "id": "1",
+      "name": "Normal",
+      "slug": "normal",
+      "enum": "NORMAL",
+      "__typename": "RealmTypeEnum"
+    },
+    "population": {
+      "id": "1",
+      "name": "Low",
+      "slug": "low",
+      "enum": "LOW",
+      "__typename": "RealmPopulationEnum"
+    },
+    "__typename": "Realm"
+  },
+  {
+    "name": "Velen",
+    "slug": "velen",
+    "locale": "en-US",
+    "timezone": "EDT",
+    "online": true,
+    "category": "United States",
+    "realmLockStatus": null,
+    "type": {
+      "id": "1",
+      "name": "Normal",
+      "slug": "normal",
+      "enum": "NORMAL",
+      "__typename": "RealmTypeEnum"
+    },
+    "population": {
+      "id": "3",
+      "name": "High",
+      "slug": "high",
+      "enum": "HIGH",
+      "__typename": "RealmPopulationEnum"
+    },
+    "__typename": "Realm"
+  },
+  {
+    "name": "Warsong",
+    "slug": "warsong",
+    "locale": "en-US",
+    "timezone": "EDT",
+    "online": true,
+    "category": "United States",
+    "realmLockStatus": null,
+    "type": {
+      "id": "1",
+      "name": "Normal",
+      "slug": "normal",
+      "enum": "NORMAL",
+      "__typename": "RealmTypeEnum"
+    },
+    "population": {
+      "id": "4",
+      "name": "Full",
+      "slug": "full",
+      "enum": "FULL",
+      "__typename": "RealmPopulationEnum"
+    },
+    "__typename": "Realm"
+  },
+  {
+    "name": "Whisperwind",
+    "slug": "whisperwind",
+    "locale": "en-US",
+    "timezone": "CDT",
+    "online": true,
+    "category": "United States",
+    "realmLockStatus": null,
+    "type": {
+      "id": "1",
+      "name": "Normal",
+      "slug": "normal",
+      "enum": "NORMAL",
+      "__typename": "RealmTypeEnum"
+    },
+    "population": {
+      "id": "2",
+      "name": "Medium",
+      "slug": "medium",
+      "enum": "MEDIUM",
+      "__typename": "RealmPopulationEnum"
+    },
+    "__typename": "Realm"
+  },
+  {
+    "name": "Wildhammer",
+    "slug": "wildhammer",
+    "locale": "en-US",
+    "timezone": "CDT",
+    "online": true,
+    "category": "United States",
+    "realmLockStatus": null,
+    "type": {
+      "id": "1",
+      "name": "Normal",
+      "slug": "normal",
+      "enum": "NORMAL",
+      "__typename": "RealmTypeEnum"
+    },
+    "population": {
+      "id": "4",
+      "name": "Full",
+      "slug": "full",
+      "enum": "FULL",
+      "__typename": "RealmPopulationEnum"
+    },
+    "__typename": "Realm"
+  },
+  {
+    "name": "Windrunner",
+    "slug": "windrunner",
+    "locale": "en-US",
+    "timezone": "PDT",
+    "online": true,
+    "category": "United States",
+    "realmLockStatus": null,
+    "type": {
+      "id": "1",
+      "name": "Normal",
+      "slug": "normal",
+      "enum": "NORMAL",
+      "__typename": "RealmTypeEnum"
+    },
+    "population": {
+      "id": "2",
+      "name": "Medium",
+      "slug": "medium",
+      "enum": "MEDIUM",
+      "__typename": "RealmPopulationEnum"
+    },
+    "__typename": "Realm"
+  },
+  {
+    "name": "Winterhoof",
+    "slug": "winterhoof",
+    "locale": "en-US",
+    "timezone": "PDT",
+    "online": true,
+    "category": "United States",
+    "realmLockStatus": null,
+    "type": {
+      "id": "1",
+      "name": "Normal",
+      "slug": "normal",
+      "enum": "NORMAL",
+      "__typename": "RealmTypeEnum"
+    },
+    "population": {
+      "id": "1",
+      "name": "Low",
+      "slug": "low",
+      "enum": "LOW",
+      "__typename": "RealmPopulationEnum"
+    },
+    "__typename": "Realm"
+  },
+  {
+    "name": "Wyrmrest Accord",
+    "slug": "wyrmrest-accord",
+    "locale": "en-US",
+    "timezone": "PDT",
+    "online": true,
+    "category": "United States",
+    "realmLockStatus": null,
+    "type": {
+      "id": "3",
+      "name": "Roleplaying",
+      "slug": "roleplaying",
+      "enum": "RP",
+      "__typename": "RealmTypeEnum"
+    },
+    "population": {
+      "id": "3",
+      "name": "High",
+      "slug": "high",
+      "enum": "HIGH",
+      "__typename": "RealmPopulationEnum"
+    },
+    "__typename": "Realm"
+  },
+  {
+    "name": "Ysera",
+    "slug": "ysera",
+    "locale": "en-US",
+    "timezone": "EDT",
+    "online": true,
+    "category": "United States",
+    "realmLockStatus": null,
+    "type": {
+      "id": "1",
+      "name": "Normal",
+      "slug": "normal",
+      "enum": "NORMAL",
+      "__typename": "RealmTypeEnum"
+    },
+    "population": {
+      "id": "1",
+      "name": "Low",
+      "slug": "low",
+      "enum": "LOW",
+      "__typename": "RealmPopulationEnum"
+    },
+    "__typename": "Realm"
+  },
+  {
+    "name": "Ysondre",
+    "slug": "ysondre",
+    "locale": "en-US",
+    "timezone": "EDT",
+    "online": true,
+    "category": "United States",
+    "realmLockStatus": null,
+    "type": {
+      "id": "1",
+      "name": "Normal",
+      "slug": "normal",
+      "enum": "NORMAL",
+      "__typename": "RealmTypeEnum"
+    },
+    "population": {
+      "id": "1",
+      "name": "Low",
+      "slug": "low",
+      "enum": "LOW",
+      "__typename": "RealmPopulationEnum"
+    },
+    "__typename": "Realm"
+  },
+  {
+    "name": "Zangarmarsh",
+    "slug": "zangarmarsh",
+    "locale": "en-US",
+    "timezone": "CDT",
+    "online": true,
+    "category": "United States",
+    "realmLockStatus": null,
+    "type": {
+      "id": "1",
+      "name": "Normal",
+      "slug": "normal",
+      "enum": "NORMAL",
+      "__typename": "RealmTypeEnum"
+    },
+    "population": {
+      "id": "4",
+      "name": "Full",
+      "slug": "full",
+      "enum": "FULL",
+      "__typename": "RealmPopulationEnum"
+    },
+    "__typename": "Realm"
+  },
+  {
+    "name": "Zul'jin",
+    "slug": "zuljin",
+    "locale": "en-US",
+    "timezone": "EDT",
+    "online": true,
+    "category": "United States",
+    "realmLockStatus": null,
+    "type": {
+      "id": "1",
+      "name": "Normal",
+      "slug": "normal",
+      "enum": "NORMAL",
+      "__typename": "RealmTypeEnum"
+    },
+    "population": {
+      "id": "4",
+      "name": "Full",
+      "slug": "full",
+      "enum": "FULL",
+      "__typename": "RealmPopulationEnum"
+    },
+    "__typename": "Realm"
+  },
+  {
+    "name": "Zuluhed",
+    "slug": "zuluhed",
+    "locale": "en-US",
+    "timezone": "EDT",
+    "online": true,
+    "category": "United States",
+    "realmLockStatus": null,
+    "type": {
+      "id": "1",
+      "name": "Normal",
+      "slug": "normal",
+      "enum": "NORMAL",
+      "__typename": "RealmTypeEnum"
+    },
+    "population": {
+      "id": "3",
+      "name": "High",
+      "slug": "high",
+      "enum": "HIGH",
+      "__typename": "RealmPopulationEnum"
+    },
+    "__typename": "Realm"
+  }
+]

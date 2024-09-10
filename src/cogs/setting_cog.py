@@ -5,14 +5,26 @@ from discord.ext import commands
 from discord import guild_only
 
 from .base import Cog
+from src.context import Context
 from src.bot import BansheeBot
-from src.services import ISettingService, IGuildService
 from src.entities import SettingUpdate
 from src.views import setting
 
-import inject
-from typing import Optional
 from enum import Enum
+from functools import wraps
+
+
+def ensure_settings_exist():
+    def decorator(func):
+        @wraps(func)
+        async def wrapper(self, ctx: Context, *args, **kwargs):
+            if not (await ctx.check_settings_exist()):
+                return await ctx.respond("Settings must exist")
+            return await func(self, ctx, *args, **kwargs)
+
+        return wrapper
+
+    return decorator
 
 
 class Region(Enum):
@@ -21,11 +33,6 @@ class Region(Enum):
 
 
 class Setting(Cog):
-
-    bot: BansheeBot
-
-    settingService: ISettingService = inject.attr(ISettingService)
-    guildService: IGuildService = inject.attr(IGuildService)
 
     settingCommands = SlashCommandGroup(
         name="settings",
@@ -44,44 +51,25 @@ class Setting(Cog):
         name="realm",
     )
 
-    def __init__(self, bot: BansheeBot) -> None:
-        self.bot = bot
-
-    async def _get_guild_role(
-        self, role_id: Optional[str], ctx: discord.Interaction
-    ) -> Optional[discord.Role]:
-        if ctx.guild is None:
-            raise Exception("guild not on context")
-
-        if role_id is None:
-            return None
-
-        role = ctx.guild.get_role(int(role_id))
-
-        if role is None:
-            raise ValueError("role not found")
-        return role
-
     @settingCommands.command(
         name="show", description="Show the current server settings."
     )
     @commands.is_owner()
     @guild_only()
-    async def show(self, ctx: discord.ApplicationContext):
-        assert ctx.guild()
+    @ensure_settings_exist()
+    async def show(self, ctx: Context):
 
-        guild_id = str(ctx.guild())
-        settings = await self.settingService.get_by_discord_guild_id(guild_id)
+        guild_id = ctx.get_guild_id()
+        settings = await ctx._settingService.get_by_discord_guild_id(guild_id)
 
-        admin_role = await self._get_guild_role(
-            settings.admin_role_id,
-            ctx.interaction,
-        )
+        admin_role = None
+        if settings.admin_role_id is not None:
+            admin_role = ctx.get_guild_role(settings.admin_role_id)
 
-        raider_role = await self._get_guild_role(
-            settings.raider_role_id,
-            ctx.interaction,
-        )
+        if settings.raider_role_id is not None:
+            raider_role = ctx.get_guild_role(
+                settings.raider_role_id,
+            )
 
         return await ctx.respond(
             embed=setting.SettingsShowEmbed(
@@ -97,22 +85,15 @@ class Setting(Cog):
     )
     @commands.is_owner()
     @guild_only()
-    async def set_admin_role(self, ctx: discord.ApplicationContext, role: discord.Role):
-        guild_id = str(ctx.guild_id)
-        if not (
-            await self.settingService.does_guild_settings_exist(
-                discord_guild_id=guild_id
-            )
-        ):
-            return await ctx.respond("Settings must exist first before you can do this")
-
-        settings = await self.settingService.get_by_discord_guild_id(
+    @ensure_settings_exist()
+    async def set_admin_role(self, ctx: Context, role: discord.Role):
+        guild_id = ctx.get_guild_id()
+        settings = await ctx._settingService.get_by_discord_guild_id(
             discord_guild_id=guild_id
         )
 
         update_obj = SettingUpdate(admin_role_id=str(role.id))
-
-        newly_updated = await self.settingService.update(settings.id, update_obj)
+        await ctx._settingService.update(settings.id, update_obj)
 
         return await ctx.respond(
             f"You have set {role.mention} as the Admin role", ephemeral=True
@@ -124,24 +105,16 @@ class Setting(Cog):
     )
     @commands.is_owner()
     @guild_only()
-    async def set_raider_role(
-        self, ctx: discord.ApplicationContext, role: discord.Role
-    ):
-        guild_id = str(ctx.guild_id)
-        if not (
-            await self.settingService.does_guild_settings_exist(
-                discord_guild_id=guild_id
-            )
-        ):
-            return await ctx.respond("Settings must exist first before you can do this")
+    @ensure_settings_exist()
+    async def set_raider_role(self, ctx: Context, role: discord.Role):
 
-        settings = await self.settingService.get_by_discord_guild_id(
+        guild_id = ctx.get_guild_id()
+        settings = await ctx._settingService.get_by_discord_guild_id(
             discord_guild_id=guild_id
         )
 
         update_obj = SettingUpdate(raider_role_id=str(role.id))
-
-        newly_updated = await self.settingService.update(settings.id, update_obj)
+        await ctx._settingService.update(settings.id, update_obj)
 
         return await ctx.respond(
             f"You have set {role.mention} as the Raider role", ephemeral=True
@@ -156,20 +129,14 @@ class Setting(Cog):
     )
     @commands.is_owner()
     @guild_only()
-    async def set_default_region(self, ctx: discord.ApplicationContext, region: Region):
-        guild_id = str(ctx.guild_id)
-        if not (
-            await self.settingService.does_guild_settings_exist(
-                discord_guild_id=guild_id
-            )
-        ):
-            return await ctx.respond("Settings must exist first before you can do this")
-
-        settings = await self.settingService.get_by_discord_guild_id(guild_id)
+    @ensure_settings_exist()
+    async def set_default_region(self, ctx: Context, region: Region):
+        guild_id = ctx.get_guild_id()
+        settings = await ctx._settingService.get_by_discord_guild_id(guild_id)
 
         update_obj = SettingUpdate(default_region=region.value)
 
-        await self.settingService.update(settings.id, update_obj)
+        await ctx._settingService.update(settings.id, update_obj)
 
         return await ctx.respond(
             f"Default region has been set to `{region.name}`",
@@ -182,22 +149,17 @@ class Setting(Cog):
     )
     @commands.is_owner()
     @guild_only()
-    async def set_default_realm(self, ctx: discord.ApplicationContext, realm: str):
-        guild_id = str(ctx.guild_id)
-        if not (
-            await self.settingService.does_guild_settings_exist(
-                discord_guild_id=guild_id
-            )
-        ):
-            return await ctx.respond("Settings must exist first before you can do this")
+    @ensure_settings_exist()
+    async def set_default_realm(self, ctx: Context, realm: str):
 
-        settings = await self.settingService.get_by_discord_guild_id(
+        guild_id = ctx.get_guild_id()
+        settings = await ctx._settingService.get_by_discord_guild_id(
             discord_guild_id=guild_id
         )
 
         update_obj = SettingUpdate(default_realm=realm)
 
-        newly_updated = await self.settingService.update(settings.id, update_obj)
+        newly_updated = await ctx._settingService.update(settings.id, update_obj)
 
         return await ctx.respond(
             f"You have set `{newly_updated.default_realm}`", ephemeral=True
@@ -209,34 +171,32 @@ class Setting(Cog):
     )
     @commands.is_owner()
     @guild_only()
-    async def init_settings(self, ctx: discord.ApplicationContext):
+    async def init_settings(self, ctx: Context):
         guild_id = str(ctx.guild_id)
-        if await self.settingService.does_guild_settings_exist(
+        if await ctx._settingService.does_guild_settings_exist(
             discord_guild_id=guild_id
         ):
             return await ctx.respond("Setting already exist")
 
-        await self.settingService.setup_guild_settings(discord_guild_id=guild_id)
+        await ctx._settingService.setup_guild_settings(discord_guild_id=guild_id)
 
         return await ctx.respond("Guild setting have been created")
 
     @commands.Cog.listener()
-    async def on_guild_join(self, guild: discord.Guild):
+    async def on_guild_join(self, ctx: Context, guild: discord.Guild):
 
         guild_id = str(guild.id)
         logger.debug(f"guild_id: {guild_id}")
 
-        if await self.settingService.does_guild_settings_exist(
+        if await ctx._settingService.does_guild_settings_exist(
             discord_guild_id=guild_id
         ):
             return
 
-        await self.settingService.setup_guild_settings(guild_id)
+        await ctx._settingService.setup_guild_settings(guild_id)
         return
 
-    async def cog_command_error(
-        self, ctx: discord.ApplicationContext, error: Exception
-    ) -> None:
+    async def cog_command_error(self, ctx: Context, error: Exception) -> None:
         logger.error(f"There was a problem in Setting cog: {error}")
         await ctx.respond("Something went wrong :(")
         return await super().cog_command_error(ctx, error)

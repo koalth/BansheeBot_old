@@ -5,27 +5,19 @@ from discord.ext import commands, tasks
 from discord import guild_only
 
 from .base import Cog
+from src.context import Context
 from src.bot import BansheeBot
 from src.views import raid
 from src.entities import GuildUpdate
-from src.services import IGuildService, ICharacterService, ISettingService
 
-import inject
 from typing import List
 
 
-class Raid(commands.Cog):
-
-    bot: BansheeBot
-
-    settingService: ISettingService = inject.attr(ISettingService)
-    guildService: IGuildService = inject.attr(IGuildService)
-    characterService: ICharacterService = inject.attr(ICharacterService)
+class Raid(Cog):
 
     raidCommands = SlashCommandGroup(
         name="raid",
         description="Raid Roster commands",
-        contexts={discord.InteractionContextType.guild},
     )
     item_levelCommands = raidCommands.create_subgroup(
         name="item_level", description="Item level commands"
@@ -39,16 +31,11 @@ class Raid(commands.Cog):
         description="Commands relating to linked raid members",
     )
 
-    def __init__(self, bot: BansheeBot) -> None:
-        self.bot = bot
-
-    def _get_guild_id(self, ctx: discord.ApplicationContext) -> str:
+    def _get_guild_id(self, ctx: Context) -> str:
         assert ctx.guild
         return str(ctx.guild.id)
 
-    async def _get_unlinked_members(
-        self, ctx: discord.ApplicationContext
-    ) -> List[discord.Member]:
+    async def _get_unlinked_members(self, ctx: Context) -> List[discord.Member]:
         assert type(ctx.guild) is discord.Guild
         ctx.guild.name
         guild_id = self._get_guild_id(ctx)
@@ -83,9 +70,7 @@ class Raid(commands.Cog):
 
         return members
 
-    async def _get_linked_members(
-        self, ctx: discord.ApplicationContext
-    ) -> List[discord.Member]:
+    async def _get_linked_members(self, ctx: Context) -> List[discord.Member]:
         assert type(ctx.guild) is discord.Guild
         ctx.guild.name
         guild_id = self._get_guild_id(ctx)
@@ -121,7 +106,7 @@ class Raid(commands.Cog):
         return members
 
     @raidCommands.command(name="show", description="Show the current raid roster")
-    async def show(self, ctx: discord.ApplicationContext):
+    async def show(self, ctx: Context):
         guild_id = str(ctx.guild_id)
         guild = await self.guildService.get_by_discord_guild_id(guild_id)
 
@@ -136,7 +121,7 @@ class Raid(commands.Cog):
         name="set", description="Set the item level requirement for the raid roster"
     )
     @guild_only()
-    async def set_item_level(self, ctx: discord.ApplicationContext, item_level: int):
+    async def set_item_level(self, ctx: Context, item_level: int):
         guild_id = str(ctx.guild_id)
         guild = await self.guildService.get_by_discord_guild_id(
             discord_guild_id=guild_id
@@ -154,7 +139,7 @@ class Raid(commands.Cog):
         name="show", description="show the item level requirement for the raid roster"
     )
     @guild_only()
-    async def show_item_level(self, ctx: discord.ApplicationContext):
+    async def show_item_level(self, ctx: Context):
         guild_id = str(ctx.guild_id)
         guild = await self.guildService.get_by_discord_guild_id(
             discord_guild_id=guild_id
@@ -170,7 +155,7 @@ class Raid(commands.Cog):
     @unlinkedCommands.command(
         name="list", description="List the unlinked members with raid roles"
     )
-    async def list_unlinked(self, ctx: discord.ApplicationContext):
+    async def list_unlinked(self, ctx: Context):
         ctx_guild = ctx.guild
         assert type(ctx_guild) is discord.Guild
 
@@ -194,7 +179,7 @@ class Raid(commands.Cog):
         name="message",
         description="Message the unlinked members with raid roles to link their characters",
     )
-    async def message_unlinked(self, ctx: discord.ApplicationContext):
+    async def message_unlinked(self, ctx: Context):
         assert type(ctx.guild) is discord.Guild
         ctx_guild = ctx.guild
         assert type(ctx_guild) is discord.Guild
@@ -217,7 +202,7 @@ class Raid(commands.Cog):
     @linkedCommands.command(
         name="list", description="List the linked members with raid roles"
     )
-    async def list_linked(self, ctx: discord.ApplicationContext):
+    async def list_linked(self, ctx: Context):
         ctx_guild = ctx.guild
         assert type(ctx_guild) is discord.Guild
 
@@ -240,7 +225,7 @@ class Raid(commands.Cog):
         name="message",
         description="Message the linked members with raid roles",
     )
-    async def message_linked(self, ctx: discord.ApplicationContext, message: str):
+    async def message_linked(self, ctx: Context, message: str):
         assert type(ctx.guild) is discord.Guild
         ctx_guild = ctx.guild
         assert type(ctx_guild) is discord.Guild
@@ -251,9 +236,7 @@ class Raid(commands.Cog):
 
         return await ctx.respond("Messages has been sent.", ephemeral=True)
 
-    async def cog_command_error(
-        self, ctx: discord.ApplicationContext, error: Exception
-    ) -> None:
+    async def cog_command_error(self, ctx: Context, error: Exception) -> None:
         logger.error(f"There was a problem in Raid cog: {error}")
         await ctx.respond("Something went wrong :(")
         return await super().cog_command_error(ctx, error)

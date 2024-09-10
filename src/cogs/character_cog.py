@@ -5,6 +5,7 @@ from discord.ext import commands
 import inject
 
 from .base import Cog
+from src.context import Context
 from src.bot import BansheeBot
 from src.services import ICharacterService
 from src.views import get_character_embed
@@ -17,11 +18,7 @@ class Character(Cog):
         description="Commands related to a World of Warcraft character",
     )
 
-    characterService: ICharacterService = inject.attr(ICharacterService)
-
-    async def cog_command_error(
-        self, ctx: discord.ApplicationContext, error: Exception
-    ) -> None:
+    async def cog_command_error(self, ctx: Context, error: Exception) -> None:
         logger.error(f"There was a problem in Character cog: {error}")
         await ctx.respond("Something went wrong :(")
         return await super().cog_command_error(ctx, error)

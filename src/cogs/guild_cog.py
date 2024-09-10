@@ -8,6 +8,7 @@ from enum import Enum
 import inject
 
 from .base import Cog
+from src.context import Context
 from src.bot import BansheeBot
 from src.services import IGuildService
 from src.entities import GuildCreate
@@ -20,14 +21,12 @@ class Region(Enum):
 
 class Guild(Cog):
 
-    guildService: IGuildService = inject.attr(IGuildService)
-
     guildCommands = SlashCommandGroup(
         name="guild", description="Commands for the guild"
     )
 
     @guildCommands.command(name="show", description="Show a summary of the WoW Guild")
-    async def show_guild(self, ctx: discord.ApplicationContext):
+    async def show_guild(self, ctx: Context):
         guild_id = str(ctx.guild_id)
         guild = await self.guildService.get_by_discord_guild_id(guild_id)
 
@@ -42,9 +41,7 @@ class Guild(Cog):
         return await ctx.respond(embed=embed)
 
     @guildCommands.command(name="set", description="Set the server's Wow guild")
-    async def set_guild(
-        self, ctx: discord.ApplicationContext, name: str, realm: str, region: str
-    ):
+    async def set_guild(self, ctx: Context, name: str, realm: str, region: str):
         guild_id = str(ctx.guild_id)
         guild = await self.guildService.create(
             GuildCreate(

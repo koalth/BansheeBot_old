@@ -5,24 +5,18 @@ from discord.ext import commands
 import inject
 
 from .base import Cog
+from src.context import Context
 from src.bot import BansheeBot
 from src.services import ICharacterService, ISettingService, IGuildService
 
 
 class General(Cog):
 
-    characterService: ICharacterService = inject.attr(ICharacterService)
-    settingService: ISettingService = inject.attr(ISettingService)
-    guildService: IGuildService = inject.attr(IGuildService)
-
-    def __init__(self, bot: BansheeBot) -> None:
-        self.bot = bot
-
-    def _get_guild_id(self, ctx: discord.ApplicationContext) -> str:
+    def _get_guild_id(self, ctx: Context) -> str:
         assert ctx.guild
         return str(ctx.guild.id)
 
-    async def _check_guild_exist(self, ctx: discord.ApplicationContext) -> bool:
+    async def _check_guild_exist(self, ctx: Context) -> bool:
         guild_id = self._get_guild_id(ctx)
 
         return (
@@ -33,9 +27,7 @@ class General(Cog):
         name="add",
         description="Add your World of Warcraft character to be tracked and viewed by your guild",
     )
-    async def add_character(
-        self, ctx: discord.ApplicationContext, name: str, realm: str
-    ):
+    async def add_character(self, ctx: Context, name: str, realm: str):
         if not await self._check_guild_exist(ctx):
             return await ctx.respond(
                 f"There isn't a guild to be linked. Yell at your server admin"
@@ -62,7 +54,7 @@ class General(Cog):
         name="get",
         description="Get your World of Warcraft character currently associated in the discord guild",
     )
-    async def get_character(self, ctx: discord.ApplicationContext):
+    async def get_character(self, ctx: Context):
 
         if not self._check_guild_exist(ctx):
             return await ctx.respond(
@@ -88,9 +80,7 @@ class General(Cog):
 
         return await ctx.respond(embed=embed)
 
-    async def cog_command_error(
-        self, ctx: discord.ApplicationContext, error: Exception
-    ) -> None:
+    async def cog_command_error(self, ctx: Context, error: Exception) -> None:
         logger.error(f"There was a problem in General cog: {error}")
         await ctx.respond("Something went wrong :(")
         return await super().cog_command_error(ctx, error)

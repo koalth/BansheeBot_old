@@ -21,9 +21,7 @@ class Admin(Cog):
 
         return await ctx.respond(settings.default_realm)
 
-    async def cog_command_error(
-        self, ctx: discord.ApplicationContext, error: Exception
-    ) -> None:
+    async def cog_command_error(self, ctx: Context, error: Exception) -> None:
         logger.error(f"There was a problem: {error}")
         await ctx.respond("Something weng wrong :(")
         return await super().cog_command_error(ctx, error)

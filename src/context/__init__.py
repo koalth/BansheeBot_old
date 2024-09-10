@@ -4,7 +4,6 @@ from src.services import ICharacterService, IGuildService, ISettingService
 import inject
 from typing import Optional, List
 
-
 class Context(ApplicationContext):
 
     _characterService: ICharacterService = inject.attr(ICharacterService)
@@ -18,9 +17,18 @@ class Context(ApplicationContext):
         return str(ctx_guild.id)
 
     def get_guild_role(self, role_id: str) -> discord.Role:
-        assert self.guild
+        if not isinstance(self.guild, discord.Guild):
+            raise TypeError("Guild not set")
+
         role = self.guild.get_role(int(role_id))
 
         if role is None:
-            raise ValueError("role not found")
+            raise ValueError(f"Role with ID {role_id} not found")
+
         return role
+
+    async def check_settings_exist(self) -> bool:
+        guild_id = self.get_guild_id()
+        return (
+            await self._settingService.does_guild_settings_exist(guild_id) is not None
+        )
